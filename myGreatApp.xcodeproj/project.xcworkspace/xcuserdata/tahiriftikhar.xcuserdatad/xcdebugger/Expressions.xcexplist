@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "__56-[LocalisationEngine placeToSeach:onCompletion:onError:]_block_invoke_0:LocalisationEngine.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[response objectForKey:@&quot;response&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ResultViewController prepareForSegue:sender:]:ResultViewController.m">
          <PersistentStrings>
             <PersistentString

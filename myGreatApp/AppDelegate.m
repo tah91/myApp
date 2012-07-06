@@ -7,14 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#import "LocalisationEngine.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize localisationEngine;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:@"www.eworky.com" customHeaderFields:nil];
+    [self.localisationEngine useCache];
+    
     return YES;
 }
 							

@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "ResultItemCell.h"
 #import "Localisation.h"
+#import "AppDelegate.h"
 
 @interface ResultViewController ()
 
@@ -39,23 +40,21 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     results = [NSMutableArray arrayWithCapacity:20];
-	Localisation* loc = [[Localisation alloc] init];
-	loc.name = @"La Cantine";
-	loc.city = @"Paris";
-    loc.locId = 1;
-    [results addObject:loc];
-    loc = [[Localisation alloc] init];
-	loc.name = @"Regus";
-	loc.city = @"Lyon";
-    loc.locId = 2;
-    [results addObject:loc];
-    loc = [[Localisation alloc] init];
-	loc.name = @"Mac Do";
-	loc.city = @"Les Ulis";
-    loc.locId = 3;
-    [results addObject:loc];
+    
+    [ApplicationDelegate.localisationEngine placeToSeach:searchPlace
+                                            onCompletion:^(NSMutableArray* localisations) {
+                                                for (NSDictionary* jsonObject in localisations) {
+                                                    Localisation* loc = [[Localisation alloc] initWithDictionary:jsonObject];
+                                                    [results addObject:loc];
+                                                }
+                                                //self.results = localisations;
+                                                [self.tableView reloadData];        
+                                            }
+                                                 onError:^(NSError* error) {
+        
+                                            }];
 
-    //self.navigationItem.title = searchPlace;
+    self.navigationItem.title = searchPlace;
 }
 
 - (void)viewDidUnload
@@ -88,7 +87,7 @@
     Localisation* loc = [results objectAtIndex:indexPath.row];
 	cell.nameLabel.text = loc.name;
 	cell.cityLabel.text = loc.city;
-    cell.locId = loc.locId;
+    cell.locId = loc.id;
     return cell;
 }
 
