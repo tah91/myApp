@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		9780D0A515A4C54F00311B30 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9780D0A415A4C54F00311B30 /* Security.framework */; };
 		9780D0CA15A7182D00311B30 /* LocalisationEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D0C915A7182C00311B30 /* LocalisationEngine.m */; };
-		9780D0FF15A7501600311B30 /* Jastor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D0FC15A7501600311B30 /* Jastor.m */; };
-		9780D10015A7501600311B30 /* JastorRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D0FE15A7501600311B30 /* JastorRuntimeHelper.m */; };
+		9780D10815A88F6000311B30 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9780D10715A88F5F00311B30 /* MapKit.framework */; };
+		9780D10B15A890AF00311B30 /* MapResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D10A15A890AE00311B30 /* MapResultViewController.m */; };
+		9780D10D15A8A2CB00311B30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9780D10C15A8A2CA00311B30 /* CoreLocation.framework */; };
+		9780D11015A8BDE100311B30 /* LocalisationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D10F15A8BDE000311B30 /* LocalisationAnnotation.m */; };
+		9780D15115A8E18D00311B30 /* Jastor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D14E15A8E18D00311B30 /* Jastor.m */; };
+		9780D15215A8E18D00311B30 /* JastorRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D15015A8E18D00311B30 /* JastorRuntimeHelper.m */; };
 		97F42E6D15A3428000EACD05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42E6C15A3428000EACD05 /* UIKit.framework */; };
 		97F42E6F15A3428000EACD05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42E6E15A3428000EACD05 /* Foundation.framework */; };
 		97F42E7115A3428000EACD05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42E7015A3428000EACD05 /* CoreGraphics.framework */; };
@@ -55,11 +59,16 @@
 		9780D0A415A4C54F00311B30 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9780D0C815A7182C00311B30 /* LocalisationEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalisationEngine.h; sourceTree = "<group>"; };
 		9780D0C915A7182C00311B30 /* LocalisationEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalisationEngine.m; sourceTree = "<group>"; };
-		9780D0FA15A7501600311B30 /* Jastor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Jastor-Prefix.pch"; sourceTree = "<group>"; };
-		9780D0FB15A7501600311B30 /* Jastor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jastor.h; sourceTree = "<group>"; };
-		9780D0FC15A7501600311B30 /* Jastor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jastor.m; sourceTree = "<group>"; };
-		9780D0FD15A7501600311B30 /* JastorRuntimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JastorRuntimeHelper.h; sourceTree = "<group>"; };
-		9780D0FE15A7501600311B30 /* JastorRuntimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JastorRuntimeHelper.m; sourceTree = "<group>"; };
+		9780D10715A88F5F00311B30 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9780D10915A890AE00311B30 /* MapResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapResultViewController.h; sourceTree = "<group>"; };
+		9780D10A15A890AE00311B30 /* MapResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapResultViewController.m; sourceTree = "<group>"; };
+		9780D10C15A8A2CA00311B30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9780D10E15A8BDDF00311B30 /* LocalisationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalisationAnnotation.h; sourceTree = "<group>"; };
+		9780D10F15A8BDE000311B30 /* LocalisationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalisationAnnotation.m; sourceTree = "<group>"; };
+		9780D14D15A8E18D00311B30 /* Jastor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jastor.h; sourceTree = "<group>"; };
+		9780D14E15A8E18D00311B30 /* Jastor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jastor.m; sourceTree = "<group>"; };
+		9780D14F15A8E18D00311B30 /* JastorRuntimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JastorRuntimeHelper.h; sourceTree = "<group>"; };
+		9780D15015A8E18D00311B30 /* JastorRuntimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JastorRuntimeHelper.m; sourceTree = "<group>"; };
 		97F42E6815A3428000EACD05 /* myGreatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myGreatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F42E6C15A3428000EACD05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97F42E6E15A3428000EACD05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,6 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9780D10D15A8A2CB00311B30 /* CoreLocation.framework in Frameworks */,
+				9780D10815A88F6000311B30 /* MapKit.framework in Frameworks */,
 				9780D0A515A4C54F00311B30 /* Security.framework in Frameworks */,
 				97F42EF915A4BE4200EACD05 /* SystemConfiguration.framework in Frameworks */,
 				97F42EF715A4BD3100EACD05 /* CFNetwork.framework in Frameworks */,
@@ -137,17 +148,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9780D0F915A7501600311B30 /* Jastor */ = {
+		9780D14B15A8E18C00311B30 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				9780D0FA15A7501600311B30 /* Jastor-Prefix.pch */,
-				9780D0FB15A7501600311B30 /* Jastor.h */,
-				9780D0FC15A7501600311B30 /* Jastor.m */,
-				9780D0FD15A7501600311B30 /* JastorRuntimeHelper.h */,
-				9780D0FE15A7501600311B30 /* JastorRuntimeHelper.m */,
+				9780D14C15A8E18D00311B30 /* Jastor */,
 			);
-			name = Jastor;
-			path = ../../../jastor/Jastor/Jastor;
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		9780D14C15A8E18D00311B30 /* Jastor */ = {
+			isa = PBXGroup;
+			children = (
+				9780D14D15A8E18D00311B30 /* Jastor.h */,
+				9780D14E15A8E18D00311B30 /* Jastor.m */,
+				9780D14F15A8E18D00311B30 /* JastorRuntimeHelper.h */,
+				9780D15015A8E18D00311B30 /* JastorRuntimeHelper.m */,
+			);
+			path = Jastor;
 			sourceTree = "<group>";
 		};
 		97F42E5D15A3428000EACD05 = {
@@ -173,6 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				97F42ED715A4BD0600EACD05 /* MKNetworkKit */,
+				9780D10C15A8A2CA00311B30 /* CoreLocation.framework */,
+				9780D10715A88F5F00311B30 /* MapKit.framework */,
 				9780D0A415A4C54F00311B30 /* Security.framework */,
 				97F42EF815A4BE4200EACD05 /* SystemConfiguration.framework */,
 				97F42EF615A4BD3100EACD05 /* CFNetwork.framework */,
@@ -187,7 +206,7 @@
 		97F42E7215A3428000EACD05 /* myGreatApp */ = {
 			isa = PBXGroup;
 			children = (
-				9780D0F915A7501600311B30 /* Jastor */,
+				9780D14B15A8E18C00311B30 /* Libraries */,
 				97F42E7B15A3428000EACD05 /* AppDelegate.h */,
 				97F42EB015A4541D00EACD05 /* Localisation.h */,
 				97F42EB115A4541D00EACD05 /* Localisation.m */,
@@ -195,6 +214,10 @@
 				9780D0C815A7182C00311B30 /* LocalisationEngine.h */,
 				9780D0C915A7182C00311B30 /* LocalisationEngine.m */,
 				97F42E7E15A3428000EACD05 /* MainStoryboard.storyboard */,
+				9780D10915A890AE00311B30 /* MapResultViewController.h */,
+				9780D10A15A890AE00311B30 /* MapResultViewController.m */,
+				9780D10E15A8BDDF00311B30 /* LocalisationAnnotation.h */,
+				9780D10F15A8BDE000311B30 /* LocalisationAnnotation.m */,
 				97F42EB615A4789F00EACD05 /* ResultItemCell.h */,
 				97F42EB715A4789F00EACD05 /* ResultItemCell.m */,
 				97F42EB315A466FD00EACD05 /* DetailViewController.h */,
@@ -404,8 +427,10 @@
 				97F42EF415A4BD0600EACD05 /* MKNetworkOperation.m in Sources */,
 				97F42EF515A4BD0600EACD05 /* Reachability.m in Sources */,
 				9780D0CA15A7182D00311B30 /* LocalisationEngine.m in Sources */,
-				9780D0FF15A7501600311B30 /* Jastor.m in Sources */,
-				9780D10015A7501600311B30 /* JastorRuntimeHelper.m in Sources */,
+				9780D10B15A890AF00311B30 /* MapResultViewController.m in Sources */,
+				9780D11015A8BDE100311B30 /* LocalisationAnnotation.m in Sources */,
+				9780D15115A8E18D00311B30 /* Jastor.m in Sources */,
+				9780D15215A8E18D00311B30 /* JastorRuntimeHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

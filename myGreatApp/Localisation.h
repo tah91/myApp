@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Foundation/NSKeyValueCoding.h>
-#import "Jastor.h"
+#import "Libraries/Jastor/Jastor.h"
 
 @interface Localisation : Jastor
 
-@property int id;
+@property (nonatomic) NSInteger id;
 @property (nonatomic, copy) NSString* name;
 @property (nonatomic, copy) NSString* city;
+@property (nonatomic, copy) NSNumber* latitude;
+@property (nonatomic, copy) NSNumber* longitude;
 
 @end

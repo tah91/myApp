@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ResultViewController : UITableViewController
-{
-    NSMutableArray* results; 
-}
 
+@property (strong, nonatomic) NSMutableArray* results; 
 @property (strong, nonatomic) NSString* searchPlace;
-
 
 @end

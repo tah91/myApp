@@ -13,6 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *city;
-@property int locId;
+@property NSInteger locId;
 
 @end

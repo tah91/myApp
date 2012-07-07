@@ -8,6 +8,7 @@
 
 #import "ResultViewController.h"
 #import "DetailViewController.h"
+#import "MapResultViewController.h"
 #import "ResultItemCell.h"
 #import "Localisation.h"
 #import "AppDelegate.h"
@@ -18,7 +19,7 @@
 
 @implementation ResultViewController
 
-@synthesize searchPlace;
+@synthesize searchPlace, results;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -47,7 +48,6 @@
                                                     Localisation* loc = [[Localisation alloc] initWithDictionary:jsonObject];
                                                     [results addObject:loc];
                                                 }
-                                                //self.results = localisations;
                                                 [self.tableView reloadData];        
                                             }
                                                  onError:^(NSError* error) {
@@ -99,6 +99,11 @@
         
         DetailViewController *ds = [segue destinationViewController];
         [ds setLocId:cell.locId];
+    }
+    else if ([[segue identifier] isEqualToString:@"mapResultSegue"]) {
+        MapResultViewController *mvs = [segue destinationViewController];
+        [mvs setSearchPlace:searchPlace];
+        [mvs setResults:results];
     }
 }
 

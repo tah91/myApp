@@ -104,10 +104,44 @@
                             <outlet property="delegate" destination="qZf-gc-xEt" id="pSf-cU-7AK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Resultats" id="waR-fS-Yjr"/>
+                    <navigationItem key="navigationItem" title="Resultats" id="waR-fS-Yjr">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="Qmo-BP-V3k">
+                            <connections>
+                                <segue destination="kJ6-Wd-zwq" kind="push" identifier="mapResultSegue" id="L2Q-dz-FNy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1065" y="225"/>
+        </scene>
+        <!--Map Result View Controller-->
+        <scene sceneID="Nmq-vO-FFM">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Om1-LT-jrb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="kJ6-Wd-zwq" customClass="MapResultViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cxd-9F-Se6">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="MZQ-wU-9Cf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kJ6-Wd-zwq" id="V09-Ft-BkF"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vk7-R8-vrv"/>
+                    <connections>
+                        <outlet property="mapView" destination="MZQ-wU-9Cf" id="S7s-pf-rBR"/>
+                        <segue destination="473-VJ-5Ex" kind="push" identifier="annotationDetailSegue" id="d4u-P3-dcH"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1617" y="-69"/>
         </scene>
         <!--Detail View Controller - plop-->
         <scene sceneID="WgQ-I0-1Vy">
@@ -144,7 +178,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1546" y="225"/>
+            <point key="canvasLocation" x="2230" y="601"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hOp-IZ-8lf">
@@ -165,9 +199,45 @@
             <point key="canvasLocation" x="166" y="225"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="city" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MapResultViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapResultViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="ResultItemCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultItemCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ResultViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultViewController.h"/>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doSearch:"/>
+                <relationship kind="action" name="placeEntered:"/>
+                <relationship kind="outlet" name="searchPlace" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="d4u-P3-dcH"/>
+    </inferredMetricsTieBreakers>
 </document>

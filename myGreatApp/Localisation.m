@@ -10,6 +10,6 @@
 
 @implementation Localisation
 
-@synthesize id, name, city;
+@synthesize id, name, city, latitude, longitude;
 
 @end
