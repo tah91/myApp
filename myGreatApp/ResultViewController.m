@@ -2,28 +2,31 @@
 //  ResultViewController.m
 //  myGreatApp
 //
-//  Created by Tahir Iftikhar on 04/07/12.
+//  Created by Tahir Iftikhar on 09/07/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "ResultViewController.h"
 #import "DetailViewController.h"
-#import "MapResultViewController.h"
 #import "ResultItemCell.h"
 #import "Localisation.h"
 #import "AppDelegate.h"
+#import "LocalisationAnnotation.h"
 
 @interface ResultViewController ()
 
 @end
 
 @implementation ResultViewController
+@synthesize mapView;
+@synthesize tableView;
 
-@synthesize searchPlace, results;
+@synthesize results, searchPlace;
 
-- (id)initWithStyle:(UITableViewStyle)style
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -33,35 +36,63 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    results = [NSMutableArray arrayWithCapacity:20];
+	// Do any additional setup after loading the view.
     
     [ApplicationDelegate.localisationEngine placeToSeach:searchPlace
                                             onCompletion:^(NSMutableArray* localisations) {
-                                                for (NSDictionary* jsonObject in localisations) {
-                                                    Localisation* loc = [[Localisation alloc] initWithDictionary:jsonObject];
-                                                    [results addObject:loc];
-                                                }
-                                                [self.tableView reloadData];        
+                                                [self reloadData:localisations];
                                             }
                                                  onError:^(NSError* error) {
-        
-                                            }];
-
+                                                     
+                                                 }];
+    
     self.navigationItem.title = searchPlace;
+    
+    CLGeocoder* geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:searchPlace
+                 completionHandler:^(NSArray* placemarks, NSError* error){
+                     CLPlacemark* found = [placemarks objectAtIndex:0];
+                     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(found.location.coordinate, 30000, 30000);
+                     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
+                     [mapView setRegion:adjustedRegion animated:YES];
+                 }];
+          
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    
+    UIView *containerView = [[UIView alloc] initWithFrame:frame];
+    containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.view = containerView;
+    frame = self.view.bounds;
+    
+    [self.view addSubview:tableView];
 }
 
 - (void)viewDidUnload
 {
+    [self setTableView:nil];
+    [self setMapView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+}
+
+- (void)reloadData:(NSMutableArray*) localisations
+{
+    results = [NSMutableArray arrayWithCapacity:20];
+    
+    for (NSDictionary* jsonObject in localisations) {
+        Localisation* loc = [[Localisation alloc] initWithDictionary:jsonObject];
+        [results addObject:loc];
+    }
+    
+    [self.tableView reloadData]; 
+    
+    for(Localisation* loc in results) {
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = [loc.latitude doubleValue];
+        coordinate.longitude = [loc.longitude doubleValue];
+        LocalisationAnnotation* toAdd = [[LocalisationAnnotation alloc] initWithName:loc.name address:loc.city coordinate:coordinate locId:loc.id];
+        [mapView addAnnotation:toAdd];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -81,71 +112,15 @@
     return [results count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ResultItemCell* cell = (ResultItemCell *)[tableView dequeueReusableCellWithIdentifier:@"placeItem"];
+    ResultItemCell* cell = (ResultItemCell *)[tableViewVal dequeueReusableCellWithIdentifier:@"placeItem"];
     Localisation* loc = [results objectAtIndex:indexPath.row];
 	cell.nameLabel.text = loc.name;
 	cell.cityLabel.text = loc.city;
     cell.locId = loc.id;
     return cell;
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"detailSegue"]) {
-        NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
-        ResultItemCell* cell = (ResultItemCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
-        
-        DetailViewController *ds = [segue destinationViewController];
-        [ds setLocId:cell.locId];
-    }
-    else if ([[segue identifier] isEqualToString:@"mapResultSegue"]) {
-        MapResultViewController *mvs = [segue destinationViewController];
-        [mvs setSearchPlace:searchPlace];
-        [mvs setResults:results];
-    }
-}
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -158,6 +133,55 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+	MKPinAnnotationView *annView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+    [annView setCanShowCallout:YES];
+    [annView setSelected:YES];
+    [annView setUserInteractionEnabled: YES];
+    
+    annView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+    return annView;
+}
+
+- (void)mapView:(MKMapView *)mv annotationView:(MKAnnotationView *)pin calloutAccessoryControlTapped:(UIControl *)control {	
+    [self performSegueWithIdentifier:@"annotationDetailSegue" sender:pin.annotation];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"detailSegue"]) {
+        NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
+        ResultItemCell* cell = (ResultItemCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
+        
+        DetailViewController *ds = [segue destinationViewController];
+        [ds setLocId:cell.locId];
+    }
+    else if ([[segue identifier] isEqualToString:@"annotationDetailSegue"]) {
+        DetailViewController *dvc = [segue destinationViewController];
+        LocalisationAnnotation* annotation = (LocalisationAnnotation*)sender;
+        [dvc setLocId:annotation.locId];
+    }
+    
+}
+
+
+- (IBAction)switchView:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    if([self.tableView superview]) {
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+        [self.tableView removeFromSuperview];
+        [self.view addSubview:self.mapView];
+    } else if([self.mapView superview]){
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+        [self.mapView removeFromSuperview];
+        [self.view addSubview:self.tableView];
+    }
+    
+    [UIView commitAnimations];
 }
 
 @end
