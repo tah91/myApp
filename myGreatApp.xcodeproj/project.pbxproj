@@ -256,28 +256,20 @@
 		97F42E7215A3428000EACD05 /* myGreatApp */ = {
 			isa = PBXGroup;
 			children = (
-				9780D14B15A8E18C00311B30 /* Libraries */,
+				97F8158015AEF6A0008DEB30 /* Model */,
+				97F8158215AEF6BD008DEB30 /* Controls */,
 				97F42E7B15A3428000EACD05 /* AppDelegate.h */,
-				97F42EB015A4541D00EACD05 /* Localisation.h */,
-				97F42EB115A4541D00EACD05 /* Localisation.m */,
 				97F42E7C15A3428000EACD05 /* AppDelegate.m */,
-				9780D0C815A7182C00311B30 /* LocalisationEngine.h */,
-				9780D0C915A7182C00311B30 /* LocalisationEngine.m */,
 				97F42E7E15A3428000EACD05 /* MainStoryboard.storyboard */,
+				97F42E8115A3428000EACD05 /* SearchViewController.h */,
+				97F42E8215A3428000EACD05 /* SearchViewController.m */,
 				97F8156E15AECB09008DEB30 /* SelectSearchViewController.h */,
 				97F8156F15AECB09008DEB30 /* SelectSearchViewController.m */,
 				97027EA615AB238E00466D8E /* ResultViewController.h */,
 				97027EA715AB238E00466D8E /* ResultViewController.m */,
-				9780D10E15A8BDDF00311B30 /* LocalisationAnnotation.h */,
-				9780D10F15A8BDE000311B30 /* LocalisationAnnotation.m */,
-				97F42EB615A4789F00EACD05 /* ResultItemCell.h */,
-				97F42EB715A4789F00EACD05 /* ResultItemCell.m */,
 				97F42EB315A466FD00EACD05 /* DetailViewController.h */,
 				97F42EB415A466FD00EACD05 /* DetailViewController.m */,
-				97F42E8115A3428000EACD05 /* SearchViewController.h */,
-				97F42E8215A3428000EACD05 /* SearchViewController.m */,
-				97F8157215AECB79008DEB30 /* SearchCriteria.h */,
-				97F8157315AECB79008DEB30 /* SearchCriteria.m */,
+				9780D14B15A8E18C00311B30 /* Libraries */,
 				97F42E7315A3428000EACD05 /* Supporting Files */,
 			);
 			path = myGreatApp;
@@ -320,6 +312,30 @@
 				97F8157615AEDC45008DEB30 /* header.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		97F8158015AEF6A0008DEB30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97F42EB015A4541D00EACD05 /* Localisation.h */,
+				97F42EB115A4541D00EACD05 /* Localisation.m */,
+				9780D0C815A7182C00311B30 /* LocalisationEngine.h */,
+				9780D0C915A7182C00311B30 /* LocalisationEngine.m */,
+				97F8157215AECB79008DEB30 /* SearchCriteria.h */,
+				97F8157315AECB79008DEB30 /* SearchCriteria.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		97F8158215AEF6BD008DEB30 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				9780D10E15A8BDDF00311B30 /* LocalisationAnnotation.h */,
+				9780D10F15A8BDE000311B30 /* LocalisationAnnotation.m */,
+				97F42EB615A4789F00EACD05 /* ResultItemCell.h */,
+				97F42EB715A4789F00EACD05 /* ResultItemCell.m */,
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
