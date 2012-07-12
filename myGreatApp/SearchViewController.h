@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController
-- (IBAction)doSearch:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *searchPlace;
-- (IBAction)placeEntered:(id)sender;
+@interface SearchViewController : UIViewController <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSMutableArray* previousSeach;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

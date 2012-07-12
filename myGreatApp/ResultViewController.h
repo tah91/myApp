@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "SearchCriteria.h"
 
 @interface ResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate>
 
@@ -18,7 +19,7 @@
 - (void)reloadData:(NSMutableArray*) localisations;
 
 @property (strong, nonatomic) NSMutableArray* results; 
-@property (strong, nonatomic) NSString* searchPlace;
+@property (strong, nonatomic) SearchCriteria* criteria;
 
 
 @end

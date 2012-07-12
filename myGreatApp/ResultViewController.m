@@ -21,7 +21,7 @@
 @synthesize mapView;
 @synthesize tableView;
 
-@synthesize results, searchPlace;
+@synthesize results, criteria;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,7 +38,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [ApplicationDelegate.localisationEngine placeToSeach:searchPlace
+    [ApplicationDelegate.localisationEngine placeToSeach:criteria.place
                                             onCompletion:^(NSMutableArray* localisations) {
                                                 [self reloadData:localisations];
                                             }
@@ -46,10 +46,10 @@
                                                      
                                                  }];
     
-    self.navigationItem.title = searchPlace;
+    self.navigationItem.title = criteria.place;
     
     CLGeocoder* geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:searchPlace
+    [geocoder geocodeAddressString:criteria.place
                  completionHandler:^(NSArray* placemarks, NSError* error){
                      CLPlacemark* found = [placemarks objectAtIndex:0];
                      MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(found.location.coordinate, 30000, 30000);
@@ -60,10 +60,9 @@
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
     UIView *containerView = [[UIView alloc] initWithFrame:frame];
-    containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.view = containerView;
     frame = self.view.bounds;
-    
     [self.view addSubview:tableView];
 }
 
@@ -169,6 +168,7 @@
 
 
 - (IBAction)switchView:(id)sender {
+    self.mapView.frame = self.tableView.frame;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     if([self.tableView superview]) {

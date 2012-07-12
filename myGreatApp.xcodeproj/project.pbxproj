@@ -42,6 +42,10 @@
 		97F42EB815A4789F00EACD05 /* ResultItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F42EB715A4789F00EACD05 /* ResultItemCell.m */; };
 		97F42EF715A4BD3100EACD05 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42EF615A4BD3100EACD05 /* CFNetwork.framework */; };
 		97F42EF915A4BE4200EACD05 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42EF815A4BE4200EACD05 /* SystemConfiguration.framework */; };
+		97F8157015AECB09008DEB30 /* SelectSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F8156F15AECB09008DEB30 /* SelectSearchViewController.m */; };
+		97F8157415AECB79008DEB30 /* SearchCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F8157315AECB79008DEB30 /* SearchCriteria.m */; };
+		97F8157715AEDC45008DEB30 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F8157615AEDC45008DEB30 /* header.png */; };
+		97F8157915AEDC5A008DEB30 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F8157815AEDC5A008DEB30 /* logo2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		97027EA615AB238E00466D8E /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ResultViewController.h; sourceTree = "<group>"; };
+		97027EA615AB238E00466D8E /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
 		97027EA715AB238E00466D8E /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		9780D0A415A4C54F00311B30 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9780D0C815A7182C00311B30 /* LocalisationEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalisationEngine.h; sourceTree = "<group>"; };
@@ -114,6 +118,12 @@
 		97F42EB715A4789F00EACD05 /* ResultItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultItemCell.m; sourceTree = "<group>"; };
 		97F42EF615A4BD3100EACD05 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		97F42EF815A4BE4200EACD05 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		97F8156E15AECB09008DEB30 /* SelectSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSearchViewController.h; sourceTree = "<group>"; };
+		97F8156F15AECB09008DEB30 /* SelectSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSearchViewController.m; sourceTree = "<group>"; };
+		97F8157215AECB79008DEB30 /* SearchCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCriteria.h; sourceTree = "<group>"; };
+		97F8157315AECB79008DEB30 /* SearchCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCriteria.m; sourceTree = "<group>"; };
+		97F8157615AEDC45008DEB30 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
+		97F8157815AEDC5A008DEB30 /* logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +220,7 @@
 		97F42E5D15A3428000EACD05 = {
 			isa = PBXGroup;
 			children = (
+				97F8157515AEDA4B008DEB30 /* Resources */,
 				97F42E7215A3428000EACD05 /* myGreatApp */,
 				97F42E9015A3428000EACD05 /* myGreatAppTests */,
 				97F42E6B15A3428000EACD05 /* Frameworks */,
@@ -253,6 +264,8 @@
 				9780D0C815A7182C00311B30 /* LocalisationEngine.h */,
 				9780D0C915A7182C00311B30 /* LocalisationEngine.m */,
 				97F42E7E15A3428000EACD05 /* MainStoryboard.storyboard */,
+				97F8156E15AECB09008DEB30 /* SelectSearchViewController.h */,
+				97F8156F15AECB09008DEB30 /* SelectSearchViewController.m */,
 				97027EA615AB238E00466D8E /* ResultViewController.h */,
 				97027EA715AB238E00466D8E /* ResultViewController.m */,
 				9780D10E15A8BDDF00311B30 /* LocalisationAnnotation.h */,
@@ -263,6 +276,8 @@
 				97F42EB415A466FD00EACD05 /* DetailViewController.m */,
 				97F42E8115A3428000EACD05 /* SearchViewController.h */,
 				97F42E8215A3428000EACD05 /* SearchViewController.m */,
+				97F8157215AECB79008DEB30 /* SearchCriteria.h */,
+				97F8157315AECB79008DEB30 /* SearchCriteria.m */,
 				97F42E7315A3428000EACD05 /* Supporting Files */,
 			);
 			path = myGreatApp;
@@ -296,6 +311,15 @@
 				97F42E9315A3428000EACD05 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		97F8157515AEDA4B008DEB30 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97F8157815AEDC5A008DEB30 /* logo2.png */,
+				97F8157615AEDC45008DEB30 /* header.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +394,8 @@
 			files = (
 				97F42E7715A3428000EACD05 /* InfoPlist.strings in Resources */,
 				97F42E8015A3428000EACD05 /* MainStoryboard.storyboard in Resources */,
+				97F8157715AEDC45008DEB30 /* header.png in Resources */,
+				97F8157915AEDC5A008DEB30 /* logo2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +450,8 @@
 				9780D17015A8E30D00311B30 /* MKNetworkOperation.m in Sources */,
 				9780D17115A8E30D00311B30 /* Reachability.m in Sources */,
 				97027EA815AB238F00466D8E /* ResultViewController.m in Sources */,
+				97F8157015AECB09008DEB30 /* SelectSearchViewController.m in Sources */,
+				97F8157415AECB79008DEB30 /* SearchCriteria.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
