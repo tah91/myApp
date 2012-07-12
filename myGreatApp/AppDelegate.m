@@ -13,12 +13,14 @@
 
 @synthesize window = _window;
 @synthesize localisationEngine;
+@synthesize fbSession;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:@"www.eworky.com" customHeaderFields:nil];
     [self.localisationEngine useCache];
     
+    self.fbSession = [[FBSession alloc] initWithId:@"339911822753190"];
     return YES;
 }
 							
@@ -47,6 +49,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [self.fbSession.facebook handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self.fbSession.facebook handleOpenURL:url];
 }
 
 @end

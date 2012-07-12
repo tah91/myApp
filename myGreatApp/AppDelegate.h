@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "LocalisationEngine.h"
+#import "FBSession.h"
 
 #define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow* window;
 
-@property (strong, nonatomic) LocalisationEngine *localisationEngine;
+@property (strong, nonatomic) LocalisationEngine* localisationEngine;
+
+@property (strong, nonatomic) FBSession* fbSession;
 
 @end
