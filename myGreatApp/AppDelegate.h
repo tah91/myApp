@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LocalisationEngine.h"
-#import "FBSession.h"
+#import "LoginSession.h"
 
 #define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
@@ -18,6 +18,6 @@
 
 @property (strong, nonatomic) LocalisationEngine* localisationEngine;
 
-@property (strong, nonatomic) FBSession* fbSession;
+@property (strong, nonatomic) LoginSession* loginSession;
 
 @end

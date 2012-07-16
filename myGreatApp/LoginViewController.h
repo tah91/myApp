@@ -7,9 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Facebook.h"
 
-@interface LoginViewController : UIViewController
+@protocol LoginViewControllerDelegate
+
+-(void)finishedLoadingUserInfo;
+
+@end
+
+@interface LoginViewController : UIViewController <FBRequestDelegate> {
+
+}
 
 - (IBAction)fbLogin:(id)sender;
+- (IBAction)login:(id)sender;
+- (IBAction)cancel:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *email;
+@property (weak, nonatomic) IBOutlet UITextField *password;
+    
+@property (strong,nonatomic) id <LoginViewControllerDelegate> loginDelegate;
 
 @end

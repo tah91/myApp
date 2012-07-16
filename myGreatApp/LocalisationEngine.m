@@ -8,7 +8,9 @@
 
 #import "LocalisationEngine.h"
 
-#define EWORKY_URL(__C1__) [NSString stringWithFormat:@"api/localisation/search?place=%@&json=1", __C1__]
+#define SEARCH_URL(__C1__) [NSString stringWithFormat:@"api/localisation/search?place=%@&json=1", __C1__]
+#define LOGIN_URL @"api/localisation/connect&json=1"
+#define REGISTER_URL @"api/localisation/register&json=1"
 
 @implementation LocalisationEngine
 
@@ -16,7 +18,7 @@
                        onCompletion:(LocalisationResponseBlock) completionBlock
                             onError:(MKNKErrorBlock) errorBlock {
     
-    MKNetworkOperation *op = [self operationWithPath:EWORKY_URL(place) 
+    MKNetworkOperation *op = [self operationWithPath:SEARCH_URL(place) 
                                               params:nil 
                                           httpMethod:@"GET"];
     
@@ -27,7 +29,54 @@
          completionBlock(res);
          
      }onError:^(NSError* error) {
+         errorBlock(error);
+     }];
+    
+    [self enqueueOperation:op];
+    
+    return op;
+}
+
+-(MKNetworkOperation*) registerWithName:(NSString*) name
+                               lastName:(NSString*) lastName 
+                                  login:(NSString*) login
+                               password:(NSString*) password 
+                           onCompletion:(LoginResponseBlock) completionBlock
+                                onError:(MKNKErrorBlock) errorBlock {
+    MKNetworkOperation *op = [self operationWithPath:REGISTER_URL
+                                              params:nil 
+                                          httpMethod:@"POST"];
+    
+    [op onCompletion:^(MKNetworkOperation *completedOperation)
+     {
+         NSDictionary *response = [completedOperation responseJSON];
+         NSObject* res = [response objectForKey:@"response"];
+         completionBlock(res);
          
+     }onError:^(NSError* error) {
+         errorBlock(error);
+     }];
+    
+    [self enqueueOperation:op];
+    
+    return op;
+}
+
+-(MKNetworkOperation*) connectWithLogin:(NSString*) login
+                               password:(NSString*) password 
+                           onCompletion:(LoginResponseBlock) completionBlock
+                                onError:(MKNKErrorBlock) errorBlock {
+    MKNetworkOperation *op = [self operationWithPath:REGISTER_URL
+                                              params:nil 
+                                          httpMethod:@"POST"];
+    
+    [op onCompletion:^(MKNetworkOperation *completedOperation)
+     {
+         NSDictionary *response = [completedOperation responseJSON];
+         NSObject* res = [response objectForKey:@"response"];
+         completionBlock(res);
+         
+     }onError:^(NSError* error) {
          errorBlock(error);
      }];
     

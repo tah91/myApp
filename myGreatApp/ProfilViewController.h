@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Facebook.h"
+#import "LoginViewController.h"
 
-@interface ProfilViewController : UIViewController  <FBRequestDelegate>
+@interface ProfilViewController : UIViewController <LoginViewControllerDelegate>
 
-- (IBAction)fbLogout:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+- (IBAction)goToLogin:(id)sender;
 
 @end

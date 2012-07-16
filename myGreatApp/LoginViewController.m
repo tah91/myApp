@@ -14,6 +14,9 @@
 @end
 
 @implementation LoginViewController
+@synthesize email;
+@synthesize password;
+@synthesize loginDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +35,8 @@
 
 - (void)viewDidUnload
 {
+    [self setEmail:nil];
+    [self setPassword:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -42,7 +47,25 @@
 }
 
 - (IBAction)fbLogin:(id)sender {
-    [ApplicationDelegate.fbSession login];
+    [ApplicationDelegate.loginSession fbLoginOnSucess:^(void){
+                                        [loginDelegate finishedLoadingUserInfo];
+                                        }
+                                              onError:^(NSError* error) {
+                                                  DLog(@"%@", error);
+                                              }];
+}
+
+- (IBAction)login:(id)sender {
+    [ApplicationDelegate.loginSession login:email.text 
+                                   password:password.text 
+                                   onSucess:^(void){
+                                       [loginDelegate finishedLoadingUserInfo];
+                                   }onError:^(NSError* error) {
+                                       DLog(@"%@", error);
+                                   }];
+}
+
+- (IBAction)cancel:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
 @end

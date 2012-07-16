@@ -8,13 +8,13 @@
 
 #import "ProfilViewController.h"
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface ProfilViewController ()
 
 @end
 
 @implementation ProfilViewController
-@synthesize nameLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,19 +25,21 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(![ApplicationDelegate.fbSession isLogged]){
-        [self performSegueWithIdentifier:@"loginSegue" sender:self];
-    } else {
-        [ApplicationDelegate.fbSession.facebook requestWithGraphPath:@"me" andDelegate:self];
+    if([ApplicationDelegate.loginSession isLogged]){
+        [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
     }
 }
 
 - (void)viewDidUnload
 {
-    [self setNameLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -47,57 +49,25 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - FBRequestDelegate Methods
-/**
- * Called when the Facebook API request has returned a response.
- *
- * This callback gives you access to the raw response. It's called before
- * (void)request:(FBRequest *)request didLoad:(id)result,
- * which is passed the parsed response object.
- */
-- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    //NSLog(@"received response");
+- (IBAction)goToLogin:(id)sender {
+    [self performSegueWithIdentifier:@"goToLoginSegue" sender:self];
 }
 
-/**
- * Called when a request returns and its response has been parsed into
- * an object.
- *
- * The resulting object may be a dictionary, an array or a string, depending
- * on the format of the API response. If you need access to the raw response,
- * use:
- *
- * (void)request:(FBRequest *)request
- *      didReceiveResponse:(NSURLResponse *)response
- */
-- (void)request:(FBRequest *)request didLoad:(id)result {
-    if ([result isKindOfClass:[NSArray class]]) {
-        result = [result objectAtIndex:0];
-    }
-    // This callback can be a result of getting the user's basic
-    // information or getting the user's permissions.
-    if ([result objectForKey:@"name"]) {
-        // If basic information callback, set the UI objects to
-        // display this.
-        nameLabel.text = [result objectForKey:@"name"];
-        // Get the profile image
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"goToLoginSegue"]) {
+        LoginViewController *lvc = segue.destinationViewController;
+        lvc.loginDelegate = self; // For the delegate method
     }
 }
 
-/**
- * Called when an error prevents the Facebook API request from completing
- * successfully.
- */
-- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"Err message: %@", [[error userInfo] objectForKey:@"error_msg"]);
-    NSLog(@"Err code: %d", [error code]);
+#pragma mark - LoginViewController Delegate Method
+-(void)finishedLoadingUserInfo
+{    
+    // Dismiss the LoginViewController that we instantiated earlier
+    [self dismissModalViewControllerAnimated:YES];
+    
+    // Do other stuff as needed
+    [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
 }
-
-- (IBAction)fbLogout:(id)sender {
-    [ApplicationDelegate.fbSession logout];
-    [self performSegueWithIdentifier:@"loginSegue" sender:self];
-}
-
 
 @end

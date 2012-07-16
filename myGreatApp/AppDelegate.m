@@ -13,14 +13,14 @@
 
 @synthesize window = _window;
 @synthesize localisationEngine;
-@synthesize fbSession;
+@synthesize loginSession;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:@"www.eworky.com" customHeaderFields:nil];
     [self.localisationEngine useCache];
     
-    self.fbSession = [[FBSession alloc] initWithId:@"339911822753190"];
+    self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
     return YES;
 }
 							
@@ -52,11 +52,11 @@
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [self.fbSession.facebook handleOpenURL:url];
+    return [self.loginSession.facebook handleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self.fbSession.facebook handleOpenURL:url];
+    return [self.loginSession.facebook handleOpenURL:url];
 }
 
 @end
