@@ -10,7 +10,7 @@
 
 @implementation SearchCriteria
 
-@synthesize place,freePlace,desktop,meetingRoom;
+@synthesize place,name,latitude,longitude,offerType,types,features,boundary,orderBy,maxCount,freePlace,desktop,meetingRoom;
 
 -(id) initWithPlace:(NSString *)thePlace
 {
@@ -19,6 +19,23 @@
     
     self.place = thePlace;
     return self;
+}
+
+-(NSMutableDictionary*) getParams {
+    NSMutableArray* offerTypes = [[NSMutableArray alloc] init];
+    if(freePlace) {
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_freeArea]];
+    }
+    if(desktop) {
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_desktop]];
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_workstation]];
+    }
+    if(meetingRoom) {
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_meetingRoom]];
+    }
+    offerType = [NSString stringWithFormat:@"[%@]",[offerTypes componentsJoinedByString:@","]];
+    NSMutableDictionary* properties = [[NSMutableDictionary alloc] initWithDictionary:[self dictionaryWithValuesForKeys:[[NSArray alloc] initWithObjects:@"place",@"offerType", nil]]];
+    return properties;
 }
 
 @end

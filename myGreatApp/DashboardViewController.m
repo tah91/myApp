@@ -7,6 +7,7 @@
 //
 
 #import "DashboardViewController.h"
+#import "AppDelegate.h"
 
 @interface DashboardViewController ()
 
@@ -41,5 +42,11 @@
 }
 
 - (IBAction)logout:(id)sender {
+    [ApplicationDelegate.loginSession logoutOnSucess:^(void){
+                                            [self performSegueWithIdentifier:@"logoutSegue" sender:self];
+                                                }
+                                             onError:^(NSError* error) {
+                                                  DLog(@"%@", error);
+                                              }];
 }
 @end

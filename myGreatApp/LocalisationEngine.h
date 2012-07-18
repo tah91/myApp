@@ -7,15 +7,26 @@
 //
 
 #import "MKNetworkEngine.h"
+#import "SearchCriteria.h"
 
 @interface LocalisationEngine : MKNetworkEngine
 
 typedef void (^LocalisationResponseBlock)(NSMutableArray* localisations);
 typedef void (^LoginResponseBlock)(NSObject* userInfo);
 
--(MKNetworkOperation*) placeToSeach:(NSString*) place 
-                       onCompletion:(LocalisationResponseBlock) completion
-                            onError:(MKNKErrorBlock) error;
+-(MKNetworkOperation*) searchWithCriteria:(SearchCriteria*) criteria 
+                             onCompletion:(LocalisationResponseBlock) completion
+                                  onError:(MKNKErrorBlock) error;
+
+-(MKNetworkOperation*) registerWithName:(NSString*) name
+                               lastName:(NSString*) lastName 
+                                  login:(NSString*) login
+                               password:(NSString*) password
+                              birthDate:(NSString*) date
+                             facebookId:(NSNumber*) fbId
+                           facebookLink:(NSString*) fbLink
+                           onCompletion:(LoginResponseBlock) completionBlock
+                                onError:(MKNKErrorBlock) errorBlock;
 
 -(MKNetworkOperation*) registerWithName:(NSString*) name
                                lastName:(NSString*) lastName 

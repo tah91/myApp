@@ -38,13 +38,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [ApplicationDelegate.localisationEngine placeToSeach:criteria.place
-                                            onCompletion:^(NSMutableArray* localisations) {
-                                                [self reloadData:localisations];
-                                            }
-                                                 onError:^(NSError* error) {
+    [ApplicationDelegate.localisationEngine searchWithCriteria:criteria
+                                                  onCompletion:^(NSMutableArray* localisations) {
+                                                      [self reloadData:localisations];
+                                                  }
+                                                       onError:^(NSError* error) {
                                                      
-                                                 }];
+                                                       }];
     
     self.navigationItem.title = criteria.place;
     

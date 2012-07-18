@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LocalisationEngine.h"
 
+#define HOST_NAME @"taff.coworky.fr"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -17,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:@"www.eworky.com" customHeaderFields:nil];
+    self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:HOST_NAME customHeaderFields:nil];
     [self.localisationEngine useCache];
     
     self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];

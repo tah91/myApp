@@ -11,6 +11,4 @@
 
 @interface ProfilViewController : UIViewController <LoginViewControllerDelegate>
 
-- (IBAction)goToLogin:(id)sender;
-
 @end

@@ -7,13 +7,12 @@
 //
 
 #import "LoginSession.h"
-#import "FBRequestBlockDelegate.h"
 #import "MKNetworkEngine.h"
 #import "AppDelegate.h"
 
 @implementation LoginSession
 
-@synthesize facebook, loginSuccessCallback, loginfailedCallback;
+@synthesize facebook, loginSuccessCallback, loginfailedCallback, fbRequestHandler;
 
 -(id) initWithId:(NSString*)appId;
 {
@@ -34,7 +33,8 @@
  * Tell if user is logged in
  */
 - (BOOL)isLogged {
-    return [facebook isSessionValid];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults boolForKey:@"isLoggedIn"];
 }
 
 /**
@@ -65,6 +65,26 @@
                                                      }];
 }
 
+-(void)storeUserInfo:(NSObject*)userInfo {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:TRUE forKey:@"isLoggedIn"];
+    [defaults setObject:[userInfo valueForKey:@"token"] forKey:@"eworkyToken"];
+    [defaults setObject:[userInfo valueForKey:@"email"] forKey:@"eworkyLogin"];
+    [defaults setObject:[userInfo valueForKey:@"name"] forKey:@"eworkyFirstName"];
+    [defaults setObject:[userInfo valueForKey:@"email"] forKey:@"eworkyLastName"];
+    [defaults synchronize];
+}
+
+-(void)cleanUserInfo {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:FALSE forKey:@"isLoggedIn"];
+    [defaults removeObjectForKey:@"eworkyToken"];
+    [defaults removeObjectForKey:@"eworkyLogin"];
+    [defaults removeObjectForKey:@"eworkyFirstName"];
+    [defaults removeObjectForKey:@"eworkyLastName"];
+    [defaults synchronize];
+}
+
 /**
  * Login and store login data, then execute success block
  */
@@ -76,11 +96,7 @@
     [ApplicationDelegate.localisationEngine connectWithLogin:login
                                                     password:password 
                                                 onCompletion:^(NSObject* userInfo) {
-                                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                                    [defaults setBool:TRUE forKey:@"isLoggedIn"];
-                                                    [defaults setObject:@"token" forKey:@"eworkyToken"];
-                                                    [defaults setObject:login forKey:@"eworkyLogin"]; 
-                                                    [defaults synchronize];
+                                                    [self storeUserInfo:userInfo];
                                                     successBlock();
                                                 }
                                                      onError:^(NSError* error) {
@@ -91,14 +107,12 @@
 /**
  * Invalidate the access token and clear the cookie.
  */
-- (void)logout {
+- (void)logoutOnSucess:(LoginSuccessBlock)success 
+               onError:(LoginFailedBlock)error; {
     [self fbLogout];
+    [self cleanUserInfo];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:FALSE forKey:@"isLoggedIn"];
-    [defaults removeObjectForKey:@"eworkyToken"];
-    [defaults removeObjectForKey:@"eworkyLogin"];
-    [defaults synchronize];
+    success();
 }
 
 /**
@@ -107,9 +121,9 @@
 - (void)fbLoginOnSucess:(LoginSuccessBlock)success 
                 onError:(LoginFailedBlock)error {
     if (![facebook isSessionValid]) {
-        [facebook authorize:nil];
+        [facebook authorize:[NSArray arrayWithObjects:@"email", @"user_birthday", @"publish_actions",nil]];
     } else {
-        //
+        success();
     }
     
     loginSuccessCallback = success;
@@ -141,26 +155,37 @@
     
     [self storeAuthData:[facebook accessToken] expiresAt:[facebook expirationDate]];
     
-    FBRequestBlockDelegate* fbRequestHandler = [[FBRequestBlockDelegate alloc] initWithDidLoad:^(FBRequest* request, id result) {
+    fbRequestHandler = [[FBRequestBlockDelegate alloc] initWithDidLoad:^(FBRequest* request, id result) {
         
         if ([result isKindOfClass:[NSArray class]]) {
             result = [result objectAtIndex:0];
         }
         
-        NSString* name = [result objectForKey:@"name"];
-        NSString* lastName = [result objectForKey:@"lastName"];
-        NSString* login = [result objectForKey:@"mail"];
+        NSString* name = [result objectForKey:@"first_name"];
+        NSString* lastName = [result objectForKey:@"last_name"];
+        NSString* login = [result objectForKey:@"email"];
+        NSNumber* fbId = [result objectForKey:@"id"];
+        NSString* fbLink = [result objectForKey:@"link"];
+        NSString* birthDate = [result objectForKey:@"birthday"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+        //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"]];
+        NSDate* birth = [dateFormatter dateFromString:birthDate];
+        
+        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        birthDate = [dateFormatter stringFromDate:birth];
+        //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"]];
+        
         
         [ApplicationDelegate.localisationEngine registerWithName:name 
                                                         lastName:lastName 
                                                            login:login 
-                                                        password:@""
+                                                        password:@"" 
+                                                       birthDate:birthDate 
+                                                      facebookId:fbId
+                                                    facebookLink:fbLink
                                                     onCompletion:^(NSObject* userInfo) {
-                                                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                                        [defaults setBool:TRUE forKey:@"isLoggedIn"];
-                                                        [defaults setObject:@"token" forKey:@"eworkyToken"];
-                                                        [defaults setObject:login forKey:@"eworkyLogin"]; 
-                                                        [defaults synchronize];
+                                                        [self storeUserInfo:userInfo];
                                                         loginSuccessCallback();
                                                     }
                                                          onError:^(NSError* error) {
@@ -171,7 +196,7 @@
                 loginfailedCallback(error);
     }];
     
-    [facebook requestWithGraphPath:@"me" andDelegate:fbRequestHandler];
+    [facebook requestWithGraphPath:@"me?fields=id,name,email,first_name,last_name,link,birthday" andDelegate:fbRequestHandler];
 }
 
 -(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {

@@ -369,12 +369,12 @@
 			children = (
 				97F42EB015A4541D00EACD05 /* Localisation.h */,
 				97F42EB115A4541D00EACD05 /* Localisation.m */,
-				9780D0C815A7182C00311B30 /* LocalisationEngine.h */,
-				9780D0C915A7182C00311B30 /* LocalisationEngine.m */,
 				97F8157215AECB79008DEB30 /* SearchCriteria.h */,
 				97F8157315AECB79008DEB30 /* SearchCriteria.m */,
 				97E7883215B4606B00F0FD4F /* FBRequestBlockDelegate.h */,
 				97E7883315B4606B00F0FD4F /* FBRequestBlockDelegate.m */,
+				9780D0C815A7182C00311B30 /* LocalisationEngine.h */,
+				9780D0C915A7182C00311B30 /* LocalisationEngine.m */,
 				9741190815AF48A400939706 /* LoginSession.h */,
 				9741190915AF48A400939706 /* LoginSession.m */,
 			);

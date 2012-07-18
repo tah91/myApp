@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FBConnect.h"
+#import "FBRequestBlockDelegate.h"
 
 typedef void (^LoginSuccessBlock)();
 typedef void (^LoginFailedBlock)(NSError* error);
@@ -29,11 +30,13 @@ typedef void (^LoginFailedBlock)(NSError* error);
      password:(NSString*)password
      onSucess:(LoginSuccessBlock)success
       onError:(LoginFailedBlock)error;
-- (void)logout;
+- (void)logoutOnSucess:(LoginSuccessBlock)success onError:(LoginFailedBlock)error;
 - (void)fbLoginOnSucess:(LoginSuccessBlock)success onError:(LoginFailedBlock)error;
 - (void)fbLogout;
 
 @property (nonatomic, copy) LoginSuccessBlock loginSuccessCallback;
 @property (nonatomic, copy) LoginFailedBlock loginfailedCallback;
+
+@property (nonatomic, copy) FBRequestBlockDelegate* fbRequestHandler;
 
 @end 
