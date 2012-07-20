@@ -11,5 +11,6 @@
 @interface DashboardViewController : UIViewController
 
 - (IBAction)logout:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end

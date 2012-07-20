@@ -30,8 +30,9 @@
 		9780D17115A8E30D00311B30 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D16815A8E30D00311B30 /* Reachability.m */; };
 		97E7882A15B357D400F0FD4F /* NoAnimSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E7882915B357D400F0FD4F /* NoAnimSegue.m */; };
 		97E7882E15B3712A00F0FD4F /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E7882D15B3712A00F0FD4F /* DashboardViewController.m */; };
-		97E7883115B44E8F00F0FD4F /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E7883015B44E8F00F0FD4F /* RegisterViewController.m */; };
 		97E7883415B4606B00F0FD4F /* FBRequestBlockDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E7883315B4606B00F0FD4F /* FBRequestBlockDelegate.m */; };
+		97E7883815B84C3000F0FD4F /* ControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E7883715B84C3000F0FD4F /* ControllerHelper.m */; };
+		97E7885515B9EB3F00F0FD4F /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E7885415B9EB3E00F0FD4F /* RegisterViewController.m */; };
 		97F42E6D15A3428000EACD05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42E6C15A3428000EACD05 /* UIKit.framework */; };
 		97F42E6F15A3428000EACD05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42E6E15A3428000EACD05 /* Foundation.framework */; };
 		97F42E7115A3428000EACD05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42E7015A3428000EACD05 /* CoreGraphics.framework */; };
@@ -112,10 +113,12 @@
 		97E7882915B357D400F0FD4F /* NoAnimSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoAnimSegue.m; sourceTree = "<group>"; };
 		97E7882C15B3712A00F0FD4F /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		97E7882D15B3712A00F0FD4F /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
-		97E7882F15B44E8F00F0FD4F /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		97E7883015B44E8F00F0FD4F /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		97E7883215B4606B00F0FD4F /* FBRequestBlockDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequestBlockDelegate.h; sourceTree = "<group>"; };
 		97E7883315B4606B00F0FD4F /* FBRequestBlockDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestBlockDelegate.m; sourceTree = "<group>"; };
+		97E7883615B84C3000F0FD4F /* ControllerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerHelper.h; sourceTree = "<group>"; };
+		97E7883715B84C3000F0FD4F /* ControllerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerHelper.m; sourceTree = "<group>"; };
+		97E7885315B9EB3C00F0FD4F /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		97E7885415B9EB3E00F0FD4F /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		97F42E6815A3428000EACD05 /* myGreatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myGreatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F42E6C15A3428000EACD05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97F42E6E15A3428000EACD05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -259,6 +262,15 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		97E7883515B84C0600F0FD4F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				97E7883615B84C3000F0FD4F /* ControllerHelper.h */,
+				97E7883715B84C3000F0FD4F /* ControllerHelper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		97F42E5D15A3428000EACD05 = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +310,7 @@
 		97F42E7215A3428000EACD05 /* myGreatApp */ = {
 			isa = PBXGroup;
 			children = (
+				97E7883515B84C0600F0FD4F /* Helpers */,
 				97F8158015AEF6A0008DEB30 /* Model */,
 				97F8158215AEF6BD008DEB30 /* Controls */,
 				97F42E7B15A3428000EACD05 /* AppDelegate.h */,
@@ -307,8 +320,8 @@
 				9741190015AF279C00939706 /* ProfilViewController.m */,
 				9741190515AF41B400939706 /* LoginViewController.h */,
 				9741190615AF41B400939706 /* LoginViewController.m */,
-				97E7882F15B44E8F00F0FD4F /* RegisterViewController.h */,
-				97E7883015B44E8F00F0FD4F /* RegisterViewController.m */,
+				97E7885315B9EB3C00F0FD4F /* RegisterViewController.h */,
+				97E7885415B9EB3E00F0FD4F /* RegisterViewController.m */,
 				97E7882C15B3712A00F0FD4F /* DashboardViewController.h */,
 				97E7882D15B3712A00F0FD4F /* DashboardViewController.m */,
 				97F42E8115A3428000EACD05 /* SearchViewController.h */,
@@ -554,8 +567,9 @@
 				9741190A15AF48A400939706 /* LoginSession.m in Sources */,
 				97E7882A15B357D400F0FD4F /* NoAnimSegue.m in Sources */,
 				97E7882E15B3712A00F0FD4F /* DashboardViewController.m in Sources */,
-				97E7883115B44E8F00F0FD4F /* RegisterViewController.m in Sources */,
 				97E7883415B4606B00F0FD4F /* FBRequestBlockDelegate.m in Sources */,
+				97E7883815B84C3000F0FD4F /* ControllerHelper.m in Sources */,
+				97E7885515B9EB3F00F0FD4F /* RegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

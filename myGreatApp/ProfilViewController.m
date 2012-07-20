@@ -9,6 +9,8 @@
 #import "ProfilViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "ControllerHelper.h"
+#import "DashboardViewController.h"
 
 @interface ProfilViewController ()
 
@@ -35,6 +37,8 @@
     [super viewDidLoad];
     if([ApplicationDelegate.loginSession isLogged]){
         [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
+    } else {
+        [ControllerHelper removeFromStackNavigation:self.navigationController aclass:[ProfilViewController class]];
     }
 }
 

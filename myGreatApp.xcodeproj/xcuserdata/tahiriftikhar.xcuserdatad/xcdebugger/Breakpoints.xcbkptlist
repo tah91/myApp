@@ -215,38 +215,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "myGreatApp/ProfilViewController.m"
-         timestampString = "363863391.362038"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "30"
-         endingLineNumber = "30"
-         landmarkName = "-viewDidAppear:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "myGreatApp/ProfilViewController.m"
-         timestampString = "363863436.756029"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "35"
-         endingLineNumber = "35"
-         landmarkName = "-viewDidLoad"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364322109.648249"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "46"
-         endingLineNumber = "46"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
          landmarkName = "-registerWithName:lastName:login:password:onSucess:onError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -329,7 +303,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/SearchCriteria.m"
@@ -345,38 +319,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364322109.648249"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
-         landmarkName = "-fbDidLogin"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "myGreatApp/ProfilViewController.m"
-         timestampString = "364319927.868374"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
-         landmarkName = "-prepareForSegue:sender:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginViewController.m"
-         timestampString = "364318059.994412"
+         timestampString = "364412189.791225"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
          landmarkName = "-fbLogin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -384,38 +332,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "myGreatApp/DashboardViewController.m"
-         timestampString = "364318815.481117"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-logout:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "myGreatApp/ProfilViewController.m"
-         timestampString = "364318904.569626"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "36"
-         endingLineNumber = "36"
-         landmarkName = "-viewDidLoad"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364322109.648249"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "96"
-         endingLineNumber = "96"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
          landmarkName = "-logoutOnSucess:onError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -424,24 +346,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginViewController.m"
-         timestampString = "364319059.808808"
+         timestampString = "364412189.791225"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51"
+         startingLineNumber = "60"
+         endingLineNumber = "60"
          landmarkName = "-fbLogin:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginViewController.m"
-         timestampString = "364319062.207362"
+         timestampString = "364412189.791225"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
          landmarkName = "-fbLogin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -450,24 +372,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364322109.648249"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
          landmarkName = "-fbLoginOnSucess:onError:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/ProfilViewController.m"
-         timestampString = "364319927.868374"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
          landmarkName = "-finishedLoadingUserInfo"
          landmarkType = "5">
       </FileBreakpoint>
@@ -476,11 +398,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364330111.746821"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "217"
-         endingLineNumber = "217"
+         startingLineNumber = "230"
+         endingLineNumber = "230"
          landmarkName = "-fbDidLogout"
          landmarkType = "5">
       </FileBreakpoint>
@@ -501,39 +423,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "myGreatApp/DashboardViewController.m"
-         timestampString = "364320478.991412"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "46"
-         endingLineNumber = "46"
-         landmarkName = "-logout:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364322109.648249"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
+         startingLineNumber = "132"
+         endingLineNumber = "132"
          landmarkName = "-fbLoginOnSucess:onError:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364322109.648249"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145"
-         landmarkName = "-fbDidLogin"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -541,11 +437,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364330111.746821"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "189"
-         endingLineNumber = "189"
+         startingLineNumber = "204"
+         endingLineNumber = "204"
          landmarkName = "-fbDidLogin"
          landmarkType = "5">
       </FileBreakpoint>
@@ -580,42 +476,16 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364330111.746821"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "177"
-         endingLineNumber = "177"
-         landmarkName = "-fbDidLogin"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364330111.746821"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "185"
-         endingLineNumber = "185"
+         startingLineNumber = "200"
+         endingLineNumber = "200"
          landmarkName = "-fbDidLogin"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "myGreatApp/ProfilViewController.m"
-         timestampString = "364326824.190319"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "37"
-         endingLineNumber = "37"
-         landmarkName = "-viewDidLoad"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LocalisationEngine.m"
@@ -632,11 +502,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364328895.436021"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
+         startingLineNumber = "130"
+         endingLineNumber = "130"
          landmarkName = "-fbLoginOnSucess:onError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -645,12 +515,116 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364328896.50028"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "131"
+         endingLineNumber = "131"
          landmarkName = "-fbLoginOnSucess:onError:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/ControllerHelper.m"
+         timestampString = "364402921.296273"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "15"
+         endingLineNumber = "15"
+         landmarkName = "+removeFromStackNavigation:aclass:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/ControllerHelper.m"
+         timestampString = "364403206.415408"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "18"
+         endingLineNumber = "18"
+         landmarkName = "+removeFromStackNavigation:aclass:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/ProfilViewController.m"
+         timestampString = "364405521.200332"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "38"
+         endingLineNumber = "38"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/DashboardViewController.m"
+         timestampString = "364412626.018088"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "32"
+         endingLineNumber = "32"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/SearchCriteria.m"
+         timestampString = "364406635.868328"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "26"
+         endingLineNumber = "26"
+         landmarkName = "-getParams"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/LoginViewController.m"
+         timestampString = "364412189.791225"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
+         landmarkName = "-login:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/LoginViewController.m"
+         timestampString = "364412189.791225"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
+         landmarkName = "-login:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/LoginViewController.m"
+         timestampString = "364412189.791225"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "-login:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -658,11 +632,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364329002.679186"
+         timestampString = "364411149.884723"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "158"
-         endingLineNumber = "158"
+         startingLineNumber = "193"
+         endingLineNumber = "193"
          landmarkName = "-fbDidLogin"
          landmarkType = "5">
       </FileBreakpoint>
@@ -670,40 +644,66 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "myGreatApp/LoginSession.m"
-         timestampString = "364329495.018397"
+         filePath = "myGreatApp/LoginViewController.m"
+         timestampString = "364412305.176076"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
-         landmarkName = "-fbDidLogin"
+         startingLineNumber = "53"
+         endingLineNumber = "53"
+         landmarkName = "-prepareForSegue:sender:"
          landmarkType = "5">
-         <Locations>
-            <Location
-               shouldBeEnabled = "No"
-               ignoreCount = "0"
-               continueAfterRunningActions = "No"
-               symbolName = "-[LoginSession fbDidLogin]"
-               urlString = "file://localhost/Users/tahiriftikhar/Desktop/myGreatApp/myGreatApp/LoginSession.m"
-               timestampString = "364329495.058725"
-               startingColumnNumber = "9223372036854775807"
-               endingColumnNumber = "9223372036854775807"
-               startingLineNumber = "147"
-               endingLineNumber = "147">
-            </Location>
-            <Location
-               shouldBeEnabled = "No"
-               ignoreCount = "0"
-               continueAfterRunningActions = "No"
-               symbolName = "__26-[LoginSession fbDidLogin]_block_invoke_0"
-               urlString = "file://localhost/Users/tahiriftikhar/Desktop/myGreatApp/myGreatApp/LoginSession.m"
-               timestampString = "364329495.059045"
-               startingColumnNumber = "9223372036854775807"
-               endingColumnNumber = "9223372036854775807"
-               startingLineNumber = "147"
-               endingLineNumber = "147">
-            </Location>
-         </Locations>
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/RegisterViewController.m"
+         timestampString = "364509679.24101"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "-fbRegister:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/RegisterViewController.m"
+         timestampString = "364509679.24101"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "83"
+         endingLineNumber = "83"
+         landmarkName = "@implementation RegisterViewController"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/RegisterViewController.m"
+         timestampString = "364509919.877927"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "@implementation RegisterViewController"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "myGreatApp/RegisterViewController.m"
+         timestampString = "364509921.167283"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
+         landmarkName = "@implementation RegisterViewController"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

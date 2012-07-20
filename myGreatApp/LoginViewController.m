@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "ControllerHelper.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()
 
@@ -46,23 +48,34 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"registerSegue"]) {
+        RegisterViewController* dest = segue.destinationViewController;
+        dest.loginDelegate = self.loginDelegate; // For the delegate method
+    }
+}
+
 - (IBAction)fbLogin:(id)sender {
     [ApplicationDelegate.loginSession fbLoginOnSucess:^(void){
-                                        [loginDelegate finishedLoadingUserInfo];
+        [loginDelegate finishedLoadingUserInfo];
                                         }
                                               onError:^(NSError* error) {
-                                                  DLog(@"%@", error);
+                                                  ALERT_TITLE(@"Erreur",[error localizedDescription])
                                               }];
 }
 
 - (IBAction)login:(id)sender {
-    [ApplicationDelegate.loginSession login:email.text 
-                                   password:password.text 
-                                   onSucess:^(void){
-                                       [loginDelegate finishedLoadingUserInfo];
-                                   }onError:^(NSError* error) {
-                                       DLog(@"%@", error);
-                                   }];
+    if([email.text length]==0 || [password.text length]==0 ) {
+        ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps")
+    } else {
+        [ApplicationDelegate.loginSession login:email.text 
+                                       password:password.text 
+                                       onSucess:^(void){
+                                           [loginDelegate finishedLoadingUserInfo];
+                                       }onError:^(NSError* error) {
+                                           ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                       }];
+    }
 }
 
 - (IBAction)cancel:(id)sender {

@@ -37,6 +37,26 @@
     return [defaults boolForKey:@"isLoggedIn"];
 }
 
+-(void)storeUserInfo:(NSObject*)userInfo {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:TRUE forKey:@"isLoggedIn"];
+    [defaults setObject:[userInfo valueForKey:@"token"] forKey:@"eworkyToken"];
+    [defaults setObject:[userInfo valueForKey:@"email"] forKey:@"eworkyLogin"];
+    [defaults setObject:[userInfo valueForKey:@"firstname"] forKey:@"eworkyFirstName"];
+    [defaults setObject:[userInfo valueForKey:@"name"] forKey:@"eworkyLastName"];
+    [defaults synchronize];
+}
+
+-(void)cleanUserInfo {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:FALSE forKey:@"isLoggedIn"];
+    [defaults removeObjectForKey:@"eworkyToken"];
+    [defaults removeObjectForKey:@"eworkyLogin"];
+    [defaults removeObjectForKey:@"eworkyFirstName"];
+    [defaults removeObjectForKey:@"eworkyLastName"];
+    [defaults synchronize];
+}
+
 /**
  * Register and store login data, then execute success block
  */
@@ -53,36 +73,17 @@
                                                        login:login 
                                                     password:password
                                                 onCompletion:^(NSObject* userInfo) {
-                                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                                    [defaults setBool:TRUE forKey:@"isLoggedIn"];
-                                                    [defaults setObject:@"token" forKey:@"eworkyToken"];
-                                                    [defaults setObject:login forKey:@"eworkyLogin"]; 
-                                                    [defaults synchronize];
-                                                    successBlock();
+                                                    if (userInfo == NULL) {
+                                                        NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de l'inscription",NSLocalizedDescriptionKey,nil]];
+                                                        errorBlock(error);
+                                                    } else {
+                                                        [self storeUserInfo:userInfo];
+                                                        successBlock();
+                                                    }
                                                 }
                                                      onError:^(NSError* error) {
                                                          errorBlock(error);
                                                      }];
-}
-
--(void)storeUserInfo:(NSObject*)userInfo {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:TRUE forKey:@"isLoggedIn"];
-    [defaults setObject:[userInfo valueForKey:@"token"] forKey:@"eworkyToken"];
-    [defaults setObject:[userInfo valueForKey:@"email"] forKey:@"eworkyLogin"];
-    [defaults setObject:[userInfo valueForKey:@"name"] forKey:@"eworkyFirstName"];
-    [defaults setObject:[userInfo valueForKey:@"email"] forKey:@"eworkyLastName"];
-    [defaults synchronize];
-}
-
--(void)cleanUserInfo {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:FALSE forKey:@"isLoggedIn"];
-    [defaults removeObjectForKey:@"eworkyToken"];
-    [defaults removeObjectForKey:@"eworkyLogin"];
-    [defaults removeObjectForKey:@"eworkyFirstName"];
-    [defaults removeObjectForKey:@"eworkyLastName"];
-    [defaults synchronize];
 }
 
 /**
@@ -96,8 +97,13 @@
     [ApplicationDelegate.localisationEngine connectWithLogin:login
                                                     password:password 
                                                 onCompletion:^(NSObject* userInfo) {
-                                                    [self storeUserInfo:userInfo];
-                                                    successBlock();
+                                                    if (userInfo == NULL) {
+                                                        NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de la connexion",NSLocalizedDescriptionKey,nil]];
+                                                        errorBlock(error);
+                                                    } else {
+                                                        [self storeUserInfo:userInfo];
+                                                        successBlock();
+                                                    }
                                                 }
                                                      onError:^(NSError* error) {
                                                          errorBlock(error);
@@ -167,14 +173,11 @@
         NSNumber* fbId = [result objectForKey:@"id"];
         NSString* fbLink = [result objectForKey:@"link"];
         NSString* birthDate = [result objectForKey:@"birthday"];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-        //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"]];
         NSDate* birth = [dateFormatter dateFromString:birthDate];
-        
         [dateFormatter setDateFormat:@"dd/MM/yyyy"];
         birthDate = [dateFormatter stringFromDate:birth];
-        //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"]];
         
         
         [ApplicationDelegate.localisationEngine registerWithName:name 
@@ -185,8 +188,13 @@
                                                       facebookId:fbId
                                                     facebookLink:fbLink
                                                     onCompletion:^(NSObject* userInfo) {
-                                                        [self storeUserInfo:userInfo];
-                                                        loginSuccessCallback();
+                                                        if (userInfo == NULL) {
+                                                            NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de la connexion via Facebook",NSLocalizedDescriptionKey,nil]];
+                                                            loginfailedCallback(error);
+                                                        } else {
+                                                            [self storeUserInfo:userInfo];
+                                                            loginSuccessCallback();
+                                                        }
                                                     }
                                                          onError:^(NSError* error) {
                                                              loginfailedCallback(error);
@@ -208,9 +216,7 @@
  * Called when the user canceled the authorization dialog.
  */
 -(void)fbDidNotLogin:(BOOL)cancelled {
-    NSMutableDictionary* errorDetail = [NSMutableDictionary dictionary];
-    [errorDetail setValue:@"Failed to login with facebook" forKey:NSLocalizedDescriptionKey];
-    NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:errorDetail];
+    NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Failed to login with facebook",NSLocalizedDescriptionKey,nil]];
     loginfailedCallback(error);
 }
 
