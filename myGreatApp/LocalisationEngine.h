@@ -11,12 +11,17 @@
 
 @interface LocalisationEngine : MKNetworkEngine
 
-typedef void (^LocalisationResponseBlock)(NSMutableArray* localisations);
+typedef void (^SearchResponseBlock)(NSMutableArray* localisations);
+typedef void (^LocalisationResponseBlock)(NSObject* localisation);
 typedef void (^LoginResponseBlock)(NSObject* userInfo);
 
 -(MKNetworkOperation*) searchWithCriteria:(SearchCriteria*) criteria 
-                             onCompletion:(LocalisationResponseBlock) completion
+                             onCompletion:(SearchResponseBlock) completion
                                   onError:(MKNKErrorBlock) error;
+
+-(MKNetworkOperation*) detailsWithId:(NSNumber*) locId 
+                        onCompletion:(LocalisationResponseBlock) completion
+                             onError:(MKNKErrorBlock) error;
 
 -(MKNetworkOperation*) registerWithName:(NSString*) name
                                lastName:(NSString*) lastName 

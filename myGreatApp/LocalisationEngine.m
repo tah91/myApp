@@ -9,13 +9,14 @@
 #import "LocalisationEngine.h"
 
 #define SEARCH_URL @"api/localisation/search"
+#define DETAILS_URL @"api/localisation/details"
 #define LOGIN_URL @"api/localisation/connect"
 #define REGISTER_URL @"api/localisation/register"
 
 @implementation LocalisationEngine
 
 -(MKNetworkOperation*) searchWithCriteria:(SearchCriteria*) criteria 
-                             onCompletion:(LocalisationResponseBlock) completionBlock
+                             onCompletion:(SearchResponseBlock) completionBlock
                                   onError:(MKNKErrorBlock) errorBlock {
     
     MKNetworkOperation *op = [self operationWithPath:SEARCH_URL
@@ -26,6 +27,32 @@
      {
          NSDictionary *response = [completedOperation responseJSON];
          NSMutableArray* res = [response objectForKey:@"response"];
+         completionBlock(res);
+     }onError:^(NSError* error) {
+         errorBlock(error);
+     }];
+    
+    [self enqueueOperation:op];
+    
+    return op;
+}
+
+-(MKNetworkOperation*) detailsWithId:(NSNumber*) locId 
+                        onCompletion:(LocalisationResponseBlock) completionBlock
+                             onError:(MKNKErrorBlock) errorBlock {
+    
+    NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                   locId,@"id",
+                                   nil];
+    
+    MKNetworkOperation *op = [self operationWithPath:DETAILS_URL
+                                              params:params
+                                          httpMethod:@"GET"];
+    
+    [op onCompletion:^(MKNetworkOperation *completedOperation)
+     {
+         NSDictionary *response = [completedOperation responseJSON];
+         NSObject* res = [response objectForKey:@"response"];
          completionBlock(res);
      }onError:^(NSError* error) {
          errorBlock(error);

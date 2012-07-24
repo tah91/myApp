@@ -57,6 +57,11 @@
 		97F8157915AEDC5A008DEB30 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F8157815AEDC5A008DEB30 /* logo2.png */; };
 		97F815CB15AF1DAD008DEB30 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97F815BE15AF1DAD008DEB30 /* FBDialog.bundle */; };
 		97F815CC15AF1DAD008DEB30 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F815C415AF1DAD008DEB30 /* libfacebook_ios_sdk.a */; };
+		97FD7E6C15BDC76200815752 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6B15BDC76200815752 /* Price.m */; };
+		97FD7E7015BDC77000815752 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6F15BDC76F00815752 /* Comment.m */; };
+		97FD7E7315BDC77E00815752 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E7215BDC77E00815752 /* Offer.m */; };
+		97FD7E7615BDC79500815752 /* OpeningTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E7515BDC79500815752 /* OpeningTimes.m */; };
+		97FD7E7915BDC7A000815752 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E7815BDC7A000815752 /* Member.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +172,16 @@
 		97F815C815AF1DAD008DEB30 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		97F815C915AF1DAD008DEB30 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		97F815CA15AF1DAD008DEB30 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		97FD7E6A15BDC76200815752 /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
+		97FD7E6B15BDC76200815752 /* Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Price.m; sourceTree = "<group>"; };
+		97FD7E6E15BDC76F00815752 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		97FD7E6F15BDC76F00815752 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		97FD7E7115BDC77E00815752 /* Offer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offer.h; sourceTree = "<group>"; };
+		97FD7E7215BDC77E00815752 /* Offer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offer.m; sourceTree = "<group>"; };
+		97FD7E7415BDC79500815752 /* OpeningTimes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpeningTimes.h; sourceTree = "<group>"; };
+		97FD7E7515BDC79500815752 /* OpeningTimes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpeningTimes.m; sourceTree = "<group>"; };
+		97FD7E7715BDC7A000815752 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
+		97FD7E7815BDC7A000815752 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +395,16 @@
 		97F8158015AEF6A0008DEB30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				97FD7E7715BDC7A000815752 /* Member.h */,
+				97FD7E7815BDC7A000815752 /* Member.m */,
+				97FD7E6E15BDC76F00815752 /* Comment.h */,
+				97FD7E6F15BDC76F00815752 /* Comment.m */,
+				97FD7E7115BDC77E00815752 /* Offer.h */,
+				97FD7E7215BDC77E00815752 /* Offer.m */,
+				97FD7E7415BDC79500815752 /* OpeningTimes.h */,
+				97FD7E7515BDC79500815752 /* OpeningTimes.m */,
+				97FD7E6A15BDC76200815752 /* Price.h */,
+				97FD7E6B15BDC76200815752 /* Price.m */,
 				97F42EB015A4541D00EACD05 /* Localisation.h */,
 				97F42EB115A4541D00EACD05 /* Localisation.m */,
 				97F8157215AECB79008DEB30 /* SearchCriteria.h */,
@@ -570,6 +595,11 @@
 				97E7883415B4606B00F0FD4F /* FBRequestBlockDelegate.m in Sources */,
 				97E7883815B84C3000F0FD4F /* ControllerHelper.m in Sources */,
 				97E7885515B9EB3F00F0FD4F /* RegisterViewController.m in Sources */,
+				97FD7E6C15BDC76200815752 /* Price.m in Sources */,
+				97FD7E7015BDC77000815752 /* Comment.m in Sources */,
+				97FD7E7315BDC77E00815752 /* Offer.m in Sources */,
+				97FD7E7615BDC79500815752 /* OpeningTimes.m in Sources */,
+				97FD7E7915BDC7A000815752 /* Member.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

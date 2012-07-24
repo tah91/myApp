@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import "LocalisationEngine.h"
 
-#define HOST_NAME @"taff.coworky.fr"
+#define HOST_NAME @"www.eworky.fr"
+//#define HOST_NAME @"taff.coworky.fr"
+
 @implementation AppDelegate
 
 @synthesize window = _window;

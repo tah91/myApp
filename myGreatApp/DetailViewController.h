@@ -13,6 +13,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *city;
+@property (weak, nonatomic) IBOutlet UIImageView *picture;
+
 @property NSInteger locId;
+@property (strong, nonatomic) Localisation* localisation;
 
 @end

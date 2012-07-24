@@ -7,6 +7,8 @@
 //
 
 #import "DetailViewController.h"
+#import "ControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface DetailViewController ()
 
@@ -16,7 +18,9 @@
 
 @synthesize name;
 @synthesize city;
+@synthesize picture;
 @synthesize locId;
+@synthesize localisation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +36,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    name.text = [NSString stringWithFormat:@"id is : %d", locId];
+    [ApplicationDelegate.localisationEngine detailsWithId:[NSNumber numberWithInt:locId]
+                                             onCompletion:^(NSObject* localisationJson) {
+                                                 NSMutableDictionary* json = (NSMutableDictionary*)localisationJson;
+                                                 localisation = [[Localisation alloc] initWithDictionary:json];
+                                                 name.text = [NSString stringWithFormat:@"name is : %@", localisation.name];
+                                                 picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:localisation.image]]];
+                                             }
+                                                  onError:^(NSError* error) {
+                                                      ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                  }];
+    
     self.navigationItem.backBarButtonItem.title = @"Back";
 }
 
@@ -40,6 +54,7 @@
 {
     [self setName:nil];
     [self setCity:nil];
+    [self setPicture:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

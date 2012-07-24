@@ -10,6 +10,21 @@
 
 @implementation Localisation
 
-@synthesize id, name, city, latitude, longitude;
+@synthesize id,name,latitude,longitude,description,image,imageThumb,address,city,distance,type,isFree,url,rating,prices,openingTimes,amenities,offers,comments,fans;
 
++ (Class)amenities_class {
+    return [NSString class];
+}
+
++ (Class)offers_class {
+    return [Offer class];
+}
+
++ (Class)comments_class {
+    return [Comment class];
+}
+
++ (Class)fans_class {
+    return [Member class];
+}
 @end

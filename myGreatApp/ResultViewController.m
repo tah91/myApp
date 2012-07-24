@@ -12,6 +12,7 @@
 #import "Localisation.h"
 #import "AppDelegate.h"
 #import "LocalisationAnnotation.h"
+#import "ControllerHelper.h"
 
 @interface ResultViewController ()
 
@@ -43,7 +44,7 @@
                                                       [self reloadData:localisations];
                                                   }
                                                        onError:^(NSError* error) {
-                                                     
+                                                           ALERT_TITLE(@"Erreur",[error localizedDescription])
                                                        }];
     
     self.navigationItem.title = criteria.place;
