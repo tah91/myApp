@@ -10,6 +10,6 @@
 
 @implementation Price
 
-@synthesize desktop,workStation,meetingRoom,buisnessLounge,seminarRoom,visioRoom;
+@synthesize offerType,price;
 
 @end

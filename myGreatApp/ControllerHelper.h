@@ -16,4 +16,8 @@
 +(void)removeFromStackNavigation:(UINavigationController*) controller 
                           aclass:(Class)aClass;
 
++(void)hideEmptySeparators:(UITableViewController*) controller;
+
++(void)hideEmptyTableSeparators:(UITableView*) view;
+
 @end

@@ -1,30 +1,28 @@
 //
-//  DetailViewController.m
+//  Detail2ViewController.m
 //  myGreatApp
 //
-//  Created by Tahir Iftikhar on 04/07/12.
+//  Created by Tahir Iftikhar on 24/07/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "DetailViewController.h"
 #import "ControllerHelper.h"
 #import "AppDelegate.h"
+#import "DescriptionViewController.h"
+#import "GalleryViewController.h"
 
 @interface DetailViewController ()
 
 @end
 
 @implementation DetailViewController
-
-@synthesize name;
-@synthesize city;
 @synthesize picture;
-@synthesize locId;
-@synthesize localisation;
+@synthesize localisation,locId;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -34,34 +32,68 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     [ApplicationDelegate.localisationEngine detailsWithId:[NSNumber numberWithInt:locId]
                                              onCompletion:^(NSObject* localisationJson) {
                                                  NSMutableDictionary* json = (NSMutableDictionary*)localisationJson;
-                                                 localisation = [[Localisation alloc] initWithDictionary:json];
-                                                 name.text = [NSString stringWithFormat:@"name is : %@", localisation.name];
-                                                 picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:localisation.image]]];
+                                                 [self loadData:json];
                                              }
                                                   onError:^(NSError* error) {
                                                       ALERT_TITLE(@"Erreur",[error localizedDescription])
                                                   }];
-    
-    self.navigationItem.backBarButtonItem.title = @"Back";
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
 {
-    [self setName:nil];
-    [self setCity:nil];
     [self setPicture:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)loadData:(NSMutableDictionary*)json {    
+    localisation = [[Localisation alloc] initWithDictionary:json];
+    picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[localisation getMainImage:false]]]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"descriptionSegue"] || [[segue identifier] isEqualToString:@"descDetailSegue"]) {
+        
+        DescriptionViewController* dc = [segue destinationViewController];
+        [dc setLocalisation:localisation];
+        [dc setSelectedTab:0];
+        
+    } else if ([[segue identifier] isEqualToString:@"infosSegue"]) {
+        
+        DescriptionViewController* dc = [segue destinationViewController];
+        [dc setLocalisation:localisation];
+        [dc setSelectedTab:1];
+        
+    } else if ([[segue identifier] isEqualToString:@"gallerySegue"]) {
+        
+        GalleryViewController* gc = [segue destinationViewController];
+        [gc setLocalisation:localisation];
+        
+    } else if ([[segue identifier] isEqualToString:@"reviewsSegue"]) {
+        
+    } else if ([[segue identifier] isEqualToString:@"desktopsSegue"]) {
+        
+    } else if ([[segue identifier] isEqualToString:@"meetingsSegue"]) {
+        
+    }
+    
 }
 
 @end

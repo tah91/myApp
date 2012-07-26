@@ -7,13 +7,22 @@
 //
 
 #import "Localisation.h"
+#import "SearchCriteria.h"
 
 @implementation Localisation
 
-@synthesize id,name,latitude,longitude,description,image,imageThumb,address,city,distance,type,isFree,url,rating,prices,openingTimes,amenities,offers,comments,fans;
+@synthesize id,name,latitude,longitude,description,address,city,distance,type,isFree,url,rating,openingTimes,access,prices,images,features,offers,comments,fans;
 
-+ (Class)amenities_class {
-    return [NSString class];
++ (Class)prices_class {
+    return [Price class];
+}
+
++ (Class)images_class {
+    return [Image class];
+}
+
++ (Class)features_class {
+    return [Feature class];
 }
 
 + (Class)offers_class {
@@ -27,4 +36,49 @@
 + (Class)fans_class {
     return [Member class];
 }
+
+-(NSString*)getMainImage:(BOOL)thumb {
+    if([images count] == 0) {
+        return @"";
+    }
+    Image* first = [images objectAtIndex:0];
+    return thumb ? first.thumbnail_url : first.url;
+}
+
+-(BOOL)hasMeetingRoom {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType ==  %d)", e_meetingRoom];
+    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+    return [filteredArray count] != 0;
+}
+
+-(NSString *)getMeetingRoomPrice {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType ==  %d)", e_meetingRoom];
+    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+    if([filteredArray count] == 0)
+        return @"";
+    
+    Price* first = [filteredArray objectAtIndex:0];
+    return first.price;
+}
+
+-(BOOL)hasDesktop {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType IN  %@)", [NSArray arrayWithObjects:
+                                                                                      [NSNumber numberWithInt:e_desktop],
+                                                                                      [NSNumber numberWithInt:e_workstation],nil]];
+    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+    return [filteredArray count] != 0;
+}
+
+-(NSString*)getDesktopPrice {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType IN  %@)",[NSArray arrayWithObjects:
+                                                                                     [NSNumber numberWithInt:e_desktop],
+                                                                                     [NSNumber numberWithInt:e_workstation],nil]];
+    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+    if([filteredArray count] == 0)
+        return @"";
+    
+    Price* first = [filteredArray objectAtIndex:0];
+    return first.price;
+}
+
 @end

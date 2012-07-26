@@ -11,11 +11,7 @@
 
 @interface Price : Jastor
 
-@property (nonatomic, copy) NSString*  desktop;
-@property (nonatomic, copy) NSString*  workStation;
-@property (nonatomic, copy) NSString*  meetingRoom;
-@property (nonatomic, copy) NSString*  buisnessLounge;
-@property (nonatomic, copy) NSString*  seminarRoom;
-@property (nonatomic, copy) NSString*  visioRoom;
+@property (nonatomic) NSInteger  offerType;
+@property (nonatomic, copy) NSString*  price;
 
 @end

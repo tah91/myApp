@@ -1,18 +1,15 @@
 //
-//  DetailViewController.h
+//  Detail2ViewController.h
 //  myGreatApp
 //
-//  Created by Tahir Iftikhar on 04/07/12.
+//  Created by Tahir Iftikhar on 24/07/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Localisation.h"
 
-@interface DetailViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *city;
+@interface DetailViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIImageView *picture;
 
 @property NSInteger locId;

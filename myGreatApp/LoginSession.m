@@ -73,7 +73,7 @@
                                                        login:login 
                                                     password:password
                                                 onCompletion:^(NSObject* userInfo) {
-                                                    if (userInfo == NULL) {
+                                                    if (userInfo == nil) {
                                                         NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de l'inscription",NSLocalizedDescriptionKey,nil]];
                                                         errorBlock(error);
                                                     } else {
@@ -97,7 +97,7 @@
     [ApplicationDelegate.localisationEngine connectWithLogin:login
                                                     password:password 
                                                 onCompletion:^(NSObject* userInfo) {
-                                                    if (userInfo == NULL) {
+                                                    if (userInfo == nil) {
                                                         NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de la connexion",NSLocalizedDescriptionKey,nil]];
                                                         errorBlock(error);
                                                     } else {
@@ -188,7 +188,7 @@
                                                       facebookId:fbId
                                                     facebookLink:fbLink
                                                     onCompletion:^(NSObject* userInfo) {
-                                                        if (userInfo == NULL) {
+                                                        if (userInfo == nil) {
                                                             NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de la connexion via Facebook",NSLocalizedDescriptionKey,nil]];
                                                             loginfailedCallback(error);
                                                         } else {

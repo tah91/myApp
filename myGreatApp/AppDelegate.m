@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 #import "LocalisationEngine.h"
 
-#define HOST_NAME @"www.eworky.fr"
-//#define HOST_NAME @"taff.coworky.fr"
+//#define HOST_NAME @"www.eworky.fr"
+#define HOST_NAME @"taff.coworky.fr"
 
 @implementation AppDelegate
 
@@ -22,6 +22,7 @@
 {
     self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:HOST_NAME customHeaderFields:nil];
     [self.localisationEngine useCache];
+    //[self.localisationEngine emptyCache];
     
     self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
     return YES;

@@ -13,6 +13,9 @@
 #import "OpeningTimes.h"
 #import "Comment.h"
 #import "Member.h"
+#import "Access.h"
+#import "Image.h"
+#import "Feature.h"
 
 @interface Localisation : Jastor
 
@@ -21,21 +24,26 @@
 @property (nonatomic, copy) NSNumber*   latitude;
 @property (nonatomic, copy) NSNumber*   longitude;
 @property (nonatomic, copy) NSString*   description;
-@property (nonatomic, copy) NSString*   image;
-@property (nonatomic, copy) NSString*   imageThumb;
 @property (nonatomic, copy) NSString*   address;
 @property (nonatomic, copy) NSString*   city;
 @property (nonatomic, copy) NSNumber*   distance;
 @property (nonatomic, copy) NSString*   type;
-@property (nonatomic)       Boolean     isFree;
+@property (nonatomic)       BOOL        isFree;
 @property (nonatomic, copy) NSString*   url;
 @property (nonatomic, copy) NSNumber*   rating;
-@property (nonatomic, retain) Price*      prices;
 @property (nonatomic, retain) OpeningTimes* openingTimes;
-@property (nonatomic, retain) NSArray*  amenities;
+@property (nonatomic, retain) Access* access;
+@property (nonatomic, retain) NSArray*  prices;
+@property (nonatomic, retain) NSArray*  images;
+@property (nonatomic, retain) NSArray*  features;
 @property (nonatomic, retain) NSArray*  offers;
 @property (nonatomic, retain) NSArray*  comments;
 @property (nonatomic, retain) NSArray*  fans;
 
+-(NSString*)getMainImage:(BOOL)thumb;
+-(BOOL)hasMeetingRoom;
+-(NSString *)getMeetingRoomPrice;
+-(BOOL)hasDesktop;
+-(NSString*)getDesktopPrice;
 
 @end
