@@ -24,14 +24,14 @@
 -(NSMutableDictionary*) getParams {
     NSMutableArray* offerTypes = [[NSMutableArray alloc] init];
     if(freePlace) {
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_freeArea]];
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_freeArea]];
     }
     if(desktop) {
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_desktop]];
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_workstation]];
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_desktop]];
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_workstation]];
     }
     if(meetingRoom) {
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", e_meetingRoom]];
+        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_meetingRoom]];
     }
     offerType = [NSString stringWithFormat:@"[%@]",[offerTypes componentsJoinedByString:@","]];
     NSMutableDictionary* properties = [[NSMutableDictionary alloc] initWithDictionary:[self dictionaryWithValuesForKeys:[[NSArray alloc] initWithObjects:@"place",@"offerType", nil]]];

@@ -45,5 +45,6 @@
 -(NSString *)getMeetingRoomPrice;
 -(BOOL)hasDesktop;
 -(NSString*)getDesktopPrice;
+-(NSString*)getDistance;
 
 @end

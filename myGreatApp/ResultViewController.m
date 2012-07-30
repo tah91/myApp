@@ -8,11 +8,15 @@
 
 #import "ResultViewController.h"
 #import "DetailViewController.h"
-#import "ResultItemCell.h"
+#import "LocalisationCell.h"
+#import "FreeLocalisationCell.h"
 #import "Localisation.h"
 #import "AppDelegate.h"
 #import "LocalisationAnnotation.h"
 #import "ControllerHelper.h"
+#import "OrderByViewController.h"
+#import "SelectRadiusViewController.h"
+#import "SelectTypeViewController.h"
 
 @interface ResultViewController ()
 
@@ -39,24 +43,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [ApplicationDelegate.localisationEngine searchWithCriteria:criteria
-                                                  onCompletion:^(NSMutableArray* localisations) {
-                                                      [self reloadData:localisations];
-                                                  }
-                                                       onError:^(NSError* error) {
-                                                           ALERT_TITLE(@"Erreur",[error localizedDescription])
-                                                       }];
-    
-    self.navigationItem.title = criteria.place;
-    
-    CLGeocoder* geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:criteria.place
-                 completionHandler:^(NSArray* placemarks, NSError* error){
-                     CLPlacemark* found = [placemarks objectAtIndex:0];
-                     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(found.location.coordinate, 30000, 30000);
-                     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
-                     [mapView setRegion:adjustedRegion animated:YES];
-                 }];
+    [self fetchData];
           
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
@@ -73,6 +60,25 @@
     [self setMapView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (void) fetchData {
+    [ApplicationDelegate.localisationEngine searchWithCriteria:criteria
+                                                  onCompletion:^(NSMutableArray* localisations) {
+                                                      [self reloadData:localisations];
+                                                  }
+                                                       onError:^(NSError* error) {
+                                                           ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                       }];
+    
+    CLGeocoder* geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:criteria.place
+                 completionHandler:^(NSArray* placemarks, NSError* error){
+                     CLPlacemark* found = [placemarks objectAtIndex:0];
+                     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(found.location.coordinate, 30000, 30000);
+                     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
+                     [mapView setRegion:adjustedRegion animated:YES];
+                 }];
 }
 
 - (void)reloadData:(NSMutableArray*) localisations
@@ -93,6 +99,8 @@
         LocalisationAnnotation* toAdd = [[LocalisationAnnotation alloc] initWithName:loc.name address:loc.city coordinate:coordinate locId:loc.id];
         [mapView addAnnotation:toAdd];
     }
+    
+    self.navigationItem.title = criteria.place;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -114,12 +122,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ResultItemCell* cell = (ResultItemCell *)[tableViewVal dequeueReusableCellWithIdentifier:@"placeItem"];
     Localisation* loc = [results objectAtIndex:indexPath.row];
-	cell.nameLabel.text = loc.name;
-	cell.cityLabel.text = loc.city;
-    cell.locId = loc.id;
-    return cell;
+    if (loc.isFree) {
+        FreeLocalisationCell* cell = (FreeLocalisationCell*)[tableViewVal dequeueReusableCellWithIdentifier:@"freeLocCell"];
+        [cell setFieldsFromLoc:loc];
+        return cell;
+    }
+    else {
+        LocalisationCell* cell = (LocalisationCell *)[tableViewVal dequeueReusableCellWithIdentifier:@"locCell"];
+        [cell setFieldsFromLoc:loc];
+        return cell;
+    }
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"%d résultats trouvés",[results count]];
 }
 
 #pragma mark - Table view delegate
@@ -133,6 +152,26 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (UIView *) tableView:(UITableView *)theTableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, theTableView.bounds.size.width, 30)];
+    [headerView setBackgroundColor:[UIColor blueColor]];
+    
+    UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    headerLabel.backgroundColor = [UIColor clearColor];
+    headerLabel.opaque = NO;
+    headerLabel.textColor = [UIColor whiteColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:14];
+    headerLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    headerLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    headerLabel.frame = CGRectMake(11,-11, 320.0, 44.0);
+    headerLabel.textAlignment = UITextAlignmentLeft;
+    headerLabel.text = [self tableView:theTableView titleForHeaderInSection:section];
+    [headerView addSubview:headerLabel];
+    
+    return headerView;
 }
 
 #pragma mark - Map View Delegate
@@ -152,11 +191,30 @@
     [self performSegueWithIdentifier:@"annotationDetailSegue" sender:pin.annotation];
 }
 
+#pragma mark - Apply Seach Delegate
+
+-(void)cancel {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)confirmWithCriteria:(SearchCriteria*)newCriteria {
+    [self dismissModalViewControllerAnimated:YES];
+    [self setCriteria:newCriteria];
+    [self fetchData];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"detailSegue"]) {
+    if ([[segue identifier] isEqualToString:@"freeDetailSegue"]) {
         NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
-        ResultItemCell* cell = (ResultItemCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
+        FreeLocalisationCell* cell = (FreeLocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
+        
+        DetailViewController *ds = [segue destinationViewController];
+        [ds setLocId:cell.locId];
+    }
+    else if ([[segue identifier] isEqualToString:@"detailSegue"]) {
+        NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
+        LocalisationCell* cell = (LocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
         
         DetailViewController *ds = [segue destinationViewController];
         [ds setLocId:cell.locId];
@@ -166,7 +224,21 @@
         LocalisationAnnotation* annotation = (LocalisationAnnotation*)sender;
         [dvc setLocId:annotation.locId];
     }
-    
+    else if ([[segue identifier] isEqualToString:@"orderBySegue"]) {
+        OrderByViewController *ovc = [segue destinationViewController];
+        ovc.applySearchDelegate = self;
+        ovc.criteria = criteria;
+    }
+    else if ([[segue identifier] isEqualToString:@"radiusSegue"]) {
+        SelectRadiusViewController *srvc = [segue destinationViewController];
+        srvc.applySearchDelegate = self;
+        srvc.criteria = criteria;
+    }
+    else if ([[segue identifier] isEqualToString:@"selectTypeSegue"]) {
+        SelectTypeViewController *stvc = [segue destinationViewController];
+        stvc.applySearchDelegate = self;
+        stvc.criteria = criteria;
+    }
 }
 
 

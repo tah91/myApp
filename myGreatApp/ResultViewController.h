@@ -10,7 +10,14 @@
 #import <MapKit/MapKit.h>
 #import "SearchCriteria.h"
 
-@interface ResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate>
+@protocol ApplySeachDelegate
+
+-(void)cancel;
+-(void)confirmWithCriteria:(SearchCriteria*)criteria;
+
+@end
+
+@interface ResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, ApplySeachDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

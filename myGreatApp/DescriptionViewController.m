@@ -79,7 +79,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
     }
-	cell.textLabel.text = [localisation.features objectAtIndex:indexPath.row];
+    Feature* feature = [localisation.features objectAtIndex:indexPath.row];
+	cell.textLabel.text = feature.featureDisplay;
     return cell;
 }
 
