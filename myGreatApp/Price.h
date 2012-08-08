@@ -11,7 +11,9 @@
 
 @interface Price : Jastor
 
-@property (nonatomic) NSInteger  offerType;
 @property (nonatomic, copy) NSString*  price;
+@property (nonatomic, copy) NSString*  frequency;
+
+-(NSString*)getDisplay;
 
 @end

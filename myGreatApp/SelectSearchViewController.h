@@ -12,6 +12,11 @@
 @interface SelectSearchViewController : UIViewController
 
 @property (strong, nonatomic) SearchCriteria* criteria;
-- (IBAction)toogle:(id)sender;
+- (IBAction)selectFreeSpace:(id)sender;
+- (IBAction)selectDesktop:(id)sender;
+- (IBAction)selectMeetingRoom:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *freeSpaceButton;
+@property (weak, nonatomic) IBOutlet UIButton *desktopButton;
+@property (weak, nonatomic) IBOutlet UIButton *meetingRoomButton;
 
 @end

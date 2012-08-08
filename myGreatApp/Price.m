@@ -10,6 +10,10 @@
 
 @implementation Price
 
-@synthesize offerType,price;
+@synthesize price,frequency;
+
+-(NSString*)getDisplay {
+    return [NSString stringWithFormat:@"%@ / %@",price,frequency];
+}
 
 @end

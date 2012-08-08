@@ -41,7 +41,7 @@
 {
     [self setSearchBar:nil];
     [self setTableView:nil];
-    [super viewDidUnload];
+    [super viewDidUnload];	
     // Release any retained subviews of the main view.
 }
 

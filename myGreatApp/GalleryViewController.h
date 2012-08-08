@@ -10,10 +10,7 @@
 #import "ATPagingView.h"
 #import "Localisation.h"
 
-@interface GalleryViewController : ATPagingViewController {
-    
-}
-
+@interface GalleryViewController : ATPagingViewController
 
 @property (strong, nonatomic) Localisation* localisation;
 

@@ -10,8 +10,8 @@
 #import "LocalisationEngine.h"
 
 //#define HOST_NAME @"www.eworky.fr"
-//#define HOST_NAME @"taff.coworky.fr"
-#define HOST_NAME @"ti.coworky.fr"
+#define HOST_NAME @"taff.coworky.fr"
+//#define HOST_NAME @"ti.coworky.fr"
 
 @implementation AppDelegate
 
@@ -26,6 +26,43 @@
     //[self.localisationEngine emptyCache];
     
     self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
+    
+    UIImage *navBarImage = [UIImage imageNamed:@"nav-bar.png"];
+    
+    [[UINavigationBar appearance] setBackgroundImage:navBarImage
+                                       forBarMetrics:UIBarMetricsDefault];
+    
+    
+    NSDictionary* barColor = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [UIColor colorWithRed:3.0/255.0 green:84.0/255.0 blue:131.0/255.0 alpha:1.0],UITextAttributeTextColor,
+                              [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0],UITextAttributeTextShadowColor,
+                              [UIFont fontWithName:@"Helvetica CE 55 Roman" size:0.0],UITextAttributeFont,
+                              nil];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:barColor];
+    
+    UIImage *barButton = [[UIImage imageNamed:@"nav-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 5, 9)];
+    
+    [[UIBarButtonItem appearance] setBackgroundImage:barButton
+                                            forState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+    
+    UIImage *backButton = [[UIImage imageNamed:@"nav-back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5,18,5,8)];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+    
+    NSDictionary* buttonColor = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [UIColor colorWithRed:0.0/255.0 green:153.0/255.0 blue:204.0/255.0 alpha:1.0],UITextAttributeTextColor,
+                                 [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0],UITextAttributeTextShadowColor,
+                                 //[NSValue valueWithUIOffset:UIOffsetMake(0,1)],UITextAttributeTextShadowOffset,
+                                 [UIFont fontWithName:@"Helvetica CE 55 Roman" size:0.0],UITextAttributeFont,
+                                 nil];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:buttonColor
+                                                forState:UIControlStateNormal];
+    
     return YES;
 }
 							

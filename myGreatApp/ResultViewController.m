@@ -9,7 +9,6 @@
 #import "ResultViewController.h"
 #import "DetailViewController.h"
 #import "LocalisationCell.h"
-#import "FreeLocalisationCell.h"
 #import "Localisation.h"
 #import "AppDelegate.h"
 #import "LocalisationAnnotation.h"
@@ -25,6 +24,12 @@
 @implementation ResultViewController
 @synthesize mapView;
 @synthesize tableView;
+@synthesize activityView;
+@synthesize toolsView;
+@synthesize loadingLabel;
+@synthesize orderByBtn;
+@synthesize criteriaBtn;
+@synthesize radiusBtn;
 
 @synthesize results, criteria;
 
@@ -52,12 +57,40 @@
     self.view = containerView;
     frame = self.view.bounds;
     [self.view addSubview:tableView];
+    [self.view addSubview:toolsView];
+    
+    loadingLabel.text = @"Chargement";
+    
+    UIImage *toolsBng = [[UIImage imageNamed:@"tools-btn-bng.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    [orderByBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
+    UIImage *orderByLogo = [UIImage imageNamed:@"tool-orderby-logo.png"];
+    //[orderByBtn setTitleEdgeInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 0.0)];
+    [orderByBtn setImage:orderByLogo forState:UIControlStateNormal];
+    [orderByBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
+    
+    UIImage *criteriaLogo = [UIImage imageNamed:@"tool-criteria-logo.png"];
+    [criteriaBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
+    [criteriaBtn setImage:criteriaLogo forState:UIControlStateNormal];
+    [criteriaBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
+    
+    UIImage *radiusLogo = [UIImage imageNamed:@"tool-radius-logo.png"];
+    [radiusBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
+    [radiusBtn setImage:radiusLogo forState:UIControlStateNormal];
+    [radiusBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
+
 }
 
 - (void)viewDidUnload
 {
     [self setTableView:nil];
     [self setMapView:nil];
+    [self setActivityView:nil];
+    [self setToolsView:nil];
+    [self setLoadingLabel:nil];
+    [self setOrderByBtn:nil];
+    [self setCriteriaBtn:nil];
+    [self setRadiusBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -123,17 +156,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Localisation* loc = [results objectAtIndex:indexPath.row];
-    if (loc.isFree) {
-        FreeLocalisationCell* cell = (FreeLocalisationCell*)[tableViewVal dequeueReusableCellWithIdentifier:@"freeLocCell"];
-        [cell setFieldsFromLoc:loc];
-        return cell;
-    }
-    else {
-        LocalisationCell* cell = (LocalisationCell *)[tableViewVal dequeueReusableCellWithIdentifier:@"locCell"];
-        [cell setFieldsFromLoc:loc];
-        return cell;
-    }
-    
+    NSString* identifier = loc.isFree ? @"freeLocCell" : @"payingLocCell";
+    LocalisationCell* cell = (LocalisationCell*)[tableViewVal dequeueReusableCellWithIdentifier:identifier];
+    [cell setFieldsFromLoc:loc];
+    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -156,14 +182,14 @@
 
 - (UIView *) tableView:(UITableView *)theTableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, theTableView.bounds.size.width, 30)];
-    [headerView setBackgroundColor:[UIColor blueColor]];
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, theTableView.bounds.size.width, 26)];
+    [headerView setBackgroundColor:[UIColor blackColor]];
     
     UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];
     headerLabel.opaque = NO;
     headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont boldSystemFontOfSize:14];
+    headerLabel.font = [UIFont boldSystemFontOfSize:10];
     headerLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
     headerLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
     headerLabel.frame = CGRectMake(11,-11, 320.0, 44.0);
@@ -207,7 +233,7 @@
 {
     if ([[segue identifier] isEqualToString:@"freeDetailSegue"]) {
         NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
-        FreeLocalisationCell* cell = (FreeLocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
+        LocalisationCell* cell = (LocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
         
         DetailViewController *ds = [segue destinationViewController];
         [ds setLocId:cell.locId];
@@ -240,7 +266,6 @@
         stvc.criteria = criteria;
     }
 }
-
 
 - (IBAction)switchView:(id)sender {
     self.mapView.frame = self.tableView.frame;

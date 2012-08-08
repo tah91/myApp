@@ -10,14 +10,14 @@
 
 @implementation Offer
 
-@synthesize id,name,images,prices,features,availability,type;
+@synthesize id,name,images,prices,features,availability,offerType;
 
 + (Class)pictures_class {
     return [Image class];
 }
 
 + (Class)prices_class {
-    return [NSString class];
+    return [Price class];
 }
 
 + (Class)features_class {

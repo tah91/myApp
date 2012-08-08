@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Jastor.h"
-#import "Price.h"
+#import "MinPrice.h"
 #import "Offer.h"
 #import "OpeningTimes.h"
 #import "Comment.h"
@@ -16,8 +16,11 @@
 #import "Access.h"
 #import "Image.h"
 #import "Feature.h"
+#import "OffersSummary.h"
 
-@interface Localisation : Jastor
+@interface Localisation : Jastor {
+    NSMutableArray* _offerSummaries;
+}
 
 @property (nonatomic)       NSInteger   id;
 @property (nonatomic, copy) NSString*   name;
@@ -33,18 +36,19 @@
 @property (nonatomic, copy) NSNumber*   rating;
 @property (nonatomic, retain) OpeningTimes* openingTimes;
 @property (nonatomic, retain) Access* access;
-@property (nonatomic, retain) NSArray*  prices;
+@property (nonatomic, retain) NSArray*  minPrices;
 @property (nonatomic, retain) NSArray*  images;
 @property (nonatomic, retain) NSArray*  features;
 @property (nonatomic, retain) NSArray*  offers;
 @property (nonatomic, retain) NSArray*  comments;
 @property (nonatomic, retain) NSArray*  fans;
+@property (nonatomic, retain, readonly) NSArray*  offerSummaries;
 
 -(NSString*)getMainImage:(BOOL)thumb;
 -(BOOL)hasMeetingRoom;
--(NSString *)getMeetingRoomPrice;
+-(void)getMeetingRoomPrice:(NSString**)price andDisplay:(NSString**)display;
 -(BOOL)hasDesktop;
--(NSString*)getDesktopPrice;
+-(void)getDesktopPrice:(NSString**)price andDisplay:(NSString**)display;
 -(NSString*)getDistance;
 
 @end

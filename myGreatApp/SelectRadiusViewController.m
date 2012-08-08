@@ -39,7 +39,7 @@
                     [NSNumber numberWithInt:50],@"50 km",
                     nil];
     
-    radiusArray = [radiusTypes allKeys];
+    radiusArray = [radiusTypes keysSortedByValueUsingSelector:@selector(compare:)];
     
     NSString* selectedRadius = [[radiusTypes allKeysForObject:criteria.boundary] objectAtIndex:0];
     NSUInteger index = [radiusArray indexOfObject:selectedRadius];

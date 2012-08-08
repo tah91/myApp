@@ -14,6 +14,9 @@
 @end
 
 @implementation SelectSearchViewController
+@synthesize freeSpaceButton;
+@synthesize desktopButton;
+@synthesize meetingRoomButton;
 
 @synthesize criteria;
 
@@ -29,11 +32,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [freeSpaceButton setImage:[UIImage imageNamed:@"freeplaces.png"] forState:UIControlStateNormal];
+    [freeSpaceButton setImage:[UIImage imageNamed:@"freeplaces_u.png"] forState:UIControlStateSelected];
+    [freeSpaceButton setSelected:criteria.freePlace];
+    [desktopButton setImage:[UIImage imageNamed:@"desktop.png"] forState:UIControlStateNormal];
+    [desktopButton setImage:[UIImage imageNamed:@"desktop_u.png"] forState:UIControlStateSelected];
+    [desktopButton setSelected:criteria.desktop];
+    [meetingRoomButton setImage:[UIImage imageNamed:@"meetingroom.png"] forState:UIControlStateNormal];
+    [meetingRoomButton setImage:[UIImage imageNamed:@"meetingroom_u.png"] forState:UIControlStateSelected];
+    [meetingRoomButton setSelected:criteria.meetingRoom];
 }
 
 - (void)viewDidUnload
 {
+    [self setFreeSpaceButton:nil];
+    [self setDesktopButton:nil];
+    [self setMeetingRoomButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -49,18 +63,37 @@
         
         ResultViewController* rvc = [segue destinationViewController];
         
-        SearchCriteria* toSet = [[SearchCriteria alloc] initWithPlace:criteria.place];
-        [rvc setCriteria:toSet];
+        [rvc setCriteria:criteria];
     }
 }
 
-- (IBAction)toogle:(id)sender {
+- (IBAction)selectFreeSpace:(id)sender {
     if ([sender isSelected]) {
-        [sender setImage:[UIImage imageNamed:@"header.png"] forState:UIControlStateNormal];
         [sender setSelected:NO];
+        [criteria setFreePlace:false];
     }else {
-        [sender setImage:[UIImage imageNamed:@"logo2.png"] forState:UIControlStateSelected];
         [sender setSelected:YES];
+        [criteria setFreePlace:true];
+    }
+}
+
+- (IBAction)selectDesktop:(id)sender {
+    if ([sender isSelected]) {
+        [sender setSelected:NO];
+        [criteria setDesktop:false];
+    }else {
+        [sender setSelected:YES];
+        [criteria setDesktop:true];
+    }
+}
+
+- (IBAction)selectMeetingRoom:(id)sender {
+    if ([sender isSelected]) {
+        [sender setSelected:NO];
+        [criteria setMeetingRoom:false];
+    }else {
+        [sender setSelected:YES];
+        [criteria setMeetingRoom:true];
     }
 }
 @end

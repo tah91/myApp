@@ -17,9 +17,9 @@
 @synthesize containerView;
 @synthesize tabSelector;
 @synthesize descLabel;
-@synthesize infosView;
 @synthesize featuresTableView;
 @synthesize localisation;
+@synthesize infosTableView;
 @synthesize selectedTab;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,7 +50,7 @@
     [self setDescLabel:nil];
     [self setContainerView:nil];
     [self setFeaturesTableView:nil];
-    [self setInfosView:nil];
+    [self setInfosTableView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -64,24 +64,141 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (tableView == infosTableView) {
+        return 3;
+    }
+    else if(tableView == featuresTableView) {
+        return 1;
+    }
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [localisation.features count];
+    if (tableView == infosTableView) {
+        switch (section) {
+            case 0:
+                return 3;
+                break;
+            case 1:
+                return 7;
+                break;
+            case 2:
+                return 0;
+                break;
+            default:
+                break;
+        }
+    }
+    else if(tableView == featuresTableView){
+         return [localisation.features count];
+    }
+    return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* ident = @"featureCell";
-    UITableViewCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:ident];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+    if(tableView == infosTableView) {
+        static NSString* ident = @"infosCell";
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:ident];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+        }
+        switch (indexPath.section) {
+            case 0:
+            {
+                switch (indexPath.row) {
+                    case 0:
+                        cell.textLabel.text = localisation.access.roadAccess;
+                        break;
+                    case 1:
+                        cell.textLabel.text = localisation.access.publicTransport;
+                        break;
+                    case 2:
+                        cell.textLabel.text = localisation.access.station;
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+                break;
+                
+            case 1:
+            {
+                switch (indexPath.row) {
+                    case 0:
+                        cell.textLabel.text = localisation.openingTimes.monday;
+                        break;
+                    case 1:
+                        cell.textLabel.text = localisation.openingTimes.tuesday;
+                        break;
+                    case 2:
+                        cell.textLabel.text = localisation.openingTimes.wednesday;
+                        break;
+                    case 3:
+                        cell.textLabel.text = localisation.openingTimes.thursday;
+                        break;
+                    case 4:
+                        cell.textLabel.text = localisation.openingTimes.friday;
+                        break;
+                    case 5:
+                        cell.textLabel.text = localisation.openingTimes.saturday;
+                        break;
+                    case 6:
+                        cell.textLabel.text = localisation.openingTimes.sunday;
+                        break;
+                    default:
+                        break;
+                }
+            }
+                break;
+                
+            case 2:
+            {
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+        return cell;
     }
-    Feature* feature = [localisation.features objectAtIndex:indexPath.row];
-	cell.textLabel.text = feature.featureDisplay;
-    return cell;
+    else if(tableView == featuresTableView) {
+        static NSString* ident = @"featureCell";
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:ident];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+        }
+        Feature* feature = [localisation.features objectAtIndex:indexPath.row];
+        cell.textLabel.text = feature.featureDisplay;
+        return cell;
+    }
+    return nil;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (tableView == infosTableView) {
+        switch (section) {
+            case 0:
+                return @"Acces";
+                break;
+            case 1:
+                return @"Horaires";
+                break;
+            case 2:
+                return @"Itinéraire";
+                break;
+            default:
+                break;
+        }
+    }
+    else if(tableView == featuresTableView) {
+        return nil;
+    }
+    return nil;
 }
 
 #pragma mark - Table view delegate
@@ -100,18 +217,18 @@
 -(void)setSubviewAtIndex:(NSInteger)index{
     switch (index) {
         case 0:
-            [infosView removeFromSuperview];
+            [infosTableView removeFromSuperview];
             [featuresTableView removeFromSuperview];
             [containerView addSubview:descLabel];
             break;
         case 1:
             [descLabel removeFromSuperview];
             [featuresTableView removeFromSuperview];
-            [containerView addSubview:infosView]; 
+            [containerView addSubview:infosTableView];
             break;
         case 2:
             [descLabel removeFromSuperview];
-            [infosView removeFromSuperview];
+            [infosTableView removeFromSuperview];
             [containerView addSubview:featuresTableView];
             break;
         default:

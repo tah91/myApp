@@ -31,11 +31,11 @@
     [super viewDidLoad];
 
     orderByTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    [NSNumber numberWithInt:ob_distance],@"Distance",
                     [NSNumber numberWithInt:ob_rating],@"Note",
+                    [NSNumber numberWithInt:ob_distance],@"Distance",
                     nil];
     
-    orderByArray = [orderByTypes allKeys];
+    orderByArray = [orderByTypes keysSortedByValueUsingSelector:@selector(compare:)];
     
     NSString* selectedOrder = [[orderByTypes allKeysForObject:[NSNumber numberWithInt:criteria.orderBy]] objectAtIndex:0];
     NSUInteger index = [orderByArray indexOfObject:selectedOrder];

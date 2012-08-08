@@ -10,6 +10,7 @@
 #import "Jastor.h"
 #import "Image.h"
 #import "Feature.h"
+#import "Price.h"
 
 @interface Offer : Jastor
 
@@ -19,6 +20,6 @@
 @property (nonatomic, retain) NSArray*  prices;
 @property (nonatomic, retain) NSArray*  features;
 @property (nonatomic,copy) NSString*    availability;
-@property (nonatomic) NSInteger         type;
+@property (nonatomic) NSInteger         offerType;
 
 @end

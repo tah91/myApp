@@ -7,18 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Localisation.h"
+#import "LocalisationCell.h"
 
-@interface FreeLocalisationCell : UITableViewCell
-
-@property (nonatomic, strong) IBOutlet UILabel* nameLabel;
-@property (nonatomic, strong) IBOutlet UILabel* distanceLabel;
-@property (nonatomic, strong) IBOutlet UILabel* typeLabel;
-@property (nonatomic, strong) IBOutlet UILabel* cityLabel;
-@property (nonatomic, strong) IBOutlet UILabel* featureLabel;
-@property (nonatomic, strong) IBOutlet UIImageView* mainPic;
-
-@property (nonatomic) int locId;
+@interface FreeLocalisationCell : LocalisationCell
 
 -(void)setFieldsFromLoc:(Localisation*)loc;
 

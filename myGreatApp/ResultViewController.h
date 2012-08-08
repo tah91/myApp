@@ -21,6 +21,12 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *activityView;
+@property (strong, nonatomic) IBOutlet UIView *toolsView;
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
+@property (weak, nonatomic) IBOutlet UIButton *orderByBtn;
+@property (weak, nonatomic) IBOutlet UIButton *criteriaBtn;
+@property (weak, nonatomic) IBOutlet UIButton *radiusBtn;
 - (IBAction)switchView:(id)sender;
 
 - (void)reloadData:(NSMutableArray*) localisations;

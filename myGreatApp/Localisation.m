@@ -11,10 +11,42 @@
 
 @implementation Localisation
 
-@synthesize id,name,latitude,longitude,description,address,city,distance,type,isFree,url,rating,openingTimes,access,prices,images,features,offers,comments,fans;
+@synthesize id,name,latitude,longitude,description,address,city,distance,type,isFree,url,rating,openingTimes,access,minPrices,images,features,offers,comments,fans;
 
-+ (Class)prices_class {
-    return [Price class];
+@dynamic offerSummaries;
+
+-(NSArray*) offerSummaries {
+    if(_offerSummaries != nil) {
+        return _offerSummaries;
+    }
+    
+    _offerSummaries = [NSMutableArray array];
+    
+    NSPredicate* hasMeetingRoom = [NSPredicate predicateWithFormat:@"(offerType ==  %d)", ot_meetingRoom];
+    NSArray* meetingRoomPrices = [minPrices filteredArrayUsingPredicate:hasMeetingRoom];
+    if([meetingRoomPrices count] != 0) {
+        Price* meetingRoomPrice = [meetingRoomPrices objectAtIndex:0];
+        NSArray* meetingRooms = [offers filteredArrayUsingPredicate:hasMeetingRoom];
+        OffersSummary* toAdd = [[OffersSummary alloc] initWithType:os_meetingRoom minPrice:meetingRoomPrice.price andOffers:meetingRooms];
+        [_offerSummaries addObject:toAdd];
+    }
+    
+    NSPredicate* hasDesktop = [NSPredicate predicateWithFormat:@"(offerType IN  %@)", [NSArray arrayWithObjects:
+                                                                                       [NSNumber numberWithInt:ot_desktop],
+                                                                                       [NSNumber numberWithInt:ot_workstation],nil]];
+    NSArray* desktopPrices = [minPrices filteredArrayUsingPredicate:hasDesktop];
+    if([desktopPrices count] != 0) {
+        Price* desktopPrice = [desktopPrices objectAtIndex:0];
+        NSArray* desktops = [offers filteredArrayUsingPredicate:hasDesktop];
+        OffersSummary* toAdd = [[OffersSummary alloc] initWithType:os_desktop minPrice:desktopPrice.price andOffers:desktops];
+        [_offerSummaries addObject:toAdd];
+    }
+    
+    return _offerSummaries;
+}
+
++ (Class)minPrices_class {
+    return [MinPrice class];
 }
 
 + (Class)images_class {
@@ -46,45 +78,43 @@
 }
 
 -(BOOL)hasMeetingRoom {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType ==  %d)", ot_meetingRoom];
-    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type ==  %d)", os_meetingRoom];
+    NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     return [filteredArray count] != 0;
 }
 
--(NSString *)getMeetingRoomPrice {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType ==  %d)", ot_meetingRoom];
-    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+-(void)getMeetingRoomPrice:(NSString**)price andDisplay:(NSString**)display {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type ==  %d)", os_meetingRoom];
+    NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     if([filteredArray count] == 0)
-        return @"";
+        return;
     
-    Price* first = [filteredArray objectAtIndex:0];
-    return first.price;
+    OffersSummary* first = [filteredArray objectAtIndex:0];
+    *price = [first.minPrice getDisplay];
+    *display = [first getTitle];
 }
 
 -(BOOL)hasDesktop {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType IN  %@)", [NSArray arrayWithObjects:
-                                                                                      [NSNumber numberWithInt:ot_desktop],
-                                                                                      [NSNumber numberWithInt:ot_workstation],nil]];
-    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type == %d)", os_desktop];
+    NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     return [filteredArray count] != 0;
 }
 
--(NSString*)getDesktopPrice {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(offerType IN  %@)",[NSArray arrayWithObjects:
-                                                                                     [NSNumber numberWithInt:ot_desktop],
-                                                                                     [NSNumber numberWithInt:ot_workstation],nil]];
-    NSArray* filteredArray = [prices filteredArrayUsingPredicate:predicate];
+-(void)getDesktopPrice:(NSString**)price andDisplay:(NSString**)display {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type == %d)",os_desktop];
+    NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     if([filteredArray count] == 0)
-        return @"";
+        return;
     
-    Price* first = [filteredArray objectAtIndex:0];
-    return first.price;
+    OffersSummary* first = [filteredArray objectAtIndex:0];
+    *price = [first.minPrice getDisplay];
+    *display = [first getTitle];
 }
 
 -(NSString*)getDistance {
     NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
     [fmt  setPositiveFormat:@"0.##"];
-    return [NSString stringWithFormat:@"%@ kms", [fmt stringFromNumber:distance]];
+    return [NSString stringWithFormat:@"%@ km", [fmt stringFromNumber:distance]];
 }
 
 @end
