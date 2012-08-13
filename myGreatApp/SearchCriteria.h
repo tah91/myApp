@@ -159,12 +159,16 @@ typedef enum {
 @property (strong, nonatomic)   NSString* name;
 @property (nonatomic)           NSNumber* latitude;
 @property (nonatomic)           NSNumber* longitude;
+@property (nonatomic)           NSNumber* neLat;
+@property (nonatomic)           NSNumber* neLng;
+@property (nonatomic)           NSNumber* swLat;
+@property (nonatomic)           NSNumber* swLng;
 @property (strong, nonatomic)   NSString* offerType;
 @property (strong, nonatomic)   NSString* types;
 @property (strong, nonatomic)   NSString* features;
 @property (nonatomic)           NSNumber* boundary;
 @property (nonatomic)           NSInteger orderBy;
-@property (nonatomic)           NSInteger maxCount;
+@property (nonatomic)           NSInteger page;
 
 @property (nonatomic) BOOL freePlace;
 @property (nonatomic) BOOL desktop;

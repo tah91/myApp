@@ -142,7 +142,7 @@
         case 0:
         {
             OffersSummary* elem = [[localisation offerSummaries] objectAtIndex:indexPath.row];
-            cell.textLabel.text = [elem getTitle];
+            cell.textLabel.text = [elem getTitle:true];
         }
             break;
         case 1:
@@ -227,6 +227,5 @@
             break;
     }
 }
-
 
 @end

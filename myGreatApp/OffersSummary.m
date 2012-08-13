@@ -23,7 +23,7 @@
     return self;
 }
 
--(NSString*)getTitle {
+-(NSString*)getTitle:(BOOL)price {
     NSString* toRet = @"";
     switch (type) {
         case os_meetingRoom:
@@ -38,7 +38,7 @@
     
     if([minPrice.price length] != 0) {
         //toRet = [toRet stringByAppendingFormat:@" dès %@",minPrice.price];
-        toRet = [toRet stringByAppendingString:@" dès"];
+        toRet = price ? [toRet stringByAppendingFormat:@" dès %@",minPrice.price] : [toRet stringByAppendingString:@" dès"];
     }
     
     return toRet;

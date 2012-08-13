@@ -22,6 +22,6 @@ typedef enum {
 
 -(id)initWithType:(offerSummary)type minPrice:(NSString*)price andOffers:(NSArray*)offers;
 
--(NSString*)getTitle;
+-(NSString*)getTitle:(BOOL)price;
 
 @end

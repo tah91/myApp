@@ -52,20 +52,20 @@
     [loc getMeetingRoomPrice:&meetingPrice andDisplay:&meetingDisplay];
     
     [self setLabel:desktopLabel
-          withText:desktopDisplay
-          andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
-    
-    [self setLabel:desktopPriceLabel
-          withText:desktopPrice
+          withText:[NSString stringWithFormat:@"%@ %@",desktopDisplay,desktopPrice]
           andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
     
     [self setLabel:meetingLabel
-          withText:meetingDisplay
+          withText:[NSString stringWithFormat:@"%@ %@",meetingDisplay,meetingPrice]
+          andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
+    
+    /*[self setLabel:desktopPriceLabel
+          withText:desktopPrice
           andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
     
     [self setLabel:meetingPriceLabel
           withText:meetingPrice
-          andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
+          andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];*/
 }
 
 @end

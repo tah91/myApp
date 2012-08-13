@@ -22,7 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:HOST_NAME customHeaderFields:nil];
-    [self.localisationEngine useCache];
+    //[self.localisationEngine useCache];
     //[self.localisationEngine emptyCache];
     
     self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];

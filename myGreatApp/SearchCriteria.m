@@ -10,7 +10,7 @@
 
 @implementation SearchCriteria
 
-@synthesize place,name,latitude,longitude,offerType,types,features,boundary,orderBy,maxCount,freePlace,desktop,meetingRoom;
+@synthesize place,name,latitude,longitude,offerType,types,features,boundary,orderBy,freePlace,desktop,meetingRoom,page,neLat,neLng,swLat,swLng;
 
 -(id) init {
     if (!(self = [super init]))
@@ -20,11 +20,15 @@
     [self setName:@""];
     [self setLatitude:[NSNumber numberWithInt:0]];
     [self setLongitude:[NSNumber numberWithInt:0]];
+    [self setNeLat:[NSNumber numberWithInt:0]];
+    [self setNeLng:[NSNumber numberWithInt:0]];
+    [self setSwLat:[NSNumber numberWithInt:0]];
+    [self setSwLng:[NSNumber numberWithInt:0]];
     [self setOfferType:@""];
     [self setTypes:@""];
     [self setFeatures:@""];
-    [self setBoundary:[NSNumber numberWithInt:5]];
-    [self setMaxCount:30];
+    [self setBoundary:[NSNumber numberWithInt:1]];
+    [self setPage:1];
     [self setOrderBy:ob_distance];
     [self setFreePlace:false];
     [self setDesktop:false];
@@ -56,7 +60,7 @@
         [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_meetingRoom]];
     }
     offerType = [NSString stringWithFormat:@"[%@]",[offerTypes componentsJoinedByString:@","]];
-    NSArray* keys = [NSArray arrayWithObjects:@"place", @"name", @"latitude", @"longitude", @"offerType", @"types", @"features", @"boundary", @"orderBy", @"maxCount", nil];
+    NSArray* keys = [NSArray arrayWithObjects:@"place", @"name", @"latitude", @"longitude", @"neLat", @"neLng", @"swLat", @"swLng", @"offerType", @"types", @"features", @"boundary", @"orderBy", @"page", nil];
     NSMutableDictionary* properties = [[NSMutableDictionary alloc] initWithDictionary:[self dictionaryWithValuesForKeys:keys]];
     return properties;
 }

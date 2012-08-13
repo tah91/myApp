@@ -91,7 +91,7 @@
     
     OffersSummary* first = [filteredArray objectAtIndex:0];
     *price = [first.minPrice getDisplay];
-    *display = [first getTitle];
+    *display = [first getTitle:false];
 }
 
 -(BOOL)hasDesktop {
@@ -108,7 +108,7 @@
     
     OffersSummary* first = [filteredArray objectAtIndex:0];
     *price = [first.minPrice getDisplay];
-    *display = [first getTitle];
+    *display = [first getTitle:false];
 }
 
 -(NSString*)getDistance {

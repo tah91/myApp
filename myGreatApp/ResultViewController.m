@@ -22,16 +22,19 @@
 @end
 
 @implementation ResultViewController
-@synthesize mapView;
-@synthesize tableView;
-@synthesize activityView;
-@synthesize toolsView;
 @synthesize loadingLabel;
+@synthesize loadingView;
+@synthesize mapView;
+@synthesize mapViewHelp;
+@synthesize mapViewActivity;
+@synthesize mapViewHelpLabel;
+@synthesize tableView;
+@synthesize toolsView;
 @synthesize orderByBtn;
 @synthesize criteriaBtn;
 @synthesize radiusBtn;
 
-@synthesize results, criteria;
+@synthesize results, criteria, maxCount, isFetching, center, fetchedLocalisations, fromCode, ne, sw, neRegion, swRegion;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,9 +49,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    [self fetchData];
+    results = [NSMutableArray arrayWithCapacity:20];
+    isFetching = false;
+    fromCode = false;
+    [self fetchData:false];
           
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
@@ -59,7 +63,7 @@
     [self.view addSubview:tableView];
     [self.view addSubview:toolsView];
     
-    loadingLabel.text = @"Chargement";
+    loadingLabel.text = @"Chargment des lieux...";
     
     UIImage *toolsBng = [[UIImage imageNamed:@"tools-btn-bng.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
@@ -85,45 +89,89 @@
 {
     [self setTableView:nil];
     [self setMapView:nil];
-    [self setActivityView:nil];
     [self setToolsView:nil];
-    [self setLoadingLabel:nil];
     [self setOrderByBtn:nil];
     [self setCriteriaBtn:nil];
     [self setRadiusBtn:nil];
+    [self setLoadingLabel:nil];
+    [self setLoadingView:nil];
+    [self setMapViewHelp:nil];
+    [self setMapViewActivity:nil];
+    [self setMapViewHelpLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
-- (void) fetchData {
+- (void) fetchData:(BOOL)clearPrevious
+{
+    isFetching = true;
+    
+    [self.mapViewActivity startAnimating];
+    self.mapViewHelpLabel.text = @"Chargement...";
+    
     [ApplicationDelegate.localisationEngine searchWithCriteria:criteria
-                                                  onCompletion:^(NSMutableArray* localisations) {
-                                                      [self reloadData:localisations];
+                                                  onCompletion:^(NSObject* json) {
+                                                      [self parseData:json];
+                                                      [self refreshData:clearPrevious];
+                                                      isFetching = false;
                                                   }
                                                        onError:^(NSError* error) {
                                                            ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                           isFetching = false;
                                                        }];
-    
-    CLGeocoder* geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:criteria.place
-                 completionHandler:^(NSArray* placemarks, NSError* error){
-                     CLPlacemark* found = [placemarks objectAtIndex:0];
-                     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(found.location.coordinate, 30000, 30000);
-                     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
-                     [mapView setRegion:adjustedRegion animated:YES];
-                 }];
 }
 
-- (void)reloadData:(NSMutableArray*) localisations
+- (void)parseData:(NSObject*)json
 {
-    results = [NSMutableArray arrayWithCapacity:20];
+    NSMutableDictionary* localisationsContainer = (NSMutableDictionary*)json;
+    fetchedLocalisations = [localisationsContainer objectForKey:@"list"];
+    maxCount = [localisationsContainer objectForKey:@"maxCount"];
+    NSNumber* lat = [localisationsContainer objectForKey:@"latitude"];
+    NSNumber* lng = [localisationsContainer objectForKey:@"longitude"];
+    center.latitude = lat.doubleValue;
+    center.longitude = lng.doubleValue;
+}
+
+- (MKCoordinateRegion)getRegion
+{
+    CLLocationDistance lngMeters, latMeters;
     
-    for (NSDictionary* jsonObject in localisations) {
+    //no bounds => get criteria boundary
+    if(ne.latitude == 0 || ne.longitude == 0 || sw.longitude == 0 || sw.longitude == 0) {
+        lngMeters = criteria.boundary.doubleValue * 1.5 * 1000;
+        latMeters = criteria.boundary.doubleValue * 1.5 * 1000;
+    }
+    else {
+        CLLocation * neLoc = [[CLLocation alloc] initWithLatitude:ne.latitude
+                                                        longitude:ne.longitude];
+        CLLocation * nwLoc = [[CLLocation alloc] initWithLatitude:ne.latitude
+                                                        longitude:sw.longitude];
+        CLLocation * swLoc = [[CLLocation alloc] initWithLatitude:sw.latitude
+                                                        longitude:sw.longitude];
+        CLLocation * seLoc = [[CLLocation alloc] initWithLatitude:sw.latitude
+                                                        longitude:ne.longitude];
+        
+        lngMeters = [neLoc distanceFromLocation:nwLoc];
+        latMeters = [swLoc distanceFromLocation:seLoc];
+    }
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(center, latMeters, lngMeters);
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
+    return adjustedRegion;
+}
+
+- (void)refreshData:(BOOL)clearPrevious
+{
+    if(clearPrevious) {
+        results = [NSMutableArray arrayWithCapacity:20];
+        NSArray* annotations = [self.mapView annotations];
+        [self.mapView removeAnnotations:annotations];
+    }
+    
+    for (NSDictionary* jsonObject in fetchedLocalisations) {
         Localisation* loc = [[Localisation alloc] initWithDictionary:jsonObject];
         [results addObject:loc];
     }
-    
-    [self.tableView reloadData]; 
     
     for(Localisation* loc in results) {
         CLLocationCoordinate2D coordinate;
@@ -133,7 +181,39 @@
         [mapView addAnnotation:toAdd];
     }
     
+    fromCode = true;
+    [mapView setRegion:[self getRegion] animated:YES];
+    
+    /*LocalisationAnnotation* centerAnn = [[LocalisationAnnotation alloc] initWithName:@"center" address:@"center" coordinate:center locId:0];
+    [mapView addAnnotation:centerAnn];
+    
+    LocalisationAnnotation* neAnn = [[LocalisationAnnotation alloc] initWithName:@"ne" address:@"ne" coordinate:ne locId:0];
+    [mapView addAnnotation:neAnn];
+    
+    LocalisationAnnotation* swAnn = [[LocalisationAnnotation alloc] initWithName:@"sw" address:@"sw" coordinate:sw locId:0];
+    [mapView addAnnotation:swAnn];
+    
+    LocalisationAnnotation* swRegionAnn = [[LocalisationAnnotation alloc] initWithName:@"swRegion" address:@"swRegion" coordinate:swRegion locId:0];
+    [mapView addAnnotation:swRegionAnn];
+    
+    LocalisationAnnotation* neRegionAnn = [[LocalisationAnnotation alloc] initWithName:@"neRegion" address:@"neRegion" coordinate:neRegion locId:0];
+    [mapView addAnnotation:neRegionAnn];*/
+    
     self.navigationItem.title = criteria.place;
+    
+    [self.tableView reloadData];
+    if([results count] >= maxCount.intValue) {
+        [self.loadingView removeFromSuperview];
+        [self.loadingView setFrame:CGRectZero];
+    }
+    
+    [self.mapViewActivity stopAnimating];
+    if([results count] >= maxCount.intValue) {
+        self.mapViewHelpLabel.text = [NSString stringWithFormat:@"%u lieux trouvés",[results count]];
+    }
+    else {
+        self.mapViewHelpLabel.text = [NSString stringWithFormat:@"Zoomer pour voir %@ lieux",maxCount];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -164,7 +244,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%d résultats trouvés",[results count]];
+    return [NSString stringWithFormat:@"%u résultats sur %@",[results count],maxCount];
 }
 
 #pragma mark - Table view delegate
@@ -182,8 +262,12 @@
 
 - (UIView *) tableView:(UITableView *)theTableView viewForHeaderInSection:(NSInteger)section
 {
+    if([results count] == 0) {
+        return [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    
     UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, theTableView.bounds.size.width, 26)];
-    [headerView setBackgroundColor:[UIColor blackColor]];
+    [headerView setBackgroundColor:[UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0]];
     
     UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];
@@ -200,21 +284,83 @@
     return headerView;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if(isFetching) {
+        return;
+    }
+    
+    bool isVisible = CGRectIntersectsRect(scrollView.bounds, self.loadingView.frame);
+    if(isVisible) {
+        criteria.page++;
+        NSInteger currentCount = [results count];
+        NSInteger expectedCount = kResultPerPage * criteria.page;
+        if(currentCount < expectedCount) {
+            [self fetchData:false];
+        }
+    }
+}
+
 #pragma mark - Map View Delegate
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
 	MKPinAnnotationView *annView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
     [annView setCanShowCallout:YES];
     [annView setSelected:YES];
     [annView setUserInteractionEnabled: YES];
+    
+    /*if(([annotation coordinate].latitude == center.latitude && [annotation coordinate].longitude == center.longitude)
+        ||([annotation coordinate].latitude == ne.latitude && [annotation coordinate].longitude == ne.longitude)
+        ||([annotation coordinate].latitude == sw.latitude && [annotation coordinate].longitude == sw.longitude)) {
+        
+        [annView setPinColor:MKPinAnnotationColorGreen];
+    }
+    else if(([annotation coordinate].latitude == neRegion.latitude && [annotation coordinate].longitude == neRegion.longitude)
+        ||([annotation coordinate].latitude == swRegion.latitude && [annotation coordinate].longitude == swRegion.longitude)) {
+            
+            [annView setPinColor:MKPinAnnotationColorPurple];
+        }*/
     
     annView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
     return annView;
 }
 
-- (void)mapView:(MKMapView *)mv annotationView:(MKAnnotationView *)pin calloutAccessoryControlTapped:(UIControl *)control {	
+- (void)mapView:(MKMapView *)mv annotationView:(MKAnnotationView *)pin calloutAccessoryControlTapped:(UIControl *)control
+{
     [self performSegueWithIdentifier:@"annotationDetailSegue" sender:pin.annotation];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    if(fromCode) {
+        fromCode = false;
+        return;
+    }
+    
+    if(isFetching) {
+        return;
+    }
+    
+    MKCoordinateRegion region = [self.mapView region];
+    ne.latitude = region.center.latitude + region.span.latitudeDelta / 2;
+    ne.longitude = region.center.longitude + region.span.longitudeDelta / 2;
+    sw.latitude = region.center.latitude - region.span.latitudeDelta / 2;
+    sw.longitude = region.center.longitude - region.span.longitudeDelta / 2;
+    
+    /*sw = [self.mapView convertPoint:CGPointMake(0, self.mapView.frame.size.height)
+               toCoordinateFromView:self.mapView];
+    
+    ne = [self.mapView convertPoint:CGPointMake(self.mapView.frame.size.width, 0)
+               toCoordinateFromView:self.mapView];*/
+    
+    criteria.neLat = [NSNumber numberWithDouble:ne.latitude];
+    criteria.neLng = [NSNumber numberWithDouble:ne.longitude];
+    criteria.swLat = [NSNumber numberWithDouble:sw.latitude];
+    criteria.swLng = [NSNumber numberWithDouble:sw.longitude];
+    
+    [self fetchData:true];
 }
 
 #pragma mark - Apply Seach Delegate
@@ -226,7 +372,7 @@
 -(void)confirmWithCriteria:(SearchCriteria*)newCriteria {
     [self dismissModalViewControllerAnimated:YES];
     [self setCriteria:newCriteria];
-    [self fetchData];
+    [self fetchData:true];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -275,6 +421,7 @@
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
         [self.tableView removeFromSuperview];
         [self.view addSubview:self.mapView];
+        [self.view addSubview:self.mapViewHelp];
     } else if([self.mapView superview]){
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
         [self.mapView removeFromSuperview];
