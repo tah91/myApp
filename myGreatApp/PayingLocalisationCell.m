@@ -21,26 +21,18 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)setSelectedState:(BOOL)selected
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animate
-{
-    UIColor * newShadow = highlighted ? [UIColor blackColor] : [UIColor whiteColor];
+    UIColor * newShadow = selected ? [UIColor blackColor] : [UIColor whiteColor];
     
     desktopLabel.shadowColor = newShadow;
-    desktopPriceLabel.shadowColor = newShadow;
-    meetingPriceLabel.shadowColor = newShadow;
     meetingLabel.shadowColor = newShadow;
     
-    [super setHighlighted:highlighted animated:animate];
+    [super setSelectedState:selected];
 }
 
--(void)setFieldsFromLoc:(Localisation*)loc {
+-(void)setFieldsFromLoc:(Localisation*)loc
+{
     [super setFieldsFromLoc:loc];
     
     NSString* meetingPrice = @"";
@@ -51,6 +43,16 @@
     [loc getDesktopPrice:&desktopPrice andDisplay:&desktopDisplay];
     [loc getMeetingRoomPrice:&meetingPrice andDisplay:&meetingDisplay];
     
+    if([desktopDisplay length] == 0) {
+        [self.desktopPic setImage:[UIImage imageNamed:@"desktop-off.png"]];
+        [self.desktopPic setHighlightedImage:[UIImage imageNamed:@"desktop-off-sel.png"]];
+    }
+    
+    if([meetingDisplay length] == 0) {
+        [self.meetingPic setImage:[UIImage imageNamed:@"meeting-off.png"]];
+        [self.meetingPic setHighlightedImage:[UIImage imageNamed:@"meeting-off-sel.png"]];
+    }
+    
     [self setLabel:desktopLabel
           withText:[NSString stringWithFormat:@"%@ %@",desktopDisplay,desktopPrice]
           andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
@@ -58,14 +60,6 @@
     [self setLabel:meetingLabel
           withText:[NSString stringWithFormat:@"%@ %@",meetingDisplay,meetingPrice]
           andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
-    
-    /*[self setLabel:desktopPriceLabel
-          withText:desktopPrice
-          andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];
-    
-    [self setLabel:meetingPriceLabel
-          withText:meetingPrice
-          andColor:[UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]];*/
 }
 
 @end

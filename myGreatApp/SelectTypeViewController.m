@@ -7,6 +7,7 @@
 //
 
 #import "SelectTypeViewController.h"
+#import "DetailCell.h"
 
 @interface SelectTypeViewController ()
 
@@ -134,8 +135,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(tableView == locTypesTableView) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"locTypeCell"];
-        cell.textLabel.text = [locArray objectAtIndex:indexPath.row];
+        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"locTypeCell"];
+        cell.titleLabel.text = [locArray objectAtIndex:indexPath.row];
         cell.accessoryType = UITableViewCellAccessoryNone;
         if([selectedLoc containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [selectedLoc count] == 0)) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -144,9 +145,9 @@
         return cell;
     }
     else if(tableView == featuresTableView) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"featureCell"];
+        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"featureCell"];
         
-        cell.textLabel.text = [featureArray objectAtIndex:indexPath.row];
+        cell.titleLabel.text = [featureArray objectAtIndex:indexPath.row];
         cell.accessoryType = UITableViewCellAccessoryNone;
         if([selectedFeatures containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [selectedFeatures count] == 0)) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;

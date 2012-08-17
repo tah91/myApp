@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef enum offerType{
     ot_freeArea,
     ot_buisnessLounge,
     ot_workstation,
@@ -18,7 +18,7 @@ typedef enum {
     ot_visioRoom
 } offerTypes;
 
-typedef enum {
+typedef enum localisationType{
     lt_wifiHotspot,
     lt_cafeRestaurant,
     lt_librairyMuseum,
@@ -33,13 +33,13 @@ typedef enum {
     lt_sharedOffice
 } localisationTypes;
 
-typedef enum {
+typedef enum orderBy{
     ob_rating,
     ob_distance, 
     ob_price
 } orderBy;
 
-typedef enum {
+typedef enum feature{
     f_access24,
     f_lunchClose,
     f_buisnessLounge,

@@ -7,6 +7,7 @@
 //
 
 #import "OrderByViewController.h"
+#import "DetailCell.h"
 
 @interface OrderByViewController ()
 
@@ -68,9 +69,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"orderByCell"];
+    DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"orderByCell"];
     
-    cell.textLabel.text = [orderByArray objectAtIndex:indexPath.row];
+    cell.titleLabel.text = [orderByArray objectAtIndex:indexPath.row];
     if([self.checkedIndexPath isEqual:indexPath])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

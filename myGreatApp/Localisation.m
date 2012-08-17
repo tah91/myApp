@@ -15,7 +15,8 @@
 
 @dynamic offerSummaries;
 
--(NSArray*) offerSummaries {
+-(NSArray*) offerSummaries
+{
     if(_offerSummaries != nil) {
         return _offerSummaries;
     }
@@ -45,31 +46,38 @@
     return _offerSummaries;
 }
 
-+ (Class)minPrices_class {
++ (Class)minPrices_class
+{
     return [MinPrice class];
 }
 
-+ (Class)images_class {
++ (Class)images_class
+{
     return [Image class];
 }
 
-+ (Class)features_class {
++ (Class)features_class
+{
     return [Feature class];
 }
 
-+ (Class)offers_class {
++ (Class)offers_class
+{
     return [Offer class];
 }
 
-+ (Class)comments_class {
++ (Class)comments_class
+{
     return [Comment class];
 }
 
-+ (Class)fans_class {
++ (Class)fans_class
+{
     return [Member class];
 }
 
--(NSString*)getMainImage:(BOOL)thumb {
+-(NSString*)getMainImage:(BOOL)thumb
+{
     if([images count] == 0) {
         return @"";
     }
@@ -77,13 +85,22 @@
     return thumb ? first.thumbnail_url : first.url;
 }
 
--(BOOL)hasMeetingRoom {
+-(BOOL)hasFeature:(NSInteger)feature
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(featureId ==  %d)", feature];
+    NSArray* filteredArray = [[self features] filteredArrayUsingPredicate:predicate];
+    return [filteredArray count] != 0;
+}
+
+-(BOOL)hasMeetingRoom
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type ==  %d)", os_meetingRoom];
     NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     return [filteredArray count] != 0;
 }
 
--(void)getMeetingRoomPrice:(NSString**)price andDisplay:(NSString**)display {
+-(void)getMeetingRoomPrice:(NSString**)price andDisplay:(NSString**)display
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type ==  %d)", os_meetingRoom];
     NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     if([filteredArray count] == 0)
@@ -94,13 +111,15 @@
     *display = [first getTitle:false];
 }
 
--(BOOL)hasDesktop {
+-(BOOL)hasDesktop
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type == %d)", os_desktop];
     NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     return [filteredArray count] != 0;
 }
 
--(void)getDesktopPrice:(NSString**)price andDisplay:(NSString**)display {
+-(void)getDesktopPrice:(NSString**)price andDisplay:(NSString**)display
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(type == %d)",os_desktop];
     NSArray* filteredArray = [[self offerSummaries] filteredArrayUsingPredicate:predicate];
     if([filteredArray count] == 0)
@@ -111,7 +130,8 @@
     *display = [first getTitle:false];
 }
 
--(NSString*)getDistance {
+-(NSString*)getDistance
+{
     NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
     [fmt  setPositiveFormat:@"0.##"];
     return [NSString stringWithFormat:@"%@ km", [fmt stringFromNumber:distance]];

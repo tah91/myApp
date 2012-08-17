@@ -9,7 +9,7 @@
 #import "DashboardViewController.h"
 #import "AppDelegate.h"
 #import "ProfilViewController.h"
-#import "ControllerHelper.h"
+#import "UINavigationController+TIAdditions.h"
 
 @interface DashboardViewController ()
 
@@ -30,8 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [ControllerHelper removeFromStackNavigation:self.navigationController
-                                         aclass:[DashboardViewController class]];
+    [self.navigationController removeFromStackNavigation:[DashboardViewController class]];
 	// Do any additional setup after loading the view.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     nameLabel.text = [defaults objectForKey:@"eworkyFirstName"];

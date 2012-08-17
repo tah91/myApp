@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Jastor.h"
+#import "Image.h"
 
 @interface Member : Jastor
 
 @property (nonatomic) NSInteger id;
 @property (nonatomic, copy) NSString* firstName;
 @property (nonatomic, copy) NSString* lastName;
-@property (nonatomic, copy) NSString* avatar;
+@property (nonatomic, retain) Image*    avatar;
 @property (nonatomic, copy) NSString* companyName;
 @property (nonatomic, copy) NSString* city;
 @property (nonatomic, copy) NSString* profile;

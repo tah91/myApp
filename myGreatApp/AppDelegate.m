@@ -10,8 +10,8 @@
 #import "LocalisationEngine.h"
 
 //#define HOST_NAME @"www.eworky.fr"
-#define HOST_NAME @"taff.coworky.fr"
-//#define HOST_NAME @"ti.coworky.fr"
+//#define HOST_NAME @"taff.coworky.fr"
+#define HOST_NAME @"ti.coworky.fr"
 
 @implementation AppDelegate
 
@@ -62,6 +62,35 @@
     
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonColor
                                                 forState:UIControlStateNormal];
+    
+    UIImage *segmentSelected = [[UIImage imageNamed:@"seg-control-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+    UIImage *segmentUnselected = [[UIImage imageNamed:@"seg-control-uns.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 5)];
+    UIImage *segmentSelectedUnselected = [UIImage imageNamed:@"seg-control-sel-uns.png"];
+    UIImage *segUnselectedSelected = [UIImage imageNamed:@"seg-control-uns-sel.png"];
+    UIImage *segmentUnselectedUnselected = [UIImage imageNamed:@"seg-control-uns-uns.png"];
+    UIImage *segmentSelectedSelected = [UIImage imageNamed:@"seg-control-sel-sel.png"];
+    
+    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected
+                                               forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected
+                                               forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected
+                                 forLeftSegmentState:UIControlStateNormal
+                                   rightSegmentState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected
+                                 forLeftSegmentState:UIControlStateSelected
+                                   rightSegmentState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segmentSelectedSelected
+                                 forLeftSegmentState:UIControlStateSelected
+                                   rightSegmentState:UIControlStateSelected
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segUnselectedSelected
+                                 forLeftSegmentState:UIControlStateNormal
+                                   rightSegmentState:UIControlStateSelected
+                                          barMetrics:UIBarMetricsDefault];
     
     return YES;
 }

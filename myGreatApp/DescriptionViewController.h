@@ -15,8 +15,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tabSelector;
 @property (strong, nonatomic) IBOutlet UILabel *descLabel;
 @property (strong, nonatomic) IBOutlet UITableView *featuresTableView;
-- (IBAction)tabChanged:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *infosTableView;
+- (IBAction)tabChanged:(id)sender;
 
 @property (nonatomic) NSInteger selectedTab;
 @property (strong, nonatomic) Localisation* localisation;

@@ -35,6 +35,9 @@
     else {
         previousSeach = [[NSMutableArray alloc] init];
     }
+    
+    searchBar.text = @"les ulis";
+    [self performSegueWithIdentifier:@"searchBarSegue" sender:self];
 }
 
 - (void)viewDidUnload

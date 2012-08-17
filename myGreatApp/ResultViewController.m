@@ -12,10 +12,10 @@
 #import "Localisation.h"
 #import "AppDelegate.h"
 #import "LocalisationAnnotation.h"
-#import "ControllerHelper.h"
 #import "OrderByViewController.h"
 #import "SelectRadiusViewController.h"
 #import "SelectTypeViewController.h"
+#import "UIView+TIAdditions.h"
 
 @interface ResultViewController ()
 
@@ -34,7 +34,7 @@
 @synthesize criteriaBtn;
 @synthesize radiusBtn;
 
-@synthesize results, criteria, maxCount, isFetching, center, fetchedLocalisations, fromCode, ne, sw, neRegion, swRegion;
+@synthesize results, criteria, maxCount, isFetching, center, fetchedLocalisations, fromCode, ne, sw;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,27 +49,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    results = [NSMutableArray arrayWithCapacity:20];
-    isFetching = false;
-    fromCode = false;
-    [self fetchData:false];
           
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
     UIView *containerView = [[UIView alloc] initWithFrame:frame];
-    //containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.view = containerView;
     frame = self.view.bounds;
     [self.view addSubview:tableView];
     [self.view addSubview:toolsView];
     
-    loadingLabel.text = @"Chargment des lieux...";
-    
     UIImage *toolsBng = [[UIImage imageNamed:@"tools-btn-bng.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
     [orderByBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     UIImage *orderByLogo = [UIImage imageNamed:@"tool-orderby-logo.png"];
-    //[orderByBtn setTitleEdgeInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 0.0)];
     [orderByBtn setImage:orderByLogo forState:UIControlStateNormal];
     [orderByBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
     
@@ -82,7 +74,13 @@
     [radiusBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     [radiusBtn setImage:radiusLogo forState:UIControlStateNormal];
     [radiusBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
-
+    
+    self.results = [NSMutableArray arrayWithCapacity:20];
+    self.isFetching = false;
+    self.fromCode = false;
+    self.loadingLabel.text = @"Chargment des lieux...";
+    self.mapViewHelpLabel.text = @"Chargement...";
+    [self fetchData:false];
 }
 
 - (void)viewDidUnload
@@ -98,13 +96,17 @@
     [self setMapViewHelp:nil];
     [self setMapViewActivity:nil];
     [self setMapViewHelpLabel:nil];
+    
+    self.results = nil;
+    self.maxCount = nil;
+    self.fetchedLocalisations = nil;
+    self.criteria = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (void) fetchData:(BOOL)clearPrevious
 {
-    isFetching = true;
+    self.isFetching = true;
     
     [self.mapViewActivity startAnimating];
     self.mapViewHelpLabel.text = @"Chargement...";
@@ -113,19 +115,19 @@
                                                   onCompletion:^(NSObject* json) {
                                                       [self parseData:json];
                                                       [self refreshData:clearPrevious];
-                                                      isFetching = false;
+                                                      self.isFetching = false;
                                                   }
                                                        onError:^(NSError* error) {
                                                            ALERT_TITLE(@"Erreur",[error localizedDescription])
-                                                           isFetching = false;
+                                                           self.isFetching = false;
                                                        }];
 }
 
 - (void)parseData:(NSObject*)json
 {
     NSMutableDictionary* localisationsContainer = (NSMutableDictionary*)json;
-    fetchedLocalisations = [localisationsContainer objectForKey:@"list"];
-    maxCount = [localisationsContainer objectForKey:@"maxCount"];
+    self.fetchedLocalisations = [localisationsContainer objectForKey:@"list"];
+    self.maxCount = [localisationsContainer objectForKey:@"maxCount"];
     NSNumber* lat = [localisationsContainer objectForKey:@"latitude"];
     NSNumber* lng = [localisationsContainer objectForKey:@"longitude"];
     center.latitude = lat.doubleValue;
@@ -138,8 +140,8 @@
     
     //no bounds => get criteria boundary
     if(ne.latitude == 0 || ne.longitude == 0 || sw.longitude == 0 || sw.longitude == 0) {
-        lngMeters = criteria.boundary.doubleValue * 1.5 * 1000;
-        latMeters = criteria.boundary.doubleValue * 1.5 * 1000;
+        lngMeters = self.criteria.boundary.doubleValue * 1.5 * 1000;
+        latMeters = self.criteria.boundary.doubleValue * 1.5 * 1000;
     }
     else {
         CLLocation * neLoc = [[CLLocation alloc] initWithLatitude:ne.latitude
@@ -163,52 +165,36 @@
 - (void)refreshData:(BOOL)clearPrevious
 {
     if(clearPrevious) {
-        results = [NSMutableArray arrayWithCapacity:20];
+        self.results = [NSMutableArray arrayWithCapacity:20];
         NSArray* annotations = [self.mapView annotations];
         [self.mapView removeAnnotations:annotations];
     }
     
     for (NSDictionary* jsonObject in fetchedLocalisations) {
         Localisation* loc = [[Localisation alloc] initWithDictionary:jsonObject];
-        [results addObject:loc];
+        [self.results addObject:loc];
     }
     
-    for(Localisation* loc in results) {
+    for(Localisation* loc in self.results) {
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [loc.latitude doubleValue];
         coordinate.longitude = [loc.longitude doubleValue];
-        LocalisationAnnotation* toAdd = [[LocalisationAnnotation alloc] initWithName:loc.name address:loc.city coordinate:coordinate locId:loc.id];
-        [mapView addAnnotation:toAdd];
+        LocalisationAnnotation* toAdd = [[LocalisationAnnotation alloc] initWithName:loc.name address:loc.city coordinate:coordinate localisation:loc];
+        [self.mapView addAnnotation:toAdd];
     }
     
-    fromCode = true;
-    [mapView setRegion:[self getRegion] animated:YES];
-    
-    /*LocalisationAnnotation* centerAnn = [[LocalisationAnnotation alloc] initWithName:@"center" address:@"center" coordinate:center locId:0];
-    [mapView addAnnotation:centerAnn];
-    
-    LocalisationAnnotation* neAnn = [[LocalisationAnnotation alloc] initWithName:@"ne" address:@"ne" coordinate:ne locId:0];
-    [mapView addAnnotation:neAnn];
-    
-    LocalisationAnnotation* swAnn = [[LocalisationAnnotation alloc] initWithName:@"sw" address:@"sw" coordinate:sw locId:0];
-    [mapView addAnnotation:swAnn];
-    
-    LocalisationAnnotation* swRegionAnn = [[LocalisationAnnotation alloc] initWithName:@"swRegion" address:@"swRegion" coordinate:swRegion locId:0];
-    [mapView addAnnotation:swRegionAnn];
-    
-    LocalisationAnnotation* neRegionAnn = [[LocalisationAnnotation alloc] initWithName:@"neRegion" address:@"neRegion" coordinate:neRegion locId:0];
-    [mapView addAnnotation:neRegionAnn];*/
+    self.fromCode = true;
+    [self.mapView setRegion:[self getRegion] animated:YES];
     
     self.navigationItem.title = criteria.place;
     
     [self.tableView reloadData];
-    if([results count] >= maxCount.intValue) {
-        [self.loadingView removeFromSuperview];
-        [self.loadingView setFrame:CGRectZero];
+    if([self.results count] >= maxCount.intValue) {
+        [self.loadingView removeAndHide];
     }
     
     [self.mapViewActivity stopAnimating];
-    if([results count] >= maxCount.intValue) {
+    if([self.results count] >= maxCount.intValue) {
         self.mapViewHelpLabel.text = [NSString stringWithFormat:@"%u lieux trouvés",[results count]];
     }
     else {
@@ -230,7 +216,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [results count];
+    return [self.results count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -238,13 +224,16 @@
     Localisation* loc = [results objectAtIndex:indexPath.row];
     NSString* identifier = loc.isFree ? @"freeLocCell" : @"payingLocCell";
     LocalisationCell* cell = (LocalisationCell*)[tableViewVal dequeueReusableCellWithIdentifier:identifier];
+    if(cell == nil) {
+        cell = [[LocalisationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
     [cell setFieldsFromLoc:loc];
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%u résultats sur %@",[results count],maxCount];
+    return [NSString stringWithFormat:@"%u résultats sur %@", [self.results count], self.maxCount];
 }
 
 #pragma mark - Table view delegate
@@ -262,7 +251,7 @@
 
 - (UIView *) tableView:(UITableView *)theTableView viewForHeaderInSection:(NSInteger)section
 {
-    if([results count] == 0) {
+    if([self.results count] == 0) {
         return [[UIView alloc] initWithFrame:CGRectZero];
     }
     
@@ -274,7 +263,6 @@
     headerLabel.opaque = NO;
     headerLabel.textColor = [UIColor whiteColor];
     headerLabel.font = [UIFont boldSystemFontOfSize:10];
-    headerLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
     headerLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
     headerLabel.frame = CGRectMake(11,-11, 320.0, 44.0);
     headerLabel.textAlignment = UITextAlignmentLeft;
@@ -286,13 +274,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(isFetching) {
+    if(self.isFetching) {
         return;
     }
     
     bool isVisible = CGRectIntersectsRect(scrollView.bounds, self.loadingView.frame);
     if(isVisible) {
-        criteria.page++;
+        self.criteria.page++;
         NSInteger currentCount = [results count];
         NSInteger expectedCount = kResultPerPage * criteria.page;
         if(currentCount < expectedCount) {
@@ -310,18 +298,6 @@
     [annView setSelected:YES];
     [annView setUserInteractionEnabled: YES];
     
-    /*if(([annotation coordinate].latitude == center.latitude && [annotation coordinate].longitude == center.longitude)
-        ||([annotation coordinate].latitude == ne.latitude && [annotation coordinate].longitude == ne.longitude)
-        ||([annotation coordinate].latitude == sw.latitude && [annotation coordinate].longitude == sw.longitude)) {
-        
-        [annView setPinColor:MKPinAnnotationColorGreen];
-    }
-    else if(([annotation coordinate].latitude == neRegion.latitude && [annotation coordinate].longitude == neRegion.longitude)
-        ||([annotation coordinate].latitude == swRegion.latitude && [annotation coordinate].longitude == swRegion.longitude)) {
-            
-            [annView setPinColor:MKPinAnnotationColorPurple];
-        }*/
-    
     annView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
     return annView;
@@ -334,12 +310,12 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    if(fromCode) {
-        fromCode = false;
+    if(self.fromCode) {
+        self.fromCode = false;
         return;
     }
     
-    if(isFetching) {
+    if(self.isFetching) {
         return;
     }
     
@@ -348,12 +324,6 @@
     ne.longitude = region.center.longitude + region.span.longitudeDelta / 2;
     sw.latitude = region.center.latitude - region.span.latitudeDelta / 2;
     sw.longitude = region.center.longitude - region.span.longitudeDelta / 2;
-    
-    /*sw = [self.mapView convertPoint:CGPointMake(0, self.mapView.frame.size.height)
-               toCoordinateFromView:self.mapView];
-    
-    ne = [self.mapView convertPoint:CGPointMake(self.mapView.frame.size.width, 0)
-               toCoordinateFromView:self.mapView];*/
     
     criteria.neLat = [NSNumber numberWithDouble:ne.latitude];
     criteria.neLng = [NSNumber numberWithDouble:ne.longitude];
@@ -365,11 +335,13 @@
 
 #pragma mark - Apply Seach Delegate
 
--(void)cancel {
+-(void)cancel
+{
     [self dismissModalViewControllerAnimated:YES];
 }
 
--(void)confirmWithCriteria:(SearchCriteria*)newCriteria {
+-(void)confirmWithCriteria:(SearchCriteria*)newCriteria
+{
     [self dismissModalViewControllerAnimated:YES];
     [self setCriteria:newCriteria];
     [self fetchData:true];
@@ -377,24 +349,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"freeDetailSegue"]) {
+    if ([[segue identifier] isEqualToString:@"freeDetailSegue"] || [[segue identifier] isEqualToString:@"payingDetailSegue"]) {
         NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
         LocalisationCell* cell = (LocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
         
         DetailViewController *ds = [segue destinationViewController];
-        [ds setLocId:cell.locId];
-    }
-    else if ([[segue identifier] isEqualToString:@"detailSegue"]) {
-        NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
-        LocalisationCell* cell = (LocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
-        
-        DetailViewController *ds = [segue destinationViewController];
-        [ds setLocId:cell.locId];
+        [ds setLocalisation:cell.localisation];
     }
     else if ([[segue identifier] isEqualToString:@"annotationDetailSegue"]) {
         DetailViewController *dvc = [segue destinationViewController];
         LocalisationAnnotation* annotation = (LocalisationAnnotation*)sender;
-        [dvc setLocId:annotation.locId];
+        [dvc setLocalisation:annotation.localisation];
     }
     else if ([[segue identifier] isEqualToString:@"orderBySegue"]) {
         OrderByViewController *ovc = [segue destinationViewController];
@@ -413,7 +378,8 @@
     }
 }
 
-- (IBAction)switchView:(id)sender {
+- (IBAction)switchView:(id)sender
+{
     self.mapView.frame = self.tableView.frame;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
@@ -425,6 +391,7 @@
     } else if([self.mapView superview]){
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
         [self.mapView removeFromSuperview];
+        [self.mapViewHelp removeFromSuperview];
         [self.view addSubview:self.tableView];
     }
     

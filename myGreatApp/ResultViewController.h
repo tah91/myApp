@@ -30,21 +30,18 @@
 @property (weak, nonatomic) IBOutlet UIButton *orderByBtn;
 @property (weak, nonatomic) IBOutlet UIButton *criteriaBtn;
 @property (weak, nonatomic) IBOutlet UIButton *radiusBtn;
-- (IBAction)switchView:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
+- (IBAction)switchView:(id)sender;
 
-@property (strong, nonatomic) NSMutableArray* results;
-@property (strong, nonatomic) NSNumber* maxCount;
-@property (strong, nonatomic) NSMutableArray* fetchedLocalisations;
-@property (nonatomic)         BOOL isFetching;
-@property (strong, nonatomic) SearchCriteria* criteria;
-@property (nonatomic) CLLocationCoordinate2D center;
-@property (nonatomic) CLLocationCoordinate2D ne;
-@property (nonatomic) CLLocationCoordinate2D sw;
-@property (nonatomic) CLLocationCoordinate2D neRegion;
-@property (nonatomic) CLLocationCoordinate2D swRegion;
-@property (nonatomic)   BOOL fromCode;
-
+@property (strong, nonatomic) NSMutableArray*       results;
+@property (strong, nonatomic) NSNumber*             maxCount;
+@property (strong, nonatomic) NSMutableArray*       fetchedLocalisations;
+@property (strong, nonatomic) SearchCriteria*       criteria;
+@property (nonatomic)         BOOL                  isFetching;
+@property (nonatomic)         BOOL                  fromCode;
+@property (nonatomic)         CLLocationCoordinate2D center;
+@property (nonatomic)         CLLocationCoordinate2D ne;
+@property (nonatomic)         CLLocationCoordinate2D sw;
 
 @end

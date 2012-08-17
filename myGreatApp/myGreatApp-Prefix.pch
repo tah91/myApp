@@ -13,3 +13,16 @@
     #import <Foundation/Foundation.h>
     #import "MKNetworkKit.h"
 #endif
+
+#define ALERT(X)	{UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:X delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];[alert show];}
+#define ALERT_TITLE(X,Y)	{UIAlertView *alert = [[UIAlertView alloc] initWithTitle:X message:Y delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];[alert show];}
+
+#define FONT_STD(X)     [UIFont fontWithName:@"HelveticaNeue" size:X]
+#define FONT_BOLD(X)    [UIFont fontWithName:@"HelveticaNeue-Bold" size:X]
+#define WHITE_COLOR     [UIColor whiteColor]
+#define BLUE_COLOR      [UIColor colorWithRed:0.0/255.0 green:153.0/255.0 blue:204.0/255.0 alpha:1.0]
+#define ORANGE_COLOR    [UIColor colorWithRed:247.0/255.0 green:148.0/255.0 blue:29.0/255.0 alpha:1.0]
+#define GREY_COLOR      [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]
+#define BNG_PATTERN     [UIColor colorWithPatternImage:[UIImage imageNamed:@"bng-pattern.png"]]
+#define GROUPED_BNG(X)  [UIColor colorWithPatternImage:[[UIImage imageNamed:@"grouped-list-bng.png"] scaleToSize:X]]
+#define GROUPED_BNG_SEL [UIColor colorWithPatternImage:[UIImage imageNamed:@"grouped-list-bng-sel.png"]]

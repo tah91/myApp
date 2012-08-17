@@ -10,14 +10,14 @@
 
 @implementation LocalisationAnnotation
 
-@synthesize coordinate, title, subtitle, locId;
+@synthesize coordinate, title, subtitle, localisation;
 
-- (id)initWithName:(NSString*)name address:(NSString*)theAddress coordinate:(CLLocationCoordinate2D)theCoordinate locId:(NSInteger)theId {
+- (id)initWithName:(NSString*)name address:(NSString*)theAddress coordinate:(CLLocationCoordinate2D)theCoordinate localisation:(Localisation*)theLoc {
     if ((self = [super init])) {
-        title = [name copy];
-        subtitle = [theAddress copy];
-        coordinate = theCoordinate;
-        locId = theId;
+        self.title = [name copy];
+        self.subtitle = [theAddress copy];
+        self.coordinate = theCoordinate;
+        self.localisation = localisation;
     }
     return self;
 }

@@ -12,14 +12,14 @@
 
 @interface Comment : Jastor
 
-@property (nonatomic) NSInteger     id;
-@property (nonatomic,copy) NSDate*  date;
-@property (nonatomic,retain) Member*  author;
-@property (nonatomic,copy) NSString* post;
-@property (nonatomic) NSInteger     rating;
-@property (nonatomic) NSInteger     ratingPrice;
-@property (nonatomic) NSInteger     ratingWifi;
-@property (nonatomic) NSInteger     ratingDispo;
-@property (nonatomic) NSInteger     ratingWelcome;
+@property (nonatomic)        NSInteger  id;
+@property (nonatomic,copy)   NSString*    date;
+@property (nonatomic,retain) Member*    author;
+@property (nonatomic,copy)   NSString*  post;
+@property (nonatomic,copy)   NSNumber*  rating;
+@property (nonatomic,copy)   NSNumber*  ratingPrice;
+@property (nonatomic,copy)   NSNumber*  ratingWifi;
+@property (nonatomic,copy)   NSNumber*  ratingDispo;
+@property (nonatomic,copy)   NSNumber*  ratingWelcome;
 
 @end

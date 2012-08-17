@@ -20,8 +20,9 @@
 @property (nonatomic, strong) IBOutlet UIImageView* ratingPic;
 @property (nonatomic, strong) IBOutlet UIImageView* mainPic;
 
-@property (nonatomic) int locId;
+@property (strong, nonatomic) Localisation* localisation;
 
+-(void)setSelectedState:(BOOL)selected;
 -(void)setLabel:(UILabel*)label withText:(NSString*)text andColor:(UIColor*)color;
 -(void)setFieldsFromLoc:(Localisation*)loc;
 

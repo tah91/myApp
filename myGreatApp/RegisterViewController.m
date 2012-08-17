@@ -8,7 +8,6 @@
 
 #import "RegisterViewController.h"
 #import "AppDelegate.h"
-#import "ControllerHelper.h"
 
 @interface RegisterViewController ()
 

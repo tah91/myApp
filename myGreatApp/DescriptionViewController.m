@@ -7,7 +7,9 @@
 //
 
 #import "DescriptionViewController.h"
-#import "ControllerHelper.h"
+#import "UITableView+TIAdditions.h"
+#import "FeatureCell.h"
+#import "DetailCell.h"
 
 @interface DescriptionViewController ()
 
@@ -35,11 +37,12 @@
 {
     [super viewDidLoad];
     
-    [tabSelector setSelectedSegmentIndex:selectedTab];
-    descLabel.text = localisation.description;
-    [descLabel sizeToFit];
+    [self.tabSelector setSelectedSegmentIndex:selectedTab];
+    self.descLabel.text = localisation.description;
+    self.descLabel.textColor = GREY_COLOR;
+    [self.descLabel sizeToFit];
     
-    [ControllerHelper hideEmptyTableSeparators:featuresTableView];
+    [self.featuresTableView hideEmptyTableSeparators];
     
     [self setSubviewAtIndex:selectedTab];
 }
@@ -100,22 +103,22 @@
 {
     if(tableView == infosTableView) {
         static NSString* ident = @"infosCell";
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:ident];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
-        }
+        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:ident];
         switch (indexPath.section) {
             case 0:
             {
                 switch (indexPath.row) {
                     case 0:
-                        cell.textLabel.text = localisation.access.roadAccess;
+                        cell.titleLabel.text = @"Accès routiers";
+                        cell.descriptionLabel.text = localisation.access.roadAccess;
                         break;
                     case 1:
-                        cell.textLabel.text = localisation.access.publicTransport;
+                        cell.titleLabel.text = @"Transports";
+                        cell.descriptionLabel.text = localisation.access.publicTransport;
                         break;
                     case 2:
-                        cell.textLabel.text = localisation.access.station;
+                        cell.titleLabel.text = @"Station";
+                        cell.descriptionLabel.text = localisation.access.station;
                         break;
                         
                     default:
@@ -128,25 +131,32 @@
             {
                 switch (indexPath.row) {
                     case 0:
-                        cell.textLabel.text = localisation.openingTimes.monday;
+                        cell.titleLabel.text = @"Lundi";
+                        cell.descriptionLabel.text = localisation.openingTimes.monday;
                         break;
                     case 1:
-                        cell.textLabel.text = localisation.openingTimes.tuesday;
+                        cell.titleLabel.text = @"Mardi";
+                        cell.descriptionLabel.text = localisation.openingTimes.tuesday;
                         break;
                     case 2:
-                        cell.textLabel.text = localisation.openingTimes.wednesday;
+                        cell.titleLabel.text = @"Mercredi";
+                        cell.descriptionLabel.text = localisation.openingTimes.wednesday;
                         break;
                     case 3:
-                        cell.textLabel.text = localisation.openingTimes.thursday;
+                        cell.titleLabel.text = @"Jeudi";
+                        cell.descriptionLabel.text = localisation.openingTimes.thursday;
                         break;
                     case 4:
-                        cell.textLabel.text = localisation.openingTimes.friday;
+                        cell.titleLabel.text = @"Vendredi";
+                        cell.descriptionLabel.text = localisation.openingTimes.friday;
                         break;
                     case 5:
-                        cell.textLabel.text = localisation.openingTimes.saturday;
+                        cell.titleLabel.text = @"Samedi";
+                        cell.descriptionLabel.text = localisation.openingTimes.saturday;
                         break;
                     case 6:
-                        cell.textLabel.text = localisation.openingTimes.sunday;
+                        cell.titleLabel.text = @"Dimanche";
+                        cell.descriptionLabel.text = localisation.openingTimes.sunday;
                         break;
                     default:
                         break;
@@ -166,13 +176,11 @@
         return cell;
     }
     else if(tableView == featuresTableView) {
+        
         static NSString* ident = @"featureCell";
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:ident];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
-        }
+        FeatureCell* cell = [tableView dequeueReusableCellWithIdentifier:ident];
         Feature* feature = [localisation.features objectAtIndex:indexPath.row];
-        cell.textLabel.text = feature.featureDisplay;
+        cell.featureLabel.text = feature.featureDisplay;
         return cell;
     }
     return nil;
@@ -183,7 +191,7 @@
     if (tableView == infosTableView) {
         switch (section) {
             case 0:
-                return @"Acces";
+                return @"Accès";
                 break;
             case 1:
                 return @"Horaires";
@@ -195,13 +203,31 @@
                 break;
         }
     }
-    else if(tableView == featuresTableView) {
-        return nil;
-    }
     return nil;
 }
 
 #pragma mark - Table view delegate
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView == infosTableView) {
+        
+        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 0)];
+        //[headerView setBackgroundColor:[UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0]];
+        
+        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = BLUE_COLOR;
+        headerLabel.font = FONT_BOLD(17.0f);
+        headerLabel.frame = CGRectMake(20, 0, 320.0, 25);
+        headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+        
+        [headerView addSubview:headerLabel];
+        
+        return headerView;
+    }
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

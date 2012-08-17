@@ -45,6 +45,7 @@
 @property (nonatomic, retain, readonly) NSArray*  offerSummaries;
 
 -(NSString*)getMainImage:(BOOL)thumb;
+-(BOOL)hasFeature:(NSInteger)feature;
 -(BOOL)hasMeetingRoom;
 -(void)getMeetingRoomPrice:(NSString**)price andDisplay:(NSString**)display;
 -(BOOL)hasDesktop;

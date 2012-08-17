@@ -7,10 +7,10 @@
 //
 
 #import "DetailViewController.h"
-#import "ControllerHelper.h"
-#import "AppDelegate.h"
 #import "DescriptionViewController.h"
 #import "GalleryViewController.h"
+#import "CommentsViewController.h"
+#import "DetailCell.h"
 
 @interface DetailViewController ()
 
@@ -23,7 +23,9 @@
 @synthesize typeLabel;
 @synthesize addressLabel;
 @synthesize cityLabel;
-@synthesize localisation,locId;
+@synthesize headerView;
+@synthesize footerView;
+@synthesize localisation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,14 +40,7 @@
 {
     [super viewDidLoad];
     
-    [ApplicationDelegate.localisationEngine detailsWithId:[NSNumber numberWithInt:locId]
-                                             onCompletion:^(NSObject* localisationJson) {
-                                                 NSMutableDictionary* json = (NSMutableDictionary*)localisationJson;
-                                                 [self loadData:json];
-                                             }
-                                                  onError:^(NSError* error) {
-                                                      ALERT_TITLE(@"Erreur",[error localizedDescription])
-                                                  }];
+    [self loadData];
 }
 
 - (void)viewDidUnload
@@ -56,6 +51,8 @@
     [self setTypeLabel:nil];
     [self setAddressLabel:nil];
     [self setCityLabel:nil];
+    [self setHeaderView:nil];
+    [self setFooterView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -65,13 +62,21 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)loadData:(NSMutableDictionary*)json {
-    localisation = [[Localisation alloc] initWithDictionary:json];
-    picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[localisation getMainImage:false]]]];
-    nameLabel.text = localisation.name;
-    typeLabel.text = localisation.type;
-    addressLabel.text = localisation.address;
-    cityLabel.text = localisation.city;
+- (void)loadData
+{
+    [self.tableView setBackgroundColor:BNG_PATTERN];
+    [self.headerView setBackgroundColor:BNG_PATTERN];
+    [self.footerView setBackgroundColor:BNG_PATTERN];
+    
+    self.picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[localisation getMainImage:false]]]];
+    self.nameLabel.text = localisation.name;
+    self.nameLabel.textColor = BLUE_COLOR;
+    self.typeLabel.text = localisation.type;
+    self.typeLabel.textColor = ORANGE_COLOR;
+    self.addressLabel.text = localisation.address;
+    self.addressLabel.textColor = WHITE_COLOR;
+    self.cityLabel.text = localisation.city;
+    self.cityLabel.textColor = WHITE_COLOR;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -93,7 +98,10 @@
         GalleryViewController* gc = [segue destinationViewController];
         [gc setLocalisation:localisation];
         
-    } else if ([[segue identifier] isEqualToString:@"reviewsSegue"]) {
+    } else if ([[segue identifier] isEqualToString:@"commentsSegue"]) {
+        
+        CommentsViewController* cc = [segue destinationViewController];
+        [cc setLocalisation:localisation];
         
     } else if ([[segue identifier] isEqualToString:@"desktopsSegue"]) {
         
@@ -131,36 +139,60 @@
     }
 }
 
+- (NSString*) getIdentForIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString* detailIdent = @"detailCell";
+    static NSString* descriptionIdent = @"descriptionCell";
+    
+    switch (indexPath.section) {
+        case 2:
+            switch (indexPath.row) {
+                case 1:
+                    return descriptionIdent;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
+    }
+    return detailIdent;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* ident = @"featureCell";
-    UITableViewCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:ident];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
-    }
+    NSString* ident = [self getIdentForIndexPath:indexPath];
+    DetailCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:ident];
+    
+    cell.accessoryView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     switch (indexPath.section) {
         case 0:
         {
             OffersSummary* elem = [[localisation offerSummaries] objectAtIndex:indexPath.row];
-            cell.textLabel.text = [elem getTitle:true];
+            cell.titleLabel.text = [elem getTitle:true];
         }
             break;
         case 1:
         {
-            cell.textLabel.text = @"avis";
+            cell.titleLabel.text = @"Commentaires";
         }
             break;
         case 2:
         {
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"description";
+                    cell.titleLabel.text = @"Description";
                     break;
                 case 1:
-                    cell.textLabel.text = localisation.description;
+                    cell.titleLabel.text = localisation.description;
+                    cell.accessoryView = nil;
                     break;
                 case 2:
-                    cell.textLabel.text = @"infos pratiques";
+                    cell.titleLabel.text = @"Infos pratiques";
                     break;
                 default:
                     break;
@@ -169,12 +201,13 @@
             break;
         case 3:
         {
-            cell.textLabel.text = @"gallerie";
+            cell.titleLabel.text = @"Gallerie";
         }
             break;
         default:
             break;
     }
+    
     return cell;
 }
 
@@ -200,7 +233,7 @@
             break;
         case 1:
         {
-            [self performSegueWithIdentifier:@"reviewsSegue" sender:self];
+            [self performSegueWithIdentifier:@"commentsSegue" sender:self];
         }
             break;
         case 2:
@@ -226,6 +259,26 @@
         default:
             break;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    switch (indexPath.section) {
+        case 2:
+            switch (indexPath.row) {
+                case 1:
+                    return 80.f;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
+    }
+    return 44.0f;
 }
 
 @end

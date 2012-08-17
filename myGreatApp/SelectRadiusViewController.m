@@ -7,6 +7,7 @@
 //
 
 #import "SelectRadiusViewController.h"
+#import "DetailCell.h"
 
 @interface SelectRadiusViewController ()
 
@@ -72,9 +73,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"radiusCell"];
+    DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"radiusCell"];
     
-    cell.textLabel.text = [radiusArray objectAtIndex:indexPath.row];
+    cell.titleLabel.text = [radiusArray objectAtIndex:indexPath.row];
     if([self.checkedIndexPath isEqual:indexPath])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

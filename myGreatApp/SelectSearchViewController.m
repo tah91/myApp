@@ -41,6 +41,8 @@
     [meetingRoomButton setImage:[UIImage imageNamed:@"meetingroom.png"] forState:UIControlStateNormal];
     [meetingRoomButton setImage:[UIImage imageNamed:@"meetingroom_u.png"] forState:UIControlStateSelected];
     [meetingRoomButton setSelected:criteria.meetingRoom];
+    
+    [self performSegueWithIdentifier:@"resultSegue" sender:self];
 }
 
 - (void)viewDidUnload
