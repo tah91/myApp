@@ -11,12 +11,14 @@
 #import "LoginViewController.h"
 #import "DashboardViewController.h"
 #import "UINavigationController+TIAdditions.h"
+#import "DetailCell.h"
 
 @interface ProfilViewController ()
 
 @end
 
 @implementation ProfilViewController
+@synthesize tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,12 +40,13 @@
     if([ApplicationDelegate.loginSession isLogged]){
         [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
     } else {
-        [self.navigationController removeFromStackNavigation:[ProfilViewController class]];
+        [self.navigationController cleanNavigationStackAndKeep:[ProfilViewController class]];
     }
 }
 
 - (void)viewDidUnload
 {
+    [self setTableView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -63,6 +66,7 @@
 }
 
 #pragma mark - LoginViewController Delegate Method
+
 -(void)finishedLoadingUserInfo
 {    
     // Dismiss the LoginViewController that we instantiated earlier
@@ -70,6 +74,47 @@
     
     // Do other stuff as needed
     [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:@"profilCell"];
+    cell.titleLabel.text = @"Se connecter ou s'inscrire";
+    
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+        {
+            switch (indexPath.row) {
+                case 0:
+                    [self performSegueWithIdentifier:@"loginSegue" sender:self];
+                    break;
+                default:
+                    break;
+            }
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 @end

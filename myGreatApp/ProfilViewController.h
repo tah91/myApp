@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 
-@interface ProfilViewController : UIViewController <LoginViewControllerDelegate>
+@interface ProfilViewController : UIViewController <LoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

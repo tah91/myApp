@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DashboardViewController : UIViewController
+@interface DashboardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 - (IBAction)logout:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

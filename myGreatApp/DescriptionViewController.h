@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tabSelector;
 @property (strong, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *descScrollView;
 @property (strong, nonatomic) IBOutlet UITableView *featuresTableView;
 @property (strong, nonatomic) IBOutlet UITableView *infosTableView;
 - (IBAction)tabChanged:(id)sender;

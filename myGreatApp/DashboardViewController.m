@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController removeFromStackNavigation:[DashboardViewController class]];
+    [self.navigationController cleanNavigationStackAndKeep:[DashboardViewController class]];
 	// Do any additional setup after loading the view.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     nameLabel.text = [defaults objectForKey:@"eworkyFirstName"];

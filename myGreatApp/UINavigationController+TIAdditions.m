@@ -10,7 +10,7 @@
 
 @implementation UINavigationController (TIAdditions)
 
--(void)removeFromStackNavigation:(Class)aClass
+-(void)cleanNavigationStackAndKeep:(Class)aClass
 {
     NSMutableArray *allControllers = [[NSMutableArray alloc] initWithArray:self.viewControllers];
     NSArray *allControllersCopy = [allControllers copy];

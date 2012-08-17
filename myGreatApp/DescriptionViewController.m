@@ -19,6 +19,7 @@
 @synthesize containerView;
 @synthesize tabSelector;
 @synthesize descLabel;
+@synthesize descScrollView;
 @synthesize featuresTableView;
 @synthesize localisation;
 @synthesize infosTableView;
@@ -36,6 +37,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:BNG_PATTERN];
+    [self.descScrollView setBackgroundColor:BNG_PATTERN];
+    [self.infosTableView setBackgroundColor:BNG_PATTERN];
+    [self.featuresTableView setBackgroundColor:BNG_PATTERN];
     
     [self.tabSelector setSelectedSegmentIndex:selectedTab];
     self.descLabel.text = localisation.description;
@@ -54,6 +59,7 @@
     [self setContainerView:nil];
     [self setFeaturesTableView:nil];
     [self setInfosTableView:nil];
+    [self setDescScrollView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

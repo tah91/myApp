@@ -10,6 +10,6 @@
 
 @interface UINavigationController (TIAdditions)
 
--(void)removeFromStackNavigation:(Class)aClass;
+-(void)cleanNavigationStackAndKeep:(Class)aClass;
 
 @end
