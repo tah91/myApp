@@ -10,8 +10,8 @@
 #import "LocalisationEngine.h"
 
 //#define HOST_NAME @"www.eworky.fr"
-//#define HOST_NAME @"taff.coworky.fr"
-#define HOST_NAME @"ti.coworky.fr"
+#define HOST_NAME @"taff.coworky.fr"
+//#define HOST_NAME @"ti.coworky.fr"
 
 @implementation AppDelegate
 
@@ -36,7 +36,7 @@
     NSDictionary* barColor = [NSDictionary dictionaryWithObjectsAndKeys:
                               [UIColor colorWithRed:3.0/255.0 green:84.0/255.0 blue:131.0/255.0 alpha:1.0],UITextAttributeTextColor,
                               [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0],UITextAttributeTextShadowColor,
-                              [UIFont fontWithName:@"Helvetica CE 55 Roman" size:0.0],UITextAttributeFont,
+                              FONT_BOLD(18.0f),UITextAttributeFont,
                               nil];
     
     [[UINavigationBar appearance] setTitleTextAttributes:barColor];
@@ -57,7 +57,7 @@
                                  [UIColor colorWithRed:0.0/255.0 green:153.0/255.0 blue:204.0/255.0 alpha:1.0],UITextAttributeTextColor,
                                  [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0],UITextAttributeTextShadowColor,
                                  //[NSValue valueWithUIOffset:UIOffsetMake(0,1)],UITextAttributeTextShadowOffset,
-                                 [UIFont fontWithName:@"Helvetica CE 55 Roman" size:0.0],UITextAttributeFont,
+                                 FONT_BOLD(12.0f),UITextAttributeFont,
                                  nil];
     
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonColor

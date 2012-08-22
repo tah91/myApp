@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
+#import "FormViewController.h"
 
-@interface RegisterViewController : UITableViewController
+@interface RegisterViewController : FormViewController <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *firstName;
-@property (weak, nonatomic) IBOutlet UITextField *lastName;
-@property (weak, nonatomic) IBOutlet UITextField *email;
-@property (weak, nonatomic) IBOutlet UITextField *password;
 - (IBAction)fbRegister:(id)sender;
 - (IBAction)register:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *fbRegisterBtn;
+@property (weak, nonatomic) IBOutlet UILabel *noFbLabel;
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UILabel *cguLabel;
 
 @property (strong,nonatomic) id <LoginViewControllerDelegate> loginDelegate;
 

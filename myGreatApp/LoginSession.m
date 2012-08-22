@@ -14,6 +14,16 @@
 
 @synthesize facebook, loginSuccessCallback, loginfailedCallback, fbRequestHandler;
 
+@dynamic authData;
+
+-(Auth*) authData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData* encodedObject = [defaults objectForKey:@"authData"];
+    Auth* toRet = (Auth*)[NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    return toRet;
+}
+
 -(id) initWithId:(NSString*)appId;
 {
     if (!(self = [super init]))
@@ -32,41 +42,37 @@
 /**
  * Tell if user is logged in
  */
-- (BOOL)isLogged {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults boolForKey:@"isLoggedIn"];
+- (BOOL)isLogged
+{
+    return self.authData != nil;
 }
 
--(void)storeUserInfo:(NSObject*)userInfo {
+-(void)storeUserInfo:(NSObject*)userInfo
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:TRUE forKey:@"isLoggedIn"];
-    [defaults setObject:[userInfo valueForKey:@"token"] forKey:@"eworkyToken"];
-    [defaults setObject:[userInfo valueForKey:@"email"] forKey:@"eworkyLogin"];
-    [defaults setObject:[userInfo valueForKey:@"firstname"] forKey:@"eworkyFirstName"];
-    [defaults setObject:[userInfo valueForKey:@"name"] forKey:@"eworkyLastName"];
+    Auth* authData = [[Auth alloc] initWithDictionary:(NSDictionary*)userInfo];
+    NSData* encodedObject = [NSKeyedArchiver archivedDataWithRootObject:authData];
+    [defaults setObject:encodedObject forKey:@"authData"];
     [defaults synchronize];
 }
 
--(void)cleanUserInfo {
+-(void)cleanUserInfo
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:FALSE forKey:@"isLoggedIn"];
-    [defaults removeObjectForKey:@"eworkyToken"];
-    [defaults removeObjectForKey:@"eworkyLogin"];
-    [defaults removeObjectForKey:@"eworkyFirstName"];
-    [defaults removeObjectForKey:@"eworkyLastName"];
+    [defaults removeObjectForKey:@"authData"];
     [defaults synchronize];
 }
 
 /**
  * Register and store login data, then execute success block
  */
-//
 - (void)registerWithName:(NSString*)name 
                 lastName:(NSString*)lastName 
                    login:(NSString*)login 
                 password:(NSString*)password 
                 onSucess:(LoginSuccessBlock)successBlock 
-                 onError:(LoginFailedBlock)errorBlock {
+                 onError:(LoginFailedBlock)errorBlock
+{
     
     [ApplicationDelegate.localisationEngine registerWithName:name 
                                                     lastName:lastName 
@@ -92,7 +98,8 @@
 - (void)login:(NSString*)login 
      password:(NSString*)password 
      onSucess:(LoginSuccessBlock)successBlock 
-      onError:(LoginFailedBlock)errorBlock {
+      onError:(LoginFailedBlock)errorBlock
+{
     
     [ApplicationDelegate.localisationEngine connectWithLogin:login
                                                     password:password 
@@ -114,7 +121,8 @@
  * Invalidate the access token and clear the cookie.
  */
 - (void)logoutOnSucess:(LoginSuccessBlock)success 
-               onError:(LoginFailedBlock)error; {
+               onError:(LoginFailedBlock)error
+{
     [self fbLogout];
     [self cleanUserInfo];
     
@@ -125,7 +133,8 @@
  * Show the fb authorization dialog.and set success block, will be executed in delegate after login succeded
  */
 - (void)fbLoginOnSucess:(LoginSuccessBlock)success 
-                onError:(LoginFailedBlock)error {
+                onError:(LoginFailedBlock)error
+{
     if (![facebook isSessionValid]) {
         [facebook authorize:[NSArray arrayWithObjects:@"email", @"user_birthday", @"publish_actions",nil]];
     } else {
@@ -139,11 +148,13 @@
 /**
  * Invalidate the access token and clear the cookie.
  */
-- (void)fbLogout {
+- (void)fbLogout
+{
     [facebook logout];
 }
 
-- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
     [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
@@ -156,7 +167,8 @@
  * Called when the user has logged in successfully.
  * store fb token, request user data via open graph, register user, then store user info if succeded.
  */
-- (void)fbDidLogin {
+- (void)fbDidLogin
+{
     //[self showLoggedIn];
     
     [self storeAuthData:[facebook accessToken] expiresAt:[facebook expirationDate]];
@@ -207,7 +219,8 @@
     [facebook requestWithGraphPath:@"me?fields=id,name,email,first_name,last_name,link,birthday" andDelegate:fbRequestHandler];
 }
 
--(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+-(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
+{
     NSLog(@"token extended");
     [self storeAuthData:accessToken expiresAt:expiresAt];
 }
@@ -215,7 +228,8 @@
 /**
  * Called when the user canceled the authorization dialog.
  */
--(void)fbDidNotLogin:(BOOL)cancelled {
+-(void)fbDidNotLogin:(BOOL)cancelled
+{
     NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Failed to login with facebook",NSLocalizedDescriptionKey,nil]];
     loginfailedCallback(error);
 }
@@ -223,7 +237,8 @@
 /**
  * Called when the request logout has succeeded.
  */
-- (void)fbDidLogout {
+- (void)fbDidLogout
+{
     
     // Remove saved authorization information if it exists and it is
     // ok to clear it (logout, session invalid, app unauthorized)
@@ -238,7 +253,8 @@
 /**
  * Called when the session has expired.
  */
-- (void)fbSessionInvalidated {
+- (void)fbSessionInvalidated
+{
     UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:@"Auth Exception"
                               message:@"Your session has expired."

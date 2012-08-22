@@ -11,6 +11,7 @@
 #import "GalleryViewController.h"
 #import "CommentsViewController.h"
 #import "DetailCell.h"
+#import "UIView+TIAdditions.h"
 
 @interface DetailViewController ()
 
@@ -25,6 +26,7 @@
 @synthesize cityLabel;
 @synthesize headerView;
 @synthesize footerView;
+@synthesize shareBtn;
 @synthesize localisation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -53,6 +55,7 @@
     [self setCityLabel:nil];
     [self setHeaderView:nil];
     [self setFooterView:nil];
+    [self setShareBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -77,6 +80,8 @@
     self.addressLabel.textColor = WHITE_COLOR;
     self.cityLabel.text = localisation.city;
     self.cityLabel.textColor = WHITE_COLOR;
+    
+    [self.shareBtn setButtonWithStyle:@"Partager"];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -58,6 +58,39 @@
 
 @end
 
+@implementation UIButton (TIAdditions)
+
+-(void) setButtonWithStyle:(NSString*)title
+{
+    UIImage* bng = [[UIImage imageNamed:@"btn-blue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 6, 6)];
+    UIImage* bngSel = [[UIImage imageNamed:@"btn-blue-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 6, 6)];
+    [self setBackgroundImage:bng forState:UIControlStateNormal];
+    [self setBackgroundImage:bngSel forState:UIControlStateHighlighted];
+    [self setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
+    self.titleLabel.text = title;
+    [[self titleLabel] setFont:FONT_BOLD(14.0f)];
+}
+
+@end
+
+@implementation UILabel (TIAdditions)
+
+-(void) setTitleWithStyle:(NSString*)title
+{
+    [self setTextColor:BLACK_COLOR];
+    self.text = title;
+    [self setFont:FONT_BOLD(14.0f)];
+}
+
+-(void) setSubtitleWithStyle:(NSString*)subtitle
+{
+    [self setTextColor:GREY_COLOR];
+    self.text = subtitle;
+    [self setFont:FONT_STD(12.0f)];
+}
+
+@end
+
 @implementation UIImage (TIAdditions)
 
 -(UIImage*)scaleToSize:(CGSize)size

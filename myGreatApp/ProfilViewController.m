@@ -57,7 +57,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"goToLoginSegue"]) {
+    if ([segue.identifier isEqualToString:@"loginSegue"]) {
         //destination is navigation controller
         UINavigationController *parent = segue.destinationViewController;
         LoginViewController *lvc = (LoginViewController*)[parent topViewController];

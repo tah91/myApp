@@ -10,14 +10,15 @@
 
 #define SEARCH_URL @"api/localisation/search"
 #define DETAILS_URL @"api/localisation/details"
-#define LOGIN_URL @"api/localisation/connect"
-#define REGISTER_URL @"api/localisation/register"
+#define LOGIN_URL @"api/account/login"
+#define REGISTER_URL @"api/account/register"
 
 @implementation LocalisationEngine
 
 -(MKNetworkOperation*) searchWithCriteria:(SearchCriteria*) criteria 
                              onCompletion:(SearchResponseBlock) completionBlock
-                                  onError:(MKNKErrorBlock) errorBlock {
+                                  onError:(MKNKErrorBlock) errorBlock
+{
     
     MKNetworkOperation *op = [self operationWithPath:SEARCH_URL
                                               params:[criteria getParams]
@@ -39,7 +40,8 @@
 
 -(MKNetworkOperation*) detailsWithId:(NSNumber*) locId 
                         onCompletion:(LocalisationResponseBlock) completionBlock
-                             onError:(MKNKErrorBlock) errorBlock {
+                             onError:(MKNKErrorBlock) errorBlock
+{
     
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                    locId,@"id",
@@ -65,7 +67,8 @@
 
 -(MKNetworkOperation*) registerWithParams:(NSMutableDictionary*) params
                              onCompletion:(LoginResponseBlock) completionBlock
-                                  onError:(MKNKErrorBlock) errorBlock {
+                                  onError:(MKNKErrorBlock) errorBlock
+{
     
     MKNetworkOperation *op = [self operationWithPath:REGISTER_URL
                                               params:params 
@@ -94,7 +97,8 @@
                              facebookId:(NSNumber*) fbId
                            facebookLink:(NSString*) fbLink
                            onCompletion:(LoginResponseBlock) completionBlock
-                                onError:(MKNKErrorBlock) errorBlock {
+                                onError:(MKNKErrorBlock) errorBlock
+{
     
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                    name,@"firstName",
@@ -114,7 +118,8 @@
                                   login:(NSString*) login
                                password:(NSString*) password
                            onCompletion:(LoginResponseBlock) completionBlock
-                                onError:(MKNKErrorBlock) errorBlock {
+                                onError:(MKNKErrorBlock) errorBlock
+{
     
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                    name,@"firstName",
@@ -129,7 +134,8 @@
 -(MKNetworkOperation*) connectWithLogin:(NSString*) login
                                password:(NSString*) password 
                            onCompletion:(LoginResponseBlock) completionBlock
-                                onError:(MKNKErrorBlock) errorBlock {
+                                onError:(MKNKErrorBlock) errorBlock
+{
     
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                    login,@"email",
@@ -139,7 +145,10 @@
     return [self registerWithParams:params onCompletion:completionBlock onError:errorBlock];
     
     MKNetworkOperation *op = [self operationWithPath:REGISTER_URL
-                                              params:[[NSMutableDictionary alloc] initWithObjectsAndKeys:login,@"login",password,@"password",nil]
+                                              params:[[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                                      login,@"login",
+                                                      password,@"password",
+                                                      nil]
                                           httpMethod:@"POST"];
     
     [op onCompletion:^(MKNetworkOperation *completedOperation)

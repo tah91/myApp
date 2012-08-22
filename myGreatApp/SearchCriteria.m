@@ -10,7 +10,7 @@
 
 @implementation SearchCriteria
 
-@synthesize place,name,latitude,longitude,offerType,types,features,boundary,orderBy,freePlace,desktop,meetingRoom,page,neLat,neLng,swLat,swLng;
+@synthesize place,name,latitude,longitude,offerTypes,types,features,boundary,orderBy,freePlace,desktop,meetingRoom,page,neLat,neLng,swLat,swLng;
 
 -(id) init {
     if (!(self = [super init]))
@@ -24,7 +24,7 @@
     [self setNeLng:[NSNumber numberWithInt:0]];
     [self setSwLat:[NSNumber numberWithInt:0]];
     [self setSwLng:[NSNumber numberWithInt:0]];
-    [self setOfferType:@""];
+    [self setOfferTypes:@""];
     [self setTypes:@""];
     [self setFeatures:@""];
     [self setBoundary:[NSNumber numberWithInt:1]];
@@ -48,19 +48,19 @@
 }
 
 -(NSMutableDictionary*) getParams {
-    NSMutableArray* offerTypes = [NSMutableArray array];
+    NSMutableArray* offerTypesArray = [NSMutableArray array];
     if(freePlace) {
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_freeArea]];
+        [offerTypesArray addObject:[NSString stringWithFormat:@"%d", ot_freeArea]];
     }
     if(desktop) {
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_desktop]];
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_workstation]];
+        [offerTypesArray addObject:[NSString stringWithFormat:@"%d", ot_desktop]];
+        [offerTypesArray addObject:[NSString stringWithFormat:@"%d", ot_workstation]];
     }
     if(meetingRoom) {
-        [offerTypes addObject:[NSString stringWithFormat:@"%d", ot_meetingRoom]];
+        [offerTypesArray addObject:[NSString stringWithFormat:@"%d", ot_meetingRoom]];
     }
-    offerType = [NSString stringWithFormat:@"[%@]",[offerTypes componentsJoinedByString:@","]];
-    NSArray* keys = [NSArray arrayWithObjects:@"place", @"name", @"latitude", @"longitude", @"neLat", @"neLng", @"swLat", @"swLng", @"offerType", @"types", @"features", @"boundary", @"orderBy", @"page", nil];
+    self.offerTypes = [NSString stringWithFormat:@"[%@]",[offerTypesArray componentsJoinedByString:@","]];
+    NSArray* keys = [NSArray arrayWithObjects:@"place", @"name", @"latitude", @"longitude", @"neLat", @"neLng", @"swLat", @"swLng", @"offerTypes", @"types", @"features", @"boundary", @"orderBy", @"page", nil];
     NSMutableDictionary* properties = [[NSMutableDictionary alloc] initWithDictionary:[self dictionaryWithValuesForKeys:keys]];
     return properties;
 }

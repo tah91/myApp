@@ -29,8 +29,6 @@
 		9700EB8415DD1F14005DD901 /* bng-pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8315DD1F13005DD901 /* bng-pattern.png */; };
 		9700EB8715DD2F9E005DD901 /* accessory-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8515DD2F9C005DD901 /* accessory-sel.png */; };
 		9700EB8815DD2F9E005DD901 /* accessory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8615DD2F9D005DD901 /* accessory.png */; };
-		9700EB8B15DD5055005DD901 /* btn-blue-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8915DD5053005DD901 /* btn-blue-sel.png */; };
-		9700EB8C15DD5055005DD901 /* btn-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8A15DD5054005DD901 /* btn-blue.png */; };
 		9700EB9315DD5EC0005DD901 /* seg-control-sel-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8D15DD5EBB005DD901 /* seg-control-sel-sel.png */; };
 		9700EB9415DD5EC0005DD901 /* seg-control-sel-uns.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8E15DD5EBC005DD901 /* seg-control-sel-uns.png */; };
 		9700EB9515DD5EC0005DD901 /* seg-control-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB8F15DD5EBD005DD901 /* seg-control-sel.png */; };
@@ -41,6 +39,10 @@
 		9700EB9D15DD64BC005DD901 /* FeatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9700EB9C15DD64BC005DD901 /* FeatureCell.m */; };
 		9700EB9F15DE3B54005DD901 /* comment-bng.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EB9E15DE3B53005DD901 /* comment-bng.png */; };
 		9700EBA115DE56AD005DD901 /* rating.png in Resources */ = {isa = PBXBuildFile; fileRef = 9700EBA015DE56AC005DD901 /* rating.png */; };
+		9700EBBB15DFB962005DD901 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9700EBBA15DFB962005DD901 /* TextFieldCell.m */; };
+		9700EBBE15DFCFA0005DD901 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9700EBBD15DFCFA0005DD901 /* FormViewController.m */; };
+		9701472215E01684009080F7 /* btn-blue-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9701472015E01684009080F7 /* btn-blue-sel.png */; };
+		9701472315E01684009080F7 /* btn-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9701472115E01684009080F7 /* btn-blue.png */; };
 		97027EA815AB238F00466D8E /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97027EA715AB238E00466D8E /* ResultViewController.m */; };
 		9741190115AF279C00939706 /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190015AF279C00939706 /* ProfilViewController.m */; };
 		9741190415AF30FC00939706 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9741190315AF30FC00939706 /* FBConnect.bundle */; };
@@ -156,6 +158,10 @@
 		97F8711A15C176E700F248A3 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F8711915C176E700F248A3 /* Image.m */; };
 		97F8712215C1B7A000F248A3 /* ATPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F8712115C1B7A000F248A3 /* ATPagingView.m */; };
 		97F87B9415CAEFA2009B111D /* MinPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F87B9315CAEFA2009B111D /* MinPrice.m */; };
+		97FA40C115E4CDC700E4FE3E /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA40C015E4CDC700E4FE3E /* Auth.m */; };
+		97FA40C515E5095900E4FE3E /* EditProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA40C415E5095900E4FE3E /* EditProfilViewController.m */; };
+		97FA40C815E5096E00E4FE3E /* EditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA40C715E5096E00E4FE3E /* EditPasswordViewController.m */; };
+		97FA40D915E5361200E4FE3E /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA40D815E5361200E4FE3E /* DropdownCell.m */; };
 		97FBDF3015C98BE6007A5316 /* OffersSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FBDF2F15C98BE6007A5316 /* OffersSummary.m */; };
 		97FD7E6C15BDC76200815752 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6B15BDC76200815752 /* Price.m */; };
 		97FD7E7015BDC77000815752 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6F15BDC76F00815752 /* Comment.m */; };
@@ -200,8 +206,6 @@
 		9700EB8315DD1F13005DD901 /* bng-pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bng-pattern.png"; sourceTree = "<group>"; };
 		9700EB8515DD2F9C005DD901 /* accessory-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accessory-sel.png"; sourceTree = "<group>"; };
 		9700EB8615DD2F9D005DD901 /* accessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accessory.png; sourceTree = "<group>"; };
-		9700EB8915DD5053005DD901 /* btn-blue-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-blue-sel.png"; sourceTree = "<group>"; };
-		9700EB8A15DD5054005DD901 /* btn-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-blue.png"; sourceTree = "<group>"; };
 		9700EB8D15DD5EBB005DD901 /* seg-control-sel-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seg-control-sel-sel.png"; sourceTree = "<group>"; };
 		9700EB8E15DD5EBC005DD901 /* seg-control-sel-uns.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seg-control-sel-uns.png"; sourceTree = "<group>"; };
 		9700EB8F15DD5EBD005DD901 /* seg-control-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seg-control-sel.png"; sourceTree = "<group>"; };
@@ -213,6 +217,12 @@
 		9700EB9C15DD64BC005DD901 /* FeatureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeatureCell.m; sourceTree = "<group>"; };
 		9700EB9E15DE3B53005DD901 /* comment-bng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-bng.png"; sourceTree = "<group>"; };
 		9700EBA015DE56AC005DD901 /* rating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rating.png; sourceTree = "<group>"; };
+		9700EBB915DFB962005DD901 /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
+		9700EBBA15DFB962005DD901 /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
+		9700EBBC15DFCF9F005DD901 /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
+		9700EBBD15DFCFA0005DD901 /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
+		9701472015E01684009080F7 /* btn-blue-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-blue-sel.png"; sourceTree = "<group>"; };
+		9701472115E01684009080F7 /* btn-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-blue.png"; sourceTree = "<group>"; };
 		97027EA615AB238E00466D8E /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
 		97027EA715AB238E00466D8E /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		974118FF15AF279C00939706 /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
@@ -391,6 +401,14 @@
 		97F8712115C1B7A000F248A3 /* ATPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPagingView.m; sourceTree = "<group>"; };
 		97F87B9215CAEFA2009B111D /* MinPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinPrice.h; sourceTree = "<group>"; };
 		97F87B9315CAEFA2009B111D /* MinPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinPrice.m; sourceTree = "<group>"; };
+		97FA40BF15E4CDC600E4FE3E /* Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Auth.h; sourceTree = "<group>"; };
+		97FA40C015E4CDC700E4FE3E /* Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Auth.m; sourceTree = "<group>"; };
+		97FA40C315E5095800E4FE3E /* EditProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfilViewController.h; sourceTree = "<group>"; };
+		97FA40C415E5095900E4FE3E /* EditProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfilViewController.m; sourceTree = "<group>"; };
+		97FA40C615E5096E00E4FE3E /* EditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPasswordViewController.h; sourceTree = "<group>"; };
+		97FA40C715E5096E00E4FE3E /* EditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPasswordViewController.m; sourceTree = "<group>"; };
+		97FA40D715E5361100E4FE3E /* DropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownCell.h; sourceTree = "<group>"; };
+		97FA40D815E5361200E4FE3E /* DropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownCell.m; sourceTree = "<group>"; };
 		97FBDF2E15C98BE6007A5316 /* OffersSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersSummary.h; sourceTree = "<group>"; };
 		97FBDF2F15C98BE6007A5316 /* OffersSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersSummary.m; sourceTree = "<group>"; };
 		97FD7E6A15BDC76200815752 /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
@@ -536,6 +554,10 @@
 				97E7885415B9EB3E00F0FD4F /* RegisterViewController.m */,
 				97E7882C15B3712A00F0FD4F /* DashboardViewController.h */,
 				97E7882D15B3712A00F0FD4F /* DashboardViewController.m */,
+				97FA40C315E5095800E4FE3E /* EditProfilViewController.h */,
+				97FA40C415E5095900E4FE3E /* EditProfilViewController.m */,
+				97FA40C615E5096E00E4FE3E /* EditPasswordViewController.h */,
+				97FA40C715E5096E00E4FE3E /* EditPasswordViewController.m */,
 			);
 			name = Profil;
 			sourceTree = "<group>";
@@ -579,6 +601,8 @@
 			children = (
 				97FD7E7715BDC7A000815752 /* Member.h */,
 				97FD7E7815BDC7A000815752 /* Member.m */,
+				97FA40BF15E4CDC600E4FE3E /* Auth.h */,
+				97FA40C015E4CDC700E4FE3E /* Auth.m */,
 				97FD7E6E15BDC76F00815752 /* Comment.h */,
 				97FD7E6F15BDC76F00815752 /* Comment.m */,
 				97F8711515C176D600F248A3 /* Feature.h */,
@@ -705,6 +729,8 @@
 		97F8157515AEDA4B008DEB30 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9701472015E01684009080F7 /* btn-blue-sel.png */,
+				9701472115E01684009080F7 /* btn-blue.png */,
 				9700EBA015DE56AC005DD901 /* rating.png */,
 				9700EB9E15DE3B53005DD901 /* comment-bng.png */,
 				9700EB9915DD6344005DD901 /* checked.png */,
@@ -714,8 +740,6 @@
 				9700EB9015DD5EBE005DD901 /* seg-control-uns-sel.png */,
 				9700EB9115DD5EBF005DD901 /* seg-control-uns-uns.png */,
 				9700EB9215DD5EBF005DD901 /* seg-control-uns.png */,
-				9700EB8915DD5053005DD901 /* btn-blue-sel.png */,
-				9700EB8A15DD5054005DD901 /* btn-blue.png */,
 				9700EB8515DD2F9C005DD901 /* accessory-sel.png */,
 				9700EB8615DD2F9D005DD901 /* accessory.png */,
 				9700EB8315DD1F13005DD901 /* bng-pattern.png */,
@@ -821,8 +845,14 @@
 				9700EB9C15DD64BC005DD901 /* FeatureCell.m */,
 				9700EB7E15DC28B6005DD901 /* DetailCell.h */,
 				9700EB7F15DC28B7005DD901 /* DetailCell.m */,
+				9700EBB915DFB962005DD901 /* TextFieldCell.h */,
+				9700EBBA15DFB962005DD901 /* TextFieldCell.m */,
+				97FA40D715E5361100E4FE3E /* DropdownCell.h */,
+				97FA40D815E5361200E4FE3E /* DropdownCell.m */,
 				97E7882815B357D400F0FD4F /* NoAnimSegue.h */,
 				97E7882915B357D400F0FD4F /* NoAnimSegue.m */,
+				9700EBBC15DFCF9F005DD901 /* FormViewController.h */,
+				9700EBBD15DFCFA0005DD901 /* FormViewController.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -912,6 +942,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				da,
 			);
 			mainGroup = 97F42E5D15A3428000EACD05;
 			productRefGroup = 97F42E6915A3428000EACD05 /* Products */;
@@ -1003,8 +1034,6 @@
 				9700EB8415DD1F14005DD901 /* bng-pattern.png in Resources */,
 				9700EB8715DD2F9E005DD901 /* accessory-sel.png in Resources */,
 				9700EB8815DD2F9E005DD901 /* accessory.png in Resources */,
-				9700EB8B15DD5055005DD901 /* btn-blue-sel.png in Resources */,
-				9700EB8C15DD5055005DD901 /* btn-blue.png in Resources */,
 				9700EB9315DD5EC0005DD901 /* seg-control-sel-sel.png in Resources */,
 				9700EB9415DD5EC0005DD901 /* seg-control-sel-uns.png in Resources */,
 				9700EB9515DD5EC0005DD901 /* seg-control-sel.png in Resources */,
@@ -1014,6 +1043,8 @@
 				9700EB9A15DD6345005DD901 /* checked.png in Resources */,
 				9700EB9F15DE3B54005DD901 /* comment-bng.png in Resources */,
 				9700EBA115DE56AD005DD901 /* rating.png in Resources */,
+				9701472215E01684009080F7 /* btn-blue-sel.png in Resources */,
+				9701472315E01684009080F7 /* btn-blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,6 +1136,12 @@
 				97C5575515DABA7C00097B65 /* NSDate+TIAdditions.m in Sources */,
 				9700EB8015DC28B7005DD901 /* DetailCell.m in Sources */,
 				9700EB9D15DD64BC005DD901 /* FeatureCell.m in Sources */,
+				9700EBBB15DFB962005DD901 /* TextFieldCell.m in Sources */,
+				9700EBBE15DFCFA0005DD901 /* FormViewController.m in Sources */,
+				97FA40C115E4CDC700E4FE3E /* Auth.m in Sources */,
+				97FA40C515E5095900E4FE3E /* EditProfilViewController.m in Sources */,
+				97FA40C815E5096E00E4FE3E /* EditPasswordViewController.m in Sources */,
+				97FA40D915E5361200E4FE3E /* DropdownCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

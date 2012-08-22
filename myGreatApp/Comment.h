@@ -13,7 +13,7 @@
 @interface Comment : Jastor
 
 @property (nonatomic)        NSInteger  id;
-@property (nonatomic,copy)   NSString*    date;
+@property (nonatomic,copy)   NSString*  date;
 @property (nonatomic,retain) Member*    author;
 @property (nonatomic,copy)   NSString*  post;
 @property (nonatomic,copy)   NSNumber*  rating;

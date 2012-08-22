@@ -11,6 +11,7 @@
 @interface DashboardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 - (IBAction)logout:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end

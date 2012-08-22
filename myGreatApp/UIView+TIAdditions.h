@@ -26,3 +26,17 @@
 -(UIImage*)scaleToSize:(CGSize)size;
 
 @end
+
+@interface UIButton (TIAdditions)
+
+-(void)setButtonWithStyle:(NSString*)title;
+
+@end
+
+@interface UILabel (TIAdditions)
+
+-(void) setTitleWithStyle:(NSString*)title;
+
+-(void) setSubtitleWithStyle:(NSString*)subtitle;
+
+@end

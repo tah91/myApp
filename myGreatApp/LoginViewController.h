@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Facebook.h"
+#import "FormViewController.h"
 
 @protocol LoginViewControllerDelegate
 
@@ -15,15 +16,17 @@
 
 @end
 
-@interface LoginViewController : UIViewController <FBRequestDelegate> {
-
-}
+@interface LoginViewController : FormViewController <FBRequestDelegate, UITableViewDelegate, UITableViewDataSource>
 
 - (IBAction)fbLogin:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)cancel:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *email;
-@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIButton *fbLoginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UILabel *alreadyMember1;
+@property (weak, nonatomic) IBOutlet UILabel *alreadyMember2;
+@property (weak, nonatomic) IBOutlet UILabel *needAccount1;
+@property (weak, nonatomic) IBOutlet UILabel *needAccount2;
     
 @property (strong,nonatomic) id <LoginViewControllerDelegate> loginDelegate;
 

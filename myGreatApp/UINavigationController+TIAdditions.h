@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@interface UIViewController (TIAdditions)
+
+-(BOOL)isModal;
+
+@end
+
 @interface UINavigationController (TIAdditions)
 
 -(void)cleanNavigationStackAndKeep:(Class)aClass;

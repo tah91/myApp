@@ -163,7 +163,7 @@ typedef enum feature{
 @property (nonatomic)           NSNumber* neLng;
 @property (nonatomic)           NSNumber* swLat;
 @property (nonatomic)           NSNumber* swLng;
-@property (strong, nonatomic)   NSString* offerType;
+@property (strong, nonatomic)   NSString* offerTypes;
 @property (strong, nonatomic)   NSString* types;
 @property (strong, nonatomic)   NSString* features;
 @property (nonatomic)           NSNumber* boundary;
