@@ -88,7 +88,6 @@
 		9780D16E15A8E30D00311B30 /* UIAlertView+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D16015A8E30D00311B30 /* UIAlertView+MKNetworkKitAdditions.m */; };
 		9780D16F15A8E30D00311B30 /* MKNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D16215A8E30D00311B30 /* MKNetworkEngine.m */; };
 		9780D17015A8E30D00311B30 /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D16515A8E30D00311B30 /* MKNetworkOperation.m */; };
-		9780D17115A8E30D00311B30 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780D16815A8E30D00311B30 /* Reachability.m */; };
 		978DE53315C6993100270B1A /* desktop_u.png in Resources */ = {isa = PBXBuildFile; fileRef = 978DE52D15C6993000270B1A /* desktop_u.png */; };
 		978DE53415C6993100270B1A /* desktop.png in Resources */ = {isa = PBXBuildFile; fileRef = 978DE52E15C6993000270B1A /* desktop.png */; };
 		978DE53515C6993100270B1A /* freeplaces_u.png in Resources */ = {isa = PBXBuildFile; fileRef = 978DE52F15C6993000270B1A /* freeplaces_u.png */; };
@@ -332,8 +331,6 @@
 		9780D16315A8E30D00311B30 /* MKNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
 		9780D16415A8E30D00311B30 /* MKNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkOperation.h; sourceTree = "<group>"; };
 		9780D16515A8E30D00311B30 /* MKNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNetworkOperation.m; sourceTree = "<group>"; };
-		9780D16715A8E30D00311B30 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		9780D16815A8E30D00311B30 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		978DE52D15C6993000270B1A /* desktop_u.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = desktop_u.png; path = myGreatApp/desktop_u.png; sourceTree = "<group>"; };
 		978DE52E15C6993000270B1A /* desktop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = desktop.png; path = myGreatApp/desktop.png; sourceTree = "<group>"; };
 		978DE52F15C6993000270B1A /* freeplaces_u.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = freeplaces_u.png; path = myGreatApp/freeplaces_u.png; sourceTree = "<group>"; };
@@ -543,7 +540,6 @@
 				9780D16315A8E30D00311B30 /* MKNetworkKit.h */,
 				9780D16415A8E30D00311B30 /* MKNetworkOperation.h */,
 				9780D16515A8E30D00311B30 /* MKNetworkOperation.m */,
-				9780D16615A8E30D00311B30 /* Reachability */,
 			);
 			path = MKNetworkKit;
 			sourceTree = "<group>";
@@ -565,15 +561,6 @@
 				9780D16015A8E30D00311B30 /* UIAlertView+MKNetworkKitAdditions.m */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		9780D16615A8E30D00311B30 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				9780D16715A8E30D00311B30 /* Reachability.h */,
-				9780D16815A8E30D00311B30 /* Reachability.m */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 		978DE54315C7020E00270B1A /* Offer */ = {
@@ -1207,7 +1194,6 @@
 				9780D16E15A8E30D00311B30 /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				9780D16F15A8E30D00311B30 /* MKNetworkEngine.m in Sources */,
 				9780D17015A8E30D00311B30 /* MKNetworkOperation.m in Sources */,
-				9780D17115A8E30D00311B30 /* Reachability.m in Sources */,
 				97027EA815AB238F00466D8E /* ResultViewController.m in Sources */,
 				97F8157015AECB09008DEB30 /* SelectSearchViewController.m in Sources */,
 				97F8157415AECB79008DEB30 /* SearchCriteria.m in Sources */,

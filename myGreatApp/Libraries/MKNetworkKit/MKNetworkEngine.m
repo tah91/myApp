@@ -107,8 +107,8 @@ static NSOperationQueue *_sharedNetworkQueue;
                                                    name:kReachabilityChangedNotification 
                                                  object:nil];
       
-      self.hostName = hostName;  
-      self.reachability = [Reachability reachabilityWithHostname:self.hostName];
+      self.hostName = hostName;
+      self.reachability = [Reachability reachabilityWithHostName:self.hostName];
       [self.reachability startNotifier];            
     }
     
