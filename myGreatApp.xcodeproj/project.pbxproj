@@ -162,6 +162,11 @@
 		97FA40C515E5095900E4FE3E /* EditProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA40C415E5095900E4FE3E /* EditProfilViewController.m */; };
 		97FA40C815E5096E00E4FE3E /* EditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA40C715E5096E00E4FE3E /* EditPasswordViewController.m */; };
 		97FA40D915E5361200E4FE3E /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA40D815E5361200E4FE3E /* DropdownCell.m */; };
+		97FA42C315E67A3B00E4FE3E /* libShareKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA42B915E679EC00E4FE3E /* libShareKit.a */; };
+		97FA42C415E67A6A00E4FE3E /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97FA42BB15E679EC00E4FE3E /* ShareKit.bundle */; };
+		97FA42C615E67CCF00E4FE3E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA42C515E67CCE00E4FE3E /* MessageUI.framework */; };
+		97FA42C815E67D2900E4FE3E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA42C715E67D2900E4FE3E /* CoreFoundation.framework */; };
+		97FA42CA15E67D8D00E4FE3E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA42C915E67D8D00E4FE3E /* Twitter.framework */; };
 		97FBDF3015C98BE6007A5316 /* OffersSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FBDF2F15C98BE6007A5316 /* OffersSummary.m */; };
 		97FD7E6C15BDC76200815752 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6B15BDC76200815752 /* Price.m */; };
 		97FD7E7015BDC77000815752 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6F15BDC76F00815752 /* Comment.m */; };
@@ -179,6 +184,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = 97F42E6715A3428000EACD05;
 			remoteInfo = myGreatApp;
+		};
+		97FA42B615E679EC00E4FE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = "Demo App";
+		};
+		97FA42B815E679EC00E4FE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7AB5342E1552AADD00171BCE;
+			remoteInfo = "Static Library";
+		};
+		97FA42BA15E679EC00E4FE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7AB5360F1552E26800171BCE;
+			remoteInfo = "Resource Bundle";
+		};
+		97FA42BC15E679EC00E4FE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A0F9246156BA2A0009CB40A;
+			remoteInfo = "Static Library No Submodules";
+		};
+		97FA42BF15E67A1B00E4FE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7AB5342D1552AADD00171BCE;
+			remoteInfo = "Static Library";
+		};
+		97FA42C115E67A2300E4FE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7AB5360E1552E26800171BCE;
+			remoteInfo = "Resource Bundle";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -409,6 +456,10 @@
 		97FA40C715E5096E00E4FE3E /* EditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPasswordViewController.m; sourceTree = "<group>"; };
 		97FA40D715E5361100E4FE3E /* DropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownCell.h; sourceTree = "<group>"; };
 		97FA40D815E5361200E4FE3E /* DropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownCell.m; sourceTree = "<group>"; };
+		97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Submodules/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
+		97FA42C515E67CCE00E4FE3E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		97FA42C715E67D2900E4FE3E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		97FA42C915E67D8D00E4FE3E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		97FBDF2E15C98BE6007A5316 /* OffersSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersSummary.h; sourceTree = "<group>"; };
 		97FBDF2F15C98BE6007A5316 /* OffersSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersSummary.m; sourceTree = "<group>"; };
 		97FD7E6A15BDC76200815752 /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
@@ -432,6 +483,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97FA42CA15E67D8D00E4FE3E /* Twitter.framework in Frameworks */,
+				97FA42C815E67D2900E4FE3E /* CoreFoundation.framework in Frameworks */,
+				97FA42C615E67CCF00E4FE3E /* MessageUI.framework in Frameworks */,
+				97FA42C315E67A3B00E4FE3E /* libShareKit.a in Frameworks */,
 				9780D10D15A8A2CB00311B30 /* CoreLocation.framework in Frameworks */,
 				9780D10815A88F6000311B30 /* MapKit.framework in Frameworks */,
 				9780D0A515A4C54F00311B30 /* Security.framework in Frameworks */,
@@ -647,6 +702,7 @@
 		97F42E5D15A3428000EACD05 = {
 			isa = PBXGroup;
 			children = (
+				97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */,
 				97F8157515AEDA4B008DEB30 /* Resources */,
 				97F42E7215A3428000EACD05 /* myGreatApp */,
 				97F42E9015A3428000EACD05 /* myGreatAppTests */,
@@ -667,6 +723,9 @@
 		97F42E6B15A3428000EACD05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97FA42C915E67D8D00E4FE3E /* Twitter.framework */,
+				97FA42C715E67D2900E4FE3E /* CoreFoundation.framework */,
+				97FA42C515E67CCE00E4FE3E /* MessageUI.framework */,
 				9780D10C15A8A2CA00311B30 /* CoreLocation.framework */,
 				9780D10715A88F5F00311B30 /* MapKit.framework */,
 				9780D0A415A4C54F00311B30 /* Security.framework */,
@@ -889,6 +948,17 @@
 			name = ATPagingView;
 			sourceTree = "<group>";
 		};
+		97FA42AC15E679EB00E4FE3E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97FA42B715E679EC00E4FE3E /* ShareKitDemo.app */,
+				97FA42B915E679EC00E4FE3E /* libShareKit.a */,
+				97FA42BB15E679EC00E4FE3E /* ShareKit.bundle */,
+				97FA42BD15E679EC00E4FE3E /* libShareKitNoSubmodules.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -903,6 +973,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				97FA42C215E67A2300E4FE3E /* PBXTargetDependency */,
+				97FA42C015E67A1B00E4FE3E /* PBXTargetDependency */,
 			);
 			name = myGreatApp;
 			productName = myGreatApp;
@@ -947,6 +1019,12 @@
 			mainGroup = 97F42E5D15A3428000EACD05;
 			productRefGroup = 97F42E6915A3428000EACD05 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 97FA42AC15E679EB00E4FE3E /* Products */;
+					ProjectRef = 97FA42AB15E679EB00E4FE3E /* ShareKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				97F42E6715A3428000EACD05 /* myGreatApp */,
@@ -954,6 +1032,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		97FA42B715E679EC00E4FE3E /* ShareKitDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ShareKitDemo.app;
+			remoteRef = 97FA42B615E679EC00E4FE3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		97FA42B915E679EC00E4FE3E /* libShareKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libShareKit.a;
+			remoteRef = 97FA42B815E679EC00E4FE3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		97FA42BB15E679EC00E4FE3E /* ShareKit.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ShareKit.bundle;
+			remoteRef = 97FA42BA15E679EC00E4FE3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		97FA42BD15E679EC00E4FE3E /* libShareKitNoSubmodules.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libShareKitNoSubmodules.a;
+			remoteRef = 97FA42BC15E679EC00E4FE3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		97F42E6615A3428000EACD05 /* Resources */ = {
@@ -1045,6 +1154,7 @@
 				9700EBA115DE56AD005DD901 /* rating.png in Resources */,
 				9701472215E01684009080F7 /* btn-blue-sel.png in Resources */,
 				9701472315E01684009080F7 /* btn-blue.png in Resources */,
+				97FA42C415E67A6A00E4FE3E /* ShareKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1162,6 +1272,16 @@
 			target = 97F42E6715A3428000EACD05 /* myGreatApp */;
 			targetProxy = 97F42E8E15A3428000EACD05 /* PBXContainerItemProxy */;
 		};
+		97FA42C015E67A1B00E4FE3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Static Library";
+			targetProxy = 97FA42BF15E67A1B00E4FE3E /* PBXContainerItemProxy */;
+		};
+		97FA42C215E67A2300E4FE3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Resource Bundle";
+			targetProxy = 97FA42C115E67A2300E4FE3E /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1247,7 +1367,12 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/myGreatApp/Libraries/facebook-ios-sdk\"",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "Submodules/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1262,7 +1387,12 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/myGreatApp/Libraries/facebook-ios-sdk\"",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "Submodules/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
