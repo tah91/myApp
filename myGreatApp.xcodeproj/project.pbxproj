@@ -95,6 +95,7 @@
 		978DE53C15C6E02F00270B1A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 978DE53B15C6E02E00270B1A /* DetailViewController.m */; };
 		978DE53F15C701D100270B1A /* OfferListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 978DE53E15C701D000270B1A /* OfferListViewController.m */; };
 		978DE54215C7020600270B1A /* OfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 978DE54115C7020500270B1A /* OfferViewController.m */; };
+		979E584515E6C4B30008181D /* EworkySharers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 979E584415E6C4B30008181D /* EworkySharers.plist */; };
 		97A0522115C2B1A80047EDD7 /* FreeLocalisationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A0522015C2B1A80047EDD7 /* FreeLocalisationCell.m */; };
 		97A0522515C424500047EDD7 /* OrderByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A0522415C424500047EDD7 /* OrderByViewController.m */; };
 		97A0522C15C46B0A0047EDD7 /* SelectRadiusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A0522B15C46B0A0047EDD7 /* SelectRadiusViewController.m */; };
@@ -162,6 +163,7 @@
 		97FA42C615E67CCF00E4FE3E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA42C515E67CCE00E4FE3E /* MessageUI.framework */; };
 		97FA42C815E67D2900E4FE3E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA42C715E67D2900E4FE3E /* CoreFoundation.framework */; };
 		97FA42CA15E67D8D00E4FE3E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA42C915E67D8D00E4FE3E /* Twitter.framework */; };
+		97FA42DA15E68BD000E4FE3E /* EworkySHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA42D915E68BD000E4FE3E /* EworkySHKConfigurator.m */; };
 		97FBDF3015C98BE6007A5316 /* OffersSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FBDF2F15C98BE6007A5316 /* OffersSummary.m */; };
 		97FD7E6C15BDC76200815752 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6B15BDC76200815752 /* Price.m */; };
 		97FD7E7015BDC77000815752 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6F15BDC76F00815752 /* Comment.m */; };
@@ -336,6 +338,7 @@
 		978DE53E15C701D000270B1A /* OfferListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferListViewController.m; sourceTree = "<group>"; };
 		978DE54015C7020500270B1A /* OfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferViewController.h; sourceTree = "<group>"; };
 		978DE54115C7020500270B1A /* OfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferViewController.m; sourceTree = "<group>"; };
+		979E584415E6C4B30008181D /* EworkySharers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EworkySharers.plist; sourceTree = "<group>"; };
 		97A0521F15C2B1A80047EDD7 /* FreeLocalisationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeLocalisationCell.h; sourceTree = "<group>"; };
 		97A0522015C2B1A80047EDD7 /* FreeLocalisationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeLocalisationCell.m; sourceTree = "<group>"; };
 		97A0522315C424500047EDD7 /* OrderByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderByViewController.h; sourceTree = "<group>"; };
@@ -435,6 +438,8 @@
 		97FA42C515E67CCE00E4FE3E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		97FA42C715E67D2900E4FE3E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		97FA42C915E67D8D00E4FE3E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		97FA42D815E68BD000E4FE3E /* EworkySHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EworkySHKConfigurator.h; sourceTree = "<group>"; };
+		97FA42D915E68BD000E4FE3E /* EworkySHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EworkySHKConfigurator.m; sourceTree = "<group>"; };
 		97FBDF2E15C98BE6007A5316 /* OffersSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersSummary.h; sourceTree = "<group>"; };
 		97FBDF2F15C98BE6007A5316 /* OffersSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersSummary.m; sourceTree = "<group>"; };
 		97FD7E6A15BDC76200815752 /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
@@ -489,6 +494,7 @@
 		9780D14B15A8E18C00311B30 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				97FA42D715E68B8C00E4FE3E /* ShareKit */,
 				97F8711F15C1B77900F248A3 /* ATPagingView */,
 				9780D15315A8E30D00311B30 /* MKNetworkKit */,
 				9780D14C15A8E18D00311B30 /* Jastor */,
@@ -897,6 +903,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		97FA42D715E68B8C00E4FE3E /* ShareKit */ = {
+			isa = PBXGroup;
+			children = (
+				97FA42D815E68BD000E4FE3E /* EworkySHKConfigurator.h */,
+				97FA42D915E68BD000E4FE3E /* EworkySHKConfigurator.m */,
+				979E584415E6C4B30008181D /* EworkySharers.plist */,
+			);
+			name = ShareKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1091,6 +1107,7 @@
 				9701472215E01684009080F7 /* btn-blue-sel.png in Resources */,
 				9701472315E01684009080F7 /* btn-blue.png in Resources */,
 				97FA42C415E67A6A00E4FE3E /* ShareKit.bundle in Resources */,
+				979E584515E6C4B30008181D /* EworkySharers.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,6 +1203,7 @@
 				97FA40C515E5095900E4FE3E /* EditProfilViewController.m in Sources */,
 				97FA40C815E5096E00E4FE3E /* EditPasswordViewController.m in Sources */,
 				97FA40D915E5361200E4FE3E /* DropdownCell.m in Sources */,
+				97FA42DA15E68BD000E4FE3E /* EworkySHKConfigurator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

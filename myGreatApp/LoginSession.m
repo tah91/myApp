@@ -148,9 +148,16 @@
 /**
  * Invalidate the access token and clear the cookie.
  */
+static NSString *const kSHKFacebookAccessTokenKey=@"kSHKFacebookAccessToken";
+static NSString *const kSHKFacebookExpiryDateKey=@"kSHKFacebookExpiryDate";
+static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
 - (void)fbLogout
 {
     [facebook logout];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:kSHKFacebookAccessTokenKey];
+    [defaults removeObjectForKey:kSHKFacebookExpiryDateKey];
+    [defaults removeObjectForKey:kSHKFacebookUserInfo];
 }
 
 - (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
@@ -158,6 +165,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
     [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
+    [defaults setObject:accessToken forKey:kSHKFacebookAccessTokenKey];
+	[defaults setObject:expiresAt forKey:kSHKFacebookExpiryDateKey];
     [defaults synchronize];
 }
 
@@ -216,7 +225,9 @@
                 loginfailedCallback(error);
     }];
     
-    [facebook requestWithGraphPath:@"me?fields=id,name,email,first_name,last_name,link,birthday" andDelegate:fbRequestHandler];
+    if(loginSuccessCallback != nil && loginfailedCallback != nil) {
+        [facebook requestWithGraphPath:@"me?fields=id,name,email,first_name,last_name,link,birthday" andDelegate:fbRequestHandler];
+    }
 }
 
 -(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
@@ -231,7 +242,9 @@
 -(void)fbDidNotLogin:(BOOL)cancelled
 {
     NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Failed to login with facebook",NSLocalizedDescriptionKey,nil]];
-    loginfailedCallback(error);
+    if(loginfailedCallback != nil) {
+        loginfailedCallback(error);
+    }
 }
 
 /**

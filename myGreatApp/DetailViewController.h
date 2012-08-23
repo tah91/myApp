@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+- (IBAction)shareThis:(id)sender;
 
 @property (strong, nonatomic) Localisation* localisation;
 

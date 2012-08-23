@@ -12,6 +12,7 @@
 #import "CommentsViewController.h"
 #import "DetailCell.h"
 #import "UIView+TIAdditions.h"
+#import "SHK.h"
 
 @interface DetailViewController ()
 
@@ -284,6 +285,23 @@
             break;
     }
     return 44.0f;
+}
+
+- (IBAction)shareThis:(id)sender
+{
+    // Create the item to share (in this example, a url)
+    NSURL *url = [NSURL URLWithString:self.localisation.url];
+    SHKItem *item = [SHKItem URL:url title:self.localisation.name contentType:SHKURLContentTypeWebpage];
+    
+    // Get the ShareKit action sheet
+    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    // ShareKit detects top view controller (the one intended to present ShareKit UI) automatically,
+    // but sometimes it may not find one. To be safe, set it explicitly
+    [SHK setRootViewController:self];
+    
+    // Display the action sheet
+    [actionSheet showInView:self.view];
 }
 
 @end
