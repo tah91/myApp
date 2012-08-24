@@ -12,6 +12,10 @@
 
 @implementation LoginSession
 
+static NSString *const kSHKFacebookAccessTokenKey=@"kSHKFacebookAccessToken";
+static NSString *const kSHKFacebookExpiryDateKey=@"kSHKFacebookExpiryDate";
+static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
+
 @synthesize facebook, loginSuccessCallback, loginfailedCallback, fbRequestHandler;
 
 @dynamic authData;
@@ -61,6 +65,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"authData"];
     [defaults synchronize];
+    
+    [facebook logout];
 }
 
 /**
@@ -123,7 +129,6 @@
 - (void)logoutOnSucess:(LoginSuccessBlock)success 
                onError:(LoginFailedBlock)error
 {
-    [self fbLogout];
     [self cleanUserInfo];
     
     success();
@@ -148,19 +153,18 @@
 /**
  * Invalidate the access token and clear the cookie.
  */
-static NSString *const kSHKFacebookAccessTokenKey=@"kSHKFacebookAccessToken";
-static NSString *const kSHKFacebookExpiryDateKey=@"kSHKFacebookExpiryDate";
-static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
-- (void)fbLogout
+- (void)cleanFbAuthData
 {
-    [facebook logout];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"FBAccessTokenKey"];
+    [defaults removeObjectForKey:@"FBExpirationDateKey"];
     [defaults removeObjectForKey:kSHKFacebookAccessTokenKey];
     [defaults removeObjectForKey:kSHKFacebookExpiryDateKey];
     [defaults removeObjectForKey:kSHKFacebookUserInfo];
+    [defaults synchronize];
 }
 
-- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
+- (void)storeFbAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
@@ -178,9 +182,8 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
  */
 - (void)fbDidLogin
 {
-    //[self showLoggedIn];
-    
-    [self storeAuthData:[facebook accessToken] expiresAt:[facebook expirationDate]];
+    [self storeFbAuthData:[facebook accessToken]
+                expiresAt:[facebook expirationDate]];
     
     fbRequestHandler = [[FBRequestBlockDelegate alloc] initWithDidLoad:^(FBRequest* request, id result) {
         
@@ -233,7 +236,8 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
 -(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt
 {
     NSLog(@"token extended");
-    [self storeAuthData:accessToken expiresAt:expiresAt];
+    [self storeFbAuthData:accessToken
+                expiresAt:expiresAt];
 }
 
 /**
@@ -252,15 +256,7 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
  */
 - (void)fbDidLogout
 {
-    
-    // Remove saved authorization information if it exists and it is
-    // ok to clear it (logout, session invalid, app unauthorized)
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"FBAccessTokenKey"];
-    [defaults removeObjectForKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-    
-    //[self showLoggedOut];
+    [self cleanFbAuthData];
 }
 
 /**

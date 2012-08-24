@@ -23,8 +23,6 @@
 @synthesize localisationEngine;
 @synthesize loginSession;
 
-static bool test = TRUE;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     DefaultSHKConfigurator* configurator = [[EworkySHKConfigurator alloc] init];
@@ -34,10 +32,8 @@ static bool test = TRUE;
     self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:HOST_NAME customHeaderFields:nil];
     //[self.localisationEngine useCache];
     //[self.localisationEngine emptyCache];
-    
-    if(test) {
-        self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
-    }
+
+    self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
     
     UIImage *navBarImage = [UIImage imageNamed:@"nav-bar.png"];
     
@@ -136,18 +132,18 @@ static bool test = TRUE;
 
 - (BOOL)handleOpenURL:(NSURL*)url
 {
-	NSString* scheme = [url scheme];
-    if ([scheme hasPrefix:[NSString stringWithFormat:@"fb%@", SHKCONFIG(facebookAppId)]])
-        return [SHKFacebook handleOpenURL:url];
+	[self.loginSession.facebook handleOpenURL:url];
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return test ? [self.loginSession.facebook handleOpenURL:url] : [self handleOpenURL:url];
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [self handleOpenURL:url];
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return test ? [self.loginSession.facebook handleOpenURL:url] : [self handleOpenURL:url];
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [self handleOpenURL:url];
 }
 
 @end

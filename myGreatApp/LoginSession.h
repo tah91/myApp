@@ -35,7 +35,6 @@ typedef void (^LoginFailedBlock)(NSError* error);
 
 - (void)logoutOnSucess:(LoginSuccessBlock)success onError:(LoginFailedBlock)error;
 - (void)fbLoginOnSucess:(LoginSuccessBlock)success onError:(LoginFailedBlock)error;
-- (void)fbLogout;
 
 @property (nonatomic, copy) LoginSuccessBlock loginSuccessCallback;
 @property (nonatomic, copy) LoginFailedBlock loginfailedCallback;
