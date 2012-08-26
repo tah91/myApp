@@ -110,7 +110,8 @@
     }
 }
 
-- (IBAction)logout:(id)sender {
+- (IBAction)logout:(id)sender
+{
     [ApplicationDelegate.loginSession logoutOnSucess:^(void){
         //[self.navigationController popToRootViewControllerAnimated:FALSE];
         [self performSegueWithIdentifier:@"logoutSegue" sender:self];
@@ -119,4 +120,5 @@
                                                   ALERT_TITLE(@"Erreur",[error localizedDescription])
                                               }];
 }
+
 @end

@@ -111,16 +111,18 @@
     [self.mapViewActivity startAnimating];
     self.mapViewHelpLabel.text = @"Chargement...";
     
-    [ApplicationDelegate.localisationEngine searchWithCriteria:criteria
-                                                  onCompletion:^(NSObject* json) {
-                                                      [self parseData:json];
-                                                      [self refreshData:clearPrevious];
-                                                      self.isFetching = false;
-                                                  }
-                                                       onError:^(NSError* error) {
-                                                           ALERT_TITLE(@"Erreur",[error localizedDescription])
+    [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:SEARCH_URL
+                                                             params:[criteria getParams]
+                                                         httpMethod:@"GET"
+                                                       onCompletion:^(NSObject* json) {
+                                                           [self parseData:json];
+                                                           [self refreshData:clearPrevious];
                                                            self.isFetching = false;
-                                                       }];
+                                                       }
+                                                            onError:^(NSError* error) {
+                                                                ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                                self.isFetching = false;
+                                                            }];
 }
 
 - (void)parseData:(NSObject*)json

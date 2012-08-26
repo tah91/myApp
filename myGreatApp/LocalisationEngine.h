@@ -8,6 +8,7 @@
 
 #define SEARCH_URL @"api/localisation/search"
 #define DETAILS_URL @"api/localisation/details"
+#define ADD_TO_FAV_URL @"api/localisation/addtofavorites"
 #define LOGIN_URL @"api/account/login"
 #define REGISTER_URL @"api/account/register"
 #define EDIT_INFO_URL @"api/account/editInfo"
@@ -18,44 +19,12 @@
 
 @interface LocalisationEngine : MKNetworkEngine
 
-typedef void (^SearchResponseBlock)(NSMutableArray* localisations);
-typedef void (^LocalisationResponseBlock)(NSObject* localisation);
-typedef void (^LoginResponseBlock)(NSObject* userInfo);
-
--(MKNetworkOperation*) searchWithCriteria:(SearchCriteria*) criteria 
-                             onCompletion:(SearchResponseBlock) completion
-                                  onError:(MKNKErrorBlock) error;
-
--(MKNetworkOperation*) detailsWithId:(NSNumber*) locId 
-                        onCompletion:(LocalisationResponseBlock) completion
-                             onError:(MKNKErrorBlock) error;
+typedef void (^OperationResponseBlock)(NSObject* userInfo);
 
 -(MKNetworkOperation*) enqueueOperationWithUrl:(NSString*)url
                                         params:(NSMutableDictionary*) params
                                     httpMethod:(NSString*)httpMethod
-                                    onCompletion:(LoginResponseBlock) completionBlock
-                                        onError:(MKNKErrorBlock) errorBlock;
-
--(MKNetworkOperation*) registerWithName:(NSString*) name
-                               lastName:(NSString*) lastName 
-                                  login:(NSString*) login
-                               password:(NSString*) password
-                              birthDate:(NSString*) date
-                             facebookId:(NSNumber*) fbId
-                           facebookLink:(NSString*) fbLink
-                           onCompletion:(LoginResponseBlock) completionBlock
-                                onError:(MKNKErrorBlock) errorBlock;
-
--(MKNetworkOperation*) registerWithName:(NSString*) name
-                               lastName:(NSString*) lastName 
-                                  login:(NSString*) login
-                               password:(NSString*) password 
-                           onCompletion:(LoginResponseBlock) completion
-                                onError:(MKNKErrorBlock) error;
-
--(MKNetworkOperation*) connectWithLogin:(NSString*) login
-                               password:(NSString*) password 
-                           onCompletion:(LoginResponseBlock) completion
-                                onError:(MKNKErrorBlock) error;
+                                  onCompletion:(OperationResponseBlock) completionBlock
+                                       onError:(MKNKErrorBlock) errorBlock;
 
 @end

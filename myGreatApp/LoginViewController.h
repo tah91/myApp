@@ -18,9 +18,12 @@
 
 @interface LoginViewController : FormViewController <FBRequestDelegate, UITableViewDelegate, UITableViewDataSource>
 
++(void)setLoginDelegate:(id <LoginViewControllerDelegate>)delegate toController:(id)controller;
+
 - (IBAction)fbLogin:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)cancel:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *fbLoginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (weak, nonatomic) IBOutlet UILabel *alreadyMember1;

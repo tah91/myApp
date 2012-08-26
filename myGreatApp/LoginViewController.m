@@ -26,6 +26,13 @@
 @synthesize needAccount2;
 @synthesize loginDelegate;
 
++(void)setLoginDelegate:(id <LoginViewControllerDelegate>)delegate toController:(id)controller
+{
+    UINavigationController *parent = controller;
+    LoginViewController *lvc = (LoginViewController*)[parent topViewController];
+    lvc.loginDelegate = delegate; // For the delegate method
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Localisation.h"
+#import "LoginViewController.h"
 
-@interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, LoginViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *picture;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 - (IBAction)shareThis:(id)sender;
+- (IBAction)addToFavorites:(id)sender;
 
 @property (strong, nonatomic) Localisation* localisation;
 

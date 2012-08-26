@@ -13,6 +13,8 @@
 #import "DetailCell.h"
 #import "UIView+TIAdditions.h"
 #import "SHK.h"
+#import "AppDelegate.h"
+#import "NSDate+TIAdditions.h"
 
 @interface DetailViewController ()
 
@@ -113,6 +115,8 @@
         
     } else if ([[segue identifier] isEqualToString:@"meetingsSegue"]) {
         
+    } else if ([segue.identifier isEqualToString:@"detailToLoginSegue"]) {
+        [LoginViewController setLoginDelegate:self toController:segue.destinationViewController];
     }
     
 }
@@ -287,6 +291,36 @@
     return 44.0f;
 }
 
+#pragma mark - LoginViewController Delegate Method
+
+-(void)finishedLoadingUserInfo
+{
+    // Dismiss the LoginViewController that we instantiated earlier
+    [self dismissModalViewControllerAnimated:YES];
+    
+    // Do other stuff as needed
+    [self addToFavorites];
+}
+
+-(void) addToFavorites
+{
+    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+    [params trySetObject:[ApplicationDelegate.loginSession authData].token forKey:@"token"];
+    [params trySetObject:[NSNumber numberWithInt:self.localisation.id] forKey:@"id"];
+    
+    [[SHKActivityIndicator currentIndicator] displayActivity:@"Mise à jour en cours"];
+    [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:ADD_TO_FAV_URL
+                                                             params:params
+                                                         httpMethod:@"POST"
+                                                       onCompletion:^(NSObject* json) {
+                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:@"Ajouté aux favoris"];
+                                                       }
+                                                            onError:^(NSError* error) {
+                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:@"Non ajouté aux favoris"];
+                                                                ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                            }];
+}
+
 - (IBAction)shareThis:(id)sender
 {
     // Create the item to share (in this example, a url)
@@ -302,6 +336,15 @@
     
     // Display the action sheet
     [actionSheet showInView:self.view];
+}
+
+- (IBAction)addToFavorites:(id)sender
+{
+    if([ApplicationDelegate.loginSession isLogged]){
+        [self addToFavorites];
+    } else {
+        [self performSegueWithIdentifier:@"detailToLoginSegue" sender:self];
+    }
 }
 
 @end
