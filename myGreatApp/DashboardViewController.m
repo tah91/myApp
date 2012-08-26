@@ -9,7 +9,7 @@
 #import "DashboardViewController.h"
 #import "AppDelegate.h"
 #import "ProfilViewController.h"
-#import "UINavigationController+TIAdditions.h"
+#import "UIViewController+TIAdditions.h"
 #import "DetailCell.h"
 #import "UIView+TIAdditions.h"
 
@@ -98,6 +98,11 @@
         case 0:
         {
             [self performSegueWithIdentifier:@"editProfilSegue" sender:self];
+        }
+            break;
+        case 1:
+        {
+            [self performSegueWithIdentifier:@"editPasswordSegue" sender:self];
         }
             break;
         default:

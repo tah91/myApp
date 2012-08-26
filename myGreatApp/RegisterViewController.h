@@ -13,7 +13,7 @@
 @interface RegisterViewController : FormViewController <UITextFieldDelegate>
 
 - (IBAction)fbRegister:(id)sender;
-- (IBAction)register:(id)sender;
+- (IBAction)ewRegister:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *fbRegisterBtn;
 @property (weak, nonatomic) IBOutlet UILabel *noFbLabel;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;

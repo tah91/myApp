@@ -33,7 +33,7 @@
 -(void)setFieldsFromCom:(Comment*)comment
 {
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", comment.author.firstName, comment.author.lastName];
-    self.dateLabel.text = [[NSDate dateFromJson:comment.date] dateDifferenceStringFromNow];
+    self.dateLabel.text = [[NSDate dateFromRFC1123:comment.date] dateDifferenceStringFromNow];
     self.dateLabel.textColor = ORANGE_COLOR;
     self.postLabel.text = comment.post;
     self.postLabel.textColor = GREY_COLOR;

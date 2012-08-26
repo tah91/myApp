@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FormViewController.h"
 
-@interface EditPasswordViewController : UIViewController
+@interface EditPasswordViewController : FormViewController <UITableViewDelegate, UITableViewDataSource>
+
+- (IBAction)editPasswordDone:(id)sender;
 
 @end

@@ -7,12 +7,7 @@
 //
 
 #import "LocalisationEngine.h"
-
-#define SEARCH_URL @"api/localisation/search"
-#define DETAILS_URL @"api/localisation/details"
-#define LOGIN_URL @"api/account/login"
-#define REGISTER_URL @"api/account/register"
-
+#import "Meta.h"
 @implementation LocalisationEngine
 
 -(MKNetworkOperation*) searchWithCriteria:(SearchCriteria*) criteria 
@@ -65,21 +60,29 @@
     return op;
 }
 
--(MKNetworkOperation*) registerWithParams:(NSMutableDictionary*) params
-                             onCompletion:(LoginResponseBlock) completionBlock
-                                  onError:(MKNKErrorBlock) errorBlock
+-(MKNetworkOperation*) enqueueOperationWithUrl:(NSString*)url
+                                        params:(NSMutableDictionary*) params
+                                    httpMethod:(NSString*)httpMethod
+                                  onCompletion:(LoginResponseBlock) completionBlock
+                                       onError:(MKNKErrorBlock) errorBlock
 {
     
-    MKNetworkOperation *op = [self operationWithPath:REGISTER_URL
+    MKNetworkOperation *op = [self operationWithPath:url
                                               params:params 
-                                          httpMethod:@"POST"];
+                                          httpMethod:httpMethod];
     
     [op onCompletion:^(MKNetworkOperation *completedOperation)
      {
          NSDictionary *response = [completedOperation responseJSON];
-         NSObject* res = [response objectForKey:@"response"];
-         completionBlock(res);
-         
+         NSDictionary* meta = [response objectForKey:@"meta"];
+         Meta* metaObj = [[Meta alloc] initWithDictionary:meta];
+         if(metaObj.statusCode == 200) {
+             NSObject* res = [response objectForKey:@"response"];
+             completionBlock(res);
+         } else {
+             NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:metaObj.message,NSLocalizedDescriptionKey,nil]];
+             errorBlock(error);
+         }
      }onError:^(NSError* error) {
          errorBlock(error);
      }];
@@ -110,7 +113,7 @@
                                    fbLink,@"facebookLink",
                                    nil];
     
-    return [self registerWithParams:params onCompletion:completionBlock onError:errorBlock];
+    return [self enqueueOperationWithUrl:REGISTER_URL params:params httpMethod:@"POST" onCompletion:completionBlock onError:errorBlock];
 }
 
 -(MKNetworkOperation*) registerWithName:(NSString*) name
@@ -128,7 +131,7 @@
                                    password,@"password",
                                    nil];
     
-    return [self registerWithParams:params onCompletion:completionBlock onError:errorBlock];
+    return [self enqueueOperationWithUrl:REGISTER_URL params:params httpMethod:@"POST" onCompletion:completionBlock onError:errorBlock];
 }
 
 -(MKNetworkOperation*) connectWithLogin:(NSString*) login
@@ -136,15 +139,7 @@
                            onCompletion:(LoginResponseBlock) completionBlock
                                 onError:(MKNKErrorBlock) errorBlock
 {
-    
-    NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                   login,@"email",
-                                   password,@"password",
-                                   nil];
-    
-    return [self registerWithParams:params onCompletion:completionBlock onError:errorBlock];
-    
-    MKNetworkOperation *op = [self operationWithPath:REGISTER_URL
+    MKNetworkOperation *op = [self operationWithPath:LOGIN_URL
                                               params:[[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                       login,@"login",
                                                       password,@"password",

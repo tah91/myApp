@@ -12,16 +12,23 @@ typedef enum
 {
     TextfieldTypeStandard,
     TextfieldTypeEmail,
-    TextfieldTypePassword
+    TextfieldTypePassword,
+    TextfieldTypeNumber
 } TextfieldType;
+
+#define kTextFielCellIdent @"TextFieldCell"
 
 @interface TextFieldCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel* label;
 @property (nonatomic, strong) IBOutlet UITextField* field;
+@property (nonatomic) TextfieldType textFieldType;
+@property (nonatomic) BOOL shouldSubmit;
 
-- (void)setLabel:(NSString*)label initialValue:(NSString*)initial fieldType:(TextfieldType)fieldType isLast:(BOOL)isLast delegate:(id <UITextFieldDelegate>)delegate;
+- (void)setLabel:(NSString*)label placeHolder:(NSString*)placeHolder initialValue:(NSString*)initial fieldType:(TextfieldType)fieldType isLast:(BOOL)isLast delegate:(id <UITextFieldDelegate>)delegate;
 - (void)doResignFirstResponder;
 - (void)doBecomeFirstResponder;
+- (void)setFieldType;
+- (NSString*)getCurrentValue;
 
 @end

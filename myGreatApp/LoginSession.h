@@ -21,6 +21,9 @@ typedef void (^LoginFailedBlock)(NSError* error);
 -(id) initWithId:(NSString*)appId;
 
 - (BOOL)isLogged;
+- (void)storeUserInfo:(NSObject*)userInfo;
+- (void)cleanUserInfo;
+
 - (void)registerWithName:(NSString*)name 
                 lastName:(NSString*)lastName 
                    login:(NSString*)login 

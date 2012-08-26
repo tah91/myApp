@@ -9,6 +9,7 @@
 #import "LoginSession.h"
 #import "MKNetworkEngine.h"
 #import "AppDelegate.h"
+#import "SHKActivityIndicator.h"
 
 @implementation LoginSession
 
@@ -79,21 +80,24 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
                 onSucess:(LoginSuccessBlock)successBlock 
                  onError:(LoginFailedBlock)errorBlock
 {
-    
+    [[SHKActivityIndicator currentIndicator] displayActivity:@"Inscription en cours"];
     [ApplicationDelegate.localisationEngine registerWithName:name 
                                                     lastName:lastName 
                                                        login:login 
                                                     password:password
                                                 onCompletion:^(NSObject* userInfo) {
                                                     if (userInfo == nil) {
+                                                        [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
                                                         NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de l'inscription",NSLocalizedDescriptionKey,nil]];
                                                         errorBlock(error);
                                                     } else {
+                                                        [[SHKActivityIndicator currentIndicator] displayCompleted:@"Connexion réussie"];
                                                         [self storeUserInfo:userInfo];
                                                         successBlock();
                                                     }
                                                 }
                                                      onError:^(NSError* error) {
+                                                         [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
                                                          errorBlock(error);
                                                      }];
 }
@@ -106,19 +110,22 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
      onSucess:(LoginSuccessBlock)successBlock 
       onError:(LoginFailedBlock)errorBlock
 {
-    
+    [[SHKActivityIndicator currentIndicator] displayActivity:@"Connexion en cours"];
     [ApplicationDelegate.localisationEngine connectWithLogin:login
                                                     password:password 
                                                 onCompletion:^(NSObject* userInfo) {
                                                     if (userInfo == nil) {
+                                                        [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
                                                         NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de la connexion",NSLocalizedDescriptionKey,nil]];
                                                         errorBlock(error);
                                                     } else {
+                                                        [[SHKActivityIndicator currentIndicator] displayCompleted:@"Connexion réussie"];
                                                         [self storeUserInfo:userInfo];
                                                         successBlock();
                                                     }
                                                 }
                                                      onError:^(NSError* error) {
+                                                         [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
                                                          errorBlock(error);
                                                      }];
 }
@@ -140,7 +147,7 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
 - (void)fbLoginOnSucess:(LoginSuccessBlock)success 
                 onError:(LoginFailedBlock)error
 {
-    if (![facebook isSessionValid]) {
+    if (![facebook isSessionValid] || ![self isLogged]) {
         [facebook authorize:[NSArray arrayWithObjects:@"email", @"user_birthday", @"publish_actions",nil]];
     } else {
         success();
@@ -203,7 +210,7 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
         [dateFormatter setDateFormat:@"dd/MM/yyyy"];
         birthDate = [dateFormatter stringFromDate:birth];
         
-        
+        [[SHKActivityIndicator currentIndicator] displayActivity:@"Connexion en cours"];
         [ApplicationDelegate.localisationEngine registerWithName:name 
                                                         lastName:lastName 
                                                            login:login 
@@ -213,14 +220,17 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
                                                     facebookLink:fbLink
                                                     onCompletion:^(NSObject* userInfo) {
                                                         if (userInfo == nil) {
+                                                            [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
                                                             NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Erreur lors de la connexion via Facebook",NSLocalizedDescriptionKey,nil]];
                                                             loginfailedCallback(error);
                                                         } else {
+                                                            [[SHKActivityIndicator currentIndicator] displayCompleted:@"Connexion réussie"];
                                                             [self storeUserInfo:userInfo];
                                                             loginSuccessCallback();
                                                         }
                                                     }
                                                          onError:^(NSError* error) {
+                                                             [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
                                                              loginfailedCallback(error);
                                                          }];
         

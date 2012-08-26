@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "DashboardViewController.h"
-#import "UINavigationController+TIAdditions.h"
+#import "UIViewController+TIAdditions.h"
 #import "DetailCell.h"
 
 @interface ProfilViewController ()

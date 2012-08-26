@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *alreadyMember2;
 @property (weak, nonatomic) IBOutlet UILabel *needAccount1;
 @property (weak, nonatomic) IBOutlet UILabel *needAccount2;
-    
+
 @property (strong,nonatomic) id <LoginViewControllerDelegate> loginDelegate;
 
 @end

@@ -11,4 +11,6 @@
 
 @interface EditProfilViewController : FormViewController <UITableViewDelegate, UITableViewDataSource>
 
+- (IBAction)editProfileDone:(id)sender;
+
 @end

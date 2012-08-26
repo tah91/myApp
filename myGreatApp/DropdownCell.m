@@ -8,21 +8,7 @@
 
 #import "DropdownCell.h"
 
-@implementation UIDropdownLabel
 
-@synthesize inputView, inputAccessoryView;
-
--(BOOL)canBecomeFirstResponder
-{
-    return YES;
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self becomeFirstResponder];
-}
-
-@end
 
 @implementation DropdownCell
 
@@ -46,36 +32,26 @@
 }
 */
 
-- (void)setLabel:(NSString*)text initialValue:(NSNumber*)initial isLast:(BOOL)isLast source:(NSDictionary *)source delegate:(id<DropdownCellDelegate>)dropdownDelegate
+- (void)setLabel:(NSString*)text initialValue:(NSString*)initial isLast:(BOOL)isLast source:(NSDictionary *)source delegate:(id<InteractionLabelDelegate>)dropdownDelegate
 {
     UIPickerView* picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
     picker.delegate = self;
     picker.dataSource = self;
     [picker setShowsSelectionIndicator:YES];
     
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    toolbar.barStyle = UIBarStyleBlackTranslucent;
-    UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                          target:self
-                                                                          action:@selector(selectionDone:)];
-    [toolbar setItems:[NSMutableArray arrayWithObjects:done, nil]];
-    
     self.dropdownDict = source;
     self.dropdownKeys = [[self.dropdownDict allKeys] sortedArrayUsingSelector:@selector(compare:)];
     self.dropdownValue = initial;
+    self.dropdownValueDisplay.delegate = self;
     self.dropdownValueDisplay.text = (NSString*)[self.dropdownDict objectForKey:initial];
-    self.dropdownValueDisplay.inputAccessoryView = toolbar;
+    [self.dropdownValueDisplay setInputAccessoryView];
     NSInteger index = [self.dropdownKeys indexOfObject:initial];
     [picker selectRow:index inComponent:0 animated:TRUE];
     self.dropdownValueDisplay.inputView = picker;
     self.dropdownValueDisplay.userInteractionEnabled = TRUE;
     self.label.text = text;
     self.delegate = dropdownDelegate;
-}
-
--(void)selectionDone:(id)sender
-{
-    [delegate selectionDone:self];
+    self.shouldSubmit = FALSE;
 }
 
 - (void)doResignFirstResponder
@@ -86,6 +62,23 @@
 - (void)doBecomeFirstResponder
 {
     [self.dropdownValueDisplay becomeFirstResponder];
+}
+
+- (NSString*)getCurrentValue
+{
+    return self.dropdownValue;
+}
+
+#pragma mark - InteractionLabel Selection
+
+-(void)interactionBegin
+{
+    [delegate interactionBegin:self];
+}
+
+-(void)selectionDone
+{
+    [delegate selectionDone];
 }
 
 #pragma mark - UIPickerView Data Source

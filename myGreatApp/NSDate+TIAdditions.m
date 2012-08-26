@@ -86,4 +86,25 @@
     NSString *outputString = [dateFormatter stringFromDate:date];*/
 }
 
+-(NSString*) toCSharpDate
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    return [dateFormatter stringFromDate:self];
+}
+
+@end
+
+
+@implementation NSMutableDictionary (TIAdditions)
+
+-(void)trySetObject:(id)anObject forKey:(id)aKey
+{
+    if(anObject == nil) {
+        return;
+    }
+    
+    [self setObject:anObject forKey:aKey];
+}
+
 @end

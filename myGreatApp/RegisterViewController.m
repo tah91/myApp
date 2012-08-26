@@ -33,6 +33,8 @@
 
 - (void)viewDidLoad
 {
+    [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
+    
     [super viewDidLoad];
     [self.fbRegisterBtn setButtonWithStyle:@"Inscrivez-vous avec Facebook"];
     [self.noFbLabel setSubtitleWithStyle:@"Pas de compte Facebook ?"];
@@ -70,23 +72,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TextFieldCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:@"registerCell"];
+    TextFieldCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:kTextFielCellIdent];
     
     switch (indexPath.section) {
         case 0:
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"Prénom" initialValue:@"" fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
+                    [cell setLabel:@"Prénom" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
                     break;
                 case 1:
-                    [cell setLabel:@"Nom" initialValue:@"" fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
+                    [cell setLabel:@"Nom" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
                     break;
                 case 2:
-                    [cell setLabel:@"E-mail" initialValue:@"" fieldType:TextfieldTypeEmail isLast:FALSE delegate:self];
+                    [cell setLabel:@"E-mail" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeEmail isLast:FALSE delegate:self];
                     break;
                 case 3:
-                    [cell setLabel:@"Mot de passe" initialValue:@"" fieldType:TextfieldTypePassword isLast:TRUE delegate:self];
+                    [cell setLabel:@"Mot de passe" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypePassword isLast:TRUE delegate:self];
                     break;
                 default:
                     break;
@@ -113,6 +115,37 @@
      */
 }
 
+-(void)initCurrentValues
+{
+    [super initCurrentValues];
+}
+
+-(void) submitForm
+{
+    [super submitForm];
+    
+    NSString* firstName = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSString* lastName = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    NSString* email = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    NSString* password = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    
+    if([firstName length]==0 || [lastName length]==0 || [email length]==0 || [password length]==0) {
+        ALERT_TITLE(@"Erreur",@"Remplissez tous les champs")
+    } else {
+        [ApplicationDelegate.loginSession registerWithName:firstName
+                                                  lastName:lastName
+                                                     login:email
+                                                  password:password
+                                                  onSucess:^(void) {
+                                                      [loginDelegate finishedLoadingUserInfo];
+                                                  }
+                                                   onError:^(NSError* error) {
+                                                       ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                   }];
+    }
+}
+
+
 - (IBAction)fbRegister:(id)sender {
     [ApplicationDelegate.loginSession fbLoginOnSucess:^(void) {
         [loginDelegate finishedLoadingUserInfo];
@@ -122,26 +155,9 @@
                                               }];
 }
 
-- (IBAction)register:(id)sender {
-    TextFieldCell* firstName = (TextFieldCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    TextFieldCell* lastName = (TextFieldCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    TextFieldCell* email = (TextFieldCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    TextFieldCell* password = (TextFieldCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-    
-    if([firstName.field.text length]==0 || [lastName.field.text length]==0 || [email.field.text length]==0 || [password.field.text length]==0) {
-        ALERT_TITLE(@"Erreur",@"Remplissez tous les champs")
-    } else {
-        [ApplicationDelegate.loginSession registerWithName:firstName.field.text
-                                                  lastName:lastName.field.text
-                                                     login:email.field.text
-                                                  password:password.field.text
-                                                  onSucess:^(void) {
-                                                      [loginDelegate finishedLoadingUserInfo];
-                                                  }
-                                                   onError:^(NSError* error) {
-                                                       ALERT_TITLE(@"Erreur",[error localizedDescription])
-                                                   }];
-    }
+- (IBAction)ewRegister:(id)sender
+{
+    [self submitForm];
 }
 
 @end

@@ -14,8 +14,8 @@
 #import "SHKFacebook.h"
 
 //#define HOST_NAME @"www.eworky.fr"
-#define HOST_NAME @"taff.coworky.fr"
-//#define HOST_NAME @"ti.coworky.fr"
+//#define HOST_NAME @"taff.coworky.fr"
+#define HOST_NAME @"ti.coworky.fr"
 
 @implementation AppDelegate
 
@@ -79,9 +79,11 @@
     UIImage *segmentSelectedSelected = [UIImage imageNamed:@"seg-control-sel-sel.png"];
     
     [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected
-                                               forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+                                               forState:UIControlStateNormal
+                                             barMetrics:UIBarMetricsDefault];
     [[UISegmentedControl appearance] setBackgroundImage:segmentSelected
-                                               forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+                                               forState:UIControlStateSelected
+                                             barMetrics:UIBarMetricsDefault];
     
     [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected
                                  forLeftSegmentState:UIControlStateNormal

@@ -37,13 +37,16 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
+    
     [self.fbLoginBtn setButtonWithStyle:@"S'inscrire avec Facebook"];
     [self.registerBtn setButtonWithStyle:@"S'inscrire"];
     [self.alreadyMember1 setTitleWithStyle:@"Déjà membre eWorky ?"];
     [self.alreadyMember2 setSubtitleWithStyle:@"Connectez-vous à votre compte eWorky"];
     [self.needAccount1 setTitleWithStyle:@"Besoin d'un compte ?"];
     [self.needAccount2 setSubtitleWithStyle:@"S'inscrire sur eWorky"];
+    
+    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -77,17 +80,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TextFieldCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:@"loginCell"];
+    TextFieldCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:kTextFielCellIdent];
     
     switch (indexPath.section) {
         case 0:
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"E-mail" initialValue:@"" fieldType:TextfieldTypeEmail isLast:FALSE delegate:self];
+                    [cell setLabel:@"E-mail"
+                       placeHolder:@"Requis"
+                      initialValue:[self getCurrentValueForPath:indexPath]
+                         fieldType:TextfieldTypeEmail
+                            isLast:FALSE
+                          delegate:self];
                     break;
                 case 1:
-                    [cell setLabel:@"Password" initialValue:@"" fieldType:TextfieldTypePassword isLast:TRUE delegate:self];
+                    [cell setLabel:@"Password"
+                       placeHolder:@"Requis"
+                      initialValue:[self getCurrentValueForPath:indexPath]
+                         fieldType:TextfieldTypePassword
+                            isLast:TRUE
+                          delegate:self];
                     break;
                 default:
                     break;
@@ -122,16 +135,23 @@
     }
 }
 
+-(void)initCurrentValues
+{
+    [super initCurrentValues];
+}
+
 -(void) submitForm
 {
-    TextFieldCell* email = (TextFieldCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    TextFieldCell* password = (TextFieldCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    [super submitForm];
     
-    if([email.field.text length]==0 || [password.field.text length]==0 ) {
+    NSString* email = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSString* password = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    
+    if([email length]==0 || [password length]==0 ) {
         ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps")
     } else {
-        [ApplicationDelegate.loginSession login:email.field.text
-                                       password:password.field.text
+        [ApplicationDelegate.loginSession login:email
+                                       password:password
                                        onSucess:^(void){
                                            [loginDelegate finishedLoadingUserInfo];
                                        }onError:^(NSError* error) {
