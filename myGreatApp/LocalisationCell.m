@@ -13,6 +13,7 @@
 
 @synthesize nameLabel,distanceLabel,typeLabel,cityLabel,mainPic,distancePic,cityPic,ratingPic;
 @synthesize localisation;
+@synthesize segueController,segueIdent;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,6 +37,11 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [self setSelectedState:selected];
+    
+    if(selected && [self.segueIdent length] != 0 && self.segueController != nil) {
+        [self.segueController performSegueWithIdentifier:segueIdent sender:self.segueController];
+    }
+    
     [super setSelected:selected animated:animated];
 }
 
@@ -52,7 +58,8 @@
     [label setShadowOffset:CGSizeMake(1,1)];
 }
 
--(void)setFieldsFromLoc:(Localisation*)loc {
+-(void)setFieldsFromLoc:(Localisation*)loc withSegue:(NSString*)segue andController:(UIViewController*)controller
+{
     
     [self setLabel:nameLabel
           withText:loc.name
@@ -80,6 +87,8 @@
     [self setSelectedBackgroundView:[[UIImageView alloc] initWithImage:selBng]];
     
     self.localisation = loc;
+    self.segueIdent = segue;
+    self.segueController = controller;
 }
 
 @end

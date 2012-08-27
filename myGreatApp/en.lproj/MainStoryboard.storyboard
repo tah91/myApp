@@ -997,7 +997,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Xsd-ZQ-yVc">
-                                    <rect key="frame" x="0.0" y="182" width="320" height="38"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="gray" id="JkZ-t3-YJ5">
@@ -1013,167 +1013,6 @@
                                         </label>
                                     </subviews>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="freeLocCell" rowHeight="80" id="9gV-yl-2wv" customClass="FreeLocalisationCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="5z0-Xe-sjZ">
-                                                    <rect key="frame" x="8" y="8" width="55" height="55"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="rating-0.png" highlightedImage="rating-0-sel.png" id="BjH-oH-HnF">
-                                                    <rect key="frame" x="15" y="66" width="40" height="10"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Free place name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="b8g-1X-BuT">
-                                                    <rect key="frame" x="71" y="8" width="229" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Free place type - City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="0BS-7b-dOk">
-                                                    <rect key="frame" x="71" y="25" width="229" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="distance-on.png" highlightedImage="distance-on-sel.png" id="5xv-1c-4o5">
-                                                    <rect key="frame" x="260" y="56" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="1Bh-cN-wlt">
-                                                    <rect key="frame" x="280" y="57" width="40" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="8"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="wifi-on.png" highlightedImage="wifi-on-sel.png" id="p6g-U7-u5b">
-                                                    <rect key="frame" x="71" y="60" width="17" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="resto-on.png" highlightedImage="resto-on-sel.png" id="qkS-Hz-PFN">
-                                                    <rect key="frame" x="90" y="60" width="17" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="coffee-on.png" highlightedImage="coffee-on-sel.png" id="CRC-ug-EtL">
-                                                    <rect key="frame" x="109" y="60" width="17" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="parking-on.png" highlightedImage="parking-on-sel.png" id="kNE-fa-s1j">
-                                                    <rect key="frame" x="128" y="60" width="17" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="handicap-on.png" highlightedImage="handicap-on-sel.png" id="9b1-2r-pMI">
-                                                    <rect key="frame" x="147" y="60" width="17" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" red="0.27317599850000002" green="0.74685004099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="coffeeLogo" destination="CRC-ug-EtL" id="LN6-pI-zxs"/>
-                                            <outlet property="distanceLabel" destination="1Bh-cN-wlt" id="Dqr-Gj-bqX"/>
-                                            <outlet property="distancePic" destination="5xv-1c-4o5" id="wbs-7e-oxC"/>
-                                            <outlet property="handicapLogo" destination="9b1-2r-pMI" id="JrW-Eg-7Jl"/>
-                                            <outlet property="mainPic" destination="5z0-Xe-sjZ" id="Qmf-NP-Gnz"/>
-                                            <outlet property="nameLabel" destination="b8g-1X-BuT" id="yhk-cL-JpI"/>
-                                            <outlet property="parkingLogo" destination="kNE-fa-s1j" id="56M-im-Rfk"/>
-                                            <outlet property="ratingPic" destination="BjH-oH-HnF" id="cST-XY-aWH"/>
-                                            <outlet property="restoLogo" destination="qkS-Hz-PFN" id="LyH-xq-kst"/>
-                                            <outlet property="typeLabel" destination="0BS-7b-dOk" id="w9N-js-Yya"/>
-                                            <outlet property="wifiLogo" destination="p6g-U7-u5b" id="tMY-ly-VTz"/>
-                                            <segue destination="cYa-QV-Lkn" kind="push" identifier="freeDetailSegue" id="aUv-51-AWL"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="payingLocCell" rowHeight="80" id="va6-Jx-uZG" customClass="PayingLocalisationCell">
-                                        <rect key="frame" x="0.0" y="102" width="320" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Eu5-Vj-EcI">
-                                                    <rect key="frame" x="8" y="8" width="55" height="55"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="rating-0.png" highlightedImage="rating-0-sel.png" id="i2w-cJ-j2b">
-                                                    <rect key="frame" x="15" y="66" width="40" height="10"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paying place name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="bbQ-Zx-rcc">
-                                                    <rect key="frame" x="71" y="8" width="229" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paying place type - City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="6H4-Gf-gPY">
-                                                    <rect key="frame" x="71" y="25" width="229" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="distance-on.png" highlightedImage="distance-on-sel.png" id="AZ3-jd-cnr">
-                                                    <rect key="frame" x="260" y="55.5" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="42E-vj-CaK">
-                                                    <rect key="frame" x="280" y="55" width="40" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="8"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="desktop-on.png" highlightedImage="desktop-on-sel.png" id="Ydv-UX-R68">
-                                                    <rect key="frame" x="71" y="44" width="20" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Desktop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="HHi-4h-f9G">
-                                                    <rect key="frame" x="99" y="41" width="153" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="meeting-on.png" highlightedImage="meeting-on-sel.png" id="4dp-15-cao">
-                                                    <rect key="frame" x="71" y="60" width="20" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Meeting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="fKp-6J-hWL">
-                                                    <rect key="frame" x="99" y="58" width="153" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" red="0.27317599850000002" green="0.74685004099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="desktopLabel" destination="HHi-4h-f9G" id="wEc-Mo-2oc"/>
-                                            <outlet property="desktopPic" destination="Ydv-UX-R68" id="3Yq-vW-Emx"/>
-                                            <outlet property="distanceLabel" destination="42E-vj-CaK" id="CI5-o5-PHi"/>
-                                            <outlet property="distancePic" destination="AZ3-jd-cnr" id="Xz0-cL-gtl"/>
-                                            <outlet property="mainPic" destination="Eu5-Vj-EcI" id="fAd-v9-eBS"/>
-                                            <outlet property="meetingLabel" destination="fKp-6J-hWL" id="Io1-cq-JsN"/>
-                                            <outlet property="meetingPic" destination="4dp-15-cao" id="ava-h8-ufs"/>
-                                            <outlet property="nameLabel" destination="bbQ-Zx-rcc" id="VPH-FV-FUb"/>
-                                            <outlet property="ratingPic" destination="i2w-cJ-j2b" id="cNA-Uj-G59"/>
-                                            <outlet property="typeLabel" destination="6H4-Gf-gPY" id="qcx-Yf-4k8"/>
-                                            <segue destination="cYa-QV-Lkn" kind="push" identifier="payingDetailSegue" id="sMd-eg-vjV"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="wlp-TL-wla" id="Gtp-De-1FU"/>
                                     <outlet property="delegate" destination="wlp-TL-wla" id="8fw-1r-maK"/>
@@ -1202,6 +1041,7 @@
                         <outlet property="tableView" destination="Pyz-8S-yoZ" id="5Wj-xx-ULg"/>
                         <outlet property="toolsView" destination="Qq1-Dl-bmB" id="SX8-Qy-1XF"/>
                         <segue destination="cYa-QV-Lkn" kind="push" identifier="annotationDetailSegue" id="9mr-O1-2jB"/>
+                        <segue destination="cYa-QV-Lkn" kind="push" identifier="cellDetailSegue" id="qQ1-Su-lq7"/>
                     </connections>
                 </viewController>
             </objects>
@@ -1784,40 +1624,228 @@
     </scenes>
     <resources>
         <image name="checked.png" width="19" height="19"/>
-        <image name="coffee-on-sel.png" width="17" height="15"/>
-        <image name="coffee-on.png" width="17" height="15"/>
-        <image name="desktop-on-sel.png" width="19" height="14"/>
-        <image name="desktop-on.png" width="19" height="12"/>
         <image name="desktop.png" width="251" height="71"/>
-        <image name="distance-on-sel.png" width="15" height="17"/>
-        <image name="distance-on.png" width="15" height="15"/>
         <image name="freeplaces.png" width="252" height="72"/>
-        <image name="handicap-on-sel.png" width="17" height="15"/>
-        <image name="handicap-on.png" width="17" height="15"/>
-        <image name="meeting-on-sel.png" width="20" height="14"/>
-        <image name="meeting-on.png" width="20" height="12"/>
         <image name="meetingroom.png" width="252" height="73"/>
-        <image name="parking-on-sel.png" width="17" height="15"/>
-        <image name="parking-on.png" width="17" height="15"/>
-        <image name="rating-0-sel.png" width="39" height="8"/>
-        <image name="rating-0.png" width="39" height="7"/>
         <image name="rating.png" width="50" height="8"/>
-        <image name="resto-on-sel.png" width="17" height="15"/>
-        <image name="resto-on.png" width="17" height="15"/>
-        <image name="wifi-on-sel.png" width="17" height="15"/>
-        <image name="wifi-on.png" width="17" height="15"/>
     </resources>
+    <classes>
+        <class className="ATPagingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ATPagingView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="ATPagingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ATPagingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pagingView" candidateClass="ATPagingView"/>
+            </relationships>
+        </class>
+        <class className="AddCommentViewController" superclassName="FormViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddCommentViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addCommentCancel:"/>
+                <relationship kind="action" name="addCommentDone:"/>
+            </relationships>
+        </class>
+        <class className="CommentCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bngView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="memberPic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="postLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ratingPic" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="CommentsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DashboardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DashboardViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="outlet" name="avatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DescriptionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DescriptionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tabChanged:"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="featuresTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="infosTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tabSelector" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="DetailCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addToFavorites:"/>
+                <relationship kind="action" name="shareThis:"/>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="shareBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="typeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EditPasswordViewController" superclassName="FormViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditPasswordViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editPasswordDone:"/>
+            </relationships>
+        </class>
+        <class className="EditProfilViewController" superclassName="FormViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditProfilViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editProfileDone:"/>
+            </relationships>
+        </class>
+        <class className="FeatureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeatureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="featureLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FormViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FormViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="GalleryViewController" superclassName="ATPagingViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GalleryViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="FormViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="fbLogin:"/>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="alreadyMember1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="alreadyMember2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fbLoginBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="needAccount1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="needAccount2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="registerBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="OfferListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OfferListViewController.h"/>
+        </class>
+        <class className="OfferViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OfferViewController.h"/>
+        </class>
+        <class className="OrderByViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderByViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="confirm:"/>
+            </relationships>
+        </class>
+        <class className="ProfilViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfilViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RegisterViewController" superclassName="FormViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ewRegister:"/>
+                <relationship kind="action" name="fbRegister:"/>
+                <relationship kind="outlet" name="cguLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fbRegisterBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="noFbLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="registerBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ResultViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchView:"/>
+                <relationship kind="outlet" name="criteriaBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loadingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loadingView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="mapViewActivity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="mapViewHelp" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapViewHelpLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="orderByBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="radiusBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolsView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SelectRadiusViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectRadiusViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="confirm:"/>
+            </relationships>
+        </class>
+        <class className="SelectSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectSearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="selectDesktop:"/>
+                <relationship kind="action" name="selectFreeSpace:"/>
+                <relationship kind="action" name="selectMeetingRoom:"/>
+                <relationship kind="outlet" name="desktopButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="freeSpaceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="meetingRoomButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SelectTypeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectTypeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="confirm:"/>
+                <relationship kind="action" name="tabChanged:"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="featuresTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="locTypesTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tabSelector" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OjE-LG-27L"/>
         <segue reference="QT3-fp-aq2"/>
-        <segue reference="sMd-eg-vjV"/>
-        <segue reference="PbO-Wt-f19"/>
+        <segue reference="qQ1-Su-lq7"/>
         <segue reference="OFK-nD-k14"/>
         <segue reference="saB-n9-cTw"/>
+        <segue reference="PbO-Wt-f19"/>
+        <segue reference="OjE-LG-27L"/>
     </inferredMetricsTieBreakers>
 </document>

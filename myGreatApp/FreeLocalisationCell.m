@@ -28,8 +28,10 @@
     [super setSelectedState:selected];
 }
 
--(void)setFieldsFromLoc:(Localisation*)loc
+-(void)setFieldsFromLoc:(Localisation*)loc withSegue:(NSString*)segue andController:(UIViewController*)controller
 {
+    [super setFieldsFromLoc:loc withSegue:segue andController:controller];
+    
     if(![loc hasFeature:f_wifi_Free] && ![loc hasFeature:f_wifi_Not_Free]) {
         [self.wifiLogo setImage:[UIImage imageNamed:@"wifi-off.png"]];
         [self.wifiLogo setHighlightedImage:[UIImage imageNamed:@"wifi-off-sel.png"]];
@@ -50,7 +52,6 @@
         [self.handicapLogo setImage:[UIImage imageNamed:@"handicap-off.png"]];
         [self.handicapLogo setHighlightedImage:[UIImage imageNamed:@"handicap-off-sel.png"]];
     }
-    [super setFieldsFromLoc:loc];
 }
 
 @end

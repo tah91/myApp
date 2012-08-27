@@ -19,6 +19,4 @@
 @property (nonatomic, strong) IBOutlet UIImageView* parkingLogo;
 @property (nonatomic, strong) IBOutlet UIImageView* handicapLogo;
 
--(void)setFieldsFromLoc:(Localisation*)loc;
-
 @end

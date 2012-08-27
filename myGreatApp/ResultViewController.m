@@ -51,6 +51,7 @@
 - (void)viewDidLoad
 {
     [self.tableView registerNib:[UINib nibWithNibName:kFreeLocalisationCellIdent bundle:nil] forCellReuseIdentifier:kFreeLocalisationCellIdent];
+    [self.tableView registerNib:[UINib nibWithNibName:kPayingLocalisationCellIdent bundle:nil] forCellReuseIdentifier:kPayingLocalisationCellIdent];
     
     [super viewDidLoad];
           
@@ -228,12 +229,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Localisation* loc = [results objectAtIndex:indexPath.row];
-    NSString* identifier = loc.isFree ? kFreeLocalisationCellIdent : @"payingLocCell";
+    NSString* identifier = loc.isFree ? kFreeLocalisationCellIdent : kPayingLocalisationCellIdent	;
     LocalisationCell* cell = (LocalisationCell*)[tableViewVal dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
         cell = [[LocalisationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    [cell setFieldsFromLoc:loc];
+    [cell setFieldsFromLoc:loc withSegue:@"cellDetailSegue" andController:self];
     return cell;
 }
 
@@ -355,7 +356,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"freeDetailSegue"] || [[segue identifier] isEqualToString:@"payingDetailSegue"]) {
+    if ([[segue identifier] isEqualToString:@"cellDetailSegue"]) {
         NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
         LocalisationCell* cell = (LocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
         

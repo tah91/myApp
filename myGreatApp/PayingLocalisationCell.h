@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LocalisationCell.h"
 
+#define kPayingLocalisationCellIdent @"PayingLocalisationCell"
+
 @interface PayingLocalisationCell : LocalisationCell
 
 
@@ -18,7 +20,5 @@
 @property (nonatomic, strong) IBOutlet UIImageView* meetingPic;
 @property (nonatomic, strong) IBOutlet UILabel* meetingLabel;
 @property (nonatomic, strong) IBOutlet UILabel* meetingPriceLabel;
-
--(void)setFieldsFromLoc:(Localisation*)loc;
 
 @end

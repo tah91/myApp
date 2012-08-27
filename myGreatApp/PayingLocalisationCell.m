@@ -31,9 +31,9 @@
     [super setSelectedState:selected];
 }
 
--(void)setFieldsFromLoc:(Localisation*)loc
+-(void)setFieldsFromLoc:(Localisation*)loc withSegue:(NSString*)segue andController:(UIViewController*)controller
 {
-    [super setFieldsFromLoc:loc];
+    [super setFieldsFromLoc:loc withSegue:segue andController:controller];
     
     NSString* meetingPrice = @"";
     NSString* meetingDisplay = @"";
