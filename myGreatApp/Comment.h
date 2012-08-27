@@ -16,6 +16,7 @@
 @property (nonatomic,copy)   NSString*  date;
 @property (nonatomic,retain) Member*    author;
 @property (nonatomic,copy)   NSString*  post;
+@property (nonatomic,copy)   NSNumber*  ratingAverage;
 @property (nonatomic,copy)   NSNumber*  rating;
 @property (nonatomic,copy)   NSNumber*  ratingPrice;
 @property (nonatomic,copy)   NSNumber*  ratingWifi;

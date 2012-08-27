@@ -9,6 +9,7 @@
 #define SEARCH_URL @"api/localisation/search"
 #define DETAILS_URL @"api/localisation/details"
 #define ADD_TO_FAV_URL @"api/localisation/addtofavorites"
+#define COMMENT_URL @"api/localisation/comment"
 #define LOGIN_URL @"api/account/login"
 #define REGISTER_URL @"api/account/register"
 #define EDIT_INFO_URL @"api/account/editInfo"

@@ -10,6 +10,6 @@
 
 @implementation Comment
 
-@synthesize id,date,author,post,rating,ratingPrice,ratingWifi,ratingDispo,ratingWelcome;
+@synthesize id,date,author,post,ratingAverage,rating,ratingPrice,ratingWifi,ratingDispo,ratingWelcome;
 
 @end

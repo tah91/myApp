@@ -9,6 +9,7 @@
 #import "CommentsViewController.h"
 #import "Comment.h"
 #import "CommentCell.h"
+#import "AddCommentViewController.h"
 
 @interface CommentsViewController ()
 
@@ -46,6 +47,17 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"addCommentSegue"]) {
+        
+        AddCommentViewController* acc = [segue destinationViewController];
+        [acc setLocalisation:localisation];
+        
+    }
+    
 }
 
 #pragma mark - Table view data source

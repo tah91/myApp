@@ -1,21 +1,24 @@
 //
-//  EditPasswordViewController.m
+//  AddCommentViewController.m
 //  myGreatApp
 //
-//  Created by Tahir Iftikhar on 22/08/12.
+//  Created by Tahir Iftikhar on 27/08/12.
 //
 //
 
-#import "EditPasswordViewController.h"
+#import "AddCommentViewController.h"
+#import "TextViewCell.h"
+#import "AppDelegate.h"
 #import "NSDate+TIAdditions.h"
 #import "SHKActivityIndicator.h"
-#import "AppDelegate.h"
 
-@interface EditPasswordViewController ()
+@interface AddCommentViewController ()
 
 @end
 
-@implementation EditPasswordViewController
+@implementation AddCommentViewController
+
+@synthesize localisation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,14 +32,11 @@
 - (void)viewDidLoad
 {
     [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
+    [self.tableView registerNib:[UINib nibWithNibName:kTextViewCellIdent bundle:nil] forCellReuseIdentifier:kTextViewCellIdent];
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Editer mon mot de passe";
-    UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone
-                                                                                    target:self
-                                                                                    action:@selector(editPasswordDone:)];
-    self.navigationItem.rightBarButtonItem = rightBarButton;
+    self.navigationItem.title = @"Commenter";
 }
 
 - (void)viewDidUnload
@@ -59,7 +59,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 2;
 }
 
 - (NSString*) getIdentForIndexPath:(NSIndexPath *)indexPath
@@ -67,6 +67,8 @@
     switch (indexPath.section) {
         case 0:
             switch (indexPath.row) {
+                case 1:
+                    return kTextViewCellIdent;
                 default:
                     break;
             }
@@ -89,29 +91,22 @@
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"Mot de passe"
+                    [cell setLabel:@"Note"
                        placeHolder:@"Requis"
-                      initialValue:[self getCurrentValueForPath:indexPath]
-                         fieldType:TextfieldTypePassword
+                      initialValue:(NSString*)[self getCurrentValueForPath:indexPath]
+                         fieldType:TextfieldTypeNumber
                             isLast:FALSE
                           delegate:self];
                     break;
                 case 1:
-                    [cell setLabel:@"Nouveau"
-                       placeHolder:@"Requis"
-                      initialValue:[self getCurrentValueForPath:indexPath]
-                         fieldType:TextfieldTypePassword
-                            isLast:FALSE
-                          delegate:self];
+                {
+                    TextViewCell* textView = (TextViewCell*)cell;
+                    [textView  setLabel:@"Description"
+                           initialValue:[self getCurrentValueForPath:indexPath]
+                                 isLast:FALSE
+                               delegate:self];
                     break;
-                case 2:
-                    [cell setLabel:@"Confirmation"
-                       placeHolder:@"Requis"
-                      initialValue:[self getCurrentValueForPath:indexPath]
-                         fieldType:TextfieldTypePassword
-                            isLast:TRUE
-                          delegate:self];
-                    break;
+                }
                 default:
                     break;
             }
@@ -137,50 +132,70 @@
      */
 }
 
--(void) submitForm
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    [super submitForm];
-    
-    NSString* oldpassword = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    NSString* newpassword = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    NSString* confirmpassword = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    
-    if([oldpassword length]==0 || [newpassword length]==0 || [confirmpassword length]==0) {
-        ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps obligatoires")
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case 1:
+                    return 100.f;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
     }
-    else if(![confirmpassword isEqualToString:newpassword]) {
-        ALERT_TITLE(@"Erreur",@"Le nouveau mot de passe et sa confirmation doivent être identiques")
-    }
-    else {
-        NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
-        [params trySetObject:[ApplicationDelegate.loginSession authData].token forKey:@"token"];
-        [params trySetObject:oldpassword forKey:@"oldpassword"];
-        [params trySetObject:newpassword forKey:@"newpassword"];
-        [params trySetObject:confirmpassword forKey:@"confirmpassword"];
-        
-        [[SHKActivityIndicator currentIndicator] displayActivity:@"Mise à jour en cours"];
-        [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:EDIT_PASSWORD_URL
-                                                                 params:params
-                                                             httpMethod:@"POST"
-                                                           onCompletion:^(NSObject* json) {
-                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:@"Mot de passe mis à jour"];
-                                                               [ApplicationDelegate.loginSession storeUserInfo:json];
-                                                           }
-                                                                onError:^(NSError* error) {
-                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:@"Mot de passe non mis à jour"];
-                                                                    ALERT_TITLE(@"Erreur",[error localizedDescription])
-                                                                }];
-    }
-}
-
-- (IBAction)editPasswordDone:(id)sender
-{
-    [self submitForm];
+    return 44.0f;
 }
 
 -(void)initCurrentValues
 {
     [super initCurrentValues];
+}
+
+-(void) submitForm
+{
+    [super submitForm];
+    
+    NSString* rating = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSString* post = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    
+    if([rating length]==0 || [post length]==0) {
+        ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps obligatoires")
+    }
+    else {
+        NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+        [params trySetObject:[ApplicationDelegate.loginSession authData].token forKey:@"token"];
+        [params trySetObject:[NSNumber numberWithInt:self.localisation.id] forKey:@"id"];
+        [params trySetObject:rating forKey:@"rating"];
+        [params trySetObject:post forKey:@"post"];
+        
+        [[SHKActivityIndicator currentIndicator] displayActivity:@"Envoi en cours"];
+        [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:COMMENT_URL
+                                                                 params:params
+                                                             httpMethod:@"POST"
+                                                           onCompletion:^(NSObject* json) {
+                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:@"Commentaire envoyé"];
+                                                           }
+                                                                onError:^(NSError* error) {
+                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:@"Commentaire non envoyé"];
+                                                                    ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                                }];
+    }
+}
+
+- (IBAction)addCommentDone:(id)sender
+{
+    [self submitForm];
+}
+
+- (IBAction)addCommentCancel:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
