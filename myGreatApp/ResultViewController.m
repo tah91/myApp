@@ -16,6 +16,8 @@
 #import "SelectRadiusViewController.h"
 #import "SelectTypeViewController.h"
 #import "UIView+TIAdditions.h"
+#import "FreeLocalisationCell.h"
+#import "PayingLocalisationCell.h"
 
 @interface ResultViewController ()
 
@@ -48,6 +50,8 @@
 
 - (void)viewDidLoad
 {
+    [self.tableView registerNib:[UINib nibWithNibName:kFreeLocalisationCellIdent bundle:nil] forCellReuseIdentifier:kFreeLocalisationCellIdent];
+    
     [super viewDidLoad];
           
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
@@ -224,7 +228,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Localisation* loc = [results objectAtIndex:indexPath.row];
-    NSString* identifier = loc.isFree ? @"freeLocCell" : @"payingLocCell";
+    NSString* identifier = loc.isFree ? kFreeLocalisationCellIdent : @"payingLocCell";
     LocalisationCell* cell = (LocalisationCell*)[tableViewVal dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
         cell = [[LocalisationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];

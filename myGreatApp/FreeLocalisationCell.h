@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LocalisationCell.h"
 
+#define kFreeLocalisationCellIdent @"FreeLocalisationCell"
+
 @interface FreeLocalisationCell : LocalisationCell
 
 @property (nonatomic, strong) IBOutlet UIImageView* wifiLogo;
