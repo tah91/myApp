@@ -43,7 +43,7 @@
 
     CGFloat newHeight = [CommentCell computeHeightFromPost:comment.post];
     CGRect previous = [self.postLabel frame];
-    [self.postLabel setFrame:CGRectMake(previous.origin.x, previous.origin.y, previous.size.width, newHeight)];
+    [self.postLabel setBounds:CGRectMake(previous.origin.x, previous.origin.y, previous.size.width, newHeight)];
 
     
     previous = [self.bngView frame];

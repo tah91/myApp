@@ -9,7 +9,7 @@
 #import "TextFieldCell.h"
 #import "InteractionLabel.h"
 
-#define kDropdownCelldent @"DropdownCell"
+#define kDropdownCellIdent @"DropdownCell"
 
 @class DropdownCell;
 

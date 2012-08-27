@@ -33,9 +33,9 @@
 
 - (void)viewDidLoad
 {
-    [self.tableView registerNib:[UINib nibWithNibName:kDropdownCelldent bundle:nil] forCellReuseIdentifier:kDropdownCelldent];
+    [self.tableView registerNib:[UINib nibWithNibName:kDropdownCellIdent bundle:nil] forCellReuseIdentifier:kDropdownCellIdent];
     [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
-    [self.tableView registerNib:[UINib nibWithNibName:kDateCelldent bundle:nil] forCellReuseIdentifier:kDateCelldent];
+    [self.tableView registerNib:[UINib nibWithNibName:kDateCellIdent bundle:nil] forCellReuseIdentifier:kDateCellIdent];
     [self.tableView registerNib:[UINib nibWithNibName:kTextViewCellIdent bundle:nil] forCellReuseIdentifier:kTextViewCellIdent];
     
     [super viewDidLoad];
@@ -78,10 +78,10 @@
             switch (indexPath.row) {
                 case 0:
                 case 3:
-                    return kDropdownCelldent;
+                    return kDropdownCellIdent;
                     break;
                 case 4:
-                    return kDateCelldent;
+                    return kDateCellIdent;
                 case 7:
                     return kTextViewCellIdent;
                 default:

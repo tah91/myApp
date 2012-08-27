@@ -45,6 +45,17 @@
 		9701472315E01684009080F7 /* btn-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9701472115E01684009080F7 /* btn-blue.png */; };
 		97027EA815AB238F00466D8E /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97027EA715AB238E00466D8E /* ResultViewController.m */; };
 		972CD66715EBB018009A8AFC /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD66615EBB018009A8AFC /* AddCommentViewController.m */; };
+		972CD68115EBCC4A009A8AFC /* DLStarRatingControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD67515EBCC4A009A8AFC /* DLStarRatingControl.m */; };
+		972CD68215EBCC4A009A8AFC /* DLStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD67715EBCC4A009A8AFC /* DLStarView.m */; };
+		972CD68315EBCC4A009A8AFC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD67915EBCC4A009A8AFC /* star.png */; };
+		972CD68415EBCC4A009A8AFC /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD67A15EBCC4A009A8AFC /* star@2x.png */; };
+		972CD68515EBCC4A009A8AFC /* star_highlighted-darker.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD67B15EBCC4A009A8AFC /* star_highlighted-darker.png */; };
+		972CD68615EBCC4A009A8AFC /* star_highlighted-darker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD67C15EBCC4A009A8AFC /* star_highlighted-darker@2x.png */; };
+		972CD68715EBCC4A009A8AFC /* star_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD67D15EBCC4A009A8AFC /* star_highlighted.png */; };
+		972CD68815EBCC4A009A8AFC /* star_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD67E15EBCC4A009A8AFC /* star_highlighted@2x.png */; };
+		972CD68915EBCC4A009A8AFC /* UIView+Subviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD68015EBCC4A009A8AFC /* UIView+Subviews.m */; };
+		972CD68C15EBCCE5009A8AFC /* RatingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD68B15EBCCE4009A8AFC /* RatingCell.m */; };
+		972CD68E15EBCD7C009A8AFC /* RatingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 972CD68D15EBCD7C009A8AFC /* RatingCell.xib */; };
 		9741190115AF279C00939706 /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190015AF279C00939706 /* ProfilViewController.m */; };
 		9741190715AF41B400939706 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190615AF41B400939706 /* LoginViewController.m */; };
 		9741190A15AF48A400939706 /* LoginSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190915AF48A400939706 /* LoginSession.m */; };
@@ -281,6 +292,21 @@
 		97027EA715AB238E00466D8E /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		972CD66515EBB018009A8AFC /* AddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentViewController.h; sourceTree = "<group>"; };
 		972CD66615EBB018009A8AFC /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
+		972CD67415EBCC4A009A8AFC /* DLStarRatingControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLStarRatingControl.h; sourceTree = "<group>"; };
+		972CD67515EBCC4A009A8AFC /* DLStarRatingControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLStarRatingControl.m; sourceTree = "<group>"; };
+		972CD67615EBCC4A009A8AFC /* DLStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLStarView.h; sourceTree = "<group>"; };
+		972CD67715EBCC4A009A8AFC /* DLStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLStarView.m; sourceTree = "<group>"; };
+		972CD67915EBCC4A009A8AFC /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		972CD67A15EBCC4A009A8AFC /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		972CD67B15EBCC4A009A8AFC /* star_highlighted-darker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_highlighted-darker.png"; sourceTree = "<group>"; };
+		972CD67C15EBCC4A009A8AFC /* star_highlighted-darker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_highlighted-darker@2x.png"; sourceTree = "<group>"; };
+		972CD67D15EBCC4A009A8AFC /* star_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_highlighted.png; sourceTree = "<group>"; };
+		972CD67E15EBCC4A009A8AFC /* star_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_highlighted@2x.png"; sourceTree = "<group>"; };
+		972CD67F15EBCC4A009A8AFC /* UIView+Subviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Subviews.h"; sourceTree = "<group>"; };
+		972CD68015EBCC4A009A8AFC /* UIView+Subviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Subviews.m"; sourceTree = "<group>"; };
+		972CD68A15EBCCE4009A8AFC /* RatingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingCell.h; sourceTree = "<group>"; };
+		972CD68B15EBCCE4009A8AFC /* RatingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingCell.m; sourceTree = "<group>"; };
+		972CD68D15EBCD7C009A8AFC /* RatingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingCell.xib; sourceTree = "<group>"; };
 		974118FF15AF279C00939706 /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
 		9741190015AF279C00939706 /* ProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilViewController.m; sourceTree = "<group>"; };
 		9741190515AF41B400939706 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -516,9 +542,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		972CD67315EBCC4A009A8AFC /* DLStarRating */ = {
+			isa = PBXGroup;
+			children = (
+				972CD67415EBCC4A009A8AFC /* DLStarRatingControl.h */,
+				972CD67515EBCC4A009A8AFC /* DLStarRatingControl.m */,
+				972CD67615EBCC4A009A8AFC /* DLStarView.h */,
+				972CD67715EBCC4A009A8AFC /* DLStarView.m */,
+				972CD67815EBCC4A009A8AFC /* images */,
+				972CD67F15EBCC4A009A8AFC /* UIView+Subviews.h */,
+				972CD68015EBCC4A009A8AFC /* UIView+Subviews.m */,
+			);
+			path = DLStarRating;
+			sourceTree = "<group>";
+		};
+		972CD67815EBCC4A009A8AFC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				972CD67915EBCC4A009A8AFC /* star.png */,
+				972CD67A15EBCC4A009A8AFC /* star@2x.png */,
+				972CD67B15EBCC4A009A8AFC /* star_highlighted-darker.png */,
+				972CD67C15EBCC4A009A8AFC /* star_highlighted-darker@2x.png */,
+				972CD67D15EBCC4A009A8AFC /* star_highlighted.png */,
+				972CD67E15EBCC4A009A8AFC /* star_highlighted@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		9780D14B15A8E18C00311B30 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				972CD67315EBCC4A009A8AFC /* DLStarRating */,
 				97FA42D715E68B8C00E4FE3E /* ShareKit */,
 				97F8711F15C1B77900F248A3 /* ATPagingView */,
 				9780D15315A8E30D00311B30 /* MKNetworkKit */,
@@ -915,6 +969,9 @@
 				979E585015E8E2F30008181D /* DateCell.h */,
 				979E585115E8E2F40008181D /* DateCell.m */,
 				979E585D15E908E00008181D /* DateCell.xib */,
+				972CD68A15EBCCE4009A8AFC /* RatingCell.h */,
+				972CD68B15EBCCE4009A8AFC /* RatingCell.m */,
+				972CD68D15EBCD7C009A8AFC /* RatingCell.xib */,
 				97E7882815B357D400F0FD4F /* NoAnimSegue.h */,
 				97E7882915B357D400F0FD4F /* NoAnimSegue.m */,
 				9700EBBC15DFCF9F005DD901 /* FormViewController.h */,
@@ -1153,6 +1210,13 @@
 				979E584F15E7F8F80008181D /* DetailCell.xib in Resources */,
 				979E585E15E908E20008181D /* DateCell.xib in Resources */,
 				975E992315E93D290004E097 /* TextViewCell.xib in Resources */,
+				972CD68315EBCC4A009A8AFC /* star.png in Resources */,
+				972CD68415EBCC4A009A8AFC /* star@2x.png in Resources */,
+				972CD68515EBCC4A009A8AFC /* star_highlighted-darker.png in Resources */,
+				972CD68615EBCC4A009A8AFC /* star_highlighted-darker@2x.png in Resources */,
+				972CD68715EBCC4A009A8AFC /* star_highlighted.png in Resources */,
+				972CD68815EBCC4A009A8AFC /* star_highlighted@2x.png in Resources */,
+				972CD68E15EBCD7C009A8AFC /* RatingCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,6 +1318,10 @@
 				975E992115E93C200004E097 /* TextViewCell.m in Sources */,
 				975E992615E97ACD0004E097 /* Meta.m in Sources */,
 				972CD66715EBB018009A8AFC /* AddCommentViewController.m in Sources */,
+				972CD68115EBCC4A009A8AFC /* DLStarRatingControl.m in Sources */,
+				972CD68215EBCC4A009A8AFC /* DLStarView.m in Sources */,
+				972CD68915EBCC4A009A8AFC /* UIView+Subviews.m in Sources */,
+				972CD68C15EBCCE5009A8AFC /* RatingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

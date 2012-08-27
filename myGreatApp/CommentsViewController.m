@@ -9,7 +9,6 @@
 #import "CommentsViewController.h"
 #import "Comment.h"
 #import "CommentCell.h"
-#import "AddCommentViewController.h"
 
 @interface CommentsViewController ()
 
@@ -55,9 +54,18 @@
         
         AddCommentViewController* acc = [segue destinationViewController];
         [acc setLocalisation:localisation];
-        
+        [acc setDelegate:self];
     }
     
+}
+
+#pragma mark - AddComment delegate
+
+-(void)commentDone:(Localisation*)newLoc
+{
+    [self dismissModalViewControllerAnimated:YES];
+    [self setLocalisation:newLoc];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "NSDate+TIAdditions.h"
 #import "SHKActivityIndicator.h"
+#import "RatingCell.h"
 
 @interface AddCommentViewController ()
 
@@ -18,7 +19,7 @@
 
 @implementation AddCommentViewController
 
-@synthesize localisation;
+@synthesize localisation,delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +32,7 @@
 
 - (void)viewDidLoad
 {
-    [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
+    [self.tableView registerNib:[UINib nibWithNibName:kRatingCellIdent bundle:nil] forCellReuseIdentifier:kRatingCellIdent];
     [self.tableView registerNib:[UINib nibWithNibName:kTextViewCellIdent bundle:nil] forCellReuseIdentifier:kTextViewCellIdent];
     
     [super viewDidLoad];
@@ -77,7 +78,7 @@
         default:
             break;
     }
-    return kTextFielCellIdent;
+    return kRatingCellIdent;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,13 +92,14 @@
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"Note"
-                       placeHolder:@"Requis"
-                      initialValue:(NSString*)[self getCurrentValueForPath:indexPath]
-                         fieldType:TextfieldTypeNumber
-                            isLast:FALSE
-                          delegate:self];
+                {
+                    RatingCell* ratingCell = (RatingCell*)cell;
+                    [ratingCell  setLabel:@"Note"
+                             initialValue:[[self getCurrentValueForPath:indexPath] floatValue]
+                                   isLast:FALSE
+                                 delegate:self];
                     break;
+                }
                 case 1:
                 {
                     TextViewCell* textView = (TextViewCell*)cell;
@@ -171,7 +173,7 @@
         NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
         [params trySetObject:[ApplicationDelegate.loginSession authData].token forKey:@"token"];
         [params trySetObject:[NSNumber numberWithInt:self.localisation.id] forKey:@"id"];
-        [params trySetObject:rating forKey:@"rating"];
+        [params trySetObject:[NSNumber numberWithFloat:[rating floatValue]] forKey:@"rating"];
         [params trySetObject:post forKey:@"post"];
         
         [[SHKActivityIndicator currentIndicator] displayActivity:@"Envoi en cours"];
@@ -180,6 +182,8 @@
                                                              httpMethod:@"POST"
                                                            onCompletion:^(NSObject* json) {
                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:@"Commentaire envoyé"];
+                                                               Localisation* newLoc = [[Localisation alloc] initWithDictionary:(NSDictionary*)json];
+                                                               [self.delegate commentDone:newLoc];
                                                            }
                                                                 onError:^(NSError* error) {
                                                                     [[SHKActivityIndicator currentIndicator] displayCompleted:@"Commentaire non envoyé"];

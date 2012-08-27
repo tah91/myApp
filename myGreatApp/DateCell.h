@@ -9,7 +9,7 @@
 #import "TextFieldCell.h"
 #import "InteractionLabel.h"
 
-#define kDateCelldent @"DateCell"
+#define kDateCellIdent @"DateCell"
 
 @interface DateCell : TextFieldCell <InteractionLabelSelection>
 

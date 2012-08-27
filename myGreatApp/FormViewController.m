@@ -126,6 +126,13 @@ static bool animated = true;
     return currentIndex;
 }
 
+#pragma mark Rating Delegate
+
+-(void)ratingDone:(TextFieldCell*)cell
+{
+    [self updateValue:cell];
+}
+
 #pragma mark - InteractionLabel Delegate
 
 -(void)selectionDone

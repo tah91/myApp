@@ -10,8 +10,9 @@
 #import "TextFieldCell.h"
 #import "DropdownCell.h"
 #import "TextViewCell.h"
+#import "RatingCell.h"
 
-@interface FormViewController : UIViewController <UITextFieldDelegate, InteractionLabelDelegate, UITextViewDelegate, TextViewEdition>
+@interface FormViewController : UIViewController <UITextFieldDelegate, InteractionLabelDelegate, UITextViewDelegate, TextViewEdition, RatingDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) TextFieldCell* currentCell;
