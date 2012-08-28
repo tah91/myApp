@@ -63,6 +63,8 @@
 		972CD69B15ED00F8009A8AFC /* SearchByNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD69A15ED00F7009A8AFC /* SearchByNameViewController.m */; };
 		972CD69E15ED2B7C009A8AFC /* SearchButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD69D15ED2B79009A8AFC /* SearchButtonView.m */; };
 		972CD6A015ED2CD1009A8AFC /* SearchButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 972CD69F15ED2CCE009A8AFC /* SearchButtonView.xib */; };
+		972CD6A315ED5900009A8AFC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 972CD6A115ED58FF009A8AFC /* Localizable.strings */; };
+		972CD6A515ED5914009A8AFC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 972CD6A115ED58FF009A8AFC /* Localizable.strings */; };
 		9741190115AF279C00939706 /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190015AF279C00939706 /* ProfilViewController.m */; };
 		9741190715AF41B400939706 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190615AF41B400939706 /* LoginViewController.m */; };
 		9741190A15AF48A400939706 /* LoginSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190915AF48A400939706 /* LoginSession.m */; };
@@ -325,6 +327,8 @@
 		972CD69C15ED2B76009A8AFC /* SearchButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchButtonView.h; sourceTree = "<group>"; };
 		972CD69D15ED2B79009A8AFC /* SearchButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchButtonView.m; sourceTree = "<group>"; };
 		972CD69F15ED2CCE009A8AFC /* SearchButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchButtonView.xib; sourceTree = "<group>"; };
+		972CD6A215ED5900009A8AFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		972CD6A415ED5914009A8AFC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		974118FF15AF279C00939706 /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
 		9741190015AF279C00939706 /* ProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilViewController.m; sourceTree = "<group>"; };
 		9741190515AF41B400939706 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -832,6 +836,7 @@
 		97F42E7315A3428000EACD05 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				972CD6A115ED58FF009A8AFC /* Localizable.strings */,
 				97F42E7415A3428000EACD05 /* myGreatApp-Info.plist */,
 				97F42E7515A3428000EACD05 /* InfoPlist.strings */,
 				97F42E7815A3428000EACD05 /* main.m */,
@@ -1095,6 +1100,7 @@
 			knownRegions = (
 				en,
 				da,
+				fr,
 			);
 			mainGroup = 97F42E5D15A3428000EACD05;
 			productRefGroup = 97F42E6915A3428000EACD05 /* Products */;
@@ -1249,6 +1255,8 @@
 				972CD69015EBF5AE009A8AFC /* FreeLocalisationCell.xib in Resources */,
 				972CD69215EBFE35009A8AFC /* PayingLocalisationCell.xib in Resources */,
 				972CD6A015ED2CD1009A8AFC /* SearchButtonView.xib in Resources */,
+				972CD6A315ED5900009A8AFC /* Localizable.strings in Resources */,
+				972CD6A515ED5914009A8AFC /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1391,6 +1399,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		972CD6A115ED58FF009A8AFC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				972CD6A215ED5900009A8AFC /* en */,
+				972CD6A415ED5914009A8AFC /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		97F42E7515A3428000EACD05 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
