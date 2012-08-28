@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *freeSpaceButton;
 @property (weak, nonatomic) IBOutlet UIButton *desktopButton;
 @property (weak, nonatomic) IBOutlet UIButton *meetingRoomButton;
+@property (weak, nonatomic) IBOutlet UIButton *launchSearchBtn;
 
 @end

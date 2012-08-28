@@ -36,6 +36,7 @@
     [self.navigationController cleanNavigationStackAndKeep:[DashboardViewController class]];
     self.nameLabel.text = [ApplicationDelegate.loginSession authData].firstName;
     [self.avatar setImageWithStyle:[UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[ApplicationDelegate.loginSession authData].avatar]]]];
+    self.navigationItem.title = @"Profil";
 	// Do any additional setup after loading the view.
 }
 

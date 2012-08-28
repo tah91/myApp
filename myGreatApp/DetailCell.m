@@ -11,7 +11,7 @@
 
 @implementation DetailCell
 
-@synthesize titleLabel, descriptionLabel;
+@synthesize titleLabel, descriptionLabel, segueIdent, segueController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -41,6 +41,17 @@
             [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory.png" ]]];
         }
     }
+    
+    if(selected && [self.segueIdent length] != 0 && self.segueController != nil) {
+        [self.segueController performSegueWithIdentifier:self.segueIdent sender:self.segueController];
+    }
+}
+
+-(void)setLabel:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller
+{
+    self.titleLabel.text = label;
+    self.segueIdent = segue;
+    self.segueController = controller;
 }
 
 @end

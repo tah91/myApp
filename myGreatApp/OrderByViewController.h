@@ -10,7 +10,10 @@
 #import "ResultViewController.h"
 #import "SearchCriteria.h"
 
-@interface OrderByViewController : UITableViewController
+@interface OrderByViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView* tableView;
+@property (weak, nonatomic) IBOutlet UINavigationBar *bar;
 
 @property (nonatomic, copy) NSDictionary* orderByTypes;
 @property (nonatomic, copy) NSArray* orderByArray;

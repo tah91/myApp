@@ -39,7 +39,7 @@
     [self setSelectedState:selected];
     
     if(selected && [self.segueIdent length] != 0 && self.segueController != nil) {
-        [self.segueController performSegueWithIdentifier:segueIdent sender:self.segueController];
+        [self.segueController performSegueWithIdentifier:self.segueIdent sender:self.segueController];
     }
     
     [super setSelected:selected animated:animated];

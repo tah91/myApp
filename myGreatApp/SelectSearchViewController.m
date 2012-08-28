@@ -8,6 +8,8 @@
 
 #import "SelectSearchViewController.h"
 #import "ResultViewController.h"
+#import "SearchButtonView.h"
+#import "UIView+TIAdditions.h"
 
 @interface SelectSearchViewController ()
 
@@ -17,6 +19,7 @@
 @synthesize freeSpaceButton;
 @synthesize desktopButton;
 @synthesize meetingRoomButton;
+@synthesize launchSearchBtn;
 
 @synthesize criteria;
 
@@ -32,17 +35,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [freeSpaceButton setImage:[UIImage imageNamed:@"freeplaces.png"] forState:UIControlStateNormal];
-    [freeSpaceButton setImage:[UIImage imageNamed:@"freeplaces_u.png"] forState:UIControlStateSelected];
+
+    [SearchButtonView setBtn:freeSpaceButton owner:self title:@"Lieux gratuits" withSubtitle:@"Lieux gratuits sous titre"];
+    [SearchButtonView setBtnState:freeSpaceButton state:criteria.freePlace image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
     [freeSpaceButton setSelected:criteria.freePlace];
-    [desktopButton setImage:[UIImage imageNamed:@"desktop.png"] forState:UIControlStateNormal];
-    [desktopButton setImage:[UIImage imageNamed:@"desktop_u.png"] forState:UIControlStateSelected];
+
+    [SearchButtonView setBtn:desktopButton owner:self title:@"Bureaux" withSubtitle:@"Bureaux sous titre"];
+    [SearchButtonView setBtnState:desktopButton state:criteria.desktop image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
     [desktopButton setSelected:criteria.desktop];
-    [meetingRoomButton setImage:[UIImage imageNamed:@"meetingroom.png"] forState:UIControlStateNormal];
-    [meetingRoomButton setImage:[UIImage imageNamed:@"meetingroom_u.png"] forState:UIControlStateSelected];
+
+    [SearchButtonView setBtn:meetingRoomButton owner:self title:@"Salles de réunion" withSubtitle:@"Salles de réunion sous titre"];
+    [SearchButtonView setBtnState:meetingRoomButton state:criteria.meetingRoom image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
     [meetingRoomButton setSelected:criteria.meetingRoom];
     
-    [self performSegueWithIdentifier:@"resultSegue" sender:self];
+    self.navigationItem.title = @"Filtrer";
+    [self.launchSearchBtn setButtonWithStyle:@"Lancer la recherche"];
 }
 
 - (void)viewDidUnload
@@ -50,6 +57,7 @@
     [self setFreeSpaceButton:nil];
     [self setDesktopButton:nil];
     [self setMeetingRoomButton:nil];
+    [self setLaunchSearchBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -69,8 +77,11 @@
     }
 }
 
-- (IBAction)selectFreeSpace:(id)sender {
-    if ([sender isSelected]) {
+- (IBAction)selectFreeSpace:(id)sender
+{
+    BOOL isSelected = [sender isSelected];
+    [SearchButtonView setBtnState:freeSpaceButton state:!isSelected image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    if (isSelected) {
         [sender setSelected:NO];
         [criteria setFreePlace:false];
     }else {
@@ -79,8 +90,11 @@
     }
 }
 
-- (IBAction)selectDesktop:(id)sender {
-    if ([sender isSelected]) {
+- (IBAction)selectDesktop:(id)sender
+{
+    BOOL isSelected = [sender isSelected];
+    [SearchButtonView setBtnState:desktopButton state:!isSelected image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    if (isSelected) {
         [sender setSelected:NO];
         [criteria setDesktop:false];
     }else {
@@ -89,8 +103,11 @@
     }
 }
 
-- (IBAction)selectMeetingRoom:(id)sender {
-    if ([sender isSelected]) {
+- (IBAction)selectMeetingRoom:(id)sender
+{
+    BOOL isSelected = [sender isSelected];
+    [SearchButtonView setBtnState:meetingRoomButton state:!isSelected image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    if (isSelected) {
         [sender setSelected:NO];
         [criteria setMeetingRoom:false];
     }else {

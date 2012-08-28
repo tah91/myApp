@@ -47,6 +47,28 @@
     return self;
 }
 
+-(id) initWithName:(NSString *)theName
+{
+    if (!(self = [self init]))
+        return nil;
+    
+    [self setName:theName];
+    
+    return self;
+}
+
+-(id) initWithLatitude:(NSNumber *)lat andLongitude:(NSNumber*)lng
+{
+    if (!(self = [self init]))
+        return nil;
+    
+    [self setLatitude:lat];
+    [self setLongitude:lng];
+
+    return self;
+}
+
+
 -(NSMutableDictionary*) getParams {
     NSMutableArray* offerTypesArray = [NSMutableArray array];
     if(freePlace) {

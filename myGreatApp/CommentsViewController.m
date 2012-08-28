@@ -33,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Commentaires";
 }
 
 - (void)viewDidUnload

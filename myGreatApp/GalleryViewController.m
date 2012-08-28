@@ -60,7 +60,7 @@
 }
 
 - (void)currentPageDidChangeInPagingView:(ATPagingView *)pagingView {
-    self.navigationItem.title = [NSString stringWithFormat:@"%d of %d", pagingView.currentPageIndex+1, pagingView.pageCount];
+    self.navigationItem.title = [NSString stringWithFormat:@"%d sur %d", pagingView.currentPageIndex+1, pagingView.pageCount];
 }
 
 @end

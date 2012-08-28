@@ -50,6 +50,7 @@
     [self.featuresTableView hideEmptyTableSeparators];
     
     [self setSubviewAtIndex:selectedTab];
+    self.navigationItem.title = @"Détails";
 }
 
 - (void)viewDidUnload

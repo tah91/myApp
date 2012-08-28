@@ -41,6 +41,8 @@
 	// Do any additional setup after loading the view.
     
     [self fetchData];
+    
+    self.navigationItem.title = @"Favoris";
 }
 
 - (void)viewDidUnload

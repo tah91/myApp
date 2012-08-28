@@ -40,6 +40,7 @@
     [self.noFbLabel setSubtitleWithStyle:@"Pas de compte Facebook ?"];
     [self.registerBtn setButtonWithStyle:@"Créer un compte"];
     [self.cguLabel setSubtitleWithStyle:@"En cliquant sur ""Créer un compte"" ou ""Inscrivez-vous avec Facebook"", vous confirmez que vous acceptez les conditions générales."];
+    self.navigationItem.title = @"Inscription";
 }
 
 - (void)viewDidUnload

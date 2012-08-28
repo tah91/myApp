@@ -13,6 +13,7 @@
 @interface SelectTypeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UINavigationBar *bar;
 @property (strong, nonatomic) IBOutlet UITableView *locTypesTableView;
 @property (strong, nonatomic) IBOutlet UITableView *featuresTableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tabSelector;

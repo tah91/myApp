@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#define kDetailCellIdent @"DetailCell"
+
 @interface DetailCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel* titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel* descriptionLabel;
+
+@property (nonatomic, weak) UIViewController* segueController;
+@property (nonatomic, strong) NSString* segueIdent;
+
+-(void)setLabel:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller;
 
 @end

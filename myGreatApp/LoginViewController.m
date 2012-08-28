@@ -53,6 +53,8 @@
     [self.needAccount1 setTitleWithStyle:@"Besoin d'un compte ?"];
     [self.needAccount2 setSubtitleWithStyle:@"S'inscrire sur eWorky"];
     
+    self.navigationItem.title = @"Connexion";
+    
     [super viewDidLoad];
 }
 

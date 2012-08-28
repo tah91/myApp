@@ -175,6 +175,8 @@ typedef enum feature{
 @property (nonatomic) BOOL meetingRoom;
 
 -(id) initWithPlace:(NSString*)place;
+-(id) initWithName:(NSString *)theName;
+-(id) initWithLatitude:(NSNumber *)latitude andLongitude:(NSNumber*)longitude;
 -(NSMutableDictionary*) getParams;
 
 @end

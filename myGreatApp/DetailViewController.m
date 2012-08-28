@@ -16,6 +16,8 @@
 #import "AppDelegate.h"
 #import "NSDate+TIAdditions.h"
 
+#define kTitleLength 20
+
 @interface DetailViewController ()
 
 @end
@@ -43,6 +45,7 @@
 
 - (void)viewDidLoad
 {
+    [self.tableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
     [super viewDidLoad];
     
     [self loadData];
@@ -85,6 +88,11 @@
     self.cityLabel.textColor = WHITE_COLOR;
     
     [self.shareBtn setButtonWithStyle:@"Partager"];
+    NSString* title = localisation.name;
+    if([title length] > kTitleLength) {
+        //title = [title substringToIndex:kTitleLength];
+    }
+    self.navigationItem.title = title;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -151,7 +159,7 @@
 
 - (NSString*) getIdentForIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* detailIdent = @"detailCell";
+    static NSString* detailIdent = kDetailCellIdent;
     static NSString* descriptionIdent = @"descriptionCell";
     
     switch (indexPath.section) {
@@ -183,26 +191,28 @@
         case 0:
         {
             OffersSummary* elem = [[localisation offerSummaries] objectAtIndex:indexPath.row];
+            [cell setLabel:[elem getTitle:TRUE] withSegue:@"desktopsSegue" andController:self];
             cell.titleLabel.text = [elem getTitle:true];
         }
             break;
         case 1:
         {
-            cell.titleLabel.text = @"Commentaires";
+            [cell setLabel:@"Commentaires" withSegue:@"commentsSegue" andController:self];
         }
             break;
         case 2:
         {
             switch (indexPath.row) {
                 case 0:
+                    [cell setLabel:@"Description" withSegue:@"descriptionSegue" andController:self];
                     cell.titleLabel.text = @"Description";
                     break;
                 case 1:
+                    [cell setLabel:localisation.description withSegue:@"descriptionSegue" andController:self];
                     cell.titleLabel.text = localisation.description;
-                    cell.accessoryView = nil;
                     break;
                 case 2:
-                    cell.titleLabel.text = @"Infos pratiques";
+                    [cell setLabel:@"Infos pratiques" withSegue:@"infosSegue" andController:self];
                     break;
                 default:
                     break;
@@ -211,7 +221,7 @@
             break;
         case 3:
         {
-            cell.titleLabel.text = @"Gallerie";
+            [cell setLabel:@"Gallerie" withSegue:@"gallerySegue" andController:self];
         }
             break;
         default:
@@ -223,7 +233,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
         case 0:
@@ -269,7 +279,7 @@
         default:
             break;
     }
-}
+}*/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {

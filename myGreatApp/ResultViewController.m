@@ -65,20 +65,23 @@
     
     UIImage *toolsBng = [[UIImage imageNamed:@"tools-btn-bng.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
-    [orderByBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     UIImage *orderByLogo = [UIImage imageNamed:@"tool-orderby-logo.png"];
+    [orderByBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     [orderByBtn setImage:orderByLogo forState:UIControlStateNormal];
+    [orderByBtn setTitle:@"Trier" forState:UIControlStateNormal];
     [orderByBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
     
     UIImage *criteriaLogo = [UIImage imageNamed:@"tool-criteria-logo.png"];
     [criteriaBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     [criteriaBtn setImage:criteriaLogo forState:UIControlStateNormal];
     [criteriaBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
+    [criteriaBtn setTitle:@"Critères" forState:UIControlStateNormal];
     
     UIImage *radiusLogo = [UIImage imageNamed:@"tool-radius-logo.png"];
     [radiusBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     [radiusBtn setImage:radiusLogo forState:UIControlStateNormal];
     [radiusBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
+    [radiusBtn setTitle:@"Rayon" forState:UIControlStateNormal];
     
     self.results = [NSMutableArray arrayWithCapacity:20];
     self.isFetching = false;
@@ -86,6 +89,8 @@
     self.loadingLabel.text = @"Chargment des lieux...";
     self.mapViewHelpLabel.text = @"Chargement...";
     [self fetchData:false];
+    
+    self.navigationItem.title = @"Résultats";
 }
 
 - (void)viewDidUnload
@@ -192,8 +197,6 @@
     
     self.fromCode = true;
     [self.mapView setRegion:[self getRegion] animated:YES];
-    
-    self.navigationItem.title = criteria.place;
     
     [self.tableView reloadData];
     if([self.results count] >= maxCount.intValue) {

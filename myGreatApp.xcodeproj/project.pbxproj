@@ -59,6 +59,10 @@
 		972CD69015EBF5AE009A8AFC /* FreeLocalisationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 972CD68F15EBF5AD009A8AFC /* FreeLocalisationCell.xib */; };
 		972CD69215EBFE35009A8AFC /* PayingLocalisationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 972CD69115EBFE34009A8AFC /* PayingLocalisationCell.xib */; };
 		972CD69515EC09D0009A8AFC /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD69415EC09CF009A8AFC /* FavoritesViewController.m */; };
+		972CD69815ECFAF4009A8AFC /* SearchHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD69715ECFAF3009A8AFC /* SearchHomeViewController.m */; };
+		972CD69B15ED00F8009A8AFC /* SearchByNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD69A15ED00F7009A8AFC /* SearchByNameViewController.m */; };
+		972CD69E15ED2B7C009A8AFC /* SearchButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CD69D15ED2B79009A8AFC /* SearchButtonView.m */; };
+		972CD6A015ED2CD1009A8AFC /* SearchButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 972CD69F15ED2CCE009A8AFC /* SearchButtonView.xib */; };
 		9741190115AF279C00939706 /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190015AF279C00939706 /* ProfilViewController.m */; };
 		9741190715AF41B400939706 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190615AF41B400939706 /* LoginViewController.m */; };
 		9741190A15AF48A400939706 /* LoginSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190915AF48A400939706 /* LoginSession.m */; };
@@ -314,6 +318,13 @@
 		972CD69115EBFE34009A8AFC /* PayingLocalisationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayingLocalisationCell.xib; sourceTree = "<group>"; };
 		972CD69315EC09CF009A8AFC /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
 		972CD69415EC09CF009A8AFC /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
+		972CD69615ECFAF1009A8AFC /* SearchHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHomeViewController.h; sourceTree = "<group>"; };
+		972CD69715ECFAF3009A8AFC /* SearchHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHomeViewController.m; sourceTree = "<group>"; };
+		972CD69915ED00F5009A8AFC /* SearchByNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchByNameViewController.h; sourceTree = "<group>"; };
+		972CD69A15ED00F7009A8AFC /* SearchByNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchByNameViewController.m; sourceTree = "<group>"; };
+		972CD69C15ED2B76009A8AFC /* SearchButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchButtonView.h; sourceTree = "<group>"; };
+		972CD69D15ED2B79009A8AFC /* SearchButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchButtonView.m; sourceTree = "<group>"; };
+		972CD69F15ED2CCE009A8AFC /* SearchButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchButtonView.xib; sourceTree = "<group>"; };
 		974118FF15AF279C00939706 /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
 		9741190015AF279C00939706 /* ProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilViewController.m; sourceTree = "<group>"; };
 		9741190515AF41B400939706 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -673,8 +684,12 @@
 		97A0522815C42AFD0047EDD7 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				972CD69615ECFAF1009A8AFC /* SearchHomeViewController.h */,
+				972CD69715ECFAF3009A8AFC /* SearchHomeViewController.m */,
 				97F42E8115A3428000EACD05 /* SearchViewController.h */,
 				97F42E8215A3428000EACD05 /* SearchViewController.m */,
+				972CD69915ED00F5009A8AFC /* SearchByNameViewController.h */,
+				972CD69A15ED00F7009A8AFC /* SearchByNameViewController.m */,
 				97F8156E15AECB09008DEB30 /* SelectSearchViewController.h */,
 				97F8156F15AECB09008DEB30 /* SelectSearchViewController.m */,
 				97A0522315C424500047EDD7 /* OrderByViewController.h */,
@@ -985,6 +1000,9 @@
 				972CD68D15EBCD7C009A8AFC /* RatingCell.xib */,
 				97E7882815B357D400F0FD4F /* NoAnimSegue.h */,
 				97E7882915B357D400F0FD4F /* NoAnimSegue.m */,
+				972CD69C15ED2B76009A8AFC /* SearchButtonView.h */,
+				972CD69D15ED2B79009A8AFC /* SearchButtonView.m */,
+				972CD69F15ED2CCE009A8AFC /* SearchButtonView.xib */,
 				9700EBBC15DFCF9F005DD901 /* FormViewController.h */,
 				9700EBBD15DFCFA0005DD901 /* FormViewController.m */,
 			);
@@ -1230,6 +1248,7 @@
 				972CD68E15EBCD7C009A8AFC /* RatingCell.xib in Resources */,
 				972CD69015EBF5AE009A8AFC /* FreeLocalisationCell.xib in Resources */,
 				972CD69215EBFE35009A8AFC /* PayingLocalisationCell.xib in Resources */,
+				972CD6A015ED2CD1009A8AFC /* SearchButtonView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1336,6 +1355,9 @@
 				972CD68915EBCC4A009A8AFC /* UIView+Subviews.m in Sources */,
 				972CD68C15EBCCE5009A8AFC /* RatingCell.m in Sources */,
 				972CD69515EC09D0009A8AFC /* FavoritesViewController.m in Sources */,
+				972CD69815ECFAF4009A8AFC /* SearchHomeViewController.m in Sources */,
+				972CD69B15ED00F8009A8AFC /* SearchByNameViewController.m in Sources */,
+				972CD69E15ED2B7C009A8AFC /* SearchButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

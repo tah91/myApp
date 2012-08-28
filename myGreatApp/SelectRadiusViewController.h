@@ -10,7 +10,10 @@
 #import "ResultViewController.h"
 #import "SearchCriteria.h"
 
-@interface SelectRadiusViewController : UITableViewController
+@interface SelectRadiusViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView* tableView;
+@property (weak, nonatomic) IBOutlet UINavigationBar *bar;
 
 @property (nonatomic, copy) NSDictionary* radiusTypes;
 @property (nonatomic, copy) NSArray* radiusArray;

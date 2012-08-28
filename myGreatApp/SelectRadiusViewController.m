@@ -14,13 +14,14 @@
 @end
 
 @implementation SelectRadiusViewController
+@synthesize bar;
 
-@synthesize radiusTypes,checkedIndexPath,radiusArray;
+@synthesize tableView,radiusTypes,checkedIndexPath,radiusArray;
 @synthesize applySearchDelegate,criteria;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -29,6 +30,8 @@
 
 - (void)viewDidLoad
 {
+    [self.tableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
+    
     [super viewDidLoad];
 
     radiusTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -45,10 +48,13 @@
     NSString* selectedRadius = [[radiusTypes allKeysForObject:criteria.boundary] objectAtIndex:0];
     NSUInteger index = [radiusArray indexOfObject:selectedRadius];
     checkedIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    self.bar.topItem.title = @"Rayon";
 }
 
 - (void)viewDidUnload
 {
+    [self setBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -71,11 +77,11 @@
     return [radiusArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"radiusCell"];
+    DetailCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:kDetailCellIdent];
     
-    cell.titleLabel.text = [radiusArray objectAtIndex:indexPath.row];
+    [cell setLabel:[radiusArray objectAtIndex:indexPath.row] withSegue:nil andController:nil];
     if([self.checkedIndexPath isEqual:indexPath])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -90,26 +96,28 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableViewVal didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Uncheck the previous checked row
     if(self.checkedIndexPath)
     {
-        UITableViewCell* uncheckCell = [tableView cellForRowAtIndexPath:self.checkedIndexPath];
+        UITableViewCell* uncheckCell = [tableViewVal cellForRowAtIndexPath:self.checkedIndexPath];
         uncheckCell.accessoryType = UITableViewCellAccessoryNone;
     }
-    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell* cell = [tableViewVal cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     self.checkedIndexPath = indexPath;
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableViewVal deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)cancel:(id)sender
+{
     [applySearchDelegate cancel];
 }
 
-- (IBAction)confirm:(id)sender {
+- (IBAction)confirm:(id)sender
+{
     NSNumber* radius = [radiusTypes objectForKey:[radiusArray objectAtIndex:checkedIndexPath.row]];
     [criteria setBoundary:radius];
     [applySearchDelegate confirmWithCriteria:criteria];

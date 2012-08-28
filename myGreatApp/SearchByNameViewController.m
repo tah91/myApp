@@ -1,24 +1,34 @@
 //
-//  SearchViewController.m
+//  SearchByNameViewController.m
 //  myGreatApp
 //
-//  Created by Tahir Iftikhar on 03/07/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Tahir Iftikhar on 28/08/12.
+//
 //
 
-#import "SearchViewController.h"
+#import "SearchByNameViewController.h"
 #import "SelectSearchViewController.h"
 #import "SearchCriteria.h"
 #import "DetailCell.h"
 
-@interface SearchViewController ()
+@interface SearchByNameViewController ()
 
 @end
 
-@implementation SearchViewController
+@implementation SearchByNameViewController
+
 @synthesize tableView;
 @synthesize searchBar;
 @synthesize previousSearch;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -26,7 +36,7 @@
     
     [super viewDidLoad];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSData* previousSearchData = [defaults objectForKey:kSearchKey];
+    NSData* previousSearchData = [defaults objectForKey:kSearchByNameKey];
     if (previousSearchData != nil)
     {
         NSArray* oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:previousSearchData];
@@ -39,7 +49,7 @@
         self.previousSearch = [[NSMutableArray alloc] init];
     }
     
-    self.navigationItem.title = @"Près d'un lieu";
+    self.navigationItem.title = @"Par nom du lieu";
 }
 
 - (void)viewDidUnload
@@ -47,13 +57,12 @@
     [self setSearchBar:nil];
     [self setTableView:nil];
     self.previousSearch = nil;
-    [super viewDidUnload];	
-    // Release any retained subviews of the main view.
+    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source
@@ -71,25 +80,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailCell* cell = (DetailCell *)[tableViewVal dequeueReusableCellWithIdentifier:kDetailCellIdent];
-    [cell setLabel:[self.previousSearch objectAtIndex:indexPath.row] withSegue:@"previousSearchSegue" andController:self];
+    [cell setLabel:[self.previousSearch objectAtIndex:indexPath.row] withSegue:@"previousSearchByNameSegue" andController:self];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"searchBarSegue"]) {
+    if ([[segue identifier] isEqualToString:@"searchByNameBarSegue"]) {
         
         SelectSearchViewController* ss = [segue destinationViewController];
         
-        SearchCriteria* criteria = [[SearchCriteria alloc] initWithPlace:searchBar.text];
+        SearchCriteria* criteria = [[SearchCriteria alloc] initWithName:searchBar.text];
         [ss setCriteria:criteria];
-    } else if ([[segue identifier] isEqualToString:@"previousSearchSegue"]) {
+    } else if ([[segue identifier] isEqualToString:@"previousSearchByNameSegue"]) {
         SelectSearchViewController* ss = [segue destinationViewController];
         NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
         DetailCell* cell = (DetailCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
         
-        SearchCriteria* criteria = [[SearchCriteria alloc] initWithPlace:cell.titleLabel.text];
+        SearchCriteria* criteria = [[SearchCriteria alloc] initWithName:cell.titleLabel.text];
         [ss setCriteria:criteria];
     }
 }
@@ -98,9 +107,9 @@
 {
     if(![self.previousSearch containsObject:searchBar.text])
         [self.previousSearch insertObject:searchBar.text atIndex:0];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.previousSearch] forKey:kSearchKey];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.previousSearch] forKey:kSearchByNameKey];
     
-    [self performSegueWithIdentifier:@"previousSearchSegue" sender:theSearchBar];
+    [self performSegueWithIdentifier:@"searchByNameBarSegue" sender:theSearchBar];
 }
 
 @end

@@ -15,6 +15,7 @@
 
 @implementation SelectTypeViewController
 @synthesize containerView;
+@synthesize bar;
 @synthesize locTypesTableView;
 @synthesize featuresTableView;
 @synthesize tabSelector;
@@ -32,41 +33,48 @@
 
 - (void)viewDidLoad
 {
+    [self.locTypesTableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
+    [self.featuresTableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
+    
     [super viewDidLoad];
     
-    locTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
-                [NSNumber numberWithInt:-1],@"Tous les types",
-                [NSNumber numberWithInt:lt_wifiHotspot],@"wifiHotspot",
-                [NSNumber numberWithInt:lt_cafeRestaurant],@"cafeRestaurant",
-                [NSNumber numberWithInt:lt_librairyMuseum],@"librairyMuseum",
-                [NSNumber numberWithInt:lt_internetCafe],@"internetCafe",
-                [NSNumber numberWithInt:lt_travelerLounge],@"travelerLounge",
-                [NSNumber numberWithInt:lt_hotel],@"hotel",
-                [NSNumber numberWithInt:lt_telecentre],@"telecentre",
-                [NSNumber numberWithInt:lt_businessLounge],@"businessLounge",
-                [NSNumber numberWithInt:lt_coworkingSpace],@"coworkingSpace",
-                [NSNumber numberWithInt:lt_corporateCentre],@"corporateCentre",
-                [NSNumber numberWithInt:lt_privatePlace],@"privatePlace",
-                [NSNumber numberWithInt:lt_sharedOffice],@"sharedOffice",
-                nil];
+    self.locTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
+                     [NSNumber numberWithInt:-1],@"Tous les types",
+                     [NSNumber numberWithInt:lt_wifiHotspot],@"wifiHotspot",
+                     [NSNumber numberWithInt:lt_cafeRestaurant],@"cafeRestaurant",
+                     [NSNumber numberWithInt:lt_librairyMuseum],@"librairyMuseum",
+                     [NSNumber numberWithInt:lt_internetCafe],@"internetCafe",
+                     [NSNumber numberWithInt:lt_travelerLounge],@"travelerLounge",
+                     [NSNumber numberWithInt:lt_hotel],@"hotel",
+                     [NSNumber numberWithInt:lt_telecentre],@"telecentre",
+                     [NSNumber numberWithInt:lt_businessLounge],@"businessLounge",
+                     [NSNumber numberWithInt:lt_coworkingSpace],@"coworkingSpace",
+                     [NSNumber numberWithInt:lt_corporateCentre],@"corporateCentre",
+                     [NSNumber numberWithInt:lt_privatePlace],@"privatePlace",
+                     [NSNumber numberWithInt:lt_sharedOffice],@"sharedOffice",
+                     nil];
     
-    locArray = [locTypes keysSortedByValueUsingSelector:@selector(compare:)];
+    self.locArray = [locTypes keysSortedByValueUsingSelector:@selector(compare:)];
     
-    featureTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    [NSNumber numberWithInt:-1],@"Tous les services",
-                    [NSNumber numberWithInt:f_wifi_Free],@"wifi",
-                    [NSNumber numberWithInt:f_coffee],@"coffee",
-                    [NSNumber numberWithInt:f_restauration],@"resto",
-                    [NSNumber numberWithInt:f_parking],@"parking",
-                    [NSNumber numberWithInt:f_handicap],@"handicap",
-                    nil];
+    self.featureTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         [NSNumber numberWithInt:-1],@"Tous les services",
+                         [NSNumber numberWithInt:f_wifi_Free],@"wifi",
+                         [NSNumber numberWithInt:f_coffee],@"coffee",
+                         [NSNumber numberWithInt:f_restauration],@"resto",
+                         [NSNumber numberWithInt:f_parking],@"parking",
+                         [NSNumber numberWithInt:f_handicap],@"handicap",
+                         nil];
     
-    featureArray = [featureTypes keysSortedByValueUsingSelector:@selector(compare:)];
+    self.featureArray = [featureTypes keysSortedByValueUsingSelector:@selector(compare:)];
     
-    [featuresTableView removeFromSuperview];
+    [self.featuresTableView removeFromSuperview];
     
-    selectedLoc = [self setFromString:criteria.types keys:locTypes andArray:locArray];
-    selectedFeatures = [self setFromString:criteria.features keys:featureTypes andArray:featureArray];
+    self.selectedLoc = [self setFromString:criteria.types keys:locTypes andArray:locArray];
+    self.selectedFeatures = [self setFromString:criteria.features keys:featureTypes andArray:featureArray];
+    
+    self.bar.topItem.title = @"Critères";
+    [self.tabSelector setTitle:@"Type" forSegmentAtIndex:0];
+    [self.tabSelector setTitle:@"Services" forSegmentAtIndex:1];
 }
 
 - (NSIndexPath*)getIndex:(NSInteger)intVal
@@ -105,6 +113,7 @@
     [self setLocTypesTableView:nil];
     [self setFeaturesTableView:nil];
     [self setTabSelector:nil];
+    [self setBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -135,8 +144,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(tableView == locTypesTableView) {
-        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"locTypeCell"];
-        cell.titleLabel.text = [locArray objectAtIndex:indexPath.row];
+        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:kDetailCellIdent];
+        
+        [cell setLabel:[locArray objectAtIndex:indexPath.row] withSegue:nil andController:nil];
         cell.accessoryType = UITableViewCellAccessoryNone;
         if([selectedLoc containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [selectedLoc count] == 0)) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -145,9 +155,9 @@
         return cell;
     }
     else if(tableView == featuresTableView) {
-        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"featureCell"];
+        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:kDetailCellIdent];
         
-        cell.titleLabel.text = [featureArray objectAtIndex:indexPath.row];
+        [cell setLabel:[featureArray objectAtIndex:indexPath.row] withSegue:nil andController:nil];
         cell.accessoryType = UITableViewCellAccessoryNone;
         if([selectedFeatures containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [selectedFeatures count] == 0)) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -205,7 +215,8 @@
     }
 }
 
-- (IBAction)tabChanged:(id)sender {
+- (IBAction)tabChanged:(id)sender
+{
     UISegmentedControl* seg = (UISegmentedControl*)sender;
     
     switch (seg.selectedSegmentIndex) {
@@ -222,11 +233,13 @@
     }
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)cancel:(id)sender
+{
     [applySearchDelegate cancel];
 }
 
-- (IBAction)confirm:(id)sender {
+- (IBAction)confirm:(id)sender
+{
     NSMutableArray* featuresToAdd = [NSMutableArray array];
     for(NSIndexPath* index in selectedFeatures) {
         [featuresToAdd addObject:[featureTypes objectForKey:[featureArray objectAtIndex:index.row]]];

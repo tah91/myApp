@@ -42,6 +42,8 @@
     } else {
         [self.navigationController cleanNavigationStackAndKeep:[ProfilViewController class]];
     }
+    
+    self.navigationItem.title = @"Mon compte";
 }
 
 - (void)viewDidUnload
