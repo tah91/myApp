@@ -27,18 +27,18 @@
     NSString* toRet = @"";
     switch (type) {
         case os_meetingRoom:
-            toRet = [toRet stringByAppendingString:@"Salle de réunion"];
+            toRet = [toRet stringByAppendingString:NSLocalizedString(@"Salle de réunion",nil)];
             break;
         case os_desktop:
-            toRet = [toRet stringByAppendingString:@"Bureau"];
+            toRet = [toRet stringByAppendingString:NSLocalizedString(@"Bureau",nil)];
             break;
         default:
             break;
     }
     
     if([minPrice.price length] != 0) {
-        //toRet = [toRet stringByAppendingFormat:@" dès %@",minPrice.price];
-        toRet = price ? [toRet stringByAppendingFormat:@" dès %@",minPrice.price] : [toRet stringByAppendingString:@" dès"];
+        //toRet = [toRet stringByAppendingFormat:NSLocalizedString(@" dès %@",nil),minPrice.price];
+        toRet = price ? [toRet stringByAppendingFormat:NSLocalizedString(@" dès %@",nil),minPrice.price] : [toRet stringByAppendingString:NSLocalizedString(@" dès",nil)];
     }
     
     return toRet;

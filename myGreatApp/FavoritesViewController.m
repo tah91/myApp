@@ -42,7 +42,7 @@
     
     [self fetchData];
     
-    self.navigationItem.title = @"Favoris";
+    self.navigationItem.title = NSLocalizedString(@"Favoris",nil);
 }
 
 - (void)viewDidUnload
@@ -61,12 +61,12 @@
     NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
     [params trySetObject:[ApplicationDelegate.loginSession authData].token forKey:@"token"];
 
-    [[SHKActivityIndicator currentIndicator] displayActivity:@"Chargement en cours"];
+    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Chargement en cours",nil)];
     [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:GET_FAV_URL
                                                              params:params
                                                          httpMethod:@"GET"
                                                        onCompletion:^(NSObject* json) {
-                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:@"Chargement terminé"];
+                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Chargement terminé",nil)];
                                                            NSMutableDictionary* localisationsContainer = (NSMutableDictionary*)json;
                                                            NSMutableArray* results = [localisationsContainer objectForKey:@"list"];
                                                            self.favorites = [NSMutableArray arrayWithCapacity:[results count]];
@@ -79,8 +79,8 @@
                                                            [self.tableView reloadData];
                                                        }
                                                             onError:^(NSError* error) {
-                                                                [[SHKActivityIndicator currentIndicator] displayActivity:@"Echec lors du chargement"];
-                                                                ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                                [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Echec lors du chargement",nil)];
+                                                                ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                             }];
 }
 

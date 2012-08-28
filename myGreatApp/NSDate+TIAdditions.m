@@ -16,30 +16,30 @@
     NSTimeInterval time = [self timeIntervalSinceDate:now];
     time *= -1;
     if (time < 60) {
-        return @"il y a moins d'une minute";
+        return NSLocalizedString(@"il y a moins d'une minute",nil);
     } else if (time < 3600) {
         int diff = round(time / 60);
         if (diff == 1)
-            return @"il y a une minute";
-        return [NSString stringWithFormat:@"il y a %d minutes", diff];
+            return NSLocalizedString(@"il y a une minute",nil);
+        return [NSString stringWithFormat:NSLocalizedString(@"il y a %d minutes",nil), diff];
     } else if (time < 86400) {
         int diff = round(time / 60 / 60);
         if (diff == 1)
-            return @"il y a une heure";
-        return [NSString stringWithFormat:@"il y a %d heures", diff];
+            return NSLocalizedString(@"il y a une heure",nil);
+        return [NSString stringWithFormat:NSLocalizedString(@"il y a %d heures",nil), diff];
     } else if (time < 2592000) {
         int diff = round(time / 60 / 60 / 24);
         if (diff == 1)
-            return @"hier";
-        return[NSString stringWithFormat:@"il y a %d jours", diff];
+            return NSLocalizedString(@"hier",nil);
+        return[NSString stringWithFormat:NSLocalizedString(@"il y a %d jours",nil), diff];
     } else if (time < 31104000) {
         int diff = round(time / 60 / 60 / 24 / 30);
-        return[NSString stringWithFormat:@"il y a %d mois", diff];
+        return[NSString stringWithFormat:NSLocalizedString(@"il y a %d mois",nil), diff];
     } else {
         int diff = round(time / 60 / 60 / 24 / 30 / 12);
         if (diff == 1)
-            return @"il y a un an";
-        return[NSString stringWithFormat:@"il y a %d ans", diff];
+            return NSLocalizedString(@"il y a un an",nil);
+        return[NSString stringWithFormat:NSLocalizedString(@"il y a %d ans",nil), diff];
     }
 }
 

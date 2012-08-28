@@ -40,7 +40,7 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Editer mon profil";
+    self.navigationItem.title = NSLocalizedString(@"Editer mon profil",nil);
     UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone
                                                                                     target:self
                                                                                     action:@selector(editProfileDone:)];
@@ -100,15 +100,15 @@
     static NSDictionary* profileSource = nil;
     if(profileSource == nil) {
         profileSource = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         @"Propriétaire d'un lieu",[NSNumber numberWithInt:MemberProfileLocalisationOwner],
-                         @"Nomad",[NSNumber numberWithInt:MemberProfileNomad],
-                         @"Télétravailleur",[NSNumber numberWithInt:MemberProfileTeleworker],
-                         @"Indépendant",[NSNumber numberWithInt:MemberProfileIndependant],
-                         @"Startup",[NSNumber numberWithInt:MemberProfileStartup],
-                         @"Grand compte",[NSNumber numberWithInt:MemberProfileCompany],
-                         @"Etudiant",[NSNumber numberWithInt:MemberProfileStudent],
-                         @"Utilisateur du dimanche",[NSNumber numberWithInt:MemberProfilePunctualUser],
-                         @"Autre",[NSNumber numberWithInt:MemberProfileOther],
+                         NSLocalizedString(@"Propriétaire d'un lieu",nil),[NSNumber numberWithInt:MemberProfileLocalisationOwner],
+                         NSLocalizedString(@"Nomad",nil),[NSNumber numberWithInt:MemberProfileNomad],
+                         NSLocalizedString(@"Télétravailleur",nil),[NSNumber numberWithInt:MemberProfileTeleworker],
+                         NSLocalizedString(@"Indépendant",nil),[NSNumber numberWithInt:MemberProfileIndependant],
+                         NSLocalizedString(@"Startup",nil),[NSNumber numberWithInt:MemberProfileStartup],
+                         NSLocalizedString(@"Grand compte",nil),[NSNumber numberWithInt:MemberProfileCompany],
+                         NSLocalizedString(@"Etudiant",nil),[NSNumber numberWithInt:MemberProfileStudent],
+                         NSLocalizedString(@"Utilisateur du dimanche",nil),[NSNumber numberWithInt:MemberProfilePunctualUser],
+                         NSLocalizedString(@"Autre",nil),[NSNumber numberWithInt:MemberProfileOther],
                          nil];
     }
     return profileSource;
@@ -119,9 +119,9 @@
     static NSDictionary* civilitySource = nil;
     if(civilitySource == nil) {
         civilitySource = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Mr",[NSNumber numberWithInt:CiviltyMr],
-                          @"Mme",[NSNumber numberWithInt:CiviltyMme],
-                          @"Mlle",[NSNumber numberWithInt:CiviltyMlle],
+                          NSLocalizedString(@"Mr",nil),[NSNumber numberWithInt:CiviltyMr],
+                          NSLocalizedString(@"Mme",nil),[NSNumber numberWithInt:CiviltyMme],
+                          NSLocalizedString(@"Mlle",nil),[NSNumber numberWithInt:CiviltyMlle],
                           nil];
     }
     return civilitySource;
@@ -140,23 +140,23 @@
                 case 0:
                 {
                     DropdownCell* dropdown = (DropdownCell*)cell;
-                    [dropdown  setLabel:@"Civilité"
+                    [dropdown  setLabel:NSLocalizedString(@"Civilité",nil)
                            initialValue:[self getCurrentValueForPath:indexPath]
                                  isLast:FALSE source:[self getCivilitySource]
                                delegate:self];
                     break;
                 }
                 case 1:
-                    [cell setLabel:@"Prénom"
-                       placeHolder:@"Requis"
+                    [cell setLabel:NSLocalizedString(@"Prénom",nil)
+                       placeHolder:NSLocalizedString(@"Requis",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypeStandard
                             isLast:FALSE
                           delegate:self];
                     break;
                 case 2:
-                    [cell setLabel:@"Nom"
-                       placeHolder:@"Requis"
+                    [cell setLabel:NSLocalizedString(@"Nom",nil)
+                       placeHolder:NSLocalizedString(@"Requis",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypeStandard
                             isLast:FALSE
@@ -166,7 +166,7 @@
                 {
                     DropdownCell* dropdown = (DropdownCell*)cell;
                     
-                    [dropdown  setLabel:@"Profil"
+                    [dropdown  setLabel:NSLocalizedString(@"Profil",nil)
                            initialValue:[self getCurrentValueForPath:indexPath]
                                  isLast:FALSE
                                  source:[self getProfileSource]
@@ -176,23 +176,23 @@
                 case 4:
                 {
                     DateCell* date = (DateCell*)cell;
-                    [date  setLabel:@"Date de naissance"
+                    [date  setLabel:NSLocalizedString(@"Date de naissance",nil)
                        initialValue:[[DateCell getFormater] dateFromString:(NSString*)[self getCurrentValueForPath:indexPath]]
                              isLast:FALSE
                            delegate:self];
                     break;
                 }
                 case 5:
-                    [cell setLabel:@"Ville"
-                       placeHolder:@"Paris"
+                    [cell setLabel:NSLocalizedString(@"Ville",nil)
+                       placeHolder:NSLocalizedString(@"Paris",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypeStandard
                             isLast:FALSE
                           delegate:self];
                     break;
                 case 6:
-                    [cell setLabel:@"Code Postal"
-                       placeHolder:@"75007"
+                    [cell setLabel:NSLocalizedString(@"Code Postal",nil)
+                       placeHolder:NSLocalizedString(@"75007",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypeNumber
                             isLast:FALSE
@@ -201,7 +201,7 @@
                 case 7:
                 {
                     TextViewCell* textView = (TextViewCell*)cell;
-                    [textView  setLabel:@"Description"
+                    [textView  setLabel:NSLocalizedString(@"Description",nil)
                            initialValue:[self getCurrentValueForPath:indexPath]
                                  isLast:FALSE
                                delegate:self];
@@ -267,7 +267,7 @@
     NSString* description = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:7 inSection:0]];
     
     if([firstName length]==0 || [lastName length]==0 ) {
-        ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps obligatoires")
+        ALERT_TITLE(NSLocalizedString(@"Erreur",nil),NSLocalizedString(@"Remplissez tous les chammps obligatoires",nil))
     } else {
         
         NSString* birthDateStr = [[[DateCell getFormater] dateFromString: birthdate] toCSharpDate];
@@ -282,16 +282,16 @@
         [params trySetObject:postaleCode forKey:@"postalCode"];
         [params trySetObject:description forKey:@"description"];
         
-        [[SHKActivityIndicator currentIndicator] displayActivity:@"Mise à jour en cours"];
+        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Mise à jour en cours",nil)];
         [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:EDIT_INFO_URL
                                                                  params:params
                                                              httpMethod:@"POST"
                                                            onCompletion:^(NSObject* json) {
-                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:@"Profil mis à jour"];
+                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Profil mis à jour",nil)];
                                                                [ApplicationDelegate.loginSession storeUserInfo:json];
                                                            }
                                                                 onError:^(NSError* error) {
-                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:@"Profil non mis à jour"];
+                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Profil non mis à jour",nil)];
                                                                     ALERT_TITLE(@"Erreur",[error localizedDescription])
                                                                 }];
     }

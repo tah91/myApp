@@ -101,10 +101,10 @@
  */
 - (void)fbSessionInvalidated {
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:@"Auth Exception"
-                              message:@"Your session has expired."
+                              initWithTitle:NSLocalizedString(@"Auth Exception",nil)
+                              message:NSLocalizedString(@"Your session has expired.",nil)
                               delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:NSLocalizedString(@"OK",nil)
                               otherButtonTitles:nil,
                               nil];
     [alertView show];

@@ -43,7 +43,7 @@
         [self.navigationController cleanNavigationStackAndKeep:[ProfilViewController class]];
     }
     
-    self.navigationItem.title = @"Mon compte";
+    self.navigationItem.title = NSLocalizedString(@"Mon compte",nil);
 }
 
 - (void)viewDidUnload
@@ -91,7 +91,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:@"profilCell"];
-    cell.titleLabel.text = @"Se connecter ou s'inscrire";
+    cell.titleLabel.text = NSLocalizedString(@"Se connecter ou s'inscrire",nil);
     
     return cell;
 }

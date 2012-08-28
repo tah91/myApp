@@ -134,7 +134,7 @@
 {
     NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
     [fmt  setPositiveFormat:@"0.##"];
-    return [NSString stringWithFormat:@"%@ km", [fmt stringFromNumber:distance]];
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ km",nil), [fmt stringFromNumber:distance]];
 }
 
 @end

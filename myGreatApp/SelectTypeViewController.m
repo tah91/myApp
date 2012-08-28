@@ -39,30 +39,30 @@
     [super viewDidLoad];
     
     self.locTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
-                     [NSNumber numberWithInt:-1],@"Tous les types",
-                     [NSNumber numberWithInt:lt_wifiHotspot],@"wifiHotspot",
-                     [NSNumber numberWithInt:lt_cafeRestaurant],@"cafeRestaurant",
-                     [NSNumber numberWithInt:lt_librairyMuseum],@"librairyMuseum",
-                     [NSNumber numberWithInt:lt_internetCafe],@"internetCafe",
-                     [NSNumber numberWithInt:lt_travelerLounge],@"travelerLounge",
-                     [NSNumber numberWithInt:lt_hotel],@"hotel",
-                     [NSNumber numberWithInt:lt_telecentre],@"telecentre",
-                     [NSNumber numberWithInt:lt_businessLounge],@"businessLounge",
-                     [NSNumber numberWithInt:lt_coworkingSpace],@"coworkingSpace",
-                     [NSNumber numberWithInt:lt_corporateCentre],@"corporateCentre",
-                     [NSNumber numberWithInt:lt_privatePlace],@"privatePlace",
-                     [NSNumber numberWithInt:lt_sharedOffice],@"sharedOffice",
+                     [NSNumber numberWithInt:-1],NSLocalizedString(@"Tous les types",nil),
+                     [NSNumber numberWithInt:lt_wifiHotspot],NSLocalizedString(@"wifiHotspot",nil),
+                     [NSNumber numberWithInt:lt_cafeRestaurant],NSLocalizedString(@"cafeRestaurant",nil),
+                     [NSNumber numberWithInt:lt_librairyMuseum],NSLocalizedString(@"librairyMuseum",nil),
+                     [NSNumber numberWithInt:lt_internetCafe],NSLocalizedString(@"internetCafe",nil),
+                     [NSNumber numberWithInt:lt_travelerLounge],NSLocalizedString(@"travelerLounge",nil),
+                     [NSNumber numberWithInt:lt_hotel],NSLocalizedString(@"hotel",nil),
+                     [NSNumber numberWithInt:lt_telecentre],NSLocalizedString(@"telecentre",nil),
+                     [NSNumber numberWithInt:lt_businessLounge],NSLocalizedString(@"businessLounge",nil),
+                     [NSNumber numberWithInt:lt_coworkingSpace],NSLocalizedString(@"coworkingSpace",nil),
+                     [NSNumber numberWithInt:lt_corporateCentre],NSLocalizedString(@"corporateCentre",nil),
+                     [NSNumber numberWithInt:lt_privatePlace],NSLocalizedString(@"privatePlace",nil),
+                     [NSNumber numberWithInt:lt_sharedOffice],NSLocalizedString(@"sharedOffice",nil),
                      nil];
     
     self.locArray = [locTypes keysSortedByValueUsingSelector:@selector(compare:)];
     
     self.featureTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         [NSNumber numberWithInt:-1],@"Tous les services",
-                         [NSNumber numberWithInt:f_wifi_Free],@"wifi",
-                         [NSNumber numberWithInt:f_coffee],@"coffee",
-                         [NSNumber numberWithInt:f_restauration],@"resto",
-                         [NSNumber numberWithInt:f_parking],@"parking",
-                         [NSNumber numberWithInt:f_handicap],@"handicap",
+                         [NSNumber numberWithInt:-1],NSLocalizedString(@"Tous les services",nil),
+                         [NSNumber numberWithInt:f_wifi_Free],NSLocalizedString(@"wifi",nil),
+                         [NSNumber numberWithInt:f_coffee],NSLocalizedString(@"coffee",nil),
+                         [NSNumber numberWithInt:f_restauration],NSLocalizedString(@"resto",nil),
+                         [NSNumber numberWithInt:f_parking],NSLocalizedString(@"parking",nil),
+                         [NSNumber numberWithInt:f_handicap],NSLocalizedString(@"handicap",nil),
                          nil];
     
     self.featureArray = [featureTypes keysSortedByValueUsingSelector:@selector(compare:)];
@@ -72,9 +72,9 @@
     self.selectedLoc = [self setFromString:criteria.types keys:locTypes andArray:locArray];
     self.selectedFeatures = [self setFromString:criteria.features keys:featureTypes andArray:featureArray];
     
-    self.bar.topItem.title = @"Critères";
-    [self.tabSelector setTitle:@"Type" forSegmentAtIndex:0];
-    [self.tabSelector setTitle:@"Services" forSegmentAtIndex:1];
+    self.bar.topItem.title = NSLocalizedString(@"Critères",nil);
+    [self.tabSelector setTitle:NSLocalizedString(@"Type",nil) forSegmentAtIndex:0];
+    [self.tabSelector setTitle:NSLocalizedString(@"Services",nil) forSegmentAtIndex:1];
 }
 
 - (NSIndexPath*)getIndex:(NSInteger)intVal

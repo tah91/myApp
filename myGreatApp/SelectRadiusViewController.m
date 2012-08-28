@@ -35,12 +35,12 @@
     [super viewDidLoad];
 
     radiusTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    [NSNumber numberWithInt:1],@"1 km",
-                    [NSNumber numberWithInt:2],@"2 km",
-                    [NSNumber numberWithInt:5],@"5 km",
-                    [NSNumber numberWithInt:10],@"10 km",
-                    [NSNumber numberWithInt:20],@"20 km",
-                    [NSNumber numberWithInt:50],@"50 km",
+                    [NSNumber numberWithInt:1],NSLocalizedString(@"1 km",nil),
+                    [NSNumber numberWithInt:2],NSLocalizedString(@"2 km",nil),
+                    [NSNumber numberWithInt:5],NSLocalizedString(@"5 km",nil),
+                    [NSNumber numberWithInt:10],NSLocalizedString(@"10 km",nil),
+                    [NSNumber numberWithInt:20],NSLocalizedString(@"20 km",nil),
+                    [NSNumber numberWithInt:50],NSLocalizedString(@"50 km",nil),
                     nil];
     
     radiusArray = [radiusTypes keysSortedByValueUsingSelector:@selector(compare:)];
@@ -49,7 +49,7 @@
     NSUInteger index = [radiusArray indexOfObject:selectedRadius];
     checkedIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
-    self.bar.topItem.title = @"Rayon";
+    self.bar.topItem.title = NSLocalizedString(@"Rayon",nil);
 }
 
 - (void)viewDidUnload

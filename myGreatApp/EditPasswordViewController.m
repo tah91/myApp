@@ -32,7 +32,7 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Editer mon mot de passe";
+    self.navigationItem.title = NSLocalizedString(@"Editer mon mot de passe",nil);
     UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone
                                                                                     target:self
                                                                                     action:@selector(editPasswordDone:)];
@@ -89,24 +89,24 @@
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"Mot de passe"
-                       placeHolder:@"Requis"
+                    [cell setLabel:NSLocalizedString(@"Mot de passe",nil)
+                       placeHolder:NSLocalizedString(@"Requis",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypePassword
                             isLast:FALSE
                           delegate:self];
                     break;
                 case 1:
-                    [cell setLabel:@"Nouveau"
-                       placeHolder:@"Requis"
+                    [cell setLabel:NSLocalizedString(@"Nouveau",nil)
+                       placeHolder:NSLocalizedString(@"Requis",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypePassword
                             isLast:FALSE
                           delegate:self];
                     break;
                 case 2:
-                    [cell setLabel:@"Confirmation"
-                       placeHolder:@"Requis"
+                    [cell setLabel:NSLocalizedString(@"Confirmation",nil)
+                       placeHolder:NSLocalizedString(@"Requis",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypePassword
                             isLast:TRUE
@@ -146,10 +146,10 @@
     NSString* confirmpassword = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     
     if([oldpassword length]==0 || [newpassword length]==0 || [confirmpassword length]==0) {
-        ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps obligatoires")
+        ALERT_TITLE(NSLocalizedString(@"Erreur",nil),NSLocalizedString(@"Remplissez tous les chammps obligatoires",nil))
     }
     else if(![confirmpassword isEqualToString:newpassword]) {
-        ALERT_TITLE(@"Erreur",@"Le nouveau mot de passe et sa confirmation doivent être identiques")
+        ALERT_TITLE(NSLocalizedString(@"Erreur",nil),NSLocalizedString(@"Le nouveau mot de passe et sa confirmation doivent être identiques",nil))
     }
     else {
         NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
@@ -158,17 +158,17 @@
         [params trySetObject:newpassword forKey:@"newpassword"];
         [params trySetObject:confirmpassword forKey:@"confirmpassword"];
         
-        [[SHKActivityIndicator currentIndicator] displayActivity:@"Mise à jour en cours"];
+        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Mise à jour en cours",nil)];
         [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:EDIT_PASSWORD_URL
                                                                  params:params
                                                              httpMethod:@"POST"
                                                            onCompletion:^(NSObject* json) {
-                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:@"Mot de passe mis à jour"];
+                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Mot de passe mis à jour",nil)];
                                                                [ApplicationDelegate.loginSession storeUserInfo:json];
                                                            }
                                                                 onError:^(NSError* error) {
-                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:@"Mot de passe non mis à jour"];
-                                                                    ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Mot de passe non mis à jour",nil)];
+                                                                    ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                                 }];
     }
 }

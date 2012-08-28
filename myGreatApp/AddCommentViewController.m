@@ -37,7 +37,7 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Commenter";
+    self.navigationItem.title = NSLocalizedString(@"Commenter",nil);
 }
 
 - (void)viewDidUnload
@@ -94,7 +94,7 @@
                 case 0:
                 {
                     RatingCell* ratingCell = (RatingCell*)cell;
-                    [ratingCell  setLabel:@"Note"
+                    [ratingCell  setLabel:NSLocalizedString(@"Note",nil)
                              initialValue:[[self getCurrentValueForPath:indexPath] floatValue]
                                    isLast:FALSE
                                  delegate:self];
@@ -103,7 +103,7 @@
                 case 1:
                 {
                     TextViewCell* textView = (TextViewCell*)cell;
-                    [textView  setLabel:@"Description"
+                    [textView  setLabel:NSLocalizedString(@"Description",nil)
                            initialValue:[self getCurrentValueForPath:indexPath]
                                  isLast:FALSE
                                delegate:self];
@@ -167,7 +167,7 @@
     NSString* post = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     
     if([rating length]==0 || [post length]==0) {
-        ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps obligatoires")
+        ALERT_TITLE(NSLocalizedString(@"Erreur",nil),NSLocalizedString(@"Remplissez tous les chammps obligatoires",nil))
     }
     else {
         NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
@@ -176,18 +176,18 @@
         [params trySetObject:[NSNumber numberWithFloat:[rating floatValue]] forKey:@"rating"];
         [params trySetObject:post forKey:@"post"];
         
-        [[SHKActivityIndicator currentIndicator] displayActivity:@"Envoi en cours"];
+        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Envoi en cours",nil)];
         [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:COMMENT_URL
                                                                  params:params
                                                              httpMethod:@"POST"
                                                            onCompletion:^(NSObject* json) {
-                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:@"Commentaire envoyé"];
+                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Commentaire envoyé",nil)];
                                                                Localisation* newLoc = [[Localisation alloc] initWithDictionary:(NSDictionary*)json];
                                                                [self.delegate commentDone:newLoc];
                                                            }
                                                                 onError:^(NSError* error) {
-                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:@"Commentaire non envoyé"];
-                                                                    ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Commentaire non envoyé",nil)];
+                                                                    ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                                 }];
     }
 }

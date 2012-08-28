@@ -16,7 +16,7 @@
  These values are used by any service that shows 'shared from XYZ'
  */
 - (NSString*)appName {
-	return @"eWorky for iPhone";
+	return NSLocalizedString(@"eWorky for iPhone",nil);
 }
 
 - (NSString*)appURL {

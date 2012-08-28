@@ -68,29 +68,29 @@
     UIImage *orderByLogo = [UIImage imageNamed:@"tool-orderby-logo.png"];
     [orderByBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     [orderByBtn setImage:orderByLogo forState:UIControlStateNormal];
-    [orderByBtn setTitle:@"Trier" forState:UIControlStateNormal];
+    [orderByBtn setTitle:NSLocalizedString(@"Trier",nil) forState:UIControlStateNormal];
     [orderByBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
     
     UIImage *criteriaLogo = [UIImage imageNamed:@"tool-criteria-logo.png"];
     [criteriaBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     [criteriaBtn setImage:criteriaLogo forState:UIControlStateNormal];
     [criteriaBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
-    [criteriaBtn setTitle:@"Critères" forState:UIControlStateNormal];
+    [criteriaBtn setTitle:NSLocalizedString(@"Critères",nil) forState:UIControlStateNormal];
     
     UIImage *radiusLogo = [UIImage imageNamed:@"tool-radius-logo.png"];
     [radiusBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
     [radiusBtn setImage:radiusLogo forState:UIControlStateNormal];
     [radiusBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
-    [radiusBtn setTitle:@"Rayon" forState:UIControlStateNormal];
+    [radiusBtn setTitle:NSLocalizedString(@"Rayon",nil) forState:UIControlStateNormal];
     
     self.results = [NSMutableArray arrayWithCapacity:20];
     self.isFetching = false;
     self.fromCode = false;
-    self.loadingLabel.text = @"Chargment des lieux...";
-    self.mapViewHelpLabel.text = @"Chargement...";
+    self.loadingLabel.text = NSLocalizedString(@"Chargment des lieux...",nil);
+    self.mapViewHelpLabel.text = NSLocalizedString(@"Chargement...",nil);
     [self fetchData:false];
     
-    self.navigationItem.title = @"Résultats";
+    self.navigationItem.title = NSLocalizedString(@"Résultats",nil);
 }
 
 - (void)viewDidUnload
@@ -119,7 +119,7 @@
     self.isFetching = true;
     
     [self.mapViewActivity startAnimating];
-    self.mapViewHelpLabel.text = @"Chargement...";
+    self.mapViewHelpLabel.text = NSLocalizedString(@"Chargement...",nil);
     
     [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:SEARCH_URL
                                                              params:[criteria getParams]
@@ -130,7 +130,7 @@
                                                            self.isFetching = false;
                                                        }
                                                             onError:^(NSError* error) {
-                                                                ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                                ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                                 self.isFetching = false;
                                                             }];
 }
@@ -205,10 +205,10 @@
     
     [self.mapViewActivity stopAnimating];
     if([self.results count] >= maxCount.intValue) {
-        self.mapViewHelpLabel.text = [NSString stringWithFormat:@"%u lieux trouvés",[results count]];
+        self.mapViewHelpLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%u lieux trouvés",nil),[results count]];
     }
     else {
-        self.mapViewHelpLabel.text = [NSString stringWithFormat:@"Zoomer pour voir %@ lieux",maxCount];
+        self.mapViewHelpLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Zoomer pour voir %@ lieux",nil),maxCount];
     }
 }
 
@@ -243,7 +243,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%u résultats sur %@", [self.results count], self.maxCount];
+    return [NSString stringWithFormat:NSLocalizedString(@"%u résultats sur %@",nil), [self.results count], self.maxCount];
 }
 
 #pragma mark - Table view delegate

@@ -87,7 +87,7 @@
     self.cityLabel.text = localisation.city;
     self.cityLabel.textColor = WHITE_COLOR;
     
-    [self.shareBtn setButtonWithStyle:@"Partager"];
+    [self.shareBtn setButtonWithStyle:NSLocalizedString(@"Partager",nil)];
     NSString* title = localisation.name;
     if([title length] > kTitleLength) {
         //title = [title substringToIndex:kTitleLength];
@@ -197,22 +197,22 @@
             break;
         case 1:
         {
-            [cell setLabel:@"Commentaires" withSegue:@"commentsSegue" andController:self];
+            [cell setLabel:NSLocalizedString(@"Commentaires",nil) withSegue:@"commentsSegue" andController:self];
         }
             break;
         case 2:
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"Description" withSegue:@"descriptionSegue" andController:self];
-                    cell.titleLabel.text = @"Description";
+                    [cell setLabel:NSLocalizedString(@"Description",nil) withSegue:@"descriptionSegue" andController:self];
+                    cell.titleLabel.text = NSLocalizedString(@"Description",nil);
                     break;
                 case 1:
                     [cell setLabel:localisation.description withSegue:@"descriptionSegue" andController:self];
                     cell.titleLabel.text = localisation.description;
                     break;
                 case 2:
-                    [cell setLabel:@"Infos pratiques" withSegue:@"infosSegue" andController:self];
+                    [cell setLabel:NSLocalizedString(@"Infos pratiques",nil) withSegue:@"infosSegue" andController:self];
                     break;
                 default:
                     break;
@@ -221,7 +221,7 @@
             break;
         case 3:
         {
-            [cell setLabel:@"Gallerie" withSegue:@"gallerySegue" andController:self];
+            [cell setLabel:NSLocalizedString(@"Gallerie",nil) withSegue:@"gallerySegue" andController:self];
         }
             break;
         default:
@@ -318,16 +318,16 @@
     [params trySetObject:[ApplicationDelegate.loginSession authData].token forKey:@"token"];
     [params trySetObject:[NSNumber numberWithInt:self.localisation.id] forKey:@"id"];
     
-    [[SHKActivityIndicator currentIndicator] displayActivity:@"Mise à jour en cours"];
+    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Mise à jour en cours",nil)];
     [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:ADD_TO_FAV_URL
                                                              params:params
                                                          httpMethod:@"POST"
                                                        onCompletion:^(NSObject* json) {
-                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:@"Ajouté aux favoris"];
+                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Ajouté aux favoris",nil)];
                                                        }
                                                             onError:^(NSError* error) {
-                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:@"Non ajouté aux favoris"];
-                                                                ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Non ajouté aux favoris",nil)];
+                                                                ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                             }];
 }
 

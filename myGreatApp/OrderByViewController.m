@@ -35,8 +35,8 @@
     [super viewDidLoad];
 
     orderByTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    [NSNumber numberWithInt:ob_rating],@"Note",
-                    [NSNumber numberWithInt:ob_distance],@"Distance",
+                    [NSNumber numberWithInt:ob_rating],NSLocalizedString(@"Note",nil),
+                    [NSNumber numberWithInt:ob_distance],NSLocalizedString(@"Distance",nil),
                     nil];
     
     orderByArray = [orderByTypes keysSortedByValueUsingSelector:@selector(compare:)];
@@ -45,7 +45,7 @@
     NSUInteger index = [orderByArray indexOfObject:selectedOrder];
     checkedIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
-    self.bar.topItem.title = @"Trier";
+    self.bar.topItem.title = NSLocalizedString(@"Trier",nil);
 }
 
 - (void)viewDidUnload

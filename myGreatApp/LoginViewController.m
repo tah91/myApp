@@ -46,14 +46,14 @@
 {
     [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
     
-    [self.fbLoginBtn setButtonWithStyle:@"S'inscrire avec Facebook"];
-    [self.registerBtn setButtonWithStyle:@"S'inscrire"];
-    [self.alreadyMember1 setTitleWithStyle:@"Déjà membre eWorky ?"];
-    [self.alreadyMember2 setSubtitleWithStyle:@"Connectez-vous à votre compte eWorky"];
-    [self.needAccount1 setTitleWithStyle:@"Besoin d'un compte ?"];
-    [self.needAccount2 setSubtitleWithStyle:@"S'inscrire sur eWorky"];
+    [self.fbLoginBtn setButtonWithStyle:NSLocalizedString(@"S'inscrire avec Facebook",nil)];
+    [self.registerBtn setButtonWithStyle:NSLocalizedString(@"S'inscrire",nil)];
+    [self.alreadyMember1 setTitleWithStyle:NSLocalizedString(@"Déjà membre eWorky ?",nil)];
+    [self.alreadyMember2 setSubtitleWithStyle:NSLocalizedString(@"Connectez-vous à votre compte eWorky",nil)];
+    [self.needAccount1 setTitleWithStyle:NSLocalizedString(@"Besoin d'un compte ?",nil)];
+    [self.needAccount2 setSubtitleWithStyle:NSLocalizedString(@"S'inscrire sur eWorky",nil)];
     
-    self.navigationItem.title = @"Connexion";
+    self.navigationItem.title = NSLocalizedString(@"Connexion",nil);
     
     [super viewDidLoad];
 }
@@ -96,16 +96,16 @@
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"E-mail"
-                       placeHolder:@"Requis"
+                    [cell setLabel:NSLocalizedString(@"E-mail",nil)
+                       placeHolder:NSLocalizedString(@"Requis",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypeEmail
                             isLast:FALSE
                           delegate:self];
                     break;
                 case 1:
-                    [cell setLabel:@"Password"
-                       placeHolder:@"Requis"
+                    [cell setLabel:NSLocalizedString(@"Password",nil)
+                       placeHolder:NSLocalizedString(@"Requis",nil)
                       initialValue:[self getCurrentValueForPath:indexPath]
                          fieldType:TextfieldTypePassword
                             isLast:TRUE
@@ -157,14 +157,14 @@
     NSString* password = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     
     if([email length]==0 || [password length]==0 ) {
-        ALERT_TITLE(@"Erreur",@"Remplissez tous les chammps")
+        ALERT_TITLE(NSLocalizedString(@"Erreur",nil),NSLocalizedString(@"Remplissez tous les chammps",nil))
     } else {
         [ApplicationDelegate.loginSession login:email
                                        password:password
                                        onSucess:^(void){
                                            [loginDelegate finishedLoadingUserInfo];
                                        }onError:^(NSError* error) {
-                                           ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                           ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                        }];
     }
 }
@@ -175,7 +175,7 @@
         [loginDelegate finishedLoadingUserInfo];
                                         }
                                               onError:^(NSError* error) {
-                                                  ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                  ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                               }];
 }
 

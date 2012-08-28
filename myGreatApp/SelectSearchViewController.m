@@ -36,20 +36,20 @@
 {
     [super viewDidLoad];
 
-    [SearchButtonView setBtn:freeSpaceButton owner:self title:@"Lieux gratuits" withSubtitle:@"Lieux gratuits sous titre"];
+    [SearchButtonView setBtn:freeSpaceButton owner:self title:NSLocalizedString(@"Lieux gratuits",nil) withSubtitle:NSLocalizedString(@"Lieux gratuits sous titre",nil)];
     [SearchButtonView setBtnState:freeSpaceButton state:criteria.freePlace image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
     [freeSpaceButton setSelected:criteria.freePlace];
 
-    [SearchButtonView setBtn:desktopButton owner:self title:@"Bureaux" withSubtitle:@"Bureaux sous titre"];
+    [SearchButtonView setBtn:desktopButton owner:self title:NSLocalizedString(@"Bureaux",nil) withSubtitle:NSLocalizedString(@"Bureaux sous titre",nil)];
     [SearchButtonView setBtnState:desktopButton state:criteria.desktop image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
     [desktopButton setSelected:criteria.desktop];
 
-    [SearchButtonView setBtn:meetingRoomButton owner:self title:@"Salles de réunion" withSubtitle:@"Salles de réunion sous titre"];
+    [SearchButtonView setBtn:meetingRoomButton owner:self title:NSLocalizedString(@"Salles de réunion",nil) withSubtitle:NSLocalizedString(@"Salles de réunion sous titre",nil)];
     [SearchButtonView setBtnState:meetingRoomButton state:criteria.meetingRoom image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
     [meetingRoomButton setSelected:criteria.meetingRoom];
     
-    self.navigationItem.title = @"Filtrer";
-    [self.launchSearchBtn setButtonWithStyle:@"Lancer la recherche"];
+    self.navigationItem.title = NSLocalizedString(@"Filtrer",nil);
+    [self.launchSearchBtn setButtonWithStyle:NSLocalizedString(@"Lancer la recherche",nil)];
 }
 
 - (void)viewDidUnload

@@ -50,7 +50,7 @@
     [self.featuresTableView hideEmptyTableSeparators];
     
     [self setSubviewAtIndex:selectedTab];
-    self.navigationItem.title = @"Détails";
+    self.navigationItem.title = NSLocalizedString(@"Détails",nil);
 }
 
 - (void)viewDidUnload
@@ -116,15 +116,15 @@
             {
                 switch (indexPath.row) {
                     case 0:
-                        cell.titleLabel.text = @"Accès routiers";
+                        cell.titleLabel.text = NSLocalizedString(@"Accès routiers",nil);
                         cell.descriptionLabel.text = localisation.access.roadAccess;
                         break;
                     case 1:
-                        cell.titleLabel.text = @"Transports";
+                        cell.titleLabel.text = NSLocalizedString(@"Transports",nil);
                         cell.descriptionLabel.text = localisation.access.publicTransport;
                         break;
                     case 2:
-                        cell.titleLabel.text = @"Station";
+                        cell.titleLabel.text = NSLocalizedString(@"Station",nil);
                         cell.descriptionLabel.text = localisation.access.station;
                         break;
                         
@@ -138,31 +138,31 @@
             {
                 switch (indexPath.row) {
                     case 0:
-                        cell.titleLabel.text = @"Lundi";
+                        cell.titleLabel.text = NSLocalizedString(@"Lundi",nil);
                         cell.descriptionLabel.text = localisation.openingTimes.monday;
                         break;
                     case 1:
-                        cell.titleLabel.text = @"Mardi";
+                        cell.titleLabel.text = NSLocalizedString(@"Mardi",nil);
                         cell.descriptionLabel.text = localisation.openingTimes.tuesday;
                         break;
                     case 2:
-                        cell.titleLabel.text = @"Mercredi";
+                        cell.titleLabel.text = NSLocalizedString(@"Mercredi",nil);
                         cell.descriptionLabel.text = localisation.openingTimes.wednesday;
                         break;
                     case 3:
-                        cell.titleLabel.text = @"Jeudi";
+                        cell.titleLabel.text = NSLocalizedString(@"Jeudi",nil);
                         cell.descriptionLabel.text = localisation.openingTimes.thursday;
                         break;
                     case 4:
-                        cell.titleLabel.text = @"Vendredi";
+                        cell.titleLabel.text = NSLocalizedString(@"Vendredi",nil);
                         cell.descriptionLabel.text = localisation.openingTimes.friday;
                         break;
                     case 5:
-                        cell.titleLabel.text = @"Samedi";
+                        cell.titleLabel.text = NSLocalizedString(@"Samedi",nil);
                         cell.descriptionLabel.text = localisation.openingTimes.saturday;
                         break;
                     case 6:
-                        cell.titleLabel.text = @"Dimanche";
+                        cell.titleLabel.text = NSLocalizedString(@"Dimanche",nil);
                         cell.descriptionLabel.text = localisation.openingTimes.sunday;
                         break;
                     default:
@@ -198,13 +198,13 @@
     if (tableView == infosTableView) {
         switch (section) {
             case 0:
-                return @"Accès";
+                return NSLocalizedString(@"Accès",nil);
                 break;
             case 1:
-                return @"Horaires";
+                return NSLocalizedString(@"Horaires",nil);
                 break;
             case 2:
-                return @"Itinéraire";
+                return NSLocalizedString(@"Itinéraire",nil);
                 break;
             default:
                 break;

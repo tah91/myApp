@@ -36,11 +36,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
     
     [super viewDidLoad];
-    [self.fbRegisterBtn setButtonWithStyle:@"Inscrivez-vous avec Facebook"];
-    [self.noFbLabel setSubtitleWithStyle:@"Pas de compte Facebook ?"];
-    [self.registerBtn setButtonWithStyle:@"Créer un compte"];
-    [self.cguLabel setSubtitleWithStyle:@"En cliquant sur ""Créer un compte"" ou ""Inscrivez-vous avec Facebook"", vous confirmez que vous acceptez les conditions générales."];
-    self.navigationItem.title = @"Inscription";
+    [self.fbRegisterBtn setButtonWithStyle:NSLocalizedString(@"Inscrivez-vous avec Facebook",nil)];
+    [self.noFbLabel setSubtitleWithStyle:NSLocalizedString(@"Pas de compte Facebook ?",nil)];
+    [self.registerBtn setButtonWithStyle:NSLocalizedString(@"Créer un compte",nil)];
+    [self.cguLabel setSubtitleWithStyle:NSLocalizedString(@"En cliquant sur " "Créer un compte"" ou ""Inscrivez-vous avec Facebook"", vous confirmez que vous acceptez les conditions générales.",nil)];
+    self.navigationItem.title = NSLocalizedString(@"Inscription",nil);
 }
 
 - (void)viewDidUnload
@@ -80,16 +80,16 @@
         {
             switch (indexPath.row) {
                 case 0:
-                    [cell setLabel:@"Prénom" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
+                    [cell setLabel:NSLocalizedString(@"Prénom",nil) placeHolder:NSLocalizedString(@"Requis",nil) initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
                     break;
                 case 1:
-                    [cell setLabel:@"Nom" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
+                    [cell setLabel:NSLocalizedString(@"Nom",nil) placeHolder:NSLocalizedString(@"Requis",nil) initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeStandard isLast:FALSE delegate:self];
                     break;
                 case 2:
-                    [cell setLabel:@"E-mail" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeEmail isLast:FALSE delegate:self];
+                    [cell setLabel:NSLocalizedString(@"E-mail",nil) placeHolder:NSLocalizedString(@"Requis",nil) initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypeEmail isLast:FALSE delegate:self];
                     break;
                 case 3:
-                    [cell setLabel:@"Mot de passe" placeHolder:@"Requis" initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypePassword isLast:TRUE delegate:self];
+                    [cell setLabel:NSLocalizedString(@"Mot de passe",nil) placeHolder:NSLocalizedString(@"Requis",nil) initialValue:[self getCurrentValueForPath:indexPath] fieldType:TextfieldTypePassword isLast:TRUE delegate:self];
                     break;
                 default:
                     break;
@@ -131,7 +131,7 @@
     NSString* password = [self getCurrentValueForPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     
     if([firstName length]==0 || [lastName length]==0 || [email length]==0 || [password length]==0) {
-        ALERT_TITLE(@"Erreur",@"Remplissez tous les champs")
+        ALERT_TITLE(NSLocalizedString(@"Erreur",nil),NSLocalizedString(@"Remplissez tous les champs",nil))
     } else {
         [ApplicationDelegate.loginSession registerWithName:firstName
                                                   lastName:lastName
@@ -141,7 +141,7 @@
                                                       [loginDelegate finishedLoadingUserInfo];
                                                   }
                                                    onError:^(NSError* error) {
-                                                       ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                       ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                    }];
     }
 }
@@ -152,7 +152,7 @@
         [loginDelegate finishedLoadingUserInfo];
     }
                                               onError:^(NSError* error) {
-                                                  ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                  ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                               }];
 }
 

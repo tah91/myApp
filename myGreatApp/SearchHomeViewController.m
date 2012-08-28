@@ -40,7 +40,7 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
     
-    self.navigationItem.title = @"Rechercher";
+    self.navigationItem.title = NSLocalizedString(@"Rechercher",nil);
 	// Do any additional setup after loading the view.
 }
 
@@ -84,13 +84,13 @@
     
     switch (indexPath.row) {
         case 0:
-            [cell setLabel:@"Près de ma position" withSegue:@"nearHereSegue" andController:self];
+            [cell setLabel:NSLocalizedString(@"Près de ma position",nil) withSegue:@"nearHereSegue" andController:self];
             break;
         case 1:
-            [cell setLabel:@"Rechercher à proximité d'un lieu" withSegue:@"byPlaceSegue" andController:self];
+            [cell setLabel:NSLocalizedString(@"Rechercher à proximité d'un lieu",nil) withSegue:@"byPlaceSegue" andController:self];
             break;
         case 2:
-            [cell setLabel:@"Rechercher par nom du lieu" withSegue:@"byNameSegue" andController:self];
+            [cell setLabel:NSLocalizedString(@"Rechercher par nom du lieu",nil) withSegue:@"byNameSegue" andController:self];
             break;
             
         default:

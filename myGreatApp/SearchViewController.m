@@ -39,7 +39,7 @@
         self.previousSearch = [[NSMutableArray alloc] init];
     }
     
-    self.navigationItem.title = @"Près d'un lieu";
+    self.navigationItem.title = NSLocalizedString(@"Près d'un lieu",nil);
 }
 
 - (void)viewDidUnload

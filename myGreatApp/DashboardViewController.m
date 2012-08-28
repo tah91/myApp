@@ -36,7 +36,7 @@
     [self.navigationController cleanNavigationStackAndKeep:[DashboardViewController class]];
     self.nameLabel.text = [ApplicationDelegate.loginSession authData].firstName;
     [self.avatar setImageWithStyle:[UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[ApplicationDelegate.loginSession authData].avatar]]]];
-    self.navigationItem.title = @"Profil";
+    self.navigationItem.title = NSLocalizedString(@"Profil",nil);
 	// Do any additional setup after loading the view.
 }
 
@@ -74,10 +74,10 @@
         {
             switch (indexPath.row) {
                 case 0:
-                    cell.titleLabel.text = @"Mes infos générales";
+                    cell.titleLabel.text = NSLocalizedString(@"Mes infos générales",nil);
                     break;
                 case 1:
-                    cell.titleLabel.text = @"Mon mot de passe";
+                    cell.titleLabel.text = NSLocalizedString(@"Mon mot de passe",nil);
                     break;
                 default:
                     break;
@@ -118,7 +118,7 @@
         [self performSegueWithIdentifier:@"logoutSegue" sender:self];
                                                 }
                                              onError:^(NSError* error) {
-                                                  ALERT_TITLE(@"Erreur",[error localizedDescription])
+                                                  ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                               }];
 }
 

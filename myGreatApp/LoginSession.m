@@ -87,17 +87,17 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
                                    password,@"password",
                                    nil];
     
-    [[SHKActivityIndicator currentIndicator] displayActivity:@"Inscription en cours"];
+    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Inscription en cours",nil)];
     [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:REGISTER_URL
                                                              params:params
                                                          httpMethod:@"POST"
                                                        onCompletion:^(NSObject* json) {
-                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:@"Connexion réussie"];
+                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Connexion réussie",nil)];
                                                            [self storeUserInfo:json];
                                                            successBlock();
                                                        }
                                                             onError:^(NSError* error) {
-                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
+                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Erreur de connexion",nil)];
                                                                 errorBlock(error);
                                                             }];
 }
@@ -115,17 +115,17 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
                                    password,@"password",
                                    nil];
     
-    [[SHKActivityIndicator currentIndicator] displayActivity:@"Connexion en cours"];
+    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connexion en cours",nil)];
     [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:LOGIN_URL
                                                              params:params
                                                          httpMethod:@"POST"
                                                        onCompletion:^(NSObject* json) {
-                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:@"Connexion réussie"];
+                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Connexion réussie",nil)];
                                                            [self storeUserInfo:json];
                                                            successBlock();
                                                        }
                                                             onError:^(NSError* error) {
-                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
+                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Erreur de connexion",nil)];
                                                                 errorBlock(error);
                                                             }];
 }
@@ -220,17 +220,17 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
                                        fbLink,@"facebookLink",
                                        nil];
         
-        [[SHKActivityIndicator currentIndicator] displayActivity:@"Connexion en cours"];
+        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connexion en cours",nil)];
         [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:REGISTER_URL
                                                                  params:params
                                                              httpMethod:@"POST"
                                                            onCompletion:^(NSObject* json) {
-                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:@"Connexion réussie"];
+                                                               [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Connexion réussie",nil)];
                                                                [self storeUserInfo:json];
                                                                loginSuccessCallback();
                                                            }
                                                                 onError:^(NSError* error) {
-                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:@"Erreur de connexion"];
+                                                                    [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Erreur de connexion",nil)];
                                                                     loginfailedCallback(error);
                                                                 }];
         
@@ -255,7 +255,7 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
  */
 -(void)fbDidNotLogin:(BOOL)cancelled
 {
-    NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"Failed to login with facebook",NSLocalizedDescriptionKey,nil]];
+    NSError* error = [[NSError alloc] initWithDomain:@"myDomain" code:100 userInfo:[[NSMutableDictionary alloc] initWithObjectsAndKeys:NSLocalizedString(@"Failed to login with facebook",nil),NSLocalizedDescriptionKey,nil]];
     if(loginfailedCallback != nil) {
         loginfailedCallback(error);
     }
@@ -275,10 +275,10 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
 - (void)fbSessionInvalidated
 {
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:@"Auth Exception"
-                              message:@"Your session has expired."
+                              initWithTitle:NSLocalizedString(@"Auth Exception",nil)
+                              message:NSLocalizedString(@"Your session has expired.",nil)
                               delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:NSLocalizedString(@"OK",nil)
                               otherButtonTitles:nil,
                               nil];
     [alertView show];

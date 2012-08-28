@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Commentaires";
+    self.navigationItem.title = NSLocalizedString(@"Commentaires",nil);
 }
 
 - (void)viewDidUnload
