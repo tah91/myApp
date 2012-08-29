@@ -87,7 +87,9 @@
     self.isFetching = false;
     self.fromCode = false;
     self.loadingLabel.text = NSLocalizedString(@"Chargment des lieux...",nil);
+    self.mapViewHelp.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"map-help.png"]];
     self.mapViewHelpLabel.text = NSLocalizedString(@"Chargement...",nil);
+    self.mapViewHelpLabel.textColor = WHITE_COLOR;
     [self fetchData:false];
     
     self.navigationItem.title = NSLocalizedString(@"Résultats",nil);

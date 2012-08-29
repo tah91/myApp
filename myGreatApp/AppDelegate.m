@@ -49,16 +49,25 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:barColor];
     
-    UIImage *barButton = [[UIImage imageNamed:@"nav-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 5, 9)];
+    UIImage *barButton = [[UIImage imageNamed:@"nav-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 5, 9)];
+    UIImage *barButtonSel = [[UIImage imageNamed:@"nav-btn-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 5, 9)];
     
     [[UIBarButtonItem appearance] setBackgroundImage:barButton
                                             forState:UIControlStateNormal
                                           barMetrics:UIBarMetricsDefault];
     
-    UIImage *backButton = [[UIImage imageNamed:@"nav-back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5,18,5,8)];
+    [[UIBarButtonItem appearance] setBackgroundImage:barButtonSel
+                                            forState:UIControlStateSelected
+                                          barMetrics:UIBarMetricsDefault];
+    
+    UIImage *backButton = [[UIImage imageNamed:@"nav-btn-back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5,18,5,8)];
+    UIImage *backButtonSel = [[UIImage imageNamed:@"nav-btn-back-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5,18,5,8)];
     
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton
                                                       forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonSel
+                                                      forState:UIControlStateHighlighted
                                                     barMetrics:UIBarMetricsDefault];
     
     NSDictionary* buttonColor = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -70,6 +79,8 @@
     
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonColor
                                                 forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:buttonColor
+                                                forState:UIControlStateHighlighted];
     
     UIImage *segmentSelected = [[UIImage imageNamed:@"seg-control-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     UIImage *segmentUnselected = [[UIImage imageNamed:@"seg-control-uns.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 5)];

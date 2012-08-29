@@ -812,22 +812,22 @@
                                 </connections>
                             </mapView>
                             <view contentMode="scaleToFill" id="bgp-aW-nul">
-                                <rect key="frame" x="70" y="337" width="180" height="30"/>
+                                <rect key="frame" x="67.5" y="324.5" width="185" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="white" id="rId-NN-GwZ">
-                                        <rect key="frame" x="5" y="5" width="20" height="20"/>
+                                        <rect key="frame" x="5" y="11.5" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading pins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Vps-75-kHn">
-                                        <rect key="frame" x="33" y="4" width="141" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading pins" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Vps-75-kHn">
+                                        <rect key="frame" x="33" y="11.5" width="141" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.27317599850000002" green="0.74685004099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pyz-8S-yoZ">
                                 <rect key="frame" x="0.0" y="28" width="320" height="340"/>
@@ -1204,7 +1204,7 @@
                                 <action selector="cancel:" destination="zFD-eF-ype" id="XCL-nN-pdV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="S'identifier" id="aDZ-gg-9Jv">
+                        <barButtonItem key="rightBarButtonItem" image="nav-btn-list.png" id="aDZ-gg-9Jv">
                             <connections>
                                 <action selector="login:" destination="zFD-eF-ype" id="u2V-jg-8BU"/>
                             </connections>
@@ -1553,6 +1553,7 @@
     </scenes>
     <resources>
         <image name="checked.png" width="19" height="19"/>
+        <image name="nav-btn-list.png" width="21" height="13"/>
         <image name="rating.png" width="50" height="8"/>
     </resources>
     <classes>
@@ -1794,9 +1795,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="ycX-eO-8Kw"/>
         <segue reference="Hzo-LQ-hqo"/>
-        <segue reference="pcs-RU-H6p"/>
+        <segue reference="Nx6-DN-N9J"/>
+        <segue reference="qQ1-Su-lq7"/>
         <segue reference="saB-n9-cTw"/>
         <segue reference="PbO-Wt-f19"/>
-        <segue reference="Nx6-DN-N9J"/>
     </inferredMetricsTieBreakers>
 </document>
