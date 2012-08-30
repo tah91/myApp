@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
 - (IBAction)switchView:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *switchViewBtn;
 
 @property (strong, nonatomic) NSMutableArray*       results;
 @property (strong, nonatomic) NSNumber*             maxCount;

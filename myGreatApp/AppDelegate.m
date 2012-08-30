@@ -49,8 +49,8 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:barColor];
     
-    UIImage *barButton = [[UIImage imageNamed:@"nav-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 5, 9)];
-    UIImage *barButtonSel = [[UIImage imageNamed:@"nav-btn-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 5, 9)];
+    UIImage *barButton = [[UIImage imageNamed:@"nav-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 9, 6, 9)];
+    UIImage *barButtonSel = [[UIImage imageNamed:@"nav-btn-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 9, 6, 9)];
     
     [[UIBarButtonItem appearance] setBackgroundImage:barButton
                                             forState:UIControlStateNormal
@@ -60,8 +60,8 @@
                                             forState:UIControlStateSelected
                                           barMetrics:UIBarMetricsDefault];
     
-    UIImage *backButton = [[UIImage imageNamed:@"nav-btn-back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5,18,5,8)];
-    UIImage *backButtonSel = [[UIImage imageNamed:@"nav-btn-back-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5,18,5,8)];
+    UIImage *backButton = [[UIImage imageNamed:@"nav-btn-back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6,18,6,8)];
+    UIImage *backButtonSel = [[UIImage imageNamed:@"nav-btn-back-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6,18,6,8)];
     
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton
                                                       forState:UIControlStateNormal
@@ -82,8 +82,8 @@
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonColor
                                                 forState:UIControlStateHighlighted];
     
-    UIImage *segmentSelected = [[UIImage imageNamed:@"seg-control-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
-    UIImage *segmentUnselected = [[UIImage imageNamed:@"seg-control-uns.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 5)];
+    UIImage *segmentSelected = [[UIImage imageNamed:@"seg-control-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 5, 5, 5)];
+    UIImage *segmentUnselected = [[UIImage imageNamed:@"seg-control-uns.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     UIImage *segmentSelectedUnselected = [UIImage imageNamed:@"seg-control-sel-uns.png"];
     UIImage *segUnselectedSelected = [UIImage imageNamed:@"seg-control-uns-sel.png"];
     UIImage *segmentUnselectedUnselected = [UIImage imageNamed:@"seg-control-uns-uns.png"];

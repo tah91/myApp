@@ -25,5 +25,5 @@
 #define ORANGE_COLOR    [UIColor colorWithRed:247.0/255.0 green:148.0/255.0 blue:29.0/255.0 alpha:1.0]
 #define GREY_COLOR      [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0]
 #define BNG_PATTERN     [UIColor colorWithPatternImage:[UIImage imageNamed:@"bng-pattern.png"]]
-#define GROUPED_BNG(X)  [UIColor colorWithPatternImage:[[UIImage imageNamed:@"grouped-list-bng.png"] scaleToSize:X]]
-#define GROUPED_BNG_SEL [UIColor colorWithPatternImage:[UIImage imageNamed:@"grouped-list-bng-sel.png"]]
+#define GROUPED_BNG(X)  [UIColor colorWithPatternImage:[[UIImage imageNamed:@"list-bng.png"] scaleToSize:X]]
+#define GROUPED_BNG_SEL(X) [UIColor colorWithPatternImage:[[UIImage imageNamed:@"list-bng-sel.png"] scaleToSize:X]]

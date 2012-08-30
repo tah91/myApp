@@ -29,6 +29,7 @@
 
 @interface UIButton (TIAdditions)
 
+-(void)setFBButtonWithStyle:(NSString*)title;
 -(void)setButtonWithStyle:(NSString*)title;
 
 @end
@@ -38,5 +39,11 @@
 -(void) setTitleWithStyle:(NSString*)title;
 
 -(void) setSubtitleWithStyle:(NSString*)subtitle;
+
+@end
+
+@interface UIScrollView (TIAdditions)
+
+-(void)setContentSizeFromSubviews;
 
 @end

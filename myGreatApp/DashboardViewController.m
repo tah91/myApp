@@ -18,6 +18,7 @@
 @end
 
 @implementation DashboardViewController
+@synthesize tableView;
 @synthesize avatar;
 @synthesize nameLabel;
 
@@ -32,11 +33,15 @@
 
 - (void)viewDidLoad
 {
+    [self.tableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
+    
     [super viewDidLoad];
     [self.navigationController cleanNavigationStackAndKeep:[DashboardViewController class]];
     self.nameLabel.text = [ApplicationDelegate.loginSession authData].firstName;
     [self.avatar setImageWithStyle:[UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[ApplicationDelegate.loginSession authData].avatar]]]];
     self.navigationItem.title = NSLocalizedString(@"Profil",nil);
+    
+    self.tableView.backgroundColor = BNG_PATTERN;
 	// Do any additional setup after loading the view.
 }
 
@@ -44,6 +49,7 @@
 {
     [self setAvatar:nil];
     [self setNameLabel:nil];
+    [self setTableView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -67,17 +73,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:@"dashboardCell"];
+    DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:kDetailCellIdent];
     
     switch (indexPath.section) {
         case 0:
         {
             switch (indexPath.row) {
                 case 0:
-                    cell.titleLabel.text = NSLocalizedString(@"Mes infos générales",nil);
+                    [cell setLabel:NSLocalizedString(@"Mes infos générales",nil) withSegue:@"editProfilSegue" andController:self];
                     break;
                 case 1:
-                    cell.titleLabel.text = NSLocalizedString(@"Mon mot de passe",nil);
+                    [cell setLabel:NSLocalizedString(@"Mon mot de passe",nil) withSegue:@"editPasswordSegue" andController:self];
                     break;
                 default:
                     break;
@@ -95,20 +101,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
-        case 0:
-        {
-            [self performSegueWithIdentifier:@"editProfilSegue" sender:self];
-        }
-            break;
-        case 1:
-        {
-            [self performSegueWithIdentifier:@"editPasswordSegue" sender:self];
-        }
-            break;
-        default:
-            break;
-    }
+
 }
 
 - (IBAction)logout:(id)sender

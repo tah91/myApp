@@ -34,6 +34,8 @@
     
     [super viewDidLoad];
 
+    self.tableView.backgroundColor = BNG_PATTERN;
+    
     radiusTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSNumber numberWithInt:1],NSLocalizedString(@"1 km",nil),
                     [NSNumber numberWithInt:2],NSLocalizedString(@"2 km",nil),

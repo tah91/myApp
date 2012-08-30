@@ -38,6 +38,10 @@
     
     [super viewDidLoad];
     
+    self.view.backgroundColor = BNG_PATTERN;
+    self.locTypesTableView.backgroundColor = BNG_PATTERN;
+    self.featuresTableView.backgroundColor = BNG_PATTERN;
+    
     self.locTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
                      [NSNumber numberWithInt:-1],NSLocalizedString(@"Tous les types",nil),
                      [NSNumber numberWithInt:lt_wifiHotspot],NSLocalizedString(@"wifiHotspot",nil),

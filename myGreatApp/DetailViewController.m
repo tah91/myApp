@@ -29,8 +29,6 @@
 @synthesize typeLabel;
 @synthesize addressLabel;
 @synthesize cityLabel;
-@synthesize headerView;
-@synthesize footerView;
 @synthesize shareBtn;
 @synthesize localisation;
 
@@ -59,8 +57,6 @@
     [self setTypeLabel:nil];
     [self setAddressLabel:nil];
     [self setCityLabel:nil];
-    [self setHeaderView:nil];
-    [self setFooterView:nil];
     [self setShareBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -74,8 +70,6 @@
 - (void)loadData
 {
     [self.tableView setBackgroundColor:BNG_PATTERN];
-    [self.headerView setBackgroundColor:BNG_PATTERN];
-    [self.footerView setBackgroundColor:BNG_PATTERN];
     
     self.picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[localisation getMainImage:false]]]];
     self.nameLabel.text = localisation.name;
@@ -83,14 +77,30 @@
     self.typeLabel.text = localisation.type;
     self.typeLabel.textColor = ORANGE_COLOR;
     self.addressLabel.text = localisation.address;
-    self.addressLabel.textColor = WHITE_COLOR;
+    self.addressLabel.textColor = GREY_COLOR;
     self.cityLabel.text = localisation.city;
-    self.cityLabel.textColor = WHITE_COLOR;
+    self.cityLabel.textColor = GREY_COLOR;
+    
+    UIBarButtonItem* navShareBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-btn-like.png"]
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(shareThis:)];
+    
+    UIBarButtonItem* favBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-btn-share.png"]
+                                                               style:UIBarButtonItemStyleBordered
+                                                              target:self
+                                                              action:@selector(addToFavorites:)];
+
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:navShareBtn, favBtn, nil];
     
     [self.shareBtn setButtonWithStyle:NSLocalizedString(@"Partager",nil)];
     NSString* title = localisation.name;
     if([title length] > kTitleLength) {
         //title = [title substringToIndex:kTitleLength];
+    }
+    
+    if([localisation.images count] == 0) {
+        [self.picture removeAndHide];
     }
     self.navigationItem.title = title;
 }
@@ -208,7 +218,7 @@
                     cell.titleLabel.text = NSLocalizedString(@"Description",nil);
                     break;
                 case 1:
-                    [cell setLabel:localisation.description withSegue:@"descriptionSegue" andController:self];
+                    [cell setLabelWithoutAccessory:localisation.description withSegue:@"descriptionSegue" andController:self];
                     cell.titleLabel.text = localisation.description;
                     break;
                 case 2:

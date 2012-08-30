@@ -79,7 +79,7 @@
                                                            [self.tableView reloadData];
                                                        }
                                                             onError:^(NSError* error) {
-                                                                [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Echec lors du chargement",nil)];
+                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Echec lors du chargement",nil)];
                                                                 ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                             }];
 }

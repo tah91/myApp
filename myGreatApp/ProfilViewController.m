@@ -36,7 +36,11 @@
 
 - (void)viewDidLoad
 {
+    [self.tableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
+    
     [super viewDidLoad];
+    self.tableView.backgroundColor = BNG_PATTERN;
+    
     if([ApplicationDelegate.loginSession isLogged]){
         [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
     } else {
@@ -90,8 +94,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:@"profilCell"];
-    cell.titleLabel.text = NSLocalizedString(@"Se connecter ou s'inscrire",nil);
+    DetailCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:kDetailCellIdent];
+    [cell setLabel:NSLocalizedString(@"Se connecter ou s'inscrire",nil) withSegue:@"loginSegue" andController:self];
     
     return cell;
 }
@@ -100,21 +104,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section) {
-        case 0:
-        {
-            switch (indexPath.row) {
-                case 0:
-                    [self performSegueWithIdentifier:@"loginSegue" sender:self];
-                    break;
-                default:
-                    break;
-            }
-        }
-            break;
-        default:
-            break;
-    }
+
 }
 
 @end

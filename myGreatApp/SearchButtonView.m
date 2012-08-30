@@ -46,8 +46,8 @@
     
     [button addSubview:btnView];
     [button sendSubviewToBack:btnView];
-    UIImage* bng = [[UIImage imageNamed:@"btn-blue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 6, 6)];
-    UIImage* bngSel = [[UIImage imageNamed:@"btn-blue-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 6, 6)];
+    UIImage* bng = [UIImage imageNamed:@"select-search-btn-off.png"];
+    UIImage* bngSel = [UIImage imageNamed:@"select-search-btn-on.png"];
     [button setBackgroundImage:bng forState:UIControlStateNormal];
     [button setBackgroundImage:bngSel forState:UIControlStateSelected];
 }

@@ -24,6 +24,7 @@
 @end
 
 @implementation ResultViewController
+@synthesize switchViewBtn;
 @synthesize loadingLabel;
 @synthesize loadingView;
 @synthesize mapView;
@@ -63,23 +64,32 @@
     [self.view addSubview:tableView];
     [self.view addSubview:toolsView];
     
-    UIImage *toolsBng = [[UIImage imageNamed:@"tools-btn-bng.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    UIImage *toolsBng = [UIImage imageNamed:@"tools-btn.png"];
+    UIImage *toolsBngSel = [UIImage imageNamed:@"tools-btn-sel.png"];
     
-    UIImage *orderByLogo = [UIImage imageNamed:@"tool-orderby-logo.png"];
+    self.toolsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tools-bng.png"]];
+    
+    UIImage *orderByLogo = [UIImage imageNamed:@"tools-orderby.png"];
     [orderByBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
+    [orderByBtn setBackgroundImage:toolsBngSel forState:UIControlStateHighlighted];
     [orderByBtn setImage:orderByLogo forState:UIControlStateNormal];
+    [orderByBtn setImage:orderByLogo forState:UIControlStateHighlighted];
     [orderByBtn setTitle:NSLocalizedString(@"Trier",nil) forState:UIControlStateNormal];
     [orderByBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
     
-    UIImage *criteriaLogo = [UIImage imageNamed:@"tool-criteria-logo.png"];
+    UIImage *criteriaLogo = [UIImage imageNamed:@"tools-criteria.png"];
     [criteriaBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
+    [criteriaBtn setBackgroundImage:toolsBngSel forState:UIControlStateHighlighted];
     [criteriaBtn setImage:criteriaLogo forState:UIControlStateNormal];
+    [criteriaBtn setImage:criteriaLogo forState:UIControlStateHighlighted];
     [criteriaBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
     [criteriaBtn setTitle:NSLocalizedString(@"Critères",nil) forState:UIControlStateNormal];
     
-    UIImage *radiusLogo = [UIImage imageNamed:@"tool-radius-logo.png"];
+    UIImage *radiusLogo = [UIImage imageNamed:@"tools-radius.png"];
     [radiusBtn setBackgroundImage:toolsBng forState:UIControlStateNormal];
+    [radiusBtn setBackgroundImage:toolsBngSel forState:UIControlStateHighlighted];
     [radiusBtn setImage:radiusLogo forState:UIControlStateNormal];
+    [radiusBtn setImage:radiusLogo forState:UIControlStateHighlighted];
     [radiusBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0)];
     [radiusBtn setTitle:NSLocalizedString(@"Rayon",nil) forState:UIControlStateNormal];
     
@@ -113,6 +123,7 @@
     self.maxCount = nil;
     self.fetchedLocalisations = nil;
     self.criteria = nil;
+    [self setSwitchViewBtn:nil];
     [super viewDidUnload];
 }
 
@@ -400,11 +411,13 @@
         [self.tableView removeFromSuperview];
         [self.view addSubview:self.mapView];
         [self.view addSubview:self.mapViewHelp];
+        [self.switchViewBtn setImage:[UIImage imageNamed:@"nav-btn-list.png"]];
     } else if([self.mapView superview]){
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
         [self.mapView removeFromSuperview];
         [self.mapViewHelp removeFromSuperview];
         [self.view addSubview:self.tableView];
+        [self.switchViewBtn setImage:[UIImage imageNamed:@"nav-btn-map.png"]];
     }
     
     [UIView commitAnimations];

@@ -36,11 +36,13 @@
     [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
     
     [super viewDidLoad];
-    [self.fbRegisterBtn setButtonWithStyle:NSLocalizedString(@"Inscrivez-vous avec Facebook",nil)];
+    [self.fbRegisterBtn setFBButtonWithStyle:NSLocalizedString(@"Inscrivez-vous avec Facebook",nil)];
     [self.noFbLabel setSubtitleWithStyle:NSLocalizedString(@"Pas de compte Facebook ?",nil)];
     [self.registerBtn setButtonWithStyle:NSLocalizedString(@"Créer un compte",nil)];
     [self.cguLabel setSubtitleWithStyle:NSLocalizedString(@"En cliquant sur " "Créer un compte"" ou ""Inscrivez-vous avec Facebook"", vous confirmez que vous acceptez les conditions générales.",nil)];
     self.navigationItem.title = NSLocalizedString(@"Inscription",nil);
+    
+    self.tableView.backgroundColor = BNG_PATTERN;
 }
 
 - (void)viewDidUnload

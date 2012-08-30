@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSString* segueIdent;
 
 -(void)setLabel:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller;
+-(void)setLabelWithoutAccessory:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller;
 
 @end

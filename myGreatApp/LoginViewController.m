@@ -46,7 +46,7 @@
 {
     [self.tableView registerNib:[UINib nibWithNibName:kTextFielCellIdent bundle:nil] forCellReuseIdentifier:kTextFielCellIdent];
     
-    [self.fbLoginBtn setButtonWithStyle:NSLocalizedString(@"S'inscrire avec Facebook",nil)];
+    [self.fbLoginBtn setFBButtonWithStyle:NSLocalizedString(@"S'inscrire avec Facebook",nil)];
     [self.registerBtn setButtonWithStyle:NSLocalizedString(@"S'inscrire",nil)];
     [self.alreadyMember1 setTitleWithStyle:NSLocalizedString(@"Déjà membre eWorky ?",nil)];
     [self.alreadyMember2 setSubtitleWithStyle:NSLocalizedString(@"Connectez-vous à votre compte eWorky",nil)];
@@ -54,6 +54,8 @@
     [self.needAccount2 setSubtitleWithStyle:NSLocalizedString(@"S'inscrire sur eWorky",nil)];
     
     self.navigationItem.title = NSLocalizedString(@"Connexion",nil);
+    
+    self.tableView.backgroundColor = BNG_PATTERN;
     
     [super viewDidLoad];
 }

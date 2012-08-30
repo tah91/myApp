@@ -27,14 +27,14 @@
 {
     [super setSelected:selected animated:animated];
 
+    CGSize imgSize = self.frame.size;
     if(selected) {
-        [self setBackgroundColor:GROUPED_BNG_SEL];
+        [self setBackgroundColor:GROUPED_BNG_SEL(imgSize)];
         [[self titleLabel] setTextColor:WHITE_COLOR];
         if(self.accessoryView != nil) {
             [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory-sel.png" ]]];
         }
     } else {
-        CGSize imgSize = self.frame.size;
         [self setBackgroundColor:GROUPED_BNG(imgSize)];
         [[self titleLabel] setTextColor:GREY_COLOR];
         if(self.accessoryView != nil) {
@@ -52,6 +52,15 @@
     self.titleLabel.text = label;
     self.segueIdent = segue;
     self.segueController = controller;
+    if([self.segueIdent length] != 0 && self.segueController != nil) {
+        [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory.png" ]]];
+    }
+}
+
+-(void)setLabelWithoutAccessory:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller
+{
+    [self setLabel:label withSegue:segue andController:controller];
+    [self setAccessoryView:nil];
 }
 
 @end

@@ -36,16 +36,18 @@
 {
     [super viewDidLoad];
 
+    self.view.backgroundColor = BNG_PATTERN;
+    
     [SearchButtonView setBtn:freeSpaceButton owner:self title:NSLocalizedString(@"Lieux gratuits",nil) withSubtitle:NSLocalizedString(@"Lieux gratuits sous titre",nil)];
-    [SearchButtonView setBtnState:freeSpaceButton state:criteria.freePlace image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    [SearchButtonView setBtnState:freeSpaceButton state:criteria.freePlace image:[UIImage imageNamed:@"select-search-free-off.png"] selectedImage:[UIImage imageNamed:@"select-search-free-on.png"]];
     [freeSpaceButton setSelected:criteria.freePlace];
 
     [SearchButtonView setBtn:desktopButton owner:self title:NSLocalizedString(@"Bureaux",nil) withSubtitle:NSLocalizedString(@"Bureaux sous titre",nil)];
-    [SearchButtonView setBtnState:desktopButton state:criteria.desktop image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    [SearchButtonView setBtnState:desktopButton state:criteria.desktop image:[UIImage imageNamed:@"select-search-desktop-off.png"] selectedImage:[UIImage imageNamed:@"select-search-desktop-on.png"]];
     [desktopButton setSelected:criteria.desktop];
 
     [SearchButtonView setBtn:meetingRoomButton owner:self title:NSLocalizedString(@"Salles de réunion",nil) withSubtitle:NSLocalizedString(@"Salles de réunion sous titre",nil)];
-    [SearchButtonView setBtnState:meetingRoomButton state:criteria.meetingRoom image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    [SearchButtonView setBtnState:meetingRoomButton state:criteria.meetingRoom image:[UIImage imageNamed:@"select-search-meeting-off.png"] selectedImage:[UIImage imageNamed:@"select-search-meeting-on.png"]];
     [meetingRoomButton setSelected:criteria.meetingRoom];
     
     self.navigationItem.title = NSLocalizedString(@"Filtrer",nil);
@@ -80,7 +82,7 @@
 - (IBAction)selectFreeSpace:(id)sender
 {
     BOOL isSelected = [sender isSelected];
-    [SearchButtonView setBtnState:freeSpaceButton state:!isSelected image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    [SearchButtonView setBtnState:freeSpaceButton state:!isSelected image:[UIImage imageNamed:@"select-search-free-off.png"] selectedImage:[UIImage imageNamed:@"select-search-free-on.png"]];
     if (isSelected) {
         [sender setSelected:NO];
         [criteria setFreePlace:false];
@@ -93,7 +95,7 @@
 - (IBAction)selectDesktop:(id)sender
 {
     BOOL isSelected = [sender isSelected];
-    [SearchButtonView setBtnState:desktopButton state:!isSelected image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    [SearchButtonView setBtnState:desktopButton state:!isSelected image:[UIImage imageNamed:@"select-search-desktop-off.png"] selectedImage:[UIImage imageNamed:@"select-search-desktop-on.png"]];
     if (isSelected) {
         [sender setSelected:NO];
         [criteria setDesktop:false];
@@ -106,7 +108,7 @@
 - (IBAction)selectMeetingRoom:(id)sender
 {
     BOOL isSelected = [sender isSelected];
-    [SearchButtonView setBtnState:meetingRoomButton state:!isSelected image:[UIImage imageNamed:@"wifi-on.png"] selectedImage:[UIImage imageNamed:@"wifi-on-sel.png"]];
+    [SearchButtonView setBtnState:meetingRoomButton state:!isSelected image:[UIImage imageNamed:@"select-search-meeting-off.png"] selectedImage:[UIImage imageNamed:@"select-search-meeting-on.png"]];
     if (isSelected) {
         [sender setSelected:NO];
         [criteria setMeetingRoom:false];

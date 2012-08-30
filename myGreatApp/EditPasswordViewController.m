@@ -37,6 +37,8 @@
                                                                                     target:self
                                                                                     action:@selector(editPasswordDone:)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
+    
+    self.tableView.backgroundColor = BNG_PATTERN;
 }
 
 - (void)viewDidUnload

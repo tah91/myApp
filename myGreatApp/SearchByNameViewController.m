@@ -49,6 +49,7 @@
         self.previousSearch = [[NSMutableArray alloc] init];
     }
     
+    self.tableView.backgroundColor = BNG_PATTERN;
     self.navigationItem.title = NSLocalizedString(@"Par nom du lieu",nil);
 }
 

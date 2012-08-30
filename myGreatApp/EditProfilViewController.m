@@ -45,6 +45,8 @@
                                                                                     target:self
                                                                                     action:@selector(editProfileDone:)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
+    
+    self.tableView.backgroundColor = BNG_PATTERN;
 	// Do any additional setup after loading the view.
 }
 

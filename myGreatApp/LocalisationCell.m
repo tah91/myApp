@@ -32,6 +32,12 @@
     typeLabel.shadowColor = newShadow;
     distanceLabel.shadowColor = newShadow;
     cityLabel.shadowColor = newShadow;
+    
+    if(selected) {
+        [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory-sel.png" ]]];
+    } else {
+        [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory.png" ]]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -80,6 +86,8 @@
     [self.mainPic setImageWithStyle:[UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[loc getMainImage:true]]]]];
     
     [self.ratingPic setRatingPic:loc.rating];
+    
+    [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory-sel.png" ]]];
     
     UIImage* bng = [[UIImage imageNamed:@"list-bng.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,0,0,0)];
     [self setBackgroundView:[[UIImageView alloc] initWithImage:bng]];

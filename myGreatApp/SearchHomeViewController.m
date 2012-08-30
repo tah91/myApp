@@ -34,6 +34,7 @@
     
     [super viewDidLoad];
     
+    self.tableView.backgroundColor = BNG_PATTERN;
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -96,7 +97,6 @@
         default:
             break;
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

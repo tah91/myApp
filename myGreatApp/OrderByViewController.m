@@ -33,7 +33,9 @@
     [self.tableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
     
     [super viewDidLoad];
-
+    
+    self.tableView.backgroundColor = BNG_PATTERN;
+    
     orderByTypes = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSNumber numberWithInt:ob_rating],NSLocalizedString(@"Note",nil),
                     [NSNumber numberWithInt:ob_distance],NSLocalizedString(@"Distance",nil),

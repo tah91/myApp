@@ -181,7 +181,6 @@
 		972CD82615EFD15D009A8AFC /* meeting-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7BE15EFD15D009A8AFC /* meeting-off.png */; };
 		972CD82715EFD15D009A8AFC /* meeting-on-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7BF15EFD15D009A8AFC /* meeting-on-sel.png */; };
 		972CD82815EFD15D009A8AFC /* meeting-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7C015EFD15D009A8AFC /* meeting-on.png */; };
-		972CD82915EFD15D009A8AFC /* nav-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7C115EFD15D009A8AFC /* nav-bar.png */; };
 		972CD82A15EFD15D009A8AFC /* nav-btn-back-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7C215EFD15D009A8AFC /* nav-btn-back-sel.png */; };
 		972CD82B15EFD15D009A8AFC /* nav-btn-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7C315EFD15D009A8AFC /* nav-btn-back.png */; };
 		972CD82C15EFD15D009A8AFC /* nav-btn-like.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7C415EFD15D009A8AFC /* nav-btn-like.png */; };
@@ -238,6 +237,7 @@
 		972CD85F15EFD15E009A8AFC /* wifi-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7F715EFD15D009A8AFC /* wifi-off.png */; };
 		972CD86015EFD15E009A8AFC /* wifi-on-sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7F815EFD15D009A8AFC /* wifi-on-sel.png */; };
 		972CD86115EFD15E009A8AFC /* wifi-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD7F915EFD15D009A8AFC /* wifi-on.png */; };
+		972CD86315EFD6BC009A8AFC /* nav-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 972CD86215EFD6B1009A8AFC /* nav-bar.png */; };
 		9741190115AF279C00939706 /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190015AF279C00939706 /* ProfilViewController.m */; };
 		9741190715AF41B400939706 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190615AF41B400939706 /* LoginViewController.m */; };
 		9741190A15AF48A400939706 /* LoginSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9741190915AF48A400939706 /* LoginSession.m */; };
@@ -569,7 +569,6 @@
 		972CD7BE15EFD15D009A8AFC /* meeting-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meeting-off.png"; sourceTree = "<group>"; };
 		972CD7BF15EFD15D009A8AFC /* meeting-on-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meeting-on-sel.png"; sourceTree = "<group>"; };
 		972CD7C015EFD15D009A8AFC /* meeting-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meeting-on.png"; sourceTree = "<group>"; };
-		972CD7C115EFD15D009A8AFC /* nav-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar.png"; sourceTree = "<group>"; };
 		972CD7C215EFD15D009A8AFC /* nav-btn-back-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-btn-back-sel.png"; sourceTree = "<group>"; };
 		972CD7C315EFD15D009A8AFC /* nav-btn-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-btn-back.png"; sourceTree = "<group>"; };
 		972CD7C415EFD15D009A8AFC /* nav-btn-like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-btn-like.png"; sourceTree = "<group>"; };
@@ -626,6 +625,7 @@
 		972CD7F715EFD15D009A8AFC /* wifi-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifi-off.png"; sourceTree = "<group>"; };
 		972CD7F815EFD15D009A8AFC /* wifi-on-sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifi-on-sel.png"; sourceTree = "<group>"; };
 		972CD7F915EFD15D009A8AFC /* wifi-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifi-on.png"; sourceTree = "<group>"; };
+		972CD86215EFD6B1009A8AFC /* nav-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar.png"; sourceTree = "<group>"; };
 		974118FF15AF279C00939706 /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
 		9741190015AF279C00939706 /* ProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilViewController.m; sourceTree = "<group>"; };
 		9741190515AF41B400939706 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -1207,7 +1207,7 @@
 				972CD6F215EFD142009A8AFC /* meeting-on-sel@2x.png */,
 				972CD7C015EFD15D009A8AFC /* meeting-on.png */,
 				972CD6F315EFD142009A8AFC /* meeting-on@2x.png */,
-				972CD7C115EFD15D009A8AFC /* nav-bar.png */,
+				972CD86215EFD6B1009A8AFC /* nav-bar.png */,
 				972CD6F415EFD142009A8AFC /* nav-bar@2x.png */,
 				972CD7C215EFD15D009A8AFC /* nav-btn-back-sel.png */,
 				972CD6F515EFD142009A8AFC /* nav-btn-back-sel@2x.png */,
@@ -1696,7 +1696,6 @@
 				972CD82615EFD15D009A8AFC /* meeting-off.png in Resources */,
 				972CD82715EFD15D009A8AFC /* meeting-on-sel.png in Resources */,
 				972CD82815EFD15D009A8AFC /* meeting-on.png in Resources */,
-				972CD82915EFD15D009A8AFC /* nav-bar.png in Resources */,
 				972CD82A15EFD15D009A8AFC /* nav-btn-back-sel.png in Resources */,
 				972CD82B15EFD15D009A8AFC /* nav-btn-back.png in Resources */,
 				972CD82C15EFD15D009A8AFC /* nav-btn-like.png in Resources */,
@@ -1753,6 +1752,7 @@
 				972CD85F15EFD15E009A8AFC /* wifi-off.png in Resources */,
 				972CD86015EFD15E009A8AFC /* wifi-on-sel.png in Resources */,
 				972CD86115EFD15E009A8AFC /* wifi-on.png in Resources */,
+				972CD86315EFD6BC009A8AFC /* nav-bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

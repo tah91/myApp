@@ -10,6 +10,7 @@
 #import "UITableView+TIAdditions.h"
 #import "FeatureCell.h"
 #import "DetailCell.h"
+#import "UIView+TIAdditions.h"
 
 @interface DescriptionViewController ()
 
@@ -51,6 +52,8 @@
     
     [self setSubviewAtIndex:selectedTab];
     self.navigationItem.title = NSLocalizedString(@"Détails",nil);
+    
+    [self.descScrollView setContentSizeFromSubviews];
 }
 
 - (void)viewDidUnload

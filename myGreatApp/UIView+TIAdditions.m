@@ -60,6 +60,17 @@
 
 @implementation UIButton (TIAdditions)
 
+-(void) setFBButtonWithStyle:(NSString*)title
+{
+    UIImage* bng = [UIImage imageNamed:@"btn-fb.png"];
+    UIImage* bngSel = [UIImage imageNamed:@"btn-fb-sel.png"];
+    [self setBackgroundImage:bng forState:UIControlStateNormal];
+    [self setBackgroundImage:bngSel forState:UIControlStateHighlighted];
+    [self setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
+    self.titleLabel.text = title;
+    [[self titleLabel] setFont:FONT_BOLD(14.0f)];
+}
+
 -(void) setButtonWithStyle:(NSString*)title
 {
     UIImage* bng = [[UIImage imageNamed:@"btn-blue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 6, 6)];
@@ -110,6 +121,20 @@
     
     // Return our new scaled image
     return scaledImage;
+}
+
+@end
+
+@implementation UIScrollView (TIAdditions)
+
+-(void)setContentSizeFromSubviews
+{
+    CGFloat scrollViewHeight = 0.0f;
+    for (UIView* view in self.subviews)
+    {
+        scrollViewHeight += view.frame.size.height;
+    }
+    [self setContentSize:(CGSizeMake(320, scrollViewHeight))];
 }
 
 @end
