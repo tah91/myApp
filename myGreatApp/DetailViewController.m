@@ -226,7 +226,7 @@
         case 0:
         {
             OffersSummary* elem = [[localisation offerSummaries] objectAtIndex:indexPath.row];
-            [cell setLabel:[elem getTitle:TRUE] withSegue:@"desktopsSegue" andController:self];
+            [cell setLabel:[elem getTitle:TRUE] withSegue:@"" andController:self];
             cell.titleLabel.text = [elem getTitle:true];
         }
             break;

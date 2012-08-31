@@ -123,7 +123,7 @@
         civilitySource = [[NSDictionary alloc] initWithObjectsAndKeys:
                           NSLocalizedString(@"Mr",nil),[NSNumber numberWithInt:CiviltyMr],
                           NSLocalizedString(@"Mme",nil),[NSNumber numberWithInt:CiviltyMme],
-                          NSLocalizedString(@"Mlle",nil),[NSNumber numberWithInt:CiviltyMlle],
+                          //NSLocalizedString(@"Mlle",nil),[NSNumber numberWithInt:CiviltyMlle],
                           nil];
     }
     return civilitySource;

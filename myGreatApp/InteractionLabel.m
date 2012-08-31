@@ -47,7 +47,12 @@
     UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                           target:self
                                                                           action:@selector(selectionDone)];
-    [toolbar setItems:[NSMutableArray arrayWithObjects:done, nil]];
+    
+    UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                   target:nil
+                                                                                   action:nil];
+
+    [toolbar setItems:[NSMutableArray arrayWithObjects:flexibleSpace,done, nil]];
     
     self.inputAccessoryView = toolbar;
 }

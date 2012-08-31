@@ -320,6 +320,7 @@
 		97FA42DA15E68BD000E4FE3E /* EworkySHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA42D915E68BD000E4FE3E /* EworkySHKConfigurator.m */; };
 		97FBDF3015C98BE6007A5316 /* OffersSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FBDF2F15C98BE6007A5316 /* OffersSummary.m */; };
 		97FCA7F915F0C45C00CBD685 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA7F815F0C45C00CBD685 /* Default@2x.png */; };
+		97FCA7FF15F1158B00CBD685 /* myGreatApp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97F42E7415A3428000EACD05 /* myGreatApp-Info.plist */; };
 		97FD7E6C15BDC76200815752 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6B15BDC76200815752 /* Price.m */; };
 		97FD7E7015BDC77000815752 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6F15BDC76F00815752 /* Comment.m */; };
 		97FD7E7315BDC77E00815752 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E7215BDC77E00815752 /* Offer.m */; };
@@ -713,7 +714,7 @@
 		97F42E6C15A3428000EACD05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97F42E6E15A3428000EACD05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		97F42E7015A3428000EACD05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		97F42E7415A3428000EACD05 /* myGreatApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "myGreatApp-Info.plist"; sourceTree = "<group>"; };
+		97F42E7415A3428000EACD05 /* myGreatApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "myGreatApp-Info.plist"; sourceTree = "<group>"; };
 		97F42E7615A3428000EACD05 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		97F42E7815A3428000EACD05 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		97F42E7A15A3428000EACD05 /* myGreatApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "myGreatApp-Prefix.pch"; sourceTree = "<group>"; };
@@ -765,6 +766,7 @@
 		97FBDF2E15C98BE6007A5316 /* OffersSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersSummary.h; sourceTree = "<group>"; };
 		97FBDF2F15C98BE6007A5316 /* OffersSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersSummary.m; sourceTree = "<group>"; };
 		97FCA7F815F0C45C00CBD685 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		97FCA7FE15F1158A00CBD685 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		97FD7E6A15BDC76200815752 /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
 		97FD7E6B15BDC76200815752 /* Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Price.m; sourceTree = "<group>"; };
 		97FD7E6E15BDC76F00815752 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -1476,6 +1478,7 @@
 				en,
 				da,
 				fr,
+				nl,
 			);
 			mainGroup = 97F42E5D15A3428000EACD05;
 			productRefGroup = 97F42E6915A3428000EACD05 /* Products */;
@@ -1757,6 +1760,7 @@
 				972CD86115EFD15E009A8AFC /* wifi-on.png in Resources */,
 				972CD86315EFD6BC009A8AFC /* nav-bar.png in Resources */,
 				97FCA7F915F0C45C00CBD685 /* Default@2x.png in Resources */,
+				97FCA7FF15F1158B00CBD685 /* myGreatApp-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1904,6 +1908,7 @@
 			children = (
 				972CD6A215ED5900009A8AFC /* en */,
 				972CD6A415ED5914009A8AFC /* fr */,
+				97FCA7FE15F1158A00CBD685 /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

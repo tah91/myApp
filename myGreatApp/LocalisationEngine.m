@@ -8,6 +8,8 @@
 
 #import "LocalisationEngine.h"
 #import "Meta.h"
+#import "NSDate+TIAdditions.h"
+
 @implementation LocalisationEngine
 
 -(MKNetworkOperation*) enqueueOperationWithUrl:(NSString*)url
@@ -16,6 +18,8 @@
                                   onCompletion:(OperationResponseBlock) completionBlock
                                        onError:(MKNKErrorBlock) errorBlock
 {
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    [params trySetObject:language forKey:@"locale-culture"];
     
     MKNetworkOperation *op = [self operationWithPath:url
                                               params:params 
