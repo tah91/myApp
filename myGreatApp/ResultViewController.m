@@ -204,7 +204,7 @@
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [loc.latitude doubleValue];
         coordinate.longitude = [loc.longitude doubleValue];
-        LocalisationAnnotation* toAdd = [[LocalisationAnnotation alloc] initWithName:loc.name address:loc.city coordinate:coordinate localisation:loc];
+        LocalisationAnnotation* toAdd = [[LocalisationAnnotation alloc] initWithId:loc.id name:loc.name address:loc.city coordinate:coordinate localisation:loc];
         [self.mapView addAnnotation:toAdd];
     }
     
@@ -379,7 +379,9 @@
     else if ([[segue identifier] isEqualToString:@"annotationDetailSegue"]) {
         DetailViewController *dvc = [segue destinationViewController];
         LocalisationAnnotation* annotation = (LocalisationAnnotation*)sender;
-        [dvc setLocalisation:annotation.localisation];
+        Localisation* toSet = annotation.localisation;
+        [dvc setLocId:annotation.locId];
+        [dvc setLocalisation:toSet];
     }
     else if ([[segue identifier] isEqualToString:@"orderBySegue"]) {
         OrderByViewController *ovc = [segue destinationViewController];

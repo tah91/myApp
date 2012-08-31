@@ -48,3 +48,9 @@
 -(void)setContentSizeFromSubviews;
 
 @end
+
+@interface UINavigationBar (TIAdditions)
+
+-(void) applyDefaultStyle;
+
+@end

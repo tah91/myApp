@@ -10,7 +10,10 @@
 #import "ResultViewController.h"
 #import "SearchCriteria.h"
 
-@interface SelectTypeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SelectTypeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    NSMutableSet* _selectedLoc;
+    NSMutableSet* _selectedFeatures;
+}
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UINavigationBar *bar;
@@ -21,10 +24,8 @@
 
 @property (nonatomic, copy) NSDictionary* locTypes;
 @property (nonatomic, copy) NSArray* locArray;
-@property (nonatomic, copy) NSMutableSet* selectedLoc;
 @property (nonatomic, copy) NSDictionary* featureTypes;
 @property (nonatomic, copy) NSArray* featureArray;
-@property (nonatomic, copy) NSMutableSet* selectedFeatures;
 @property (strong,nonatomic) id <ApplySeachDelegate> applySearchDelegate;
 @property (strong,nonatomic) SearchCriteria* criteria;
 

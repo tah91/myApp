@@ -40,19 +40,19 @@
 
 -(void) setRatingPic:(NSNumber*)rating
 {
-    if(rating >= [NSNumber numberWithInt:4]) {
+    if(rating > [NSNumber numberWithInt:4]) {
         [self setImage:[UIImage imageNamed:@"rating-5.png"]];
         [self setHighlightedImage:[UIImage imageNamed:@"rating-5-sel.png"]];
-    } else if(rating >= [NSNumber numberWithInt:3]) {
+    } else if(rating > [NSNumber numberWithInt:3]) {
         [self setImage:[UIImage imageNamed:@"rating-4.png"]];
         [self setHighlightedImage:[UIImage imageNamed:@"rating-4-sel.png"]];
-    } else if(rating >= [NSNumber numberWithInt:2]) {
+    } else if(rating > [NSNumber numberWithInt:2]) {
         [self setImage:[UIImage imageNamed:@"rating-3.png"]];
         [self setHighlightedImage:[UIImage imageNamed:@"rating-3-sel.png"]];
-    } else if(rating >= [NSNumber numberWithInt:1]) {
+    } else if(rating > [NSNumber numberWithInt:1]) {
         [self setImage:[UIImage imageNamed:@"rating-2.png"]];
         [self setHighlightedImage:[UIImage imageNamed:@"rating-2-sel.png"]];
-    } else if(rating >= [NSNumber numberWithInt:0]) {
+    } else if(rating > [NSNumber numberWithInt:0]) {
         [self setImage:[UIImage imageNamed:@"rating-1.png"]];
         [self setHighlightedImage:[UIImage imageNamed:@"rating-1-sel.png"]];
     } else {
@@ -63,15 +63,15 @@
 
 -(void) setCommentRatingPic:(NSNumber*)rating
 {
-    if(rating >= [NSNumber numberWithInt:4]) {
+    if(rating > [NSNumber numberWithInt:4]) {
         [self setImage:[UIImage imageNamed:@"comment-5.png"]];
-    } else if(rating >= [NSNumber numberWithInt:3]) {
+    } else if(rating > [NSNumber numberWithInt:3]) {
         [self setImage:[UIImage imageNamed:@"comment-4.png"]];
-    } else if(rating >= [NSNumber numberWithInt:2]) {
+    } else if(rating > [NSNumber numberWithInt:2]) {
         [self setImage:[UIImage imageNamed:@"comment-3.png"]];
-    } else if(rating >= [NSNumber numberWithInt:1]) {
+    } else if(rating > [NSNumber numberWithInt:1]) {
         [self setImage:[UIImage imageNamed:@"comment-2.png"]];
-    } else if(rating >= [NSNumber numberWithInt:0]) {
+    } else if(rating > [NSNumber numberWithInt:0]) {
         [self setImage:[UIImage imageNamed:@"comment-1.png"]];
     } else {
         [self setImage:[UIImage imageNamed:@"comment-0.png"]];
@@ -157,6 +157,29 @@
         scrollViewHeight += view.frame.size.height;
     }
     [self setContentSize:(CGSizeMake(320, scrollViewHeight))];
+}
+
+@end
+
+@implementation UINavigationBar (TIAdditions)
+
+- (void)drawRect:(CGRect)rect {
+    UIImage *image = [UIImage imageNamed: @"nav-bar.png"];
+    [image drawInRect:CGRectMake(0, 0, 320, 44)];
+}
+
+-(void)willMoveToWindow:(UIWindow *)newWindow{
+    [super willMoveToWindow:newWindow];
+    [self applyDefaultStyle];
+}
+
+- (void)applyDefaultStyle {
+    // add the drop shadow
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowOffset = CGSizeMake(0.0, 3);
+    self.layer.shadowOpacity = 0.25;
+    self.layer.masksToBounds = NO;
+    self.layer.shouldRasterize = YES;
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "Comment.h"
 #import "CommentCell.h"
 #import "UIView+TIAdditions.h"
+#import "AppDelegate.h"
 
 @interface CommentsViewController ()
 
@@ -62,8 +63,9 @@
         AddCommentViewController* acc = [segue destinationViewController];
         [acc setLocalisation:localisation];
         [acc setDelegate:self];
+    } else if ([segue.identifier isEqualToString:@"commentToLoginSegue"]) {
+        [LoginViewController setLoginDelegate:self toController:segue.destinationViewController];
     }
-    
 }
 
 #pragma mark - AddComment delegate
@@ -107,4 +109,23 @@
     return POST_CELL_HEIGHT - POST_CONTENT_HEIGHT + height;
 }
 
+#pragma mark - LoginViewController Delegate Method
+
+-(void)finishedLoadingUserInfo
+{
+    // Dismiss the LoginViewController that we instantiated earlier
+    [self dismissModalViewControllerAnimated:YES];
+    
+    // Do other stuff as needed
+    [self performSegueWithIdentifier:@"addCommentSegue" sender:self];
+}
+
+- (IBAction)addComment:(id)sender
+{
+    if([ApplicationDelegate.loginSession isLogged]){
+        [self performSegueWithIdentifier:@"addCommentSegue" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"commentToLoginSegue" sender:self];
+    }
+}
 @end

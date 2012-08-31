@@ -44,6 +44,7 @@
     self.rating = [NSNumber numberWithFloat:initial];
     self.shouldSubmit = FALSE;
     self.label.text = label;
+    self.label.textColor = BLUE_COLOR;
     self.delegate = delegate;
 }
 

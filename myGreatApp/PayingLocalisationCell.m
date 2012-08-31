@@ -46,11 +46,17 @@
     if([desktopDisplay length] == 0) {
         [self.desktopPic setImage:[UIImage imageNamed:@"desktop-off.png"]];
         [self.desktopPic setHighlightedImage:[UIImage imageNamed:@"desktop-off-sel.png"]];
+    } else  {
+        [self.desktopPic setImage:[UIImage imageNamed:@"desktop-on.png"]];
+        [self.desktopPic setHighlightedImage:[UIImage imageNamed:@"desktop-on-sel.png"]];
     }
     
     if([meetingDisplay length] == 0) {
         [self.meetingPic setImage:[UIImage imageNamed:@"meeting-off.png"]];
         [self.meetingPic setHighlightedImage:[UIImage imageNamed:@"meeting-off-sel.png"]];
+    } else {
+        [self.meetingPic setImage:[UIImage imageNamed:@"meeting-on.png"]];
+        [self.meetingPic setHighlightedImage:[UIImage imageNamed:@"meeting-on-sel.png"]];
     }
     
     [self setLabel:desktopLabel

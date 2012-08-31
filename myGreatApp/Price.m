@@ -13,6 +13,9 @@
 @synthesize price,frequency;
 
 -(NSString*)getDisplay {
+    if([price length] == 0 || [frequency length] == 0) {
+        return @"";
+    }
     return [NSString stringWithFormat:@"%@ / %@",price,frequency];
 }
 

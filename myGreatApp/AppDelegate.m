@@ -10,6 +10,9 @@
 #import "LocalisationEngine.h"
 #import "SHKConfiguration.h"
 #import "Libraries/EworkySHKConfigurator.h"
+#import "ProfilViewController.h"
+#import "FavoritesViewController.h"
+#import "UIView+TIAdditions.h"
 
 #import "SHKFacebook.h"
 
@@ -28,6 +31,8 @@
     DefaultSHKConfigurator* configurator = [[EworkySHKConfigurator alloc] init];
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
+    UITabBarController* _tabBarController = (UITabBarController *)self.window.rootViewController;
+    _tabBarController.delegate = self;
     
     self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:HOST_NAME customHeaderFields:nil];
     //[self.localisationEngine useCache];
@@ -73,7 +78,6 @@
     NSDictionary* buttonColor = [NSDictionary dictionaryWithObjectsAndKeys:
                                  [UIColor colorWithRed:0.0/255.0 green:153.0/255.0 blue:204.0/255.0 alpha:1.0],UITextAttributeTextColor,
                                  [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0],UITextAttributeTextShadowColor,
-                                 //[NSValue valueWithUIOffset:UIOffsetMake(0,1)],UITextAttributeTextShadowOffset,
                                  FONT_BOLD(12.0f),UITextAttributeFont,
                                  nil];
     
@@ -157,6 +161,28 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [self handleOpenURL:url];
+}
+
+#pragma mark - UITabBarController delegate
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if(![viewController isKindOfClass:[UINavigationController class]]) {
+        return;
+    }
+    UINavigationController* nav = (UINavigationController*)viewController;
+    UIViewController* top = [nav topViewController];
+    if(top == nil) {
+        return;
+    }
+    
+    if([top isKindOfClass:[FavoritesViewController class]]) {
+        FavoritesViewController* fav = (FavoritesViewController*)top;
+        [fav shouldFetchData];
+    } else if([top isKindOfClass:[ProfilViewController class]]) {
+        ProfilViewController* profil = (ProfilViewController*)top;
+        [profil shouldAskLogin];
+    }
 }
 
 @end

@@ -38,14 +38,10 @@
 {
     [self.tableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
     
+    [self.navigationController cleanNavigationStackAndKeep:[ProfilViewController class]];
+    
     [super viewDidLoad];
     self.tableView.backgroundColor = BNG_PATTERN;
-    
-    if([ApplicationDelegate.loginSession isLogged]){
-        [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
-    } else {
-        [self.navigationController cleanNavigationStackAndKeep:[ProfilViewController class]];
-    }
     
     self.navigationItem.title = NSLocalizedString(@"Mon compte",nil);
 }
@@ -66,6 +62,15 @@
 {
     if ([segue.identifier isEqualToString:@"loginSegue"]) {
         [LoginViewController setLoginDelegate:self toController:segue.destinationViewController];
+    }
+}
+
+- (void)shouldAskLogin
+{
+    if([ApplicationDelegate.loginSession isLogged]){
+        [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
+    } else {
+        
     }
 }
 

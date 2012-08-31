@@ -14,6 +14,7 @@
 #import "LocalisationCell.h"
 #import "FreeLocalisationCell.h"
 #import "PayingLocalisationCell.h"
+#import "DetailViewController.h"
 
 @interface FavoritesViewController ()
 
@@ -36,11 +37,11 @@
 {
     [self.tableView registerNib:[UINib nibWithNibName:kFreeLocalisationCellIdent bundle:nil] forCellReuseIdentifier:kFreeLocalisationCellIdent];
     [self.tableView registerNib:[UINib nibWithNibName:kPayingLocalisationCellIdent bundle:nil] forCellReuseIdentifier:kPayingLocalisationCellIdent];
-    
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self fetchData];
+    [self.tableView setBackgroundColor:BNG_PATTERN];
     
     self.navigationItem.title = NSLocalizedString(@"Favoris",nil);
 }
@@ -54,6 +55,15 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void) shouldFetchData
+{
+    if([ApplicationDelegate.loginSession isLogged]){
+        [self fetchData];
+    } else {
+        [self performSegueWithIdentifier:@"favsToLoginSegue" sender:self];
+    }
 }
 
 - (void) fetchData
@@ -82,6 +92,30 @@
                                                                 [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Echec lors du chargement",nil)];
                                                                 ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
                                                             }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"favDetailSegue"]) {
+        NSIndexPath* selectedIndex = [self.tableView indexPathForSelectedRow];
+        LocalisationCell* cell = (LocalisationCell*)[self tableView:self.tableView cellForRowAtIndexPath:selectedIndex];
+        
+        DetailViewController *ds = [segue destinationViewController];
+        [ds setLocalisation:cell.localisation];
+    } else if ([segue.identifier isEqualToString:@"favsToLoginSegue"]) {
+        [LoginViewController setLoginDelegate:self toController:segue.destinationViewController];
+    }
+}
+
+#pragma mark - LoginViewController Delegate Method
+
+-(void)finishedLoadingUserInfo
+{
+    // Dismiss the LoginViewController that we instantiated earlier
+    [self dismissModalViewControllerAnimated:YES];
+    
+    // Do other stuff as needed
+    [self fetchData];
 }
 
 #pragma mark - Table view data source

@@ -31,6 +31,7 @@
 @synthesize cityLabel;
 @synthesize shareBtn;
 @synthesize localisation;
+@synthesize locId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,7 +47,22 @@
     [self.tableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
     [super viewDidLoad];
     
-    [self loadData];
+    [self.tableView setBackgroundColor:BNG_PATTERN];
+    UIBarButtonItem* navShareBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-btn-share.png"]
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(shareThis:)];
+    
+    UIBarButtonItem* favBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-btn-like.png"]
+                                                               style:UIBarButtonItemStyleBordered
+                                                              target:self
+                                                              action:@selector(addToFavorites:)];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:navShareBtn, favBtn, nil];
+    
+    [self.shareBtn setButtonWithStyle:NSLocalizedString(@"Partager",nil)];
+    
+    [self trySetLocalisationData];
 }
 
 - (void)viewDidUnload
@@ -67,10 +83,32 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)loadData
+- (void)trySetLocalisationData
 {
-    [self.tableView setBackgroundColor:BNG_PATTERN];
+    if(self.localisation != nil) {
+        return [self loadLocalisationData];
+    }
     
+    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+    [params trySetObject:[NSNumber numberWithInt:self.locId] forKey:@"id"];
+    
+    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Chargement en cours",nil)];
+    [ApplicationDelegate.localisationEngine enqueueOperationWithUrl:DETAILS_URL
+                                                             params:params
+                                                         httpMethod:@"GET"
+                                                       onCompletion:^(NSObject* json) {
+                                                           [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Chargement terminé",nil)];
+                                                           self.localisation = [[Localisation alloc] initWithDictionary:(NSDictionary*)json];
+                                                           [self loadLocalisationData];
+                                                       }
+                                                            onError:^(NSError* error) {
+                                                                [[SHKActivityIndicator currentIndicator] displayCompleted:NSLocalizedString(@"Echec lors du chargement",nil)];
+                                                                //ALERT_TITLE(NSLocalizedString(@"Erreur",nil),[error localizedDescription])
+                                                            }];
+}
+
+- (void)loadLocalisationData
+{
     self.picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[localisation getMainImage:false]]]];
     self.nameLabel.text = localisation.name;
     self.nameLabel.textColor = BLUE_COLOR;
@@ -80,20 +118,7 @@
     self.addressLabel.textColor = GREY_COLOR;
     self.cityLabel.text = localisation.city;
     self.cityLabel.textColor = GREY_COLOR;
-    
-    UIBarButtonItem* navShareBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-btn-like.png"]
-                                                                    style:UIBarButtonItemStyleBordered
-                                                                   target:self
-                                                                   action:@selector(shareThis:)];
-    
-    UIBarButtonItem* favBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-btn-share.png"]
-                                                               style:UIBarButtonItemStyleBordered
-                                                              target:self
-                                                              action:@selector(addToFavorites:)];
 
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:navShareBtn, favBtn, nil];
-    
-    [self.shareBtn setButtonWithStyle:NSLocalizedString(@"Partager",nil)];
     NSString* title = localisation.name;
     if([title length] > kTitleLength) {
         //title = [title substringToIndex:kTitleLength];

@@ -22,6 +22,7 @@
 - (IBAction)shareThis:(id)sender;
 - (IBAction)addToFavorites:(id)sender;
 
+@property (nonatomic) NSInteger locId;
 @property (strong, nonatomic) Localisation* localisation;
 
 @end

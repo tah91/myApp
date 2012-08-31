@@ -20,7 +20,7 @@
 @synthesize featuresTableView;
 @synthesize tabSelector;
 
-@synthesize locTypes,locArray,featureTypes,featureArray,applySearchDelegate,criteria,selectedLoc,selectedFeatures;
+@synthesize locTypes,locArray,featureTypes,featureArray,applySearchDelegate,criteria;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,8 +73,8 @@
     
     [self.featuresTableView removeFromSuperview];
     
-    self.selectedLoc = [self setFromString:criteria.types keys:locTypes andArray:locArray];
-    self.selectedFeatures = [self setFromString:criteria.features keys:featureTypes andArray:featureArray];
+    _selectedLoc = [self setFromString:criteria.types keys:locTypes andArray:locArray];
+    _selectedFeatures = [self setFromString:criteria.features keys:featureTypes andArray:featureArray];
     
     self.bar.topItem.title = NSLocalizedString(@"Critères",nil);
     [self.tabSelector setTitle:NSLocalizedString(@"Type",nil) forSegmentAtIndex:0];
@@ -152,7 +152,7 @@
         
         [cell setLabel:[locArray objectAtIndex:indexPath.row] withSegue:nil andController:nil];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        if([selectedLoc containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [selectedLoc count] == 0)) {
+        if([_selectedLoc containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [_selectedLoc count] == 0)) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
         
@@ -163,7 +163,7 @@
         
         [cell setLabel:[featureArray objectAtIndex:indexPath.row] withSegue:nil andController:nil];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        if([selectedFeatures containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [selectedFeatures count] == 0)) {
+        if([_selectedFeatures containsObject:indexPath] || (indexPath.row == 0 && indexPath.section == 0 && [_selectedFeatures count] == 0)) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
         return cell;
@@ -176,16 +176,17 @@
 
 - (void)performSelectionOfTableView:(UITableView*)tableView
                         atIndexPath:(NSIndexPath*)indexPath
-                           withKeys:(NSDictionary*)keys
-                           selected:(NSMutableSet*)set
-                           andArray:(NSArray*)array {
+                           forTypes:(BOOL)forTypes {
+    NSDictionary* keys = forTypes ? self.locTypes : self.featureTypes;
+    NSMutableSet* set = forTypes ? _selectedLoc : _selectedFeatures;
+    NSArray* array = forTypes ? self.locArray : self.featureArray;
+    
     NSNumber* type = [keys objectForKey:[array objectAtIndex:indexPath.row]];
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-    
     //unselect all other cells
     if(type.intValue == -1) {
         [selectedCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-        for (NSIndexPath* indexToUnselect in selectedLoc) {
+        for (NSIndexPath* indexToUnselect in set) {
             UITableViewCell* toUnselect = [tableView cellForRowAtIndexPath:indexToUnselect];
             [toUnselect setAccessoryType:UITableViewCellAccessoryNone];
         }
@@ -212,10 +213,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(tableView == locTypesTableView) {
-        [self performSelectionOfTableView:tableView atIndexPath:indexPath withKeys:locTypes selected:selectedLoc andArray:locArray];
+        [self performSelectionOfTableView:tableView atIndexPath:indexPath forTypes:TRUE];
     }
     else if(tableView == featuresTableView) {
-        [self performSelectionOfTableView:tableView atIndexPath:indexPath withKeys:featureTypes selected:selectedFeatures andArray:featureArray];
+        [self performSelectionOfTableView:tableView atIndexPath:indexPath forTypes:FALSE];
     }
 }
 
@@ -245,13 +246,13 @@
 - (IBAction)confirm:(id)sender
 {
     NSMutableArray* featuresToAdd = [NSMutableArray array];
-    for(NSIndexPath* index in selectedFeatures) {
+    for(NSIndexPath* index in _selectedFeatures) {
         [featuresToAdd addObject:[featureTypes objectForKey:[featureArray objectAtIndex:index.row]]];
     }
     [criteria setFeatures:[NSString stringWithFormat:@"[%@]",[featuresToAdd componentsJoinedByString:@","]]];
     
     NSMutableArray* locTypesToAdd = [NSMutableArray array];
-    for(NSIndexPath* index in selectedLoc) {
+    for(NSIndexPath* index in _selectedLoc) {
         [locTypesToAdd addObject:[locTypes objectForKey:[locArray objectAtIndex:index.row]]];
     }
     [criteria setTypes:[NSString stringWithFormat:@"[%@]",[locTypesToAdd componentsJoinedByString:@","]]];

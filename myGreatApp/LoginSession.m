@@ -25,6 +25,9 @@ static NSString *const kSHKFacebookUserInfo =@"kSHKFacebookUserInfo";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData* encodedObject = [defaults objectForKey:@"authData"];
+    if(encodedObject == nil) {
+        return nil;
+    }
     Auth* toRet = (Auth*)[NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
     return toRet;
 }

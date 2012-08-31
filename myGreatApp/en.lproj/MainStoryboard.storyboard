@@ -248,7 +248,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="a3M-uZ-Xfb" kind="modal" identifier="addCommentSegue" id="pLZ-4k-Y95"/>
+                                                <action selector="addComment:" destination="nRq-mJ-I9Q" eventType="touchUpInside" id="i8d-wV-mAA"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -323,6 +323,8 @@
                     <connections>
                         <outlet property="addCommentBtn" destination="4Qg-w4-aC0" id="6mW-tE-Myr"/>
                         <outlet property="tableView" destination="lUH-fO-txj" id="OLQ-zK-z3d"/>
+                        <segue destination="a3M-uZ-Xfb" kind="modal" identifier="addCommentSegue" id="0FK-TR-DeB"/>
+                        <segue destination="LTF-2C-Dhz" kind="modal" identifier="commentToLoginSegue" id="np8-o8-xJ4"/>
                     </connections>
                 </viewController>
             </objects>
@@ -1466,6 +1468,7 @@
                     <connections>
                         <outlet property="tableView" destination="9kq-vJ-4ue" id="uZa-va-6Pm"/>
                         <segue destination="cYa-QV-Lkn" kind="push" identifier="favDetailSegue" id="pcs-RU-H6p"/>
+                        <segue destination="LTF-2C-Dhz" kind="modal" identifier="favsToLoginSegue" id="azC-ZY-Qcx"/>
                     </connections>
                 </viewController>
             </objects>
@@ -1754,11 +1757,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ycX-eO-8Kw"/>
-        <segue reference="OjE-LG-27L"/>
         <segue reference="ohe-hP-1Ni"/>
         <segue reference="pcs-RU-H6p"/>
         <segue reference="saB-n9-cTw"/>
         <segue reference="PbO-Wt-f19"/>
+        <segue reference="np8-o8-xJ4"/>
+        <segue reference="OjE-LG-27L"/>
     </inferredMetricsTieBreakers>
 </document>
