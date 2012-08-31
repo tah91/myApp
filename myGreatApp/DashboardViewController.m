@@ -38,7 +38,8 @@
     [super viewDidLoad];
     [self.navigationController cleanNavigationStackAndKeep:[DashboardViewController class]];
     self.nameLabel.text = [ApplicationDelegate.loginSession authData].firstName;
-    [self.avatar setImageWithStyle:[UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[ApplicationDelegate.loginSession authData].avatar]]]];
+    self.nameLabel.textColor = BLUE_COLOR;
+    [self.avatar setImageWithStyle:[ApplicationDelegate.loginSession authData].avatar emptyName:@"avatar.png"];
     self.navigationItem.title = NSLocalizedString(@"Profil",nil);
     
     self.tableView.backgroundColor = BNG_PATTERN;
@@ -71,9 +72,9 @@
     return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:kDetailCellIdent];
+    DetailCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:kDetailCellIdent];
     
     switch (indexPath.section) {
         case 0:

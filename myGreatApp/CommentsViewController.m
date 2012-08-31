@@ -9,6 +9,7 @@
 #import "CommentsViewController.h"
 #import "Comment.h"
 #import "CommentCell.h"
+#import "UIView+TIAdditions.h"
 
 @interface CommentsViewController ()
 
@@ -19,6 +20,7 @@
 @synthesize localisation;
 
 @synthesize tableView;
+@synthesize addCommentBtn;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,12 +36,15 @@
 {
     [super viewDidLoad];
     
+    [self.tableView setBackgroundColor:BNG_PATTERN];
+    [self.addCommentBtn setButtonWithStyle:NSLocalizedString(@"Rédiger un avis",nil)];
     self.navigationItem.title = NSLocalizedString(@"Commentaires",nil);
 }
 
 - (void)viewDidUnload
 {
     [self setTableView:nil];
+    [self setAddCommentBtn:nil];
     [super viewDidUnload];
     
     self.localisation = nil;

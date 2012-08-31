@@ -21,9 +21,14 @@
 
 @implementation UIImageView (TIAdditions)
 
--(void) setImageWithStyle:(UIImage*)image;
+-(void) setImageWithStyle:(NSString*)imageUrl emptyName:(NSString*)emptyName
 {
-    self.image = image;
+    if(imageUrl.length != 0) {
+        self.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:imageUrl]]];
+    } else {
+        self.image = [UIImage imageNamed:emptyName];
+    }
+    
     self.layer.shadowColor = [UIColor grayColor].CGColor;
     self.layer.shadowOffset = CGSizeMake(2, 2);
     self.layer.shadowOpacity = 1;
@@ -53,6 +58,23 @@
     } else {
         [self setImage:[UIImage imageNamed:@"rating-0.png"]];
         [self setHighlightedImage:[UIImage imageNamed:@"rating-0-sel.png"]];
+    }
+}
+
+-(void) setCommentRatingPic:(NSNumber*)rating
+{
+    if(rating >= [NSNumber numberWithInt:4]) {
+        [self setImage:[UIImage imageNamed:@"comment-5.png"]];
+    } else if(rating >= [NSNumber numberWithInt:3]) {
+        [self setImage:[UIImage imageNamed:@"comment-4.png"]];
+    } else if(rating >= [NSNumber numberWithInt:2]) {
+        [self setImage:[UIImage imageNamed:@"comment-3.png"]];
+    } else if(rating >= [NSNumber numberWithInt:1]) {
+        [self setImage:[UIImage imageNamed:@"comment-2.png"]];
+    } else if(rating >= [NSNumber numberWithInt:0]) {
+        [self setImage:[UIImage imageNamed:@"comment-1.png"]];
+    } else {
+        [self setImage:[UIImage imageNamed:@"comment-0.png"]];
     }
 }
 

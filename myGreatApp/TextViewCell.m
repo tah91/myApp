@@ -46,7 +46,9 @@
     self.shouldSubmit = FALSE;
     self.textView.delegate = delegate;
     self.textView.text = initial;
+    self.textView.textColor = GREY_COLOR;
     self.label.text = label;
+    self.label.textColor = BLUE_COLOR;
 }
 
 - (void)doResignFirstResponder

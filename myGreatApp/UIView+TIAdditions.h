@@ -16,8 +16,9 @@
 
 @interface UIImageView (TIAdditions)
 
--(void) setImageWithStyle:(UIImage*)image;
+-(void) setImageWithStyle:(NSString*)imageUrl emptyName:(NSString*)emptyName;
 -(void) setRatingPic:(NSNumber*)rating;
+-(void) setCommentRatingPic:(NSNumber*)rating;
 
 @end
 

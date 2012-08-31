@@ -54,10 +54,12 @@
     
     self.dateDisplay.delegate = self;
     self.dateDisplay.text = [[DateCell getFormater] stringFromDate:datePicker.date];
+    self.dateDisplay.textColor = GREY_COLOR;
     [self.dateDisplay setInputAccessoryView];
     self.dateDisplay.inputView = datePicker;
     self.dateDisplay.userInteractionEnabled = TRUE;
     self.label.text = text;
+    self.label.textColor = BLUE_COLOR;
     self.delegate = dropdownDelegate;
     self.shouldSubmit = FALSE;
 }

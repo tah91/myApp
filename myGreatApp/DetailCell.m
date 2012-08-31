@@ -23,10 +23,12 @@
 }
 
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)setSelectedState:(BOOL)selected
 {
-    [super setSelected:selected animated:animated];
-
+    UIColor * newShadow = selected ? BLACK_COLOR : WHITE_COLOR;
+    
+    self.titleLabel.shadowColor = newShadow;
+    
     CGSize imgSize = self.frame.size;
     if(selected) {
         [self setBackgroundColor:GROUPED_BNG_SEL(imgSize)];
@@ -41,6 +43,18 @@
             [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory.png" ]]];
         }
     }
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animate
+{
+    [self setSelectedState:highlighted];
+    [super setHighlighted:highlighted animated:animate];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [self setSelectedState:selected];
+    [super setSelected:selected animated:animated];
     
     if(selected && [self.segueIdent length] != 0 && self.segueController != nil) {
         [self.segueController performSegueWithIdentifier:self.segueIdent sender:self.segueController];

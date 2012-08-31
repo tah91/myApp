@@ -13,6 +13,7 @@
 @interface CommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, AddCommentDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *addCommentBtn;
 
 @property (strong, nonatomic) Localisation* localisation;
 

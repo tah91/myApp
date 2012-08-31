@@ -26,7 +26,7 @@
 
 - (void)setSelectedState:(BOOL)selected
 {
-    UIColor * newShadow = selected ? [UIColor blackColor] : [UIColor whiteColor];
+    UIColor * newShadow = selected ? BLACK_COLOR : WHITE_COLOR;
     
     nameLabel.shadowColor = newShadow;
     typeLabel.shadowColor = newShadow;
@@ -57,11 +57,10 @@
     [super setHighlighted:highlighted animated:animate];
 }
 
--(void)setLabel:(UILabel*)label withText:(NSString*)text andColor:(UIColor*)color {
+-(void)setLabel:(UILabel*)label withText:(NSString*)text andColor:(UIColor*)color
+{
     [label setText:text];
     [label setTextColor:color];
-    //[label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(1,1)];
 }
 
 -(void)setFieldsFromLoc:(Localisation*)loc withSegue:(NSString*)segue andController:(UIViewController*)controller
@@ -83,7 +82,7 @@
           withText:loc.city
           andColor:GREY_COLOR];
     
-    [self.mainPic setImageWithStyle:[UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[loc getMainImage:true]]]]];
+    [self.mainPic setImageWithStyle:[loc getMainImage:true] emptyName:@"place-empty.png"];
     
     [self.ratingPic setRatingPic:loc.rating];
     

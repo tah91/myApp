@@ -38,12 +38,12 @@
     self.postLabel.text = comment.post;
     self.postLabel.textColor = GREY_COLOR;
     
-    [self.memberPic setImageWithStyle:[UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:comment.author.avatar.thumbnail_url]]]];
-    //[self.ratingPic setRatingPic:comment.ratingAverage];
+    [self.memberPic setImageWithStyle:comment.author.avatar.thumbnail_url emptyName:@"avatar.png"];
+    [self.ratingPic setCommentRatingPic:comment.ratingAverage];
 
     CGFloat newHeight = [CommentCell computeHeightFromPost:comment.post];
     CGRect previous = [self.postLabel frame];
-    [self.postLabel setBounds:CGRectMake(previous.origin.x, previous.origin.y, previous.size.width, newHeight)];
+    [self.postLabel setFrame:CGRectMake(previous.origin.x, previous.origin.y, previous.size.width, newHeight)];
 
     
     previous = [self.bngView frame];

@@ -60,7 +60,9 @@
     self.field.delegate = delegate;
     self.field.text = initial;
     self.field.placeholder = placeHolder;
+    self.field.textColor = GREY_COLOR;
     self.label.text = text;
+    self.label.textColor = BLUE_COLOR;
 }
 
 - (void)doResignFirstResponder

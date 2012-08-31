@@ -237,7 +237,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Qg-w4-aC0">
-                                            <rect key="frame" x="20" y="11" width="280" height="37"/>
+                                            <rect key="frame" x="20" y="14" width="280" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Rédiger un avis">
@@ -252,7 +252,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="commentCell" id="V67-Lb-mMQ" customClass="CommentCell">
@@ -284,7 +284,7 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="rating.png" id="PLM-GU-ESF">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="comment-0.png" id="PLM-GU-ESF">
                                                             <rect key="frame" x="20" y="32" width="50" height="8"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -296,7 +296,7 @@
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -321,6 +321,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="QW1-v3-gAp"/>
                     <connections>
+                        <outlet property="addCommentBtn" destination="4Qg-w4-aC0" id="6mW-tE-Myr"/>
                         <outlet property="tableView" destination="lUH-fO-txj" id="OLQ-zK-z3d"/>
                     </connections>
                 </viewController>
@@ -349,7 +350,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="FyF-BY-yqJ">
+                                    <navigationItem id="FyF-BY-yqJ">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AI9-5B-wxn">
                                             <connections>
                                                 <action selector="addCommentCancel:" destination="a3M-uZ-Xfb" id="Wlh-QD-0OR"/>
@@ -635,7 +636,7 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="36" sectionHeaderHeight="1" sectionFooterHeight="1" id="l2I-qe-hca">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="featureCell" rowHeight="25" id="6vs-OV-3qe" customClass="FeatureCell">
                                                 <rect key="frame" x="0.0" y="1" width="320" height="25"/>
@@ -658,6 +659,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <color key="backgroundColor" red="0.27317599850000002" green="0.74685004099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
                                                     <outlet property="featureLabel" destination="o1Q-TX-B1e" id="Zib-5O-ZEb"/>
                                                 </connections>
@@ -681,11 +683,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </scrollView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" id="ICD-wx-zNt">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="infosCell" id="w6b-Ax-Xe6" customClass="DetailCell">
                                                 <rect key="frame" x="0.0" y="46" width="320" height="46"/>
@@ -957,7 +960,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="M64-0H-33B">
                                             <rect key="frame" x="98" y="10" width="202" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -966,7 +969,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.27317599850000002" green="0.74685004099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
                                     <outlet property="dataSource" destination="3ud-S8-3hV" id="j4P-vo-VGX"/>
@@ -1077,7 +1080,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tM5-GE-Jyd">
-                                            <rect key="frame" x="20" y="20" width="280" height="32"/>
+                                            <rect key="frame" x="20" y="20" width="280" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <state key="normal" title="S'inscrire avec Facebook">
@@ -1195,7 +1198,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IYj-qW-RMw">
-                                            <rect key="frame" x="20" y="20" width="280" height="32"/>
+                                            <rect key="frame" x="20" y="20" width="280" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <state key="normal" title="Inscrivez-vous avec Facebook">
@@ -1424,7 +1427,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFA-FI-EUX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="RtF-eK-Ozf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="ypE-tg-aAT"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="ypE-tg-aAT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7hL-0t-0VB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1447,7 +1450,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="9kq-vJ-4ue">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="9kq-vJ-4ue">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1509,9 +1512,9 @@
     </scenes>
     <resources>
         <image name="checked.png" width="21" height="22"/>
+        <image name="comment-0.png" width="50" height="8"/>
         <image name="home-bng.png" width="320" height="232"/>
         <image name="nav-btn-map.png" width="16" height="22"/>
-        <image name="rating.png" width="16" height="16"/>
     </resources>
     <classes>
         <class className="ATPagingView" superclassName="UIView">
@@ -1547,6 +1550,7 @@
         <class className="CommentsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentsViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="addCommentBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1753,7 +1757,7 @@
         <segue reference="ycX-eO-8Kw"/>
         <segue reference="OjE-LG-27L"/>
         <segue reference="ohe-hP-1Ni"/>
-        <segue reference="qQ1-Su-lq7"/>
+        <segue reference="pcs-RU-H6p"/>
         <segue reference="saB-n9-cTw"/>
         <segue reference="PbO-Wt-f19"/>
     </inferredMetricsTieBreakers>

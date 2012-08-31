@@ -245,11 +245,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableViewVal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Localisation* loc = [results objectAtIndex:indexPath.row];
-    NSString* identifier = loc.isFree ? kFreeLocalisationCellIdent : kPayingLocalisationCellIdent	;
-    LocalisationCell* cell = (LocalisationCell*)[tableViewVal dequeueReusableCellWithIdentifier:identifier];
-    if(cell == nil) {
-        cell = [[LocalisationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
+    NSString* identifier = loc.isFree ? kFreeLocalisationCellIdent : kPayingLocalisationCellIdent;
+    LocalisationCell* cell = [tableViewVal dequeueReusableCellWithIdentifier:identifier];
     [cell setFieldsFromLoc:loc withSegue:@"cellDetailSegue" andController:self];
     return cell;
 }

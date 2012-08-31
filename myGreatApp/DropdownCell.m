@@ -44,12 +44,14 @@
     self.dropdownValue = initial;
     self.dropdownValueDisplay.delegate = self;
     self.dropdownValueDisplay.text = (NSString*)[self.dropdownDict objectForKey:initial];
+    self.dropdownValueDisplay.textColor = GREY_COLOR;
     [self.dropdownValueDisplay setInputAccessoryView];
     NSInteger index = [self.dropdownKeys indexOfObject:initial];
     [picker selectRow:index inComponent:0 animated:TRUE];
     self.dropdownValueDisplay.inputView = picker;
     self.dropdownValueDisplay.userInteractionEnabled = TRUE;
     self.label.text = text;
+    self.label.textColor = BLUE_COLOR;
     self.delegate = dropdownDelegate;
     self.shouldSubmit = FALSE;
 }

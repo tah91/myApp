@@ -37,6 +37,7 @@
     
     [super viewDidLoad];
     
+    [self.tableView setBackgroundColor:BNG_PATTERN];
     self.navigationItem.title = NSLocalizedString(@"Commenter",nil);
 }
 

@@ -33,8 +33,8 @@
 - (void)setLabel:(NSString*)label initialValue:(float)initial isLast:(BOOL)isLast delegate:(id <RatingDelegate>)delegate
 {
     DLStarRatingControl* ratings = [[DLStarRatingControl alloc] initWithFrame:CGRectMake(0, 0, self.ratingControl.bounds.size.width, self.ratingControl.bounds.size.height)
-                                                                                 andStars:5
-                                                                             isFractional:NO];
+                                                                     andStars:5
+                                                                 isFractional:NO];
     ratings.delegate = self;
 	ratings.backgroundColor = [UIColor clearColor];
 	/*ratings.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;*/
