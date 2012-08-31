@@ -321,6 +321,10 @@
 		97FBDF3015C98BE6007A5316 /* OffersSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FBDF2F15C98BE6007A5316 /* OffersSummary.m */; };
 		97FCA7F915F0C45C00CBD685 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA7F815F0C45C00CBD685 /* Default@2x.png */; };
 		97FCA7FF15F1158B00CBD685 /* myGreatApp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97F42E7415A3428000EACD05 /* myGreatApp-Info.plist */; };
+		97FCA80415F1275600CBD685 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80015F1275600CBD685 /* Icon-Small.png */; };
+		97FCA80515F1275600CBD685 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80115F1275600CBD685 /* Icon-Small@2x.png */; };
+		97FCA80615F1275600CBD685 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80215F1275600CBD685 /* Icon.png */; };
+		97FCA80715F1275600CBD685 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80315F1275600CBD685 /* Icon@2x.png */; };
 		97FD7E6C15BDC76200815752 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6B15BDC76200815752 /* Price.m */; };
 		97FD7E7015BDC77000815752 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6F15BDC76F00815752 /* Comment.m */; };
 		97FD7E7315BDC77E00815752 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E7215BDC77E00815752 /* Offer.m */; };
@@ -767,6 +771,10 @@
 		97FBDF2F15C98BE6007A5316 /* OffersSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersSummary.m; sourceTree = "<group>"; };
 		97FCA7F815F0C45C00CBD685 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		97FCA7FE15F1158A00CBD685 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		97FCA80015F1275600CBD685 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		97FCA80115F1275600CBD685 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		97FCA80215F1275600CBD685 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		97FCA80315F1275600CBD685 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		97FD7E6A15BDC76200815752 /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
 		97FD7E6B15BDC76200815752 /* Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Price.m; sourceTree = "<group>"; };
 		97FD7E6E15BDC76F00815752 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -1199,6 +1207,10 @@
 				972CD6EB15EFD142009A8AFC /* handicap-on@2x.png */,
 				972CD7B815EFD15D009A8AFC /* home-bng.png */,
 				972CD6EC15EFD142009A8AFC /* home-bng@2x.png */,
+				97FCA80015F1275600CBD685 /* Icon-Small.png */,
+				97FCA80115F1275600CBD685 /* Icon-Small@2x.png */,
+				97FCA80215F1275600CBD685 /* Icon.png */,
+				97FCA80315F1275600CBD685 /* Icon@2x.png */,
 				972CD7BA15EFD15D009A8AFC /* list-bng-sel.png */,
 				972CD6ED15EFD142009A8AFC /* list-bng-sel@2x.png */,
 				972CD7BB15EFD15D009A8AFC /* list-bng.png */,
@@ -1761,6 +1773,10 @@
 				972CD86315EFD6BC009A8AFC /* nav-bar.png in Resources */,
 				97FCA7F915F0C45C00CBD685 /* Default@2x.png in Resources */,
 				97FCA7FF15F1158B00CBD685 /* myGreatApp-Info.plist in Resources */,
+				97FCA80415F1275600CBD685 /* Icon-Small.png in Resources */,
+				97FCA80515F1275600CBD685 /* Icon-Small@2x.png in Resources */,
+				97FCA80615F1275600CBD685 /* Icon.png in Resources */,
+				97FCA80715F1275600CBD685 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
