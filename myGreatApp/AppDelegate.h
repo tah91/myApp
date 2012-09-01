@@ -6,6 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#define HOST_NAME @"www.eworky.fr"
+//#define HOST_NAME @"taff.coworky.fr"
+//#define HOST_NAME @"ti.coworky.fr"
+
 #import <UIKit/UIKit.h>
 #import "LocalisationEngine.h"
 #import "LoginSession.h"

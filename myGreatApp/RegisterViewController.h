@@ -10,14 +10,14 @@
 #import "LoginViewController.h"
 #import "FormViewController.h"
 
-@interface RegisterViewController : FormViewController <UITextFieldDelegate>
+@interface RegisterViewController : FormViewController <UITextFieldDelegate, InteractionLabelSelection>
 
 - (IBAction)fbRegister:(id)sender;
 - (IBAction)ewRegister:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *fbRegisterBtn;
 @property (weak, nonatomic) IBOutlet UILabel *noFbLabel;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-@property (weak, nonatomic) IBOutlet UILabel *cguLabel;
+@property (weak, nonatomic) IBOutlet InteractionLabel *cguLabel;
 
 @property (strong,nonatomic) id <LoginViewControllerDelegate> loginDelegate;
 

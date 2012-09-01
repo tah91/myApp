@@ -32,6 +32,7 @@
 @synthesize shareBtn;
 @synthesize localisation;
 @synthesize locId;
+@synthesize imageLoadingOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -109,7 +110,38 @@
 
 - (void)loadLocalisationData
 {
-    self.picture.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[localisation getMainImage:false]]]];
+    NSString* imageUrl = [localisation getMainImage:false];
+    if([imageUrl length] != 0) {
+        self.imageLoadingOperation = [ApplicationDelegate.localisationEngine imageAtURL:[NSURL URLWithString:imageUrl]
+                                                                           onCompletion:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
+                                                                               
+                                                                               if([imageUrl isEqualToString:[url absoluteString]]) {
+                                                                                   
+                                                                                   if (isInCache) {
+                                                                                       self.picture.image = fetchedImage;
+                                                                                   } else {
+                                                                                       UIImageView *loadedImageView = [[UIImageView alloc] initWithImage:fetchedImage];
+                                                                                       loadedImageView.frame = self.picture.frame;
+                                                                                       loadedImageView.alpha = 0;
+                                                                                       [self.view addSubview:loadedImageView];
+                                                                                       
+                                                                                       [UIView animateWithDuration:0.4
+                                                                                                        animations:^
+                                                                                        {
+                                                                                            loadedImageView.alpha = 1;
+                                                                                            self.picture.alpha = 0;
+                                                                                        }
+                                                                                                        completion:^(BOOL finished)
+                                                                                        {
+                                                                                            self.picture.image = fetchedImage;
+                                                                                            self.picture.alpha = 1;
+                                                                                            [loadedImageView removeFromSuperview];
+                                                                                        }];
+                                                                                   }
+                                                                               }
+                                                                           }];
+    }
+
     self.nameLabel.text = localisation.name;
     self.nameLabel.textColor = BLUE_COLOR;
     self.typeLabel.text = localisation.type;

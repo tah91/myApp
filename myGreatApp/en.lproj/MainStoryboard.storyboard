@@ -1146,7 +1146,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="S'identifier" id="wMc-Cy-rGH">
-                        <barButtonItem key="leftBarButtonItem" title="Annuler" id="0la-Gj-wMJ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0la-Gj-wMJ">
                             <connections>
                                 <action selector="cancel:" destination="zFD-eF-ype" id="XCL-nN-pdV"/>
                             </connections>
@@ -1169,6 +1169,31 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="5536" y="1728"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="PwY-Go-DcQ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KWu-ox-anL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="rZl-o2-78I" customClass="CGUViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z3I-sQ-elT">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="abZ-4F-qXE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qLp-yv-hXX"/>
+                    <connections>
+                        <outlet property="cguView" destination="abZ-4F-qXE" id="Q40-N1-iX1"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="6624" y="1728"/>
         </scene>
         <!--Register View Controller - Créer un compte-->
         <scene sceneID="pfD-Hw-N9C">
@@ -1231,7 +1256,7 @@
                                                 <action selector="ewRegister:" destination="UFz-H0-FvP" eventType="touchUpInside" id="gcb-Df-x1f"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Accepter CGU" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Nhi-tV-b7W">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Accepter CGU" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Nhi-tV-b7W" customClass="InteractionLabel">
                                             <rect key="frame" x="20" y="42" width="280" height="66"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1262,6 +1287,7 @@
                         <outlet property="noFbLabel" destination="fy6-WU-psN" id="bXr-nT-4Qb"/>
                         <outlet property="registerBtn" destination="c6C-lV-ary" id="L0S-Tw-FPS"/>
                         <outlet property="tableView" destination="mxq-E3-gQW" id="fba-iW-fh4"/>
+                        <segue destination="rZl-o2-78I" kind="push" identifier="registerToCGUSegue" id="iP0-ei-SXT"/>
                     </connections>
                 </viewController>
             </objects>
@@ -1527,6 +1553,12 @@
                 <relationship kind="action" name="addCommentDone:"/>
             </relationships>
         </class>
+        <class className="CGUViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CGUViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cguView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
         <class className="CommentCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentCell.h"/>
             <relationships>
@@ -1620,6 +1652,9 @@
         <class className="GalleryViewController" superclassName="ATPagingViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GalleryViewController.h"/>
         </class>
+        <class className="InteractionLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InteractionLabel.h"/>
+        </class>
         <class className="LoginViewController" superclassName="FormViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
@@ -1666,7 +1701,7 @@
             <relationships>
                 <relationship kind="action" name="ewRegister:"/>
                 <relationship kind="action" name="fbRegister:"/>
-                <relationship kind="outlet" name="cguLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cguLabel" candidateClass="InteractionLabel"/>
                 <relationship kind="outlet" name="fbRegisterBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="noFbLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="registerBtn" candidateClass="UIButton"/>
@@ -1755,8 +1790,8 @@
         <segue reference="ohe-hP-1Ni"/>
         <segue reference="qQ1-Su-lq7"/>
         <segue reference="saB-n9-cTw"/>
-        <segue reference="OFK-nD-k14"/>
         <segue reference="PbO-Wt-f19"/>
+        <segue reference="np8-o8-xJ4"/>
         <segue reference="OjE-LG-27L"/>
     </inferredMetricsTieBreakers>
 </document>

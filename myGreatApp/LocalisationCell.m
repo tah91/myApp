@@ -8,12 +8,14 @@
 
 #import "LocalisationCell.h"
 #import "UIView+TIAdditions.h"
+#import "AppDelegate.h"
 
 @implementation LocalisationCell
 
 @synthesize nameLabel,distanceLabel,typeLabel,cityLabel,mainPic,distancePic,cityPic,ratingPic;
 @synthesize localisation;
 @synthesize segueController,segueIdent;
+@synthesize imageLoadingOperation;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -65,7 +67,6 @@
 
 -(void)setFieldsFromLoc:(Localisation*)loc withSegue:(NSString*)segue andController:(UIViewController*)controller
 {
-    
     [self setLabel:nameLabel
           withText:loc.name
           andColor:BLUE_COLOR];
@@ -82,7 +83,41 @@
           withText:loc.city
           andColor:GREY_COLOR];
     
-    [self.mainPic setImageWithStyle:[loc getMainImage:true] emptyName:@"place-empty.png"];
+    [self.mainPic setImageStyle];
+    
+    NSString* imageUrl = [loc getMainImage:true];
+    if([imageUrl length] == 0) {
+        self.mainPic.image = [UIImage imageNamed:@"place-empty.png"];
+    } else {
+        self.imageLoadingOperation = [ApplicationDelegate.localisationEngine imageAtURL:[NSURL URLWithString:imageUrl]
+                                                                     onCompletion:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
+                                                                         
+                                                                         if([imageUrl isEqualToString:[url absoluteString]]) {
+                                                                             
+                                                                             if (isInCache) {
+                                                                                 self.mainPic.image = fetchedImage;
+                                                                             } else {
+                                                                                 UIImageView *loadedImageView = [[UIImageView alloc] initWithImage:fetchedImage];
+                                                                                 loadedImageView.frame = self.mainPic.frame;
+                                                                                 loadedImageView.alpha = 0;
+                                                                                 [self.contentView addSubview:loadedImageView];
+                                                                                 
+                                                                                 [UIView animateWithDuration:0.4
+                                                                                                  animations:^
+                                                                                  {
+                                                                                      loadedImageView.alpha = 1;
+                                                                                      self.mainPic.alpha = 0;
+                                                                                  }
+                                                                                                  completion:^(BOOL finished)
+                                                                                  {
+                                                                                      self.mainPic.image = fetchedImage;
+                                                                                      self.mainPic.alpha = 1;
+                                                                                      [loadedImageView removeFromSuperview];
+                                                                                  }];
+                                                                             }
+                                                                         }
+                                                                     }];
+    }
     
     [self.ratingPic setRatingPic:loc.rating];
     

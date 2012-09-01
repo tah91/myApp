@@ -25,4 +25,6 @@
 @property (nonatomic) NSInteger locId;
 @property (strong, nonatomic) Localisation* localisation;
 
+@property (nonatomic, strong) MKNetworkOperation* imageLoadingOperation;
+
 @end

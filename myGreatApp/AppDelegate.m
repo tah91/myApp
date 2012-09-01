@@ -16,10 +16,6 @@
 
 #import "SHKFacebook.h"
 
-#define HOST_NAME @"www.eworky.fr"
-//#define HOST_NAME @"taff.coworky.fr"
-//#define HOST_NAME @"ti.coworky.fr"
-
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -42,8 +38,8 @@
     _tabBarController.delegate = self;
     
     self.localisationEngine = [[LocalisationEngine alloc] initWithHostName:HOST_NAME customHeaderFields:nil];
-    //[self.localisationEngine useCache];
-    //[self.localisationEngine emptyCache];
+    [self.localisationEngine useCache];
+    [self.localisationEngine emptyCache];
 
     //self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
     self.loginSession = [[LoginSession alloc] initWithId:@"211792125555707"];

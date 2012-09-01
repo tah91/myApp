@@ -21,14 +21,8 @@
 
 @implementation UIImageView (TIAdditions)
 
--(void) setImageWithStyle:(NSString*)imageUrl emptyName:(NSString*)emptyName
-{
-    if(imageUrl.length != 0) {
-        self.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:imageUrl]]];
-    } else {
-        self.image = [UIImage imageNamed:emptyName];
-    }
-    
+-(void) setImageStyle
+{    
     self.layer.shadowColor = [UIColor grayColor].CGColor;
     self.layer.shadowOffset = CGSizeMake(2, 2);
     self.layer.shadowOpacity = 1;
@@ -36,6 +30,16 @@
     self.clipsToBounds = NO;
     [self.layer setBorderColor: [[UIColor whiteColor] CGColor]];
     [self.layer setBorderWidth: 2.0];
+}
+
+-(void) setImageWithStyle:(NSString*)imageUrl emptyName:(NSString*)emptyName
+{
+    [self setImageStyle];
+    if(imageUrl.length != 0) {
+        self.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:imageUrl]]];
+    } else {
+        self.image = [UIImage imageNamed:emptyName];
+    }
 }
 
 -(void) setRatingPic:(NSNumber*)rating

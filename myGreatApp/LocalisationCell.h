@@ -22,6 +22,8 @@
 
 @property (strong, nonatomic) Localisation* localisation;
 
+@property (nonatomic, strong) MKNetworkOperation* imageLoadingOperation;
+
 -(void)setSelectedState:(BOOL)selected;
 -(void)setLabel:(UILabel*)label withText:(NSString*)text andColor:(UIColor*)color;
 -(void)setFieldsFromLoc:(Localisation*)loc withSegue:(NSString*)segue andController:(UIViewController*)controller;

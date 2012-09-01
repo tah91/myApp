@@ -43,6 +43,9 @@
     self.navigationItem.title = NSLocalizedString(@"Inscription",nil);
     
     self.tableView.backgroundColor = BNG_PATTERN;
+    
+    self.cguLabel.userInteractionEnabled = TRUE;
+    self.cguLabel.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -161,6 +164,18 @@
 - (IBAction)ewRegister:(id)sender
 {
     [self submitForm];
+}
+
+#pragma mark - InteractionLabel Selection
+
+-(void)interactionBegin
+{
+    [self performSegueWithIdentifier:@"registerToCGUSegue" sender:self];
+}
+
+-(void)selectionDone
+{
+    return;
 }
 
 @end

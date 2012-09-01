@@ -39,7 +39,7 @@
     [self.navigationController cleanNavigationStackAndKeep:[DashboardViewController class]];
     self.nameLabel.text = [ApplicationDelegate.loginSession authData].firstName;
     self.nameLabel.textColor = BLUE_COLOR;
-    [self.avatar setImageWithStyle:[ApplicationDelegate.loginSession authData].avatar emptyName:@"avatar.png"];
+    //[self.avatar setImageWithStyle:[ApplicationDelegate.loginSession authData].avatar emptyName:@"avatar.png"];
     self.navigationItem.title = NSLocalizedString(@"Profil",nil);
     
     UIBarButtonItem* logoutBtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Déconnexion",nil)
