@@ -2004,6 +2004,8 @@
 		97F42E9C15A3428000EACD05 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tahir Iftikhar (TQDUUDJTG4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tahir Iftikhar (TQDUUDJTG4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myGreatApp/myGreatApp-Prefix.pch";
 				INFOPLIST_FILE = "myGreatApp/myGreatApp-Info.plist";
@@ -2016,6 +2018,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "Submodules/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2024,6 +2028,8 @@
 		97F42E9D15A3428000EACD05 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tahir Iftikhar";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tahir Iftikhar";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myGreatApp/myGreatApp-Prefix.pch";
 				INFOPLIST_FILE = "myGreatApp/myGreatApp-Info.plist";
@@ -2036,6 +2042,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9571FF82-1159-4443-998E-C0123D29F8CC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9571FF82-1159-4443-998E-C0123D29F8CC";
 				USER_HEADER_SEARCH_PATHS = "Submodules/**";
 				WRAPPER_EXTENSION = app;
 			};
