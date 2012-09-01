@@ -87,7 +87,7 @@
     UIImageView* background = [[UIImageView alloc] initWithImage:bng];
     background.frame = CGRectMake(0, 0, self.bngView.frame.size.width, self.bngView.frame.size.height);
     for (UIView* sub in self.bngView.subviews) {
-        if([sub isKindOfClass:[UIImageView class]]) {
+        if([sub isKindOfClass:[UIImageView class]] && sub.frame.origin.x == 0 && sub.frame.origin.y == 0) {
             [sub removeFromSuperview];
         }
     }
