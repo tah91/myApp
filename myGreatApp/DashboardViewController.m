@@ -42,6 +42,13 @@
     [self.avatar setImageWithStyle:[ApplicationDelegate.loginSession authData].avatar emptyName:@"avatar.png"];
     self.navigationItem.title = NSLocalizedString(@"Profil",nil);
     
+    UIBarButtonItem* logoutBtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Déconnexion",nil)
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self
+                                                                 action:@selector(logout:)];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:logoutBtn, nil];
+    
     self.tableView.backgroundColor = BNG_PATTERN;
 	// Do any additional setup after loading the view.
 }

@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *subtitle;
 @property (strong, nonatomic) Localisation* localisation;
 
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 - (id)initWithId:(NSInteger)theId name:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate localisation:(Localisation*)theLoc;
 
 @end

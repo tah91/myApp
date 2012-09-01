@@ -12,6 +12,14 @@
 
 @synthesize coordinate, title, subtitle, localisation;
 
+- (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate
+{
+    if ((self = [super init])) {
+        self.coordinate = theCoordinate;
+    }
+    return self;
+}
+
 - (id)initWithId:(NSInteger)theId name:(NSString*)theName address:(NSString*)theAddress coordinate:(CLLocationCoordinate2D)theCoordinate localisation:(Localisation*)theLoc {
     if ((self = [super init])) {
         self.locId = theId;

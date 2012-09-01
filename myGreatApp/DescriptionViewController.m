@@ -9,8 +9,10 @@
 #import "DescriptionViewController.h"
 #import "UITableView+TIAdditions.h"
 #import "FeatureCell.h"
-#import "DetailCell.h"
 #import "UIView+TIAdditions.h"
+#import "DescriptionCell.h"
+#import "MapCell.h"
+#import "AppDelegate.h"
 
 @interface DescriptionViewController ()
 
@@ -37,6 +39,9 @@
 
 - (void)viewDidLoad
 {
+    [self.infosTableView registerNib:[UINib nibWithNibName:kDescriptionCellIdent bundle:nil] forCellReuseIdentifier:kDescriptionCellIdent];
+    [self.infosTableView registerNib:[UINib nibWithNibName:kDetailCellIdent bundle:nil] forCellReuseIdentifier:kDetailCellIdent];
+    
     [super viewDidLoad];
     [self.view setBackgroundColor:BNG_PATTERN];
     [self.descScrollView setBackgroundColor:BNG_PATTERN];
@@ -52,6 +57,9 @@
     
     [self setSubviewAtIndex:selectedTab];
     self.navigationItem.title = NSLocalizedString(@"Détails",nil);
+    [self.tabSelector setTitle:NSLocalizedString(@"Description",nil) forSegmentAtIndex:0];
+    [self.tabSelector setTitle:NSLocalizedString(@"Infos pratiques",nil) forSegmentAtIndex:1];
+    [self.tabSelector setTitle:NSLocalizedString(@"Services",nil) forSegmentAtIndex:2];
     
     [self.descScrollView setContentSizeFromSubviews];
 }
@@ -91,13 +99,13 @@
     if (tableView == infosTableView) {
         switch (section) {
             case 0:
-                return 3;
+                return 4;
                 break;
             case 1:
-                return 7;
+                return 8;
                 break;
             case 2:
-                return 0;
+                return 3;
                 break;
             default:
                 break;
@@ -112,24 +120,33 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(tableView == infosTableView) {
-        static NSString* ident = @"infosCell";
-        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:ident];
+        static NSString* descIdent = kDescriptionCellIdent;
+        static NSString* detailIdent = kDetailCellIdent;
+        static NSString* mapIdent = @"mapCell";
         switch (indexPath.section) {
             case 0:
             {
                 switch (indexPath.row) {
-                    case 0:
-                        cell.titleLabel.text = NSLocalizedString(@"Accès routiers",nil);
-                        cell.descriptionLabel.text = localisation.access.roadAccess;
-                        break;
-                    case 1:
-                        cell.titleLabel.text = NSLocalizedString(@"Transports",nil);
-                        cell.descriptionLabel.text = localisation.access.publicTransport;
-                        break;
-                    case 2:
-                        cell.titleLabel.text = NSLocalizedString(@"Station",nil);
-                        cell.descriptionLabel.text = localisation.access.station;
-                        break;
+                    case 0: {
+                        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:detailIdent];
+                        [cell setLabel:NSLocalizedString(@"Accès",nil) withSegue:@"" andController:nil];
+                        return cell;
+                    }
+                    case 1: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Accès routiers",nil) andDesc:localisation.access.roadAccess];
+                        return cell;
+                    }
+                    case 2: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Transports",nil) andDesc:localisation.access.publicTransport];
+                        return cell;
+                    }
+                    case 3: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Station",nil) andDesc:localisation.access.station];
+                        return cell;
+                    }
                         
                     default:
                         break;
@@ -140,34 +157,46 @@
             case 1:
             {
                 switch (indexPath.row) {
-                    case 0:
-                        cell.titleLabel.text = NSLocalizedString(@"Lundi",nil);
-                        cell.descriptionLabel.text = localisation.openingTimes.monday;
-                        break;
-                    case 1:
-                        cell.titleLabel.text = NSLocalizedString(@"Mardi",nil);
-                        cell.descriptionLabel.text = localisation.openingTimes.tuesday;
-                        break;
-                    case 2:
-                        cell.titleLabel.text = NSLocalizedString(@"Mercredi",nil);
-                        cell.descriptionLabel.text = localisation.openingTimes.wednesday;
-                        break;
-                    case 3:
-                        cell.titleLabel.text = NSLocalizedString(@"Jeudi",nil);
-                        cell.descriptionLabel.text = localisation.openingTimes.thursday;
-                        break;
-                    case 4:
-                        cell.titleLabel.text = NSLocalizedString(@"Vendredi",nil);
-                        cell.descriptionLabel.text = localisation.openingTimes.friday;
-                        break;
-                    case 5:
-                        cell.titleLabel.text = NSLocalizedString(@"Samedi",nil);
-                        cell.descriptionLabel.text = localisation.openingTimes.saturday;
-                        break;
-                    case 6:
-                        cell.titleLabel.text = NSLocalizedString(@"Dimanche",nil);
-                        cell.descriptionLabel.text = localisation.openingTimes.sunday;
-                        break;
+                    case 0: {
+                        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:detailIdent];
+                        [cell setLabel:NSLocalizedString(@"Horaires",nil) withSegue:@"" andController:nil];
+                        return cell;
+                    }
+                    case 1: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Lundi",nil) andDesc:localisation.openingTimes.monday];
+                        return cell;
+                    }
+                    case 2: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Mardi",nil) andDesc:localisation.openingTimes.tuesday];
+                        return cell;
+                    }
+                    case 3: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Mercredi",nil) andDesc:localisation.openingTimes.wednesday];
+                        return cell;
+                    }
+                    case 4: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Jeudi",nil) andDesc:localisation.openingTimes.thursday];
+                        return cell;
+                    }
+                    case 5: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Vendredi",nil) andDesc:localisation.openingTimes.friday];
+                        return cell;
+                    }
+                    case 6: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Samedi",nil) andDesc:localisation.openingTimes.saturday];
+                        return cell;
+                    }
+                    case 7: {
+                        DescriptionCell* cell = [tableView dequeueReusableCellWithIdentifier:descIdent];
+                        [cell setLabel:NSLocalizedString(@"Dimanche",nil) andDesc:localisation.openingTimes.sunday];
+                        return cell;
+                    }
                     default:
                         break;
                 }
@@ -176,14 +205,31 @@
                 
             case 2:
             {
-                
+                switch (indexPath.row) {
+                    case 0: {
+                        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:detailIdent];
+                        [cell setLabel:NSLocalizedString(@"Itinéraire",nil) withSegue:@"" andController:nil];
+                        return cell;
+                    }
+                    case 1: {
+                        MapCell* mapCell = [tableView dequeueReusableCellWithIdentifier:mapIdent];
+                        [mapCell setPositionFromLat:localisation.latitude lng:localisation.longitude];
+                        return mapCell;
+                    }
+                    case 2: {
+                        DetailCell* cell = [tableView dequeueReusableCellWithIdentifier:detailIdent];
+                        [cell setLabelWithAccessory:[NSString stringWithFormat:@"%@ - %@",localisation.address, localisation.city]];
+                        return cell;
+                    }
+                    default:
+                        break;
+                }
             }
                 break;
                 
             default:
                 break;
         }
-        return cell;
     }
     else if(tableView == featuresTableView) {
         
@@ -196,58 +242,58 @@
     return nil;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (tableView == infosTableView) {
-        switch (section) {
-            case 0:
-                return NSLocalizedString(@"Accès",nil);
-                break;
-            case 1:
-                return NSLocalizedString(@"Horaires",nil);
-                break;
-            case 2:
-                return NSLocalizedString(@"Itinéraire",nil);
-                break;
-            default:
-                break;
-        }
-    }
-    return nil;
-}
-
 #pragma mark - Table view delegate
-
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (tableView == infosTableView) {
-        
-        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 0)];
-        //[headerView setBackgroundColor:[UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0]];
-        
-        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        headerLabel.backgroundColor = [UIColor clearColor];
-        headerLabel.textColor = BLUE_COLOR;
-        headerLabel.font = FONT_BOLD(17.0f);
-        headerLabel.frame = CGRectMake(20, 0, 320.0, 25);
-        headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-        
-        [headerView addSubview:headerLabel];
-        
-        return headerView;
-    }
-    return [[UIView alloc] initWithFrame:CGRectZero];
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if(tableView == infosTableView) {
+        switch (indexPath.section) {
+            case 2:
+                switch (indexPath.row) {
+                    case 2: {
+                        NSString* itin = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=%@,%@&daddr=%@,%@",
+                                         ApplicationDelegate.latitude, ApplicationDelegate.longitude,
+                                         localisation.latitude, localisation.longitude];
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itin]];
+                        return;
+                    }
+                    default:
+                        break;
+                }
+                break;
+                
+            default:
+                break;
+        }
+        return;
+    } else if(tableView == featuresTableView) {
+        return;
+    }
+    return;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(tableView == infosTableView) {
+        switch (indexPath.section) {
+            case 2:
+                switch (indexPath.row) {
+                    case 1:
+                        return 100.f;
+                        
+                    default:
+                        break;
+                }
+                break;
+                
+            default:
+                break;
+        }
+        return 44.0f;
+    } else if(tableView == featuresTableView) {
+        return tableView.rowHeight;
+    }
+    return 0;
 }
 
 -(void)setSubviewAtIndex:(NSInteger)index{
@@ -271,9 +317,11 @@
             break;
     }
 }
-- (IBAction)tabChanged:(id)sender {
+- (IBAction)tabChanged:(id)sender
+{
     UISegmentedControl* seg = (UISegmentedControl*)sender;
     
     [self setSubviewAtIndex:seg.selectedSegmentIndex];
 }
+
 @end

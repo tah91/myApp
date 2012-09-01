@@ -34,7 +34,8 @@
 //
 //    Your CFBundleURLSchemes entry: fb555lite
 - (NSString*)facebookAppId {
-	return @"339911822753190";
+	//return @"339911822753190";
+    return @"211792125555707";
 }
 
 - (NSString*)facebookLocalAppId {

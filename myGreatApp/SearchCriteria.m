@@ -80,9 +80,14 @@
     }
     if(meetingRoom) {
         [offerTypesArray addObject:[NSString stringWithFormat:@"%d", ot_meetingRoom]];
+        [offerTypesArray addObject:[NSString stringWithFormat:@"%d", ot_seminarRoom]];
     }
     self.offerTypes = [NSString stringWithFormat:@"[%@]",[offerTypesArray componentsJoinedByString:@","]];
-    NSArray* keys = [NSArray arrayWithObjects:@"place", @"name", @"latitude", @"longitude", @"neLat", @"neLng", @"swLat", @"swLng", @"offerTypes", @"types", @"features", @"boundary", @"orderBy", @"page", nil];
+    NSMutableArray* keys = [NSMutableArray arrayWithObjects:@"place", @"name", @"neLat", @"neLng", @"swLat", @"swLng", @"offerTypes", @"types", @"features", @"boundary", @"orderBy", @"page", nil];
+    if(self.latitude != nil && self.longitude != nil) {
+        [keys addObject:@"latitude"];
+        [keys addObject:@"longitude"];
+    }
     NSMutableDictionary* properties = [[NSMutableDictionary alloc] initWithDictionary:[self dictionaryWithValuesForKeys:keys]];
     return properties;
 }

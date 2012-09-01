@@ -13,12 +13,12 @@
 @interface DetailCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel* titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel* descriptionLabel;
 
 @property (nonatomic, weak) UIViewController* segueController;
 @property (nonatomic, strong) NSString* segueIdent;
 
 -(void)setLabel:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller;
+-(void)setLabelWithAccessory:(NSString*)label;
 -(void)setLabelWithoutAccessory:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller;
 
 @end

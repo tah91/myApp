@@ -23,7 +23,7 @@
 
 - (void)setSelectedState:(BOOL)selected
 {
-    UIColor * newShadow = selected ? [UIColor blackColor] : [UIColor whiteColor];
+    UIColor * newShadow = selected ? GREY_COLOR : WHITE_COLOR;
     
     desktopLabel.shadowColor = newShadow;
     meetingLabel.shadowColor = newShadow;

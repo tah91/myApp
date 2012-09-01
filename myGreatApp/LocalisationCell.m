@@ -26,7 +26,7 @@
 
 - (void)setSelectedState:(BOOL)selected
 {
-    UIColor * newShadow = selected ? BLACK_COLOR : WHITE_COLOR;
+    UIColor * newShadow = selected ? GREY_COLOR : WHITE_COLOR;
     
     nameLabel.shadowColor = newShadow;
     typeLabel.shadowColor = newShadow;
@@ -71,7 +71,7 @@
           andColor:BLUE_COLOR];
 
     [self setLabel:typeLabel
-          withText:[NSString stringWithFormat:NSLocalizedString(@"%@ - %@",nil), loc.type, loc.city]
+          withText:[NSString stringWithFormat:@"%@ - %@", loc.type, loc.city]
           andColor:ORANGE_COLOR];
     
     [self setLabel:distanceLabel

@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *radiusBtn;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 - (IBAction)switchView:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *switchViewBtn;
 

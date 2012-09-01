@@ -11,7 +11,7 @@
 
 @implementation DetailCell
 
-@synthesize titleLabel, descriptionLabel, segueIdent, segueController;
+@synthesize titleLabel, segueIdent, segueController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,7 +25,7 @@
 
 - (void)setSelectedState:(BOOL)selected
 {
-    UIColor * newShadow = selected ? BLACK_COLOR : WHITE_COLOR;
+    UIColor * newShadow = selected ? GREY_COLOR : WHITE_COLOR;
     
     self.titleLabel.shadowColor = newShadow;
     
@@ -68,7 +68,15 @@
     self.segueController = controller;
     if([self.segueIdent length] != 0 && self.segueController != nil) {
         [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory.png" ]]];
+    } else {
+        [self setAccessoryView:nil];
     }
+}
+
+-(void)setLabelWithAccessory:(NSString*)label
+{
+    [self setLabel:label withSegue:@"" andController:nil];
+    [self setAccessoryView:[[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"accessory.png" ]]];
 }
 
 -(void)setLabelWithoutAccessory:(NSString*)label withSegue:(NSString*)segue andController:(UIViewController*)controller

@@ -325,6 +325,9 @@
 		97FCA80515F1275600CBD685 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80115F1275600CBD685 /* Icon-Small@2x.png */; };
 		97FCA80615F1275600CBD685 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80215F1275600CBD685 /* Icon.png */; };
 		97FCA80715F1275600CBD685 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80315F1275600CBD685 /* Icon@2x.png */; };
+		97FCA80A15F203BD00CBD685 /* DescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA80915F203BA00CBD685 /* DescriptionCell.m */; };
+		97FCA80C15F204CE00CBD685 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97FCA80B15F204CD00CBD685 /* DescriptionCell.xib */; };
+		97FCA80F15F2125100CBD685 /* MapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA80E15F2124F00CBD685 /* MapCell.m */; };
 		97FD7E6C15BDC76200815752 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6B15BDC76200815752 /* Price.m */; };
 		97FD7E7015BDC77000815752 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E6F15BDC76F00815752 /* Comment.m */; };
 		97FD7E7315BDC77E00815752 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD7E7215BDC77E00815752 /* Offer.m */; };
@@ -775,6 +778,11 @@
 		97FCA80115F1275600CBD685 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		97FCA80215F1275600CBD685 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		97FCA80315F1275600CBD685 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		97FCA80815F203B900CBD685 /* DescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionCell.h; sourceTree = "<group>"; };
+		97FCA80915F203BA00CBD685 /* DescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionCell.m; sourceTree = "<group>"; };
+		97FCA80B15F204CD00CBD685 /* DescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
+		97FCA80D15F2124D00CBD685 /* MapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCell.h; sourceTree = "<group>"; };
+		97FCA80E15F2124F00CBD685 /* MapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCell.m; sourceTree = "<group>"; };
 		97FD7E6A15BDC76200815752 /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
 		97FD7E6B15BDC76200815752 /* Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Price.m; sourceTree = "<group>"; };
 		97FD7E6E15BDC76F00815752 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -1375,6 +1383,11 @@
 				9700EB7E15DC28B6005DD901 /* DetailCell.h */,
 				9700EB7F15DC28B7005DD901 /* DetailCell.m */,
 				979E584E15E7F8F80008181D /* DetailCell.xib */,
+				97FCA80815F203B900CBD685 /* DescriptionCell.h */,
+				97FCA80915F203BA00CBD685 /* DescriptionCell.m */,
+				97FCA80B15F204CD00CBD685 /* DescriptionCell.xib */,
+				97FCA80D15F2124D00CBD685 /* MapCell.h */,
+				97FCA80E15F2124F00CBD685 /* MapCell.m */,
 				9700EBB915DFB962005DD901 /* TextFieldCell.h */,
 				9700EBBA15DFB962005DD901 /* TextFieldCell.m */,
 				979E584815E7D5E00008181D /* TextFieldCell.xib */,
@@ -1777,6 +1790,7 @@
 				97FCA80515F1275600CBD685 /* Icon-Small@2x.png in Resources */,
 				97FCA80615F1275600CBD685 /* Icon.png in Resources */,
 				97FCA80715F1275600CBD685 /* Icon@2x.png in Resources */,
+				97FCA80C15F204CE00CBD685 /* DescriptionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1886,6 +1900,8 @@
 				972CD69815ECFAF4009A8AFC /* SearchHomeViewController.m in Sources */,
 				972CD69B15ED00F8009A8AFC /* SearchByNameViewController.m in Sources */,
 				972CD69E15ED2B7C009A8AFC /* SearchButtonView.m in Sources */,
+				97FCA80A15F203BD00CBD685 /* DescriptionCell.m in Sources */,
+				97FCA80F15F2125100CBD685 /* MapCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

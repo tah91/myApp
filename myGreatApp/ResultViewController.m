@@ -27,6 +27,7 @@
 @synthesize switchViewBtn;
 @synthesize loadingLabel;
 @synthesize loadingView;
+@synthesize loadingActivity;
 @synthesize mapView;
 @synthesize mapViewHelp;
 @synthesize mapViewActivity;
@@ -124,6 +125,7 @@
     self.fetchedLocalisations = nil;
     self.criteria = nil;
     [self setSwitchViewBtn:nil];
+    [self setLoadingActivity:nil];
     [super viewDidUnload];
 }
 
@@ -212,7 +214,10 @@
     [self.mapView setRegion:[self getRegion] animated:YES];
     
     [self.tableView reloadData];
-    if([self.results count] >= maxCount.intValue) {
+    if([self.results count] == 0) {
+        self.loadingLabel.text =  NSLocalizedString(@"Pas de résultat disponible",nil);
+        [self.loadingActivity stopAnimating];
+    } else if([self.results count] >= maxCount.intValue) {
         [self.loadingView removeAndHide];
     }
     

@@ -25,11 +25,18 @@
 @synthesize window = _window;
 @synthesize localisationEngine;
 @synthesize loginSession;
+@synthesize locationManager,latitude,longitude;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     DefaultSHKConfigurator* configurator = [[EworkySHKConfigurator alloc] init];
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
     
     UITabBarController* _tabBarController = (UITabBarController *)self.window.rootViewController;
     _tabBarController.delegate = self;
@@ -38,7 +45,8 @@
     //[self.localisationEngine useCache];
     //[self.localisationEngine emptyCache];
 
-    self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
+    //self.loginSession = [[LoginSession alloc] initWithId:@"339911822753190"];
+    self.loginSession = [[LoginSession alloc] initWithId:@"211792125555707"];
     
     UIImage *navBarImage = [UIImage imageNamed:@"nav-bar.png"];
     
@@ -183,6 +191,15 @@
         ProfilViewController* profil = (ProfilViewController*)top;
         [profil shouldAskLogin];
     }
+}
+
+#pragma mark - CLLocationManager Delegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    self.latitude = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
+    self.longitude = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
+    
 }
 
 @end

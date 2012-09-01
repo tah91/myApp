@@ -10,6 +10,7 @@
 #import "DetailCell.h"
 #import "SelectSearchViewController.h"
 #import "SearchCriteria.h"
+#import "AppDelegate.h"
 
 @interface SearchHomeViewController ()
 
@@ -17,7 +18,7 @@
 
 @implementation SearchHomeViewController
 
-@synthesize tableView,locationManager,latitude,longitude;
+@synthesize tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,11 +36,6 @@
     [super viewDidLoad];
     
     self.tableView.backgroundColor = BNG_PATTERN;
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
     
     self.navigationItem.title = NSLocalizedString(@"Rechercher",nil);
 	// Do any additional setup after loading the view.
@@ -62,7 +58,7 @@
         
         SelectSearchViewController* ss = [segue destinationViewController];
         
-        SearchCriteria* criteria = [[SearchCriteria alloc] initWithLatitude:self.latitude andLongitude:self.longitude];
+        SearchCriteria* criteria = [[SearchCriteria alloc] initWithLatitude:ApplicationDelegate.latitude andLongitude:ApplicationDelegate.longitude];
         [ss setCriteria:criteria];
     }
 }
@@ -106,15 +102,6 @@
 - (void)tableView:(UITableView *)tableViewVal didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-}
-
-#pragma mark - CLLocationManager Delegate
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    self.latitude = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
-    self.longitude = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
-    
 }
 
 @end

@@ -39,7 +39,7 @@
 					<object class="IBUILabel" id="139030354">
 						<reference key="NSNextResponder" ref="846338776"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{63, 5}, {207, 21}}</string>
+						<string key="NSFrame">{{48, 5}, {215, 21}}</string>
 						<reference key="NSSuperview" ref="846338776"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="227070988"/>
@@ -72,10 +72,9 @@
 					<object class="IBUILabel" id="227070988">
 						<reference key="NSNextResponder" ref="846338776"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{63, 25}, {207, 21}}</string>
+						<string key="NSFrame">{{48, 25}, {239, 21}}</string>
 						<reference key="NSSuperview" ref="846338776"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -91,18 +90,19 @@
 							<string key="name">HelveticaNeue-Medium</string>
 							<string key="family">Helvetica Neue</string>
 							<int key="traits">0</int>
-							<double key="pointSize">14</double>
+							<double key="pointSize">11</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">HelveticaNeue-Medium</string>
-							<double key="NSSize">14</double>
+							<double key="NSSize">11</double>
 							<int key="NSfFlags">16</int>
 						</object>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUIImageView" id="481802276">
 						<reference key="NSNextResponder" ref="846338776"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 15}, {28, 20}}</string>
+						<string key="NSFrame">{{10, 15}, {28, 20}}</string>
 						<reference key="NSSuperview" ref="846338776"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="139030354"/>

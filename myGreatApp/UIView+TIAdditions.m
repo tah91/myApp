@@ -82,15 +82,20 @@
 
 @implementation UIButton (TIAdditions)
 
+-(void) setTitleAndColor:(NSString *)title
+{
+    [self setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
+    [self setTitle:title forState:UIControlStateNormal];
+    [[self titleLabel] setFont:FONT_BOLD(14.0f)];
+}
+
 -(void) setFBButtonWithStyle:(NSString*)title
 {
     UIImage* bng = [UIImage imageNamed:@"btn-fb.png"];
     UIImage* bngSel = [UIImage imageNamed:@"btn-fb-sel.png"];
     [self setBackgroundImage:bng forState:UIControlStateNormal];
     [self setBackgroundImage:bngSel forState:UIControlStateHighlighted];
-    [self setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
-    self.titleLabel.text = title;
-    [[self titleLabel] setFont:FONT_BOLD(14.0f)];
+    [self setTitleAndColor:title];
 }
 
 -(void) setButtonWithStyle:(NSString*)title
@@ -99,9 +104,7 @@
     UIImage* bngSel = [[UIImage imageNamed:@"btn-blue-sel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 6, 6)];
     [self setBackgroundImage:bng forState:UIControlStateNormal];
     [self setBackgroundImage:bngSel forState:UIControlStateHighlighted];
-    [self setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
-    self.titleLabel.text = title;
-    [[self titleLabel] setFont:FONT_BOLD(14.0f)];
+    [self setTitleAndColor:title];
 }
 
 @end
